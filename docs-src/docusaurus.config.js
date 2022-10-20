@@ -2,7 +2,7 @@ module.exports = {
   title: "Kognic",
   tagline: "API Documentation of Kognic Platform APIs",
   url: "https://kognic.com",
-  baseUrl: "/api/", // previously the same as repo name
+  baseUrl: "/public-docs/", // previously the same as repo name
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
