@@ -50,7 +50,7 @@ if [ $BUILD_ONLY -eq 1 ]; then
   exit 0
 fi
 
-echo "Updating annotell-python/docs"
+echo "Updating public-docs/docs"
 rm -r ../docs
 mv ./build ../docs
 
