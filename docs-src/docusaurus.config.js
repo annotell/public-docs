@@ -2,7 +2,7 @@ module.exports = {
   title: "Kognic",
   tagline: "API Documentation of Kognic Platform APIs",
   url: "https://kognic.com",
-  baseUrl: "/public-docs/",
+  baseUrl: "/api/", // previously the same as repo name
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -20,7 +20,7 @@ module.exports = {
       },
       items: [
         {
-          to: "docs/",
+          to: "docs/key_concepts",
           activeBasePath: "docs",
           label: "API",
           position: "left",
@@ -40,8 +40,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl:
-            "https://github.com/annotell/public-docs/docs-src/", // TODO: remove annotell
+          editUrl: "https://github.com/annotell/public-docs/docs-src/", // TODO: remove annotell
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
