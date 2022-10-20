@@ -2,12 +2,12 @@ module.exports = {
   title: "Kognic",
   tagline: "API Documentation of Kognic Platform APIs",
   url: "https://kognic.com",
-  baseUrl: "/annotell-python/",
+  baseUrl: "/public-docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "annotell", // Usually your GitHub org/user name.
-  projectName: "annotell-python", // Usually your repo name.
+  organizationName: "kognic", // Usually your GitHub org/user name.
+  projectName: "public-docs", // Usually your repo name.
   themes: [
     '@saucelabs/theme-github-codeblock'
   ],
@@ -26,7 +26,7 @@ module.exports = {
           position: "left",
         },
         {
-          href: "https://github.com/annotell/annotell-python",
+          href: "https://github.com/annotell/public-docs", // TODO: remove annotell
           label: "GitHub",
           position: "right",
         },
@@ -41,7 +41,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/annotell/annotell-python/edit/gh-pages/docs-src/",
+            "https://github.com/annotell/public-docs/docs-src/", // TODO: remove annotell
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
