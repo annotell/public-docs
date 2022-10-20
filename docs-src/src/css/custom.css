@@ -1,0 +1,38 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --kognic-lavender: #826cff;
+  --kognic-blush: #ebadc8;
+  --kognic-green: #60df5a;
+  --kognic-white: #ededed;
+  --kognic-black: #000000;
+  /* seems only the primary actually gets used in the current site, not the tints/shades */
+  --ifm-color-primary: var(--kognic-lavender);
+  --ifm-color-primary-dark: var(--ifm-color-primary);
+  --ifm-color-primary-darker: var(--ifm-color-primary);
+  --ifm-color-primary-darkest: var(--ifm-color-primary);
+  --ifm-color-primary-light: var(--ifm-color-primary);
+  --ifm-color-primary-lighter: var(--ifm-color-primary);
+  --ifm-color-primary-lightest: var(--ifm-color-primary);
+  --ifm-code-font-size: 95%;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme="dark"] {
+  --ifm-color-primary: var(--kognic-green);
+  --ifm-navbar-background-color: var(--kognic-black);
+  --ifm-background-color: var(--kognic-black);
+  --ifm-background-surface-color: var(--kognic-black);
+}
