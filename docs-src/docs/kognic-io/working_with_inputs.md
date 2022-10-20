@@ -9,7 +9,7 @@ For detailed information about different input modalities, check the Input Types
 :::
 
 :::tip Kognic Users
-As a Kognic user, it is possible to specify `client_organization_id` to `InputApiClient` constructor to create inputs on behalf of a client organization
+As a Kognic user, it is possible to specify `client_organization_id` to `KognicIOClient` constructor to create inputs on behalf of a client organization
 :::
 
 In order to create inputs, they need to be associated with a [project](project) and an [input batch](project#batch). Consider the following project setup:
@@ -76,7 +76,7 @@ Once an input has been created, it might be preprocessed before being made avail
 
 
 
-Inputs can be retrieved from the input API in two ways:
+Inputs can be retrieved from the API in two ways:
 1. Filtering on a project using the `get_inputs` method. Additional filter parameters are also available 
    (see table below) for querying inputs.
 2. Providing the input uuids of the inputs to be retrieved using the `get_inputs_by_uuids` method

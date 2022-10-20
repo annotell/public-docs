@@ -2,7 +2,6 @@
 id: key_concepts
 title: Key Concepts
 description: Kognic Platform Concepts
-slug: /
 ---
 
 ![Kognic](/img/kognic-domain.png)

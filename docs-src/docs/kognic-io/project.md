@@ -4,7 +4,7 @@ title: Projects
 
 ## Project
 
-In order to create inputs via the Input API, an Kognic project needs to exist.
+In order to create inputs via the API, a Kognic project needs to exist.
 Projects are configured by the Kognic Professional Services team, during the Guideline Agreement Process (GAP) of a new client engagement.
 
 ### List Projects

@@ -8,5 +8,5 @@ https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/camer
 ```
 
 :::tip Use dryrun to validate input
-Setting `dryrun` parameter to true in the method call, will validate the input using the Input API but not create any inputs.
+Setting `dryrun` parameter to true in the method call, will validate the input using the API but not create any inputs.
 :::

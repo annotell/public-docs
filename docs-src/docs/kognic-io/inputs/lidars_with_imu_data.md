@@ -72,7 +72,7 @@ client.lidars_and_cameras_sequence.create(
 ```
 
 :::tip Use dryrun to validate input
-Setting `dryrun` parameter to true in the method call, will validate the input using the Input API but not create any inputs.
+Setting `dryrun` parameter to true in the method call, will validate the input using the API but not create any inputs.
 :::
 
 ## Enable/disable motion compensation

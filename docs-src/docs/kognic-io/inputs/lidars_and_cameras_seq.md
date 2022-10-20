@@ -9,7 +9,7 @@ https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/lidar
 ```
 
 :::tip Use dryrun to validate input
-Setting `dryrun` parameter to true in the method call, will validate the input using the Input API but not create any inputs.
+Setting `dryrun` parameter to true in the method call, will validate the input using the API but not create any inputs.
 :::
 
 :::tip reuse calibration

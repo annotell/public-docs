@@ -29,18 +29,18 @@ project `example_project_id` is configured with the Annotation Types:
 
 ### Get Annotation Types for Project
 ```python
-from kognic.io.client import InputApiClient
+from kognic.io.client import KognicIOClient
 
-client = InputApiClient()
+client = KognicIOClient()
 project_annotation_types = client.project.get_annotation_types(project="example_project_id")
 ```
 This will return a list of all Annotation Types available in the project.
 
 ### Get Annotation Types for a specified Project Batch
 ```python
-from kognic.io.client import InputApiClient
+from kognic.io.client import KognicIOClient
 
-client = InputApiClient()
+client = KognicIOClient()
 batch_annotation_types = client.project.get_annotation_types(project="example_project_id",
                                                              batch="example_batch_id")
 ```
@@ -49,10 +49,10 @@ Note that this list does not need to contain all Annotation Types in the project
 
 ### Create inputs for specific Annotation Types
 ```python
-from kognic.io.client import InputApiClient
+from kognic.io.client import KognicIOClient
 from kognic.io.model.input.cameras_sequence import CamerasSequence
 
-client = InputApiClient()
+client = KognicIOClient()
 camera_input = CamerasSequence(external_id=..., frames=...)
 client.cameras_sequence.create(camera_input,
                                project="example_project_id",
@@ -61,7 +61,7 @@ client.cameras_sequence.create(camera_input,
 ```
 The above example will create a new input which will be annotated for the annotation 
 types specified. If one or more of the specified annotation types would not be available
-in the specified batch the validation in the Input API would fail. 
+in the specified batch the validation in the API would fail. 
 
 :::info Specifying batch is optional
 In these examples we have specified which batch the inputs should be created for, but this is optional. If 
@@ -70,10 +70,10 @@ no batch is specified the inputs will be created in the latest batch with status
 
 ### Create inputs for all Annotation Types in batch
 ```python
-from kognic.io.client import InputApiClient
+from kognic.io.client import KognicIOClient
 from kognic.io.model.input.cameras_sequence import CamerasSequence
 
-client = InputApiClient()
+client = KognicIOClient()
 camera_input = CamerasSequence(external_id=..., frames=...)
 client.cameras_sequence.create(camera_input,
                                project="example_project_id",
@@ -101,9 +101,9 @@ one annotation type when adding but **all** annotation types must be specified w
 Note that it is currently not possible to add an annotation type that has already been removed from an input.
 
 ```python
-from kognic.io.client import InputApiClient
+from kognic.io.client import KognicIOClient
 
-client = InputApiClient()
+client = KognicIOClient()
 input_uuid = 'cca60a67-cb68-4645-8bae-00c6e6415555'
 
 # Add an annotation type to an input

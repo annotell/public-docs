@@ -47,7 +47,7 @@ This example shows a common workflow where an annotation is fetched, parsed into
 converted into a custom annotation format.
 
 ```python
-from kognic.io.client import InputApiClient
+from kognic.io.client import KognicIOClient
 from kognic.openlabel.models import OpenLabelAnnotation
 from pydantic import BaseModel
 
@@ -59,7 +59,7 @@ class CustomAnnotationFormat(BaseModel):
         pass
 
 
-client = InputApiClient()
+client = KognicIOClient()
 
 annotation = client.annotation.get_annotation(
     input_uuid='<input-uuid-identifier>',
@@ -78,9 +78,9 @@ save_file must have the extension `.zip`.
 
 ```python
 import io, json, zipfile
-import kognic.io.client as IAC
+import kognic.io.client as KognicIOClient
 
-client = IAC.InputApiClient()
+client = KognicIOClient()
 
 zip_buffer = io.BytesIO()
 with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:

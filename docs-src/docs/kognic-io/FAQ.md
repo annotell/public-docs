@@ -6,7 +6,7 @@ description: FAQ
 
 ### Receiving `requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: ...` when trying to create inputs
 
-This implies that the authenticated user does not have access to the endpoint being called. Make sure you're [authenticating](../kognic-auth) correctly. If an Kognic user, make sure `client_organization_id` is specified on the `InputApiClient`.
+This implies that the authenticated user does not have access to the endpoint being called. Make sure you're [authenticating](../kognic-auth) correctly. If a Kognic user, make sure `client_organization_id` is specified on the `KognicIOClient`.
 
 
 ### How do I know that my input was created successfully?
