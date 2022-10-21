@@ -78,7 +78,9 @@ Note that all geometries should be specified under frames rather than in the roo
 At the moment only attributes for the objects are supported, i.e. geometry specific ones are not (apart from the `stream`
 property). Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the
 object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists
-when creating an input from the scene.
+when creating an input from a scene.
+
+Note that attributes in the form of `relations` and `context` are curre
 
 ### Frames
 
@@ -91,6 +93,14 @@ In the static case, one frame should be used with timestamp 0.
 Every geometry must have the `stream` property specified. This property determines which stream (or sensor) that the 
 geometry appears in. It is important that the stream is among the ones specified in the scene and of the same type, for
 example `camera` or `lidar`.
+
+### Relations
+
+Currently not supported. Contact Kognic if you need support for this or use regular attributes instead.
+
+### Contexts
+
+Currently not supported. Contact Kognic if you need support for this or use regular attributes instead.
 
 ### Example pre-annotation
 
