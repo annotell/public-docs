@@ -80,7 +80,9 @@ property). Attributes can be static (specified in the `objects` key) or dynamic 
 object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists
 when creating an input from a scene.
 
-Note that attributes in the form of `relations` and `context` are curre
+### Contexts
+
+Currently not supported. Contact Kognic if you need support for this or use regular attributes instead.
 
 ### Frames
 
@@ -88,21 +90,18 @@ Every pre-annotation must contain frames with unique timestamps that are among t
 reason for this is that the timestamps are used to map the frame in the pre-annotation to the correct frame in the scene.
 In the static case, one frame should be used with timestamp 0.
 
+### Relations
+
+Currently not supported. Contact Kognic if you need support for this or use regular attributes instead.
+
 ### Streams
 
 Every geometry must have the `stream` property specified. This property determines which stream (or sensor) that the 
 geometry appears in. It is important that the stream is among the ones specified in the scene and of the same type, for
 example `camera` or `lidar`.
 
-### Relations
 
-Currently not supported. Contact Kognic if you need support for this or use regular attributes instead.
-
-### Contexts
-
-Currently not supported. Contact Kognic if you need support for this or use regular attributes instead.
-
-### Example pre-annotation
+## Example pre-annotation
 
 ```json
 {
