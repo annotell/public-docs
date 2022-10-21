@@ -53,5 +53,6 @@ fi
 echo "Updating public-docs/docs"
 rm -r ../docs
 mv ./build ../docs
+cp ../CNAME ../docs
 
 exit 0
