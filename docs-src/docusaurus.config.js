@@ -20,7 +20,7 @@ module.exports = {
       },
       items: [
         {
-          to: "docs/key_concepts",
+          to: "docs/",
           activeBasePath: "docs",
           label: "API",
           position: "left",
