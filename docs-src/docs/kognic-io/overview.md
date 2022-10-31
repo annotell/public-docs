@@ -199,51 +199,69 @@ cameras_sequence = CamerasSequence(
 
 ## Image & Pointcloud Resources
 Every single file containing binary sensor data (e.g. image or pointcloud files) is represented as a `Resource`, with 
-`Image` and `PointCloud` both being subclasses of it.
+`Image` and `PointCloud` being the concrete subclasses.
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/kognic/io/model/input/resources/resource.py#L7-L12
+https://github.com/annotell/annotell-python/blob/master/kognic-io/kognic/io/model/input/resources/resource.py#L12-L16
 ```
 
-When specifying a `Resource` object (like `Image` or `PointCloud`) it's possible to either:
+`Resource`s ultimately describe how to obtain some binary or textual sensor data, which can be done in different ways:
 
-1. Refer to _local_ files, these will be uploaded (synchronously) to the Kognic platform.
-2. Refer to _remote_ files via URI, these will only be uploaded (asynchronously) and stored in the Kognic platform if 
-   mandatory file conversion is necessary. Otherwise, they will be served to annotators via the URI.
+1. Indirectly: by refering to a local filename that contains the data
+2. Directly: provide some `bytes` at creation time
+3. Lazily: provide a callback function which can provide the `bytes` later in the process
 
-**Alternative 1** is achieved by setting the parameter `filename` to the path of the local file and leaving the 
-parameter `resource_id` set the default value of `None`, e.g.
+`Resource`s must always be given a `filename`. For alternative 1 this must point to the local file to upload. For alternatives 2 & 3 the filename is treated more as an identifier; it is used to name the uploaded file but does not have to correspond to anything in the filesystem.
 
-```python
-Image(
-    filename="/Users/johndoe/images/img_FC.png",
-    sensor_name='FC'
-)
-```
+`Resource`s also always have a `sensor_name` which identifies the sensor they were captured from. In sequential inputs, each `Frame` will have a `Resource` for each sensor.
 
-This file will automatically be uploaded to the Kognic Platform in a synchronous manner when the corresponding `create` 
-method is called for creating the input.
+For alternatives 2 & 3 a `FileData` object is attached to the `Image` or `PointCloud` to capture the source of data. It is created with either `data: bytes` or a `callback: Callable[[str], bytes]`, as well as a `format` which identifies the type of data contained in the bytes.
 
-**Alternative 2** is achieved by setting the parameter `filename` to just be the filename, and setting the parameter 
-`resource_id` to the corresponding URI of the file, e.g.
-
-```python
-Image(
-    filename="img_FC.png",
-    sensor_name='FC',
-    resource_id="gs://data-collection/4fcc30af/img_FC.png"
-)
-```
-
-With this approach the file resources will be served to the platform via the URI, which also means that the files will 
-not be stored in Kognic's cloud. However, **an exception to this** is for pointcloud files that are not in potree format.
-In cases like this the Kognic plattform will perform an asynchronous download of the files and convert them to potree 
-format. The potree versions of the files will both be stored and served from Kognic's cloud.
-
-:::note
-In order to supply `resource_id` configuration around access to the storage-provider is required. Contact Kognic before 
-creating any inputs using the `resource_id` approach.
+:::info
+Previous API client releases advertised support for ingesting files from external URIs, such as `gs://bucket/path/file`. Please contact Kognic if you believe you require this functionality going forward.
 :::
+
+### Local File
+
+Set `filename` to the path of the local file and do not provide data via another means (directly or callback). The content is uploaded using a content type inferred from the filename suffix.
+
+```python
+Image(filename="/Users/johndoe/images/img_FC.png",
+      sensor_name="FC")
+```
+
+### Bytes in Memory
+
+In addition to  `filename`, provide a `FileData` object via the `data` attribute, which in turn holds the raw bytes in its own `data` attribute, e.g.
+
+```python
+png_blob = FileData(data=b'some PNG bytes',
+                    format=FileData.Format.PNG)
+Image(filename="FC-frame15",
+      sensor_name="FC",
+      data=png_blob)
+```
+
+### Bytes from Callback
+
+In addition to `filename`, provide a `FileData` object via the `data` attribute, which holds a reference to the callback function, e.g.
+
+```python
+png_from_callback = FileData(callback=get_png,
+                             format=FileData.Format.PNG)
+Image(filename="FC-frame15",
+      sensor_name="FC",
+      data=png_from_callback)
+```
+
+The callback function (`get_the_bytes`) is a unary function with the following signature.
+
+```python
+def get_png(file: str) -> bytes:
+    pass
+```
+
+The callback function is invoked with the `Resource.filename` as its argument when it is time to upload that single file.
 
 ## IMU Data
 
