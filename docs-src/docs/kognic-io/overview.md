@@ -223,7 +223,7 @@ Previous API client releases advertised support for ingesting files from externa
 
 ### Local File
 
-Set `filename` to the path of the local file and do not provide data via another means (directly or callback). The content is uploaded using a content type inferred from the filename suffix.
+Set `filename` to the path of the local file and do not provide data via other means (directly or callback). The content is uploaded using a content type inferred from the filename suffix.
 
 ```python
 Image(filename="/Users/johndoe/images/img_FC.png",
