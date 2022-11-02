@@ -263,6 +263,19 @@ def get_png(file: str) -> bytes:
 
 The callback function is invoked with the `Resource.filename` as its argument when it is time to upload that single file.
 
+If the callback requires extra arguments then we recommend creating a closure over the additional arguments like this:
+
+```python
+def get_callback(arg1, arg2, **kwargs):
+     def callback(filename) -> bytes:
+         # ... use arg1, arg2, filename and kwargs
+      
+     return callback
+     
+FileData(callback=get_callback("foo", "bar", extra1="baz", extra2="qux"),
+         format=FileData.Format.JPG)
+```
+
 ## IMU Data
 
 Intertial Measurement Unit (IMU) data may be provided for inputs containing LIDAR pointclouds. This can be used to 
