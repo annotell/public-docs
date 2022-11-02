@@ -254,7 +254,7 @@ Image(filename="FC-frame15",
       data=png_from_callback)
 ```
 
-The callback function (`get_the_bytes`) is a unary function with the following signature.
+The callback function (`get_png`) is a unary function with the following signature.
 
 ```python
 def get_png(file: str) -> bytes:
