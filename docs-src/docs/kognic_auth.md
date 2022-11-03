@@ -5,7 +5,7 @@ description: How to authenticate with Kognic APIs
 ---
 Authentication is handled by [kognic-auth](https://pypi.org/project/kognic-auth/), a Python 3 library providing foundations for Kognic Authentication on top of the requests library.
 
-Builds on the standard Oauth 2.0 Client Credentials flow. There are a few ways to provide auth credentials to our api clients. Kognic Python clients such as in  kognic-query or kognic-io accept an auth parameter that can be set explicitly or you can omit it and use environment variables.
+The authentication builds on the standard Oauth 2.0 Client Credentials flow. There are a few ways to provide auth credentials to our api clients. Kognic Python clients such as in  kognic-query or kognic-io accept an auth parameter that can be set explicitly or you can omit it and use environment variables.
 
 To create an authenticated kognic-io client, simply do this:
 
@@ -32,6 +32,9 @@ There are a few ways to set your credentials in auth.
 API clients such as the KognicIOClient accept this auth parameter.
 Under the hood, they all use the AuthSession class which is implements a requests session with automatic token refresh.
 
+## Generating Credentials
 
+The credentials file, including the Kognic client ID and the Kognic client secret, can be generated in the [Kognic web application](https://app.kognic.com) by clicking on "Api Credentials..." in the user menu, followed by clicking on the "Generate Credentials" button.
 
+![Generate API credentials app screenshot](../static/img/generate-api-credentials.png)
 
