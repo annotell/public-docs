@@ -15,6 +15,7 @@ Non-sequential inputs only express a single snapshot of sensor data. As such, th
 Sequential input types are easily identified by the suffix `Seq` present in their name.
 
 The following input types are currently supported
+
 * `Cameras`
 * `LidarsAndCameras`
 * `CamerasSeq`
@@ -198,7 +199,7 @@ cameras_sequence = CamerasSequence(
 ```
 
 ## Image & Pointcloud Resources
-Every single file containing binary sensor data (e.g. image or pointcloud files) is represented as a `Resource`, with 
+Every file containing binary sensor data (e.g. image or pointcloud files) is represented as a `Resource`, with 
 `Image` and `PointCloud` being the concrete subclasses.
 
 ```python reference
@@ -208,14 +209,16 @@ https://github.com/annotell/annotell-python/blob/master/kognic-io/kognic/io/mode
 `Resource`s ultimately describe how to obtain some binary or textual sensor data, which can be done in different ways:
 
 1. Indirectly: by refering to a local filename that contains the data
-2. Directly: provide some `bytes` at creation time
-3. Lazily: provide a callback function which can provide the `bytes` later in the process
+2. Directly: provide some bytes-like object at creation time
+3. Lazily: provide a callback function which can provide the bytes later in the process
 
 `Resource`s must always be given a `filename`. For alternative 1 this must point to the local file to upload. For alternatives 2 & 3 the filename is treated more as an identifier; it is used to name the uploaded file but does not have to correspond to anything in the filesystem.
 
 `Resource`s also always have a `sensor_name` which identifies the sensor they were captured from. In sequential inputs, each `Frame` will have a `Resource` for each sensor.
 
-For alternatives 2 & 3 a `FileData` object is attached to the `Image` or `PointCloud` to capture the source of data. It is created with either `data: bytes` or a `callback: Callable[[str], bytes]`, as well as a `format` which identifies the type of data contained in the bytes.
+`Resource`s take their actual data (bytes) from `bytes`, a `BinaryIO` or an `IOBase`-compatible object. These are referred to with the type alias `UploadableData  = Union[bytes, BinaryIO, IOBase]`.
+
+For alternatives 2 & 3 listed above, a `FileData` object is attached to the `Image` or `PointCloud` to capture the source of data. It is created with either `data: UploadableData` or a `callback: Callable[[str], UploadableData]`, as well as a `format` which identifies the type of data contained in the bytes.
 
 :::info
 Previous API client releases advertised support for ingesting files from external URIs, such as `gs://bucket/path/file`. Please contact Kognic if you believe you require this functionality going forward.
@@ -230,9 +233,9 @@ Image(filename="/Users/johndoe/images/img_FC.png",
       sensor_name="FC")
 ```
 
-### Bytes in Memory
+### Data in Memory
 
-In addition to  `filename`, provide a `FileData` object via the `data` attribute, which in turn holds the raw bytes in its own `data` attribute, e.g.
+In addition to  `filename`, provide a `FileData` object via the `data` attribute, which in turn has an `UploadableData` as its own `data` attribute. This example uses raw `bytes`:
 
 ```python
 png_blob = FileData(data=b'some PNG bytes',
@@ -242,9 +245,9 @@ Image(filename="FC-frame15",
       data=png_blob)
 ```
 
-### Bytes from Callback
+### Data from Callback
 
-In addition to `filename`, provide a `FileData` object via the `data` attribute, which holds a reference to the callback function, e.g.
+In addition to `filename`, provide a `FileData` object via the `data` attribute, which holds a reference to the callback function that produces an `UploadableData`, e.g.
 
 ```python
 png_from_callback = FileData(callback=get_png,
@@ -257,7 +260,7 @@ Image(filename="FC-frame15",
 The callback function (`get_png`) is a unary function with the following signature.
 
 ```python
-def get_png(file: str) -> bytes:
+def get_png(file: str) -> UploadableData:
     pass
 ```
 
