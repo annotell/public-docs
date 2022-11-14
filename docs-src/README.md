@@ -1,6 +1,6 @@
 # Website
 
-Kognic SDK docs built using [Docusaurus 2](https://v2.docusaurus.io/).
+Kognic IO docs is built using [Docusaurus 2](https://v2.docusaurus.io/).
 
 ## Installation
 
