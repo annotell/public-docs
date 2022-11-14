@@ -36,3 +36,7 @@ git push
 ```
 
 Now wait a minute or two and check the documentations page, it should be updated with all your changes.
+
+## Merging
+
+If you are merging PRs and get conflicts in the `docs/` (generated output) dir, the easiest thing to do is drop all those changes from the merge/rebase you're doing (i.e. revert them so they don't feature in the merge at all), and then run the `build-docs.sh` script again to regenerate them anew. Then commit that. It's up to you if you do this during the merge or after as a separate commit.
