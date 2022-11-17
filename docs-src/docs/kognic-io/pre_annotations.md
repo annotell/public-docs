@@ -111,7 +111,8 @@ example `camera` or `lidar`.
       "0": {
         "frame_properties": {
           "timestamp": 0,
-          "external_id": "0"
+          "external_id": "0",
+          "streams": {"LIDAR1":  {}}
         },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
@@ -163,14 +164,12 @@ example `camera` or `lidar`.
         "type": "PassengerCar"
       }
     },
-    "relations": {},
     "streams": {
       "LIDAR1": {
         "description": "",
         "type": "lidar"
       }
-    },
-    "tags": {}
+    }
   }
 }
 ```
