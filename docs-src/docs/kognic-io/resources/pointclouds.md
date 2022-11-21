@@ -6,7 +6,7 @@ The API allows uploading of annotation project related data such as images and p
 
 A timestamp field must always be present in pointclouds, both in single-frame and sequence inputs, but the values are irrelevant [if motion compensation is not enabled](../inputs/lidars_with_imu_data.md#enabledisable-motion-compensation).
 
-Color and other auxillary data that is not used in the platform is currently discarded in the conversion to potree.
+Color and other auxiliary data that is not used in the platform is currently discarded in the conversion to potree.
 
 ## PCD
 
