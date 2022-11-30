@@ -60,6 +60,10 @@ Many scene model objects such as `Image` and `PointCloud` were converted to use 
 
 ## Non-breaking changes
 
+### Environment variables
+
+Environment variables used by our libraries which are named with the prefix `ANNOTELL_` now have a `KOGNIC_` equivalent, e.g. `ANNOTELL_CREDENTIALS`. The old names will continue to work for the time being, with the library code preferring the newer name if both are set. Future changes are not guaranteed to be backwards compatible (e.g. introduction of new variables, or renaming, may not be applied to both prefixes). We therefore recommend that any scripts are updated at the first opportunity.
+
 ### Validation
 
 Many scene model objects (e.g. `Image`, `PointCloud`, `LidarsAndCameras`) have been converted from Python `@dataclass` to Pydantic models.
