@@ -3,7 +3,7 @@ title: Pre-annotations
 ---
 
 :::caution
-This feature is in an alpha stage and might be subject to changes
+This feature is in an early release stage and might be subject to changes
 :::
 
 Pre-annotations have many uses in ground-truth production. The pre-annotations feature allows information about the objects already known to be present in an input to be specified. Please reach out to our Advisory Services team to see how they can best be used for your use-case.
@@ -61,6 +61,22 @@ client.lidars_and_cameras_sequence.create_from_scene(
 )
 ```
 
+## OpenLabel support
+
+Pre-annotations use the OpenLabel format/schema but not all OpenLabel features are supported in pre-annotations.
+
+## Unsupported pre-annotation features
+
+These features or combinations of features are not currently supported, or only have partial support.
+
+* Static geometries: not supported
+    * These are bounding boxes, cuboids, etc. declared in the OpenLabel under `objects.*.objectData`
+* Source-specific attributes: not supported on 3D geometry 
+    * These are attributes declared in the OpenLabel on a single geometric shape, in other words an attribute that only applies to the object as seen by one sensor; a common example is `occlusion` which is recorded separately for each camera.
+    * May also be described as stream-specific or sensor-specific attributes.
+    * 3D geometry is anything that can be drawn when annotating a pointcloud, e.g. cuboids.
+    * Source-specific attributes are permitted on 2D geometry e.g. bounding boxes
+    * Note that the [task definition](../key_concepts.md#task-definition), must designate a property as source specific before it may be used in this way.
 
 ## Supported pre-annotation features
 
@@ -71,13 +87,12 @@ client.lidars_and_cameras_sequence.create_from_scene(
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation.
 
 ### Attributes
+
 - Text
 - Num
 - Boolean
 
-At the moment only attributes for the objects are supported, i.e. geometry specific ones are not (apart from the `stream`
-property). Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the
-object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists
+For 2D geometry, attributes may be specified as geometry specific (aka source/sensor specific), or object specific. Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists
 when creating an input from a scene.
 
 ### Contexts

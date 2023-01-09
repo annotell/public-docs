@@ -1,10 +1,21 @@
 ---
-title: Calibration
+title: Coordinate Systems & Calibration
 ---
-Inputs including both a 2D and 3D representation such as `lidars_and_cameras` require a calibration relating the camera sensors with the
+Inputs including both a 2D and 3D representation such as `lidars_and_cameras` deal with data in a number of differing coordinate systems. These inputs require a calibration relating the camera sensors with the
 LIDAR sensors in terms of location and rotation. The calibration should also contain the required information for projecting 3D points into
 the image plane of the camera.
 
+# Coordinate systems
+
+Each sensor has its own coordinate system which differs from the ego vehicle's own due to sensor orientation and factors like lens distortion.
+
+The vehicles' IMU will also have its own coordinate system.
+
+For every sensor we require an accurate calibration in order to transform out of the sensor's coordinate system and into the ego vehicle and, equivalently, IMU coordinate system.
+
+Sensor data should use the sensor's own coordinate system, and IMU/ego motion data will use the IMU coordinate system. Internally, we use the calibration to project between coordinate systems.
+
+# Calibration
 A Calibration object consists of a set of key-value pairs where the key is the name of the sensor (i.e. sensor name) and the value is either
 a `LidarCalibration` object or any of the different camera calibrations.
 
@@ -12,7 +23,7 @@ a `LidarCalibration` object or any of the different camera calibrations.
 Note that after a calibration has been created you can, and should, reuse the same calibration for multiple inputs if possible.
 :::
 
-# Lidar
+## Lidar
 
 | Key                        | Value                         | Parameters                                                 |
 |:---------------------------|:------------------------------|:-----------------------------------------------------------|
@@ -31,13 +42,13 @@ See the code example below for creating a base `LidarCalibration` object.
 https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_lidar_calibration.py
 ```
 
-# Camera
+## Camera
 The Camera calibration format is based on [OpenCVs](https://docs.opencv.org/3.4/d4/d94/tutorial_camera_calibration.html) format and
 this [paper](http://www.robots.ox.ac.uk/~cmei/articles/single_viewpoint_calib_mei_07.pdf). The different camera types supported are: `PINHOLE`, `FISHEYE`, `KANNALA` and `PRINCIPALPOINTDIST`.
 
 ![Camera Calibrations commonality](camera-calibration.jpg)
 
-## Common
+### Common
 
 All camera calibrations have the following attributes
 
@@ -51,7 +62,7 @@ All camera calibrations have the following attributes
 | `image_height`            | Integer                           | NA                           |
 | `field_of_view`           | Float                             | NA 
 
-## Pinhole
+### Pinhole
 
 The `PINHOLE` camera model expands the common model with:
 
@@ -63,7 +74,7 @@ The `PINHOLE` camera model expands the common model with:
 https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_pinhole_calibration.py
 ```
 
-## Fisheye
+### Fisheye
 The Fisheye camera model expands the `PINHOLE` model with the following
 
 | Key  | Value | Parameters |
@@ -75,7 +86,7 @@ https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calib
 ```
 
 
-## Kannala
+### Kannala
 The `KANNALA` camera model changes and expands the `PINHOLE` with the following
 
 | Key                         | Value                                                                                                                                 | Parameters       |
@@ -87,7 +98,7 @@ The `KANNALA` camera model changes and expands the `PINHOLE` with the following
 https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_kannala_calibration.py
 ```
 
-## Principal point distortion
+### Principal point distortion
 
 The principal point distortion model consists of the common attributes plus
 
@@ -98,7 +109,7 @@ The principal point distortion model consists of the common attributes plus
 | `principal_point` | A `PrincipalPoint` object |`x`, `y` |
 
 
-## Example: Creating a calibration
+### Example: Creating a calibration
 
 The following example code shows how you can create a *unity* (i.e. we assume that all sensors are placed at origin and have no rotation)
 calibration for a LIDAR sensor and several camera sensors of type `PINHOLE`.
