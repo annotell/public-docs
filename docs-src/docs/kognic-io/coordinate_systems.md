@@ -60,7 +60,7 @@ The image below displays how the different sensors relate to each other in 3D sp
 the ego motion data should be expressed in the lidar coordinate system.
 
 
-![Single lidar case](../../static/img/single-lidar-setup.png)
+![Single lidar setup](../../static/img/single-lidar-setup.png)
 
 ## Multi-lidar case
 
@@ -76,7 +76,7 @@ $$
 $$
 where the point is recorded in sensor $i$ at time $t$.
 
-![Multi-lidar case](../../static/img/multi-lidar-setup.png)
+![Multi-lidar setup](../../static/img/multi-lidar-setup.png)
 
 
 
