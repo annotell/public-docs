@@ -25,13 +25,13 @@ Ongoing projects can benefit from using batches in two ways
 
 ### Batch Status
 
-| Status      | Description                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Status      | Description                                                                                                          |
+|-------------|----------------------------------------------------------------------------------------------------------------------|
 | pending     | Batch has been created but is still not fully configured by Kognic. Either during project setup or requested changes |
-| open        | Batch is open for new inputs                                                                                           |
-| ready       | Batch has been published and no longer open for new inputs.                                                            |
+| open        | Batch is open for new inputs                                                                                         |
+| ready       | Batch has been published and no longer open for new inputs.                                                          |
 | in-progress | Kognic has started annotation of inputs within the batch.                                                            |
-| completed   | Annotations has been completed.                                                                                        |
+| completed   | Annotations has been completed.                                                                                      |
 
 ## Request
 
@@ -70,12 +70,12 @@ consisting of data from different sensors. Scenes can be divided into two catego
 information is important for producing the annotation.
 
 ### Scene Types
-| Type                           | Description                                                                           |
-| -------------------------------|---------------------------------------------------------------------------------------|
-| **Cameras**                    | A single frame consisting of images from 1-9 cameras                                  |
-| **LidarsAndCameras**           | A single frame consisting of 1-3 lidar point clouds and images from 1-9 cameras       |
-| **CamerasSeq**                 | Sequence of frames, each frame consisting of images from 1-9 cameras                  |
-| **LidarsAndCamerasSeq**        | Sequence of frames, consisting of 1-3 lidar point clouds and images from 1-9 cameras  |
+| Type                    | Description                                                                          |
+|-------------------------|--------------------------------------------------------------------------------------|
+| **Cameras**             | A single frame consisting of images from 1-9 cameras                                 |
+| **LidarsAndCameras**    | A single frame consisting of 1-3 lidar point clouds and images from 1-9 cameras      |
+| **CamerasSeq**          | Sequence of frames, each frame consisting of images from 1-9 cameras                 |
+| **LidarsAndCamerasSeq** | Sequence of frames, consisting of 1-3 lidar point clouds and images from 1-9 cameras |
 
 
 

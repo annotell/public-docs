@@ -84,7 +84,10 @@ These features or combinations of features are not currently supported, or only 
 - Cuboid (`cuboid`)
 - 2D bounding box (`bbox`)
 
-Note that all geometries should be specified under frames rather than in the root of the pre-annotation.
+Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
+should be expressed in the lidar coordinate system in the single-lidar case but in the reference coordinate system in
+the multi-lidar case. 2D geometries should be expressed in pixel coordinates.
+See [coordinate systems](calibrations.md) for more information.
 
 ### Attributes
 

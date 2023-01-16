@@ -19,7 +19,8 @@ module.exports = {
         "kognic-io/feature_flags",
       ]},
       "kognic-io/annotations",
-      "kognic-io/calibration_coordinate_systems",
+      "kognic-io/calibrations",
+      "kognic-io/coordinate_systems",
       "kognic-io/error_handling",
       "kognic-io/FAQ",
       {
