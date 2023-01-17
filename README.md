@@ -22,6 +22,11 @@ yarn install
 yarn build
 ```
 
+Note that the search bar does not work in development mode, so you need to run the build content if you want to test
+this out locally. This can be done with `yarn serve`.
+
+
+
 ## Deployment
 
 To deploy your changes you need to generate the static content into the `docs` folder. A shell script is provided for
