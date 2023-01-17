@@ -85,8 +85,7 @@ where the point is recorded in sensor $i$ at time $t$.
 Different kinds of data are expressed in different coordinate systems depending on whether it's single-lidar or 
 multi-lidar. This is summarized in the table below where we can see that ego motion data should be expressed
 in the lidar coordinate system in the single-lidar case but in the reference coordinate system in the multi-lidar case
-for example. Another example is in the multi-lidar case where annotation are done in the merged point cloud but then 
-projected to each lidar sensor.
+for example. 
 
 | Type of data                        | Single-lidar     | Multi-lidar |
 |:------------------------------------|:-----------------|:------------|
