@@ -66,11 +66,11 @@ the ego motion data should be expressed in the lidar coordinate system.
 
 
 In the multi-lidar case (see image below), point clouds from different lidar sensors are merged to one point cloud in 
-the reference coordinate. 
+the reference coordinate system. 
 The benefit of doing it this way is that it is much more efficient to annotate in one point cloud than in several. 
-It is **mandatory** to provide IMU data so that motion compensation can be utilized. Since the merged 
+It is recommended to provide IMU data so that motion compensation can be utilized. Since the merged 
 point cloud is expressed in the reference coordinate system we also expect any ego motion data to be expressed
-in the reference coordinate system. A point $\vec{x_{i, t}}$ is then transformed to the world coordinate system with
+in the reference coordinate system. A point $\vec{x_{i, t}}$ can then be transformed to the world coordinate system with
 $$
 \vec{x_w} = E_{t} C_i \vec{x_{i,t}}
 $$
@@ -87,6 +87,7 @@ multi-lidar. This is summarized in the table below where we can see that ego mot
 in the lidar coordinate system in the single-lidar case but in the reference coordinate system in the multi-lidar case
 for example. 
 
+
 | Type of data                        | Single-lidar     | Multi-lidar |
 |:------------------------------------|:-----------------|:------------|
 | Ego poses & IMU data                | Lidar            | Reference   |
@@ -94,3 +95,4 @@ for example.
 | OpenLABEL export <br/>2D geometries | Pixel            | Pixel       | 
 | Pre-annotations <br/>3D geometries  | Lidar            | Reference   |
 | Pre-annotations <br/>2D geometries  | Pixel            | Pixel       | 
+
