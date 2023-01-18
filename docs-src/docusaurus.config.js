@@ -62,4 +62,5 @@ module.exports = {
       crossorigin: 'anonymous',
     },
   ],
+  plugins: [require.resolve('docusaurus-lunr-search')],
 };
