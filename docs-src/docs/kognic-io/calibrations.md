@@ -1,26 +1,16 @@
 ---
-title: Coordinate Systems & Calibration
+title: Calibrations
 ---
-Inputs including both a 2D and 3D representation such as `lidars_and_cameras` deal with data in a number of differing coordinate systems. These inputs require a calibration relating the camera sensors with the
-LIDAR sensors in terms of location and rotation. The calibration should also contain the required information for projecting 3D points into
-the image plane of the camera.
+Scenes including both a 2D and 3D representation such as `lidars_and_cameras` deal with data in a number of different 
+[coordinate systems](coordinate_systems.md). These scenes require a calibration that relate the different sensors to
+each other in terms of location and orientation. The calibration should also contain the required information for 
+projecting 3D points into the image plane of the camera.
 
-# Coordinate systems
-
-Each sensor has its own coordinate system which differs from the ego vehicle's own due to sensor orientation and factors like lens distortion.
-
-The vehicles' IMU will also have its own coordinate system.
-
-For every sensor we require an accurate calibration in order to transform out of the sensor's coordinate system and into the ego vehicle and, equivalently, IMU coordinate system.
-
-Sensor data should use the sensor's own coordinate system, and IMU/ego motion data will use the IMU coordinate system. Internally, we use the calibration to project between coordinate systems.
-
-# Calibration
-A Calibration object consists of a set of key-value pairs where the key is the name of the sensor (i.e. sensor name) and the value is either
-a `LidarCalibration` object or any of the different camera calibrations.
+A `Calibration` object consists of a set of key-value pairs where the key is the name of the sensor (i.e. sensor name) 
+and the value is either a `LidarCalibration` object or any of the different camera calibrations.
 
 :::tip reuse calibration
-Note that after a calibration has been created you can, and should, reuse the same calibration for multiple inputs if possible.
+Note that after a calibration has been created you can, and should, reuse the same calibration for multiple scenes if possible.
 :::
 
 ## Lidar
@@ -53,14 +43,14 @@ this [paper](http://www.robots.ox.ac.uk/~cmei/articles/single_viewpoint_calib_me
 All camera calibrations have the following attributes
 
 
-| Key                       | Value                             | Parameters                   |
-|:--------------------------|:----------------------------------|:-----------------------------|
-| `rotation_quaternion`     | A `RotationQuaternion` object     | `w`, `x`, `y`, `z`            |
-| `position`                | A `Position` object               | `x`, `y`, `z`                |
-| `camera_matrix`           | A `CameraMatrix` object           | `fx`, `fy`, `cx`, `cy`       |
-| `image_width`             | Integer                           | NA                           |
-| `image_height`            | Integer                           | NA                           |
-| `field_of_view`           | Float                             | NA 
+| Key                   | Value                         | Parameters             |
+|:----------------------|:------------------------------|:-----------------------|
+| `rotation_quaternion` | A `RotationQuaternion` object | `w`, `x`, `y`, `z`     |
+| `position`            | A `Position` object           | `x`, `y`, `z`          |
+| `camera_matrix`       | A `CameraMatrix` object       | `fx`, `fy`, `cx`, `cy` |
+| `image_width`         | Integer                       | NA                     |
+| `image_height`        | Integer                       | NA                     |
+| `field_of_view`       | Float                         | NA                     |
 
 ### Pinhole
 
