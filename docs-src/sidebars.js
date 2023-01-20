@@ -11,7 +11,8 @@ module.exports = {
           "kognic-io/inputs/cameras",
           "kognic-io/inputs/lidars_and_cameras",
           "kognic-io/inputs/cameras_seq",
-          "kognic-io/inputs/lidars_and_cameras_seq"
+          "kognic-io/inputs/lidars_and_cameras_seq",
+          "kognic-io/inputs/aggregated_lidars_and_cameras_seq"
         ]},
         "kognic-io/working_with_inputs",
         "kognic-io/pre_annotations",
