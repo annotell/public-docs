@@ -220,7 +220,8 @@ example `camera` or `lidar`.
         },
         "objects": {
           "cc06aced-d7dc-4638-a6e9-dc7f5e215340": {
-            "poly3d": [
+            "object_data": {
+              "poly3d": [
               {
                 "attributes": {
                   "text": [
@@ -239,6 +240,7 @@ example `camera` or `lidar`.
               }
             ],
             "text": [ { "name": "occluded", "val": "No" } ]
+            }
           }
         }
       }
