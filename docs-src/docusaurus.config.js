@@ -4,7 +4,7 @@ const katex = require('rehype-katex');
 module.exports = {
   title: "Kognic",
   tagline: "API Documentation of Kognic Platform APIs",
-  url: "https://kognic.com",
+  url: "https://developers.kognic.com",
   baseUrl: "/", // previously the same as repo name
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
