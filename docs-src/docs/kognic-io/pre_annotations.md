@@ -20,7 +20,7 @@ There are 3 steps that are needed in order to create pre-annotations in the Kogn
 ### 1. Creating a scene
 
 :::note
-The scene is a subset of the input, specifically refering to the data, such as images or pointclouds.
+The scene is a subset of the input, specifically referring to the data, such as images or point clouds.
 An input is what is created when this data is ready to be annotated.
 :::
 
@@ -81,8 +81,17 @@ These features or combinations of features are not currently supported, or only 
 ## Supported pre-annotation features
 
 ### Geometries
-- Cuboid (`cuboid`)
-- 2D bounding box (`bbox`)
+
+:::note
+Objects cannot have multiple 3D geometries in the same frame
+:::
+
+| OpenLABEL field | 2D/3D | Description                                                                |
+|-----------------|-------|----------------------------------------------------------------------------|
+| `cuboid`        | 3D    | Cuboid in 3D                                                               |
+| `bbox`          | 2D    | Bounding box in 2D                                                         |
+| `poly3d`        | 3D    | Line in 3D. Append the first point at the end if you want it to be closed. |
+
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
 should be expressed in the lidar coordinate system in the single-lidar case but in the reference coordinate system in
@@ -119,7 +128,7 @@ geometry appears in. It is important that the stream is among the ones specified
 example `camera` or `lidar`.
 
 
-## Example pre-annotation
+### Example 1: Pre-annotation with 3d cuboid, 2d bounding box and static property
 
 ```json
 {
@@ -130,19 +139,27 @@ example `camera` or `lidar`.
         "frame_properties": {
           "timestamp": 0,
           "external_id": "0",
-          "streams": {"LIDAR1":  {}}
+          "streams": {"LIDAR1":  {}, "ZFC":  {}}
         },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
             "object_data": {
+              "bbox": [
+                {
+                  "attributes": {
+                    "text": [
+                      { "name": "stream", "val": "ZFC" }
+                    ]
+                  },
+                  "name": "Bounding-box-1",
+                  "val": [1.0, 1.0, 40.0, 30.0]
+                }
+              ],
               "cuboid": [
                 {
                   "attributes": {
                     "text": [
-                      {
-                        "name": "stream",
-                        "val": "LIDAR1"
-                      }
+                      { "name": "stream", "val": "LIDAR1" }
                     ]
                   },
                   "name": "cuboid-89ac8a2b",
@@ -173,21 +190,72 @@ example `camera` or `lidar`.
         "name": "1232b4f4-e3ca-446a-91cb-d8d403703df7",
         "object_data": {
           "text": [
-            {
-              "name": "color",
-              "val": "red"
-            }
+            { "name": "color", "val": "red" }
           ]
         },
         "type": "PassengerCar"
       }
     },
-    "streams": {
-      "LIDAR1": {
-        "description": "",
-        "type": "lidar"
-      }
+    "streams": { 
+      "LIDAR1": { "type": "lidar" }, 
+      "ZFC": { "type": "camera" }
     }
   }
 }
 ```
+
+
+## Example 2: Pre-annotation with 3D line and dynamic property
+
+```json
+{
+  "openlabel": {
+    "frame_intervals": [{ "frame_end": 0, "frame_start": 0 }],
+    "frames": {
+      "0": {
+        "frame_properties": {
+          "streams": { "lidar": {} },
+          "timestamp": 0,
+          "external_id": "0"
+        },
+        "objects": {
+          "cc06aced-d7dc-4638-a6e9-dc7f5e215340": {
+            "poly3d": [
+              {
+                "attributes": {
+                  "text": [
+                    { "name": "stream", "val": "lidar" }
+                  ]
+                },
+                "closed": false,
+                "name": "line-3d-1",
+                "val": [
+                  -5.0, 0.0, 0.0,
+                  -5.0, 10.0, 0.0,
+                  5.0, 10.0, 0.0,
+                  5.0, 0.0, 0.0,
+                  -5.0, 0.0, 0.0
+                ]
+              }
+            ],
+            "text": [ { "name": "occluded", "val": "No" } ]
+          }
+        }
+      }
+    },
+    "metadata": { "schema_version": "1.0.0" },
+    "objects": {
+      "cc06aced-d7dc-4638-a6e9-dc7f5e215340": {
+        "name": "cc06aced",
+        "type": "Region"
+      }
+    },
+    "streams": {
+      "lidar": { "type": "lidar" },
+      "ZFC": { "type": "camera" }
+    }
+  }
+}
+```
+
+
