@@ -19,7 +19,8 @@ The following input types are currently supported
 * `Cameras`
 * `LidarsAndCameras`
 * `CamerasSeq`
-* `LidarAndCamerasSeq`
+* `LidarsAndCamerasSeq`
+* `AggregatedLidarsAndCamerasSeq`
 
 ## Input Fields
 All non-sequential inputs have the following structure
@@ -44,10 +45,10 @@ class InputSeq(BaseModel):
     metadata: Mapping[str, Union[int, float, str, bool]] = field(default_factory=dict)
 ```
 
-The fields contain all of the information required to create the input.
+The fields contain all the information required to create the input.
 
 ### External Id
-Whenever an input is uploaded it automatically gets an UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific inputs easier we also allow for clients to include any kind of identifier to the input via the external id.
+Whenever an input is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific inputs easier we also allow for clients to include any kind of identifier to the input via the external id.
 
 ### Sensor Specification
 The sensor specification contains information related to the different camera and/or lidar sensors
