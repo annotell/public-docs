@@ -6,11 +6,12 @@ title: Aggregated Lidars and Cameras Sequence
 This feature is new in version 1.1.5
 :::
 
-An `AggregatedLidarsAndCamerasSeq` scene consists of a sequence of camera images and lidar point clouds, where each frame consists 
-on 1-9 camera images as well as 1-20 point clouds. What differentiates `AggregatedLidarsAndCamerasSeq` from `LidarsAndCamerasSeq`.
-is that point clouds are aggregated over time during annotation which results in one big point cloud in the world coordinate system.
-Therefore, ego motion data is **mandatory** for this type of scene. For more documentation on what each field corresponds to in the 
-`AggregatedLidarsAndCamerasSeq` object please check the section related to [Input Overview](/docs/kognic-io/overview).
+An `AggregatedLidarsAndCamerasSeq` scene consists of a sequence of camera images and lidar point clouds, where each 
+frame consists on 1-9 camera images as well as 1-20 point clouds. What differentiates `AggregatedLidarsAndCamerasSeq`
+from `LidarsAndCamerasSeq` is that point clouds are aggregated over time during annotation which results in one big 
+point cloud in the coordinate system of the first frame. Therefore, ego motion data is **mandatory** for this type of 
+scene. For more documentation on what each field corresponds to in the `AggregatedLidarsAndCamerasSeq` object please 
+check the section related to [Input Overview](/docs/kognic-io/overview).
 
 Refer to [Coordinate Systems](../coordinate_systems.md) for more information about what coordinate systems to use.
 
