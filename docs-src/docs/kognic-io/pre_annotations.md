@@ -222,24 +222,22 @@ example `camera` or `lidar`.
           "cc06aced-d7dc-4638-a6e9-dc7f5e215340": {
             "object_data": {
               "poly3d": [
-              {
-                "attributes": {
-                  "text": [
-                    { "name": "stream", "val": "lidar" }
+                {
+                  "attributes": {
+                    "text": [{ "name": "stream", "val": "lidar" }]
+                  },
+                  "closed": false,
+                  "name": "line-3d-1",
+                  "val": [
+                    -5.0, 0.0, 0.0, 
+                    -5.0, 10.0, 0.0,
+                    5.0, 10.0, 0.0,
+                    5.0, 0.0, 0.0, 
+                    -5.0, 0.0, 0.0
                   ]
-                },
-                "closed": false,
-                "name": "line-3d-1",
-                "val": [
-                  -5.0, 0.0, 0.0,
-                  -5.0, 10.0, 0.0,
-                  5.0, 10.0, 0.0,
-                  5.0, 0.0, 0.0,
-                  -5.0, 0.0, 0.0
-                ]
-              }
-            ],
-            "text": [ { "name": "occluded", "val": "No" } ]
+                }
+              ],
+              "text": [{ "name": "occluded", "val": "No" }]
             }
           }
         }
