@@ -128,7 +128,11 @@ geometry appears in. It is important that the stream is among the ones specified
 example `camera` or `lidar`.
 
 
-### Example 1: Pre-annotation with 3d cuboid, 2d bounding box and static property
+## Examples
+
+Below follows examples of supported pre-annotations.
+
+### 3D cuboid and 2D bounding box with a static property
 
 ```json
 {
@@ -205,7 +209,7 @@ example `camera` or `lidar`.
 ```
 
 
-## Example 2: Pre-annotation with 3D line and dynamic property
+### Pre-annotation with 3D line and dynamic property
 
 ```json
 {
