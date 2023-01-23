@@ -209,7 +209,7 @@ Below follows examples of supported pre-annotations.
 ```
 
 
-### Pre-annotation with 3D line and dynamic property
+### 3D line with a dynamic property
 
 ```json
 {
