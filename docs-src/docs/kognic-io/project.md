@@ -32,13 +32,13 @@ Ongoing projects can benefit from using batches in two ways
 
 ### Batch Status
 
-| Status      | Description                                                                                                            |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Status      | Description                                                                                                          |
+|-------------|----------------------------------------------------------------------------------------------------------------------|
 | pending     | Batch has been created but is still not fully configured by Kognic. Either during project setup or requested changes |
-| open        | Batch is open for new inputs                                                                                           |
-| ready       | Batch has been published and no longer open for new inputs.                                                            |
+| open        | Batch is open for new inputs                                                                                         |
+| ready       | Batch has been published and no longer open for new inputs.                                                          |
 | in-progress | Kognic has started annotation of inputs within the batch.                                                            |
-| completed   | Annotations has been completed.                                                                                        |
+| completed   | Annotations has been completed.                                                                                      |
 
 ### Listing Batches
 
@@ -49,7 +49,7 @@ project_batches = client.project.get_project_batches("project_external_id")
 Or via `kognicutil` CLI
 
 ```shell
-kognicutil project <project-external-id> --batches
+kognicutil project <project-external-id> --get-batches
 ```
 
 Returns all batches for the project
