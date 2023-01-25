@@ -10,6 +10,31 @@ that the format is valid.
 Even though OpenLABEL is a strict format there is still some room for interpretation. In this section we try to clarify
 some of these parts and explain the choices that we have made within the standard.
 
+## Rotation of Cuboids
+
+The rotation is such that the y-axis is facing forwards, with a rotation order of `XYZ`.
+This means that a cuboid with a heading (yaw) equal to 0 is aligned with the y-axis in the positive direction along the axis. 
+This is somewhat different compared to the
+[ISO8855](https://www.sis.se/api/document/preview/914200/#:~:text=This%20International%20Standard%20defines%20the,to%20multi%2Dunit%20vehicle%20combinations.) 
+standard, where the forward direction is along the x-axis. Conversion to ISO8855 can then be done by applying a 
+rotation around the z-axis and changing `sx` and `sy` in the following way
+
+```python
+import math 
+from typing import List
+
+from scipy.spatial.transform import Rotation
+
+def convert_to_iso8855(val: List[float]) -> List[float]:
+    """ Converts cuboid values to ISO8855 """
+    [x, y, z, qx, qy, qz, qw, sx, sy, sz] = val
+    rotation_1 = Rotation.from_quat([qx, qy, qz, qw])
+    rotation_2 = Rotation.from_rotvec([0, 0, math.pi / 2])
+    rot_object = rotation_1 * rotation_2
+    [qx, qy, qz, qw] = rot_object.as_quat()
+    return [x, y, z, qx, qy, qz, qw, sy, sx, sz]
+```
+
 ## Non-sequences are sequences with one frame
 
 Due to reasons of simplicity we have made the choice to treat non-sequences in the same way as sequences. This
@@ -87,7 +112,7 @@ Representing false relations using the relation uid is deprecated and has moved 
     "objects": {
         "0": {"name": "car-0", "type": "Car"},
         "1": {"name": "car-1", "type": "Car"},
-        "2": {"name": "car-2", "type": "Car"},
+        "2": {"name": "car-2", "type": "Car"}
     },
     "relations": {
         "0": {
