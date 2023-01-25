@@ -15,8 +15,8 @@ some of these parts and explain the choices that we have made within the standar
 The rotation is such that the y-axis is facing forwards, with a rotation order of `XYZ`.
 This means that a cuboid with a heading (yaw) equal to 0 is aligned with the y-axis in the positive direction along the axis. 
 This is somewhat different compared to the
-[ISO8855](https://www.sis.se/api/document/preview/914200/#:~:text=This%20International%20Standard%20defines%20the,to%20multi%2Dunit%20vehicle%20combinations.) 
-standard, where the forward direction is along the x-axis. Conversion to ISO8855 can then be done by applying a 
+[ISO 8855](https://www.sis.se/api/document/preview/914200/#:~:text=This%20International%20Standard%20defines%20the,to%20multi%2Dunit%20vehicle%20combinations.) 
+standard, where the forward direction is along the x-axis. Conversion to ISO 8855 can then be done by applying a 
 rotation around the z-axis and changing `sx` and `sy` in the following way
 
 ```python
@@ -26,7 +26,7 @@ from typing import List
 from scipy.spatial.transform import Rotation
 
 def convert_to_iso8855(val: List[float]) -> List[float]:
-    """ Converts cuboid values to ISO8855 """
+    """ Converts cuboid values to ISO 8855 """
     [x, y, z, qx, qy, qz, qw, sx, sy, sz] = val
     rotation_1 = Rotation.from_quat([qx, qy, qz, qw])
     rotation_2 = Rotation.from_rotvec([0, 0, math.pi / 2])

@@ -47,6 +47,6 @@ for i in inputs:
 ### Why are the cuboids rotated by 90 degrees?
 
 The coordinate system is defined by the uploaded data, but the rotation is defined by Kognic. This is somewhat
-different (90-degree rotation) compared to the ISO8855 standard. 
+different (90-degree rotation) compared to the ISO 8855 standard. 
 See [Rotation of Cuboids](../openlabel/openlabel-format.md#rotation-of-cuboids) for more about this and how you can 
-convert to ISO8855.
+convert to ISO 8855.
