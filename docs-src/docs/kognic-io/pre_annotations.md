@@ -94,9 +94,9 @@ Objects cannot have multiple 3D geometries in the same frame
 
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
-should be expressed in the lidar coordinate system in the single-lidar case but in the reference coordinate system in
-the multi-lidar case. 2D geometries should be expressed in pixel coordinates.
-See [coordinate systems](calibrations.md) for more information.
+should be expressed in the lidar coordinate system in the single-lidar case, but in the reference coordinate system in
+the multi-lidar case. The rotation of cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids). 
+2D geometries should be expressed in pixel coordinates. See [coordinate systems](calibrations.md) for more information.
 
 ### Attributes
 
