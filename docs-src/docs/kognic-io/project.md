@@ -49,7 +49,7 @@ project_batches = client.project.get_project_batches("project_external_id")
 Or via `kognicutil` CLI
 
 ```shell
-kognicutil project <project-external-id> --get-batches
+kognicutil projects <project-external-id> --get-batches
 ```
 
 Returns all batches for the project
