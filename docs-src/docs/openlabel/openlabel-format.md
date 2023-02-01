@@ -213,49 +213,44 @@ of two polygons, each with one hole.
 
 ```json
 {
-    "objects": {
-        "a6fe73b8": {
-            "name": "roadpainting-a6fe73b8",
-            "type": "RoadPainting",
-            "object_data": {
-                "poly2d": [
-                    {
-                        "name": "poly1",
-                        "val": [...],
-                        "attributes": {
-                            "text": [{"name": "polygon_id", "val": "1"}],
-                            "boolean": [{"name": "is_hole", "val": false}]
-                        }
-                    },
-                    {
-                        "name": "poly2",
-                        "val": [...],
-                        "attributes": {
-                            "text": [{"name": "polygon_id", "val": "1"}],
-                            "boolean": [{"name": "is_hole", "val": true}]
-                        }
-                    },
-                    {
-                        "name": "poly3",
-                        "val": [...],
-                        "attributes": {
-                            "text": [{"name": "polygon_id", "val": "2"}],
-                            "boolean": [{"name": "is_hole", "val": false}]
-                        }
-                    },
-                    {
-                        "name": "poly4",
-                        "val": [...],
-                        "attributes": {
-                            "text": [{"name": "polygon_id", "val": "2"}],
-                            "boolean": [{"name": "is_hole", "val": true}]
-                        }
-                    }
-                ]
+    "object_data": {
+        "poly2d": [
+            {
+                "name": "poly1",
+                "val": [...],
+                "attributes": {
+                    "text": [{"name": "polygon_id", "val": "1"}],
+                    "boolean": [{"name": "is_hole", "val": false}]
+                }
+            },
+            {
+                "name": "poly2",
+                "val": [...],
+                "attributes": {
+                    "text": [{"name": "polygon_id", "val": "1"}],
+                    "boolean": [{"name": "is_hole", "val": true}]
+                }
+            },
+            {
+                "name": "poly3",
+                "val": [...],
+                "attributes": {
+                    "text": [{"name": "polygon_id", "val": "2"}],
+                    "boolean": [{"name": "is_hole", "val": false}]
+                }
+            },
+            {
+                "name": "poly4",
+                "val": [...],
+                "attributes": {
+                    "text": [{"name": "polygon_id", "val": "2"}],
+                    "boolean": [{"name": "is_hole", "val": true}]
+                }
             }
-        }
+        ]
     }
 }
+    
 
 
 ```
@@ -284,5 +279,53 @@ the following way.
       }
     }
   ]
+}
+```
+
+## Representing 3D lanes
+
+A 3D lane is represented as two lines in 3D (`poly3d`), one to the right and the other to the left. The text property 
+`lane_edge` determines whether the line is to the right or to the left. The lines will always have closed set to false.
+
+
+```json
+{
+  "object_data": {
+    "poly3d": [
+      {
+        "attributes": {
+          "text": [
+            { "name": "lane_edge", "val": "left" },
+            { "name": "stream", "val": "lidar" }
+          ]
+        },
+        "closed": false,
+        "name": "",
+        "val": [
+          1.2647494200238287, -51.51747573498745, -2.315540290283199,
+          1.0807419132566136, -48.91298533071834, -2.313640304199211,
+          -0.0892715141237751, -34.705936676401016, -2.235569814758307,
+          -0.4442893388935316, -29.60917111552865, -2.1894531147766174,
+          -1.0952988968721313, -17.193981050037397, -2.1397902661132875
+        ]
+      },
+      {
+        "attributes": {
+          "text": [
+            { "name": "lane_edge", "val": "right" },
+            { "name": "stream", "val": "lidar" }
+          ]
+        },
+        "closed": false,
+        "name": "",
+        "val": [
+          1.5845765823868767, -51.49487958011918, -2.315540290283199,
+          1.4004322100638888, -48.888528958803036, -2.313640304199211,
+          0.23043085215069048, -34.68163859008775, -2.235569814758307,
+          -0.12426061849402326, -29.589636067040036, -2.1894531147766174
+        ]
+      }
+    ]
+  }
 }
 ```
