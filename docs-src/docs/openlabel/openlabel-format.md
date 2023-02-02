@@ -202,14 +202,37 @@ belong to the same road, while it is unclear whether `lane-2` belongs to a road.
 ```
 
 
-## Representing polygons and multi-polygons
+## Representing polygons
 
-Polygons are often described as lists of geometric polygons where the first element describes the outer boundary while
-the subsequent ones describe potential holes in the polygon. In addition, objects such as lane markings and road paintings
-are often described as multiple polygons, or multi-polygons. In order to represent such objects we use a list of geometric
-polygons where each one has the attributes `polygon_id` and `is_hole`. Below follows an example where an object consists
-of two polygons, each with one hole.
+Polygons are described by a list of `Poly2d` objects in OpenLABEL. One of these represents the exterior while the others
+represent potential holes and this is determined by the boolean property `is_hole`. Below follows an example of a polygon
+with one hole.
 
+```json
+{
+    "object_data": {
+        "poly2d": [
+            {
+                "name": "poly1",
+                "val": [...],
+                "attributes": { "boolean": [{"name": "is_hole", "val": false}] }
+            },
+            {
+                "name": "poly2",
+                "val": [...],
+                "attributes": { "boolean": [{"name": "is_hole", "val": true}] }
+            }
+        ]
+    }
+}
+```
+
+## Representing multi-polygons
+
+Multi-polygons are simply lists of [polygons](#representing-polygons), so we describe these in a similar way with lists 
+of `Poly2d` objects with the property `is_hole`. However, we also add one additional property `polygon_id` that 
+determines which polygon a `Poly2d` object belongs to in the multi-polygon. Below follows an example of a multi-polygon 
+with two polygons with one hole each.
 
 ```json
 {
@@ -250,9 +273,6 @@ of two polygons, each with one hole.
         ]
     }
 }
-    
-
-
 ```
 
 
