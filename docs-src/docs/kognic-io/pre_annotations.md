@@ -71,12 +71,13 @@ These features or combinations of features are not currently supported, or only 
 
 * Static geometries: not supported
     * These are bounding boxes, cuboids, etc. declared in the OpenLabel under `objects.*.objectData`
-* Source-specific attributes: not supported on 3D geometry 
+* Geometry-specific attributes: not supported on 3D geometry
     * These are attributes declared in the OpenLabel on a single geometric shape, in other words an attribute that only applies to the object as seen by one sensor; a common example is `occlusion` which is recorded separately for each camera.
-    * May also be described as stream-specific or sensor-specific attributes.
+    * May also be referred to as source-, stream- or sensor-specific attributes.
     * 3D geometry is anything that can be drawn when annotating a pointcloud, e.g. cuboids.
-    * Source-specific attributes are permitted on 2D geometry e.g. bounding boxes
+    * Geometry-specific attributes are permitted on 2D geometry e.g. bounding boxes
     * Note that the [task definition](../key_concepts.md#task-definition), must designate a property as source specific before it may be used in this way.
+    * The `stream` attribute is a special case and is excepted from this rule
 
 ## Supported pre-annotation features
 
@@ -86,13 +87,14 @@ These features or combinations of features are not currently supported, or only 
 Objects cannot have multiple 3D geometries in the same frame
 :::
 
-| Name           | OpenLABEL field | Description                                                                                                                                    |
-|----------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| cuboid         | `cuboid`        | Cuboid in 3D                                                                                                                                   |
-| bounding box   | `bbox`          | Bounding box in 2D                                                                                                                             |
-| 3D line        | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.                                                                     |
-| polygon        | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D. The property `is_hole` is mandatory.                                 |
-| multi-polygons | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D. The properties `is_hole` and  `polygon_id` are mandatory. |
+| Name          | OpenLABEL field | Description                                                                                                                                    |
+|---------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Cuboid        | `cuboid`        | Cuboid in 3D                                                                                                                                   |
+| Bounding box  | `bbox`          | Bounding box in 2D                                                                                                                             |
+| 3D line       | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.                                                                     |
+| Polygon       | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D. The property `is_hole` is mandatory.                                 |
+| Multi-polygon | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D. The properties `is_hole` and  `polygon_id` are mandatory. |
+
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
 should be expressed in the lidar coordinate system in the single-lidar case, but in the reference coordinate system in
@@ -105,8 +107,7 @@ the multi-lidar case. The rotation of cuboids should be the same as that in [exp
 - Num
 - Boolean
 
-For 2D geometry, attributes may be specified as geometry specific (aka source/sensor specific), or object specific. Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists
-when creating an input from a scene.
+For 2D geometry, attributes may be specified as geometry specific (aka source/sensor specific), or object specific. Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists. Geometry specific attributes (those which appear on a single shape within frames) must also be declared as such in the task definition; arbitrary properties cannot be used in a source-specific way.
 
 ### Contexts
 
