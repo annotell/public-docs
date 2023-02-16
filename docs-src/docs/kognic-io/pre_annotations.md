@@ -87,11 +87,14 @@ These features or combinations of features are not currently supported, or only 
 Objects cannot have multiple 3D geometries in the same frame
 :::
 
-| OpenLABEL field | 2D/3D | Description                                                                |
-|-----------------|-------|----------------------------------------------------------------------------|
-| `cuboid`        | 3D    | Cuboid in 3D                                                               |
-| `bbox`          | 2D    | Bounding box in 2D                                                         |
-| `poly3d`        | 3D    | Line in 3D. Append the first point at the end if you want it to be closed. |
+| Name          | OpenLABEL field | Description                                                                                                                                    |
+|---------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Cuboid        | `cuboid`        | Cuboid in 3D                                                                                                                                   |
+| Bounding box  | `bbox`          | Bounding box in 2D                                                                                                                             |
+| 3D line       | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.                                                                     |
+| Polygon       | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D. The property `is_hole` is mandatory.                                 |
+| Multi-polygon | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D. The properties `is_hole` and  `polygon_id` are mandatory. |
+
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
 should be expressed in the lidar coordinate system in the single-lidar case, but in the reference coordinate system in
