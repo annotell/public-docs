@@ -34,7 +34,7 @@ https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calib
 
 ## Camera
 The Camera calibration format is based on [OpenCVs](https://docs.opencv.org/3.4/d4/d94/tutorial_camera_calibration.html) format and
-this [paper](http://www.robots.ox.ac.uk/~cmei/articles/single_viewpoint_calib_mei_07.pdf). The different camera types supported are: `PINHOLE`, `FISHEYE`, `KANNALA` and `PRINCIPALPOINTDIST`.
+this [paper](http://www.robots.ox.ac.uk/~cmei/articles/single_viewpoint_calib_mei_07.pdf). The different camera types supported are: `PINHOLE`, `FISHEYE`, `KANNALA`, `PRINCIPALPOINTDIST`, and `FUSEDCYLINDRICAL`.
 
 ![Camera Calibrations commonality](camera-calibration.jpg)
 
@@ -98,6 +98,19 @@ The principal point distortion model consists of the common attributes plus
 | `distortion_center` | A `DistortionCenter` object |`x`, `y` |
 | `principal_point` | A `PrincipalPoint` object |`x`, `y` |
 
+### Fused cylindrical
+
+The fused cylindrical model consists of the common attributes plus
+
+| Key  | Value | Parameters |
+|:-----|:------|:-----------|
+| `cut_angles_degree` | A `CutAngles` object. Note these angles should be expressed in degrees. |`upper`, `lower` |
+| `vertical_fov_degree`  (optional. Default 72.5 degrees)| Float. Note this angle should be expressed in degrees. | NA |
+| `horizontal_fov_degree` (optional. Default 93 degrees) | Float. Note this angle should be expressed in degrees. | NA |
+
+```python reference
+https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_fused_cylindrical_calibration.py
+```
 
 ### Example: Creating a calibration
 
