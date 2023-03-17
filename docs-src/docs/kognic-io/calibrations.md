@@ -95,8 +95,13 @@ The principal point distortion model consists of the common attributes plus
 | Key  | Value | Parameters |
 |:-----|:------|:-----------|
 | `principal_point_distortion_coefficients` | A `PrincipalPointDistortionCoefficients` object |`k1`, `k2` |
+| `lens_projection_coefficients` | A `LensProjectionCoefficients` object |`c1`, `c2`,`c3`, `c4`,`c5`, `c6` |
 | `distortion_center` | A `DistortionCenter` object |`x`, `y` |
 | `principal_point` | A `PrincipalPoint` object |`x`, `y` |
+
+```python reference
+https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_principal_point_distortion_calibration.py
+```
 
 ### Fused cylindrical
 
