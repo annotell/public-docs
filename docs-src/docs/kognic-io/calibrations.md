@@ -95,7 +95,7 @@ The principal point distortion model consists of the common attributes plus
 | Key  | Value | Parameters |
 |:-----|:------|:-----------|
 | `principal_point_distortion_coefficients` | A `PrincipalPointDistortionCoefficients` object |`k1`, `k2` |
-| `lens_projection_coefficients` | A `LensProjectionCoefficients` object |`c1`, `c2`,`c3`, `c4`,`c5`, `c6` |
+| `lens_projection_coefficients` (optional. Default to values for model SF806)| A `LensProjectionCoefficients` object |`c1`, `c2`,`c3`, `c4`,`c5`, `c6` |
 | `distortion_center` | A `DistortionCenter` object |`x`, `y` |
 | `principal_point` | A `PrincipalPoint` object |`x`, `y` |
 
