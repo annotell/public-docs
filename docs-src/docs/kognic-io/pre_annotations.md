@@ -17,6 +17,9 @@ There are 3 steps that are needed in order to create pre-annotations in the Kogn
 2. Upload an OpenLabel annotation as a pre-annotation
 3. Create an input from the scene
 
+Note that these steps can be performed in one call with the `create_scene_inputs` function, 
+see [Creating multiple inputs with one call](working_with_inputs.md#creating-multiple-inputs-with-one-call)
+
 ### 1. Creating a scene
 
 :::note

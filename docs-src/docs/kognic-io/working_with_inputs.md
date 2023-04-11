@@ -31,12 +31,12 @@ organization # root for projects
 
 There are 2 ways to create inputs
 
-- Adding inputs to latest open batch for a project
+- Adding inputs to the latest open batch for a project
 - Adding inputs to specified batch for a project
 
 The following examples all use an input of type `Cameras`, however the interface applies to all input types.
 
-### Adding inputs to latest open batch for a project
+### Adding inputs to the latest open batch for a project
 
 ```python
 client.cameras.create(
@@ -46,7 +46,7 @@ client.cameras.create(
 
 Will add inputs to `project-a` `batch-2` because it's the latest open batch.
 
-### Adding inputs to specified batch for a project
+### Adding inputs to specified batch in a project
 
 ```python
 client.cameras.create(
@@ -57,20 +57,59 @@ client.cameras.create(
 
 Will add inputs to `project-a` `batch-3`.
 
+## Creating multiple inputs with one call
+:::note
+This feature new in version 1.1.9
+:::
+
+Since the input creation process is asynchronous, it is sometimes useful to wait for the inputs to be created before continuing.
+In order to do this, we provide a wrapper function `create_scene_inputs` that will wait for the inputs to be created and 
+yield the results. The function takes a list of `SceneWithPreannotation` (a wrapper object containing a scene and 
+optionally a pre-annotation) as a parameter along with the normal input creation parameters. 
+
+
+```python
+from kognic.io.tools.scene_input import create_scene_inputs, SceneWithPreannotation
+from kognic.io.model.input import LidarsAndCamerasSequence
+from kognic.openlabel.models import OpenLabelAnnotation
+
+
+scene_inputs: List[SceneWithPreannotation] = [
+   SceneWithPreannotation(
+      scene=LidarsAndCamerasSequence(...), 
+      preannotation=OpenLabelAnnotation(...) # Optional
+   ),
+   ...
+]
+
+for input_result in create_scene_inputs(
+        client=client, 
+        scene_inputs=scene_inputs, 
+        project="project-identifier", batch="batch-identifier"
+):
+    # Do something with the input result
+    print(input_result)
+
+```
+
+Note that the functions also accepts the parameters `wait_timeout` and `sleep_time` which can be used to control the 
+wait-behavior. The `wait_timeout` parameter specifies the maximum time to wait for the inputs to be created/failed, while
+`sleep_time` specifies the time to sleep between each check. Units are in seconds.
+
 
 ## Input Status
 
 Once an input has been created, it might be preprocessed before being made available for annotation. Also, postprocessing such as conversion to the client-specific format might take place after annotation has been performed. During this process, the status property of an input can be used to keep track of progress.
 
-| Status                          | Description                                                                                                             |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| pending                         | Input has been validated but the server is waiting for the associated data to be uploaded                               |
+| Status                          | Description                                                                                                                                  |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| pending                         | Input has been validated but the server is waiting for the associated data to be uploaded                                                    |
 | processing                      | Associated data has been uploaded and is currently being processed by the Kognic Platform, potentially performing conversion of file formats |
-| created                         | Input is created and available for annotation                                                                           |
-| failed                          | Conversion of input failed                                                                                              |
-| invalidated:broken-input        | Input was invalidated since it did not load                                                                             |
-| invalidated:duplicate           | Input was invalidated due to being uploaded several times                                                               |
-| invalidated:incorrectly-created | Input was invalidated because it was incorrectly created                                                                |
+| created                         | Input is created and available for annotation                                                                                                |
+| failed                          | Conversion of input failed                                                                                                                   |
+| invalidated:broken-input        | Input was invalidated since it did not load                                                                                                  |
+| invalidated:duplicate           | Input was invalidated due to being uploaded several times                                                                                    |
+| invalidated:incorrectly-created | Input was invalidated because it was incorrectly created                                                                                     |
 
 ## List Inputs
 
@@ -96,7 +135,7 @@ client.input.get_inputs_by_uuids(input_uuids=input_uuids)
 Additional filter parameters for querying inputs using `get_inputs` are listed below.
 
 | Parameter           | Description                                               |
-| ------------------- | --------------------------------------------------------- |
+|---------------------|-----------------------------------------------------------|
 | project             | Project identifier to filter by                           |
 | batch               | Which batch in the project to return inputs for           |
 | external_ids        | Return inputs matching the `external_ids` supplied        |
@@ -105,15 +144,15 @@ Additional filter parameters for querying inputs using `get_inputs` are listed b
 ### Response
 The response is a list of `Input` objects containing the following properties
 
-| Property      | Description                                                                                          |
-| --------------|------------------------------------------------------------------------------------------------------|
-| uuid          | ID used to identify the input within the Kognic Platform                                           |
-| external_id   | External ID supplied during input creation                                                           |
-| batch         | Which batch does the input belong to                                                                 |
-| view_link     | A url to view the input in the Kognic Platform                                                     |
-| input_type    | Type of input (see [Input Types](../key_concepts.md))                                                |
-| status        | Input status (see [Input Statuses](#input-status))                                                   |
-| error_message | If there is an error during input creation the error message will be included, otherwise it's `None` |
+| Property         | Description                                                                                          |
+|------------------|------------------------------------------------------------------------------------------------------|
+| uuid             | ID used to identify the input within the Kognic Platform                                             |
+| external_id      | External ID supplied during input creation                                                           |
+| batch            | Which batch does the input belong to                                                                 |
+| view_link        | A url to view the input in the Kognic Platform                                                       |
+| input_type       | Type of input (see [Input Types](../key_concepts.md))                                                |
+| status           | Input status (see [Input Statuses](#input-status))                                                   |
+| error_message    | If there is an error during input creation the error message will be included, otherwise it's `None` |
 | annotation_types | List of annotation types for the input (new in version 1.2.0)                                        |
 
 ## Invalidate Inputs
@@ -131,7 +170,7 @@ If issues are detected upstream related to inputs created, it is possible to inv
 Invalidated inputs will not produce annotations and any completed annotations of the input will be invalidated.
 
 | Reason              | Description                                                                |
-| ------------------- | -------------------------------------------------------------------------- |
+|---------------------|----------------------------------------------------------------------------|
 | bad-content         | Input does not load, or has erroneous metadata such as invalid calibration |
 | duplicate           | If same input has been created several times                               |
 | incorrectly-created | If the input was unintentionally created.                                  |
