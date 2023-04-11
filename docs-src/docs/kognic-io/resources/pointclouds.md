@@ -10,6 +10,11 @@ An intensity field may be provided in pointclouds and will be preserved during c
 
 Color and other auxiliary data that is not used in the platform is currently discarded in the conversion to potree.
 
+:::caution Column names must be exact
+The column names must be provided as documented below. If they are not, the conversion will fail. In the case of timestamps, 
+default values of 0 will be used instead.
+:::
+
 ## PCD
 
 The currently supported format includes the following header:
@@ -26,6 +31,9 @@ VIEWPOINT 0 0 0 1 0 0 0
 POINTS <n>
 DATA ascii
 ```
+
+Apart from `ascii` as `DATA` type, we also support `binary` and `binary_compressed`. Note that we currently don't support
+organized point clouds in the `binary_compressed` case, i.e. when `HEIGHT` is not equal to 1.
 
 ## CSV
 
