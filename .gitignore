@@ -137,3 +137,7 @@ dmypy.json
 
 # IDE folders
 *.vscode/
+
+# Mac artifacts
+**/.DS_Store
+
