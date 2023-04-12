@@ -29,12 +29,13 @@ organization # root for projects
        └── ...
 ```
 
-There are 2 ways to create inputs
+There are 2 ways to associate inputs with a project and batch:
 
 - Adding inputs to the latest open batch for a project
 - Adding inputs to specified batch for a project
 
-The following examples all use an input of type `Cameras`, however the interface applies to all input types.
+The following examples all use an input of type `Cameras`, however the interface applies to all input types. Note that
+we also provide a wrapper function `create_inputs` to help with this process, see [Creating Multiple Inputs With One Call](#creating-multiple-inputs-with-one-call).
 
 ### Adding inputs to the latest open batch for a project
 
@@ -56,45 +57,6 @@ client.cameras.create(
 ```
 
 Will add inputs to `project-a` `batch-3`.
-
-## Creating multiple inputs with one call
-:::note
-This feature new in version 1.1.9
-:::
-
-Since the input creation process is asynchronous, it is sometimes useful to wait for the inputs to be created before continuing.
-In order to do this, we provide a wrapper function `create_scene_inputs` that will wait for the inputs to be created and 
-yield the results. The function takes a list of `SceneWithPreannotation` (a wrapper object containing a scene and 
-optionally a pre-annotation) as a parameter along with the normal input creation parameters. 
-
-
-```python
-from kognic.io.tools.scene_input import create_scene_inputs, SceneWithPreannotation
-from kognic.io.model.input import LidarsAndCamerasSequence
-from kognic.openlabel.models import OpenLabelAnnotation
-
-
-scene_inputs: List[SceneWithPreannotation] = [
-   SceneWithPreannotation(
-      scene=LidarsAndCamerasSequence(...), 
-      preannotation=OpenLabelAnnotation(...) # Optional
-   ),
-   ...
-]
-
-for input_result in create_scene_inputs(
-        client=client, 
-        scene_inputs=scene_inputs, 
-        project="project-identifier", batch="batch-identifier"
-):
-    # Do something with the input result
-    print(input_result)
-
-```
-
-Note that the functions also accepts the parameters `wait_timeout` and `sleep_time` which can be used to control the 
-wait-behavior. The `wait_timeout` parameter specifies the maximum time to wait for the inputs to be created/failed, while
-`sleep_time` specifies the time to sleep between each check. Units are in seconds.
 
 
 ## Input Status
@@ -183,3 +145,51 @@ If errors are detected by Kognic, inputs will be invalidated and a reason will b
 project = "project-identifier"
 client.input.get_inputs(project=project, include_invalidated=True)
 ```
+
+
+## Creating Multiple Inputs With One Call
+:::note
+This feature is new in version 1.1.9
+:::
+
+Since the input creation process is asynchronous, it is sometimes useful to wait for the inputs to be created before continuing.
+In order to do this, we provide a wrapper function `create_inputs` which can create multiple scenes and inputs, 
+wait for them to be created (or failed) and yield the results. The function will block until it has a result to yield 
+or all of the inputs have completed in one way or another. The function takes a list of `SceneWithPreannotation` 
+(a new wrapper object containing a scene and optionally a pre-annotation) along with the normal input creation parameters. 
+
+
+```python
+from kognic.io.tools.input_creation import create_inputs, SceneWithPreAnnotation, InputCreationStatus
+from kognic.io.model.input import LidarsAndCamerasSequence
+from kognic.openlabel.models import OpenLabelAnnotation
+
+
+scene_inputs: List[SceneWithPreAnnotation] = [
+   SceneWithPreAnnotation(
+      scene=LidarsAndCamerasSequence(...), 
+      preannotation=OpenLabelAnnotation(...) # Optional
+   ),
+   ...
+]
+
+for input_result in create_inputs(
+        client=client, 
+        scene_inputs=scene_inputs, 
+        project="project-identifier", 
+        batch="batch-identifier"
+):
+    # Do something with the result
+    if input_result.status == InputCreationStatus.CREATED:
+        print(f"Input {input_result.external_id} was created, got uuid {input_result.input_uuid}")
+    elif input_result.status == InputCreationStatus.FAILED:
+        print(f"Input {input_result.external_id} failed to be created at stage {input_result.error.stage} with error {input_result.error.message}")
+    else:
+        print(f"Input {input_result.external_id} is in status {input_result.status}")
+```
+
+Note that the functions also accepts the parameters `wait_timeout` and `sleep_time` which can be used to control the 
+wait-behavior. The `wait_timeout` parameter specifies the maximum time to wait for the inputs to be created/failed, while
+`sleep_time` specifies the time to sleep between each check. Units are in seconds. The time it takes for inputs to be created 
+depends on their size and the number of inputs to be created so the `wait_timeout` should be set accordingly. 
+The default value is 30 minutes, starting from the time when all scene jobs have been committed.
