@@ -173,12 +173,7 @@ scenes_with_pre_annotations: List[SceneWithPreAnnotation] = [
    ...
 ]
 
-for input_result in create_inputs(
-        client=client, 
-        scenes_with_pre_annotations=scenes_with_pre_annotations, 
-        project="project-identifier", 
-        batch="batch-identifier"
-):
+for input_result in create_inputs(client, scenes_with_pre_annotations, "project-identifier", batch="batch-identifier"):
     # Do something with the result
     if input_result.status == InputCreationStatus.CREATED:
         print(f"Input {input_result.external_id} was created, got uuid {input_result.input_uuid}")
