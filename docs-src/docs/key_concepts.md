@@ -70,12 +70,12 @@ consisting of data from different sensors. Scenes can be divided into two catego
 information is important for producing the annotation.
 
 ### Scene Types
-| Type                    | Description                                                                          |
-|-------------------------|--------------------------------------------------------------------------------------|
-| **Cameras**             | A single frame consisting of images from 1-9 cameras                                 |
-| **LidarsAndCameras**    | A single frame consisting of 1-3 lidar point clouds and images from 1-9 cameras      |
-| **CamerasSeq**          | Sequence of frames, each frame consisting of images from 1-9 cameras                 |
-| **LidarsAndCamerasSeq** | Sequence of frames, consisting of 1-3 lidar point clouds and images from 1-9 cameras |
+| Type                    | Description                                                                           |
+|-------------------------|---------------------------------------------------------------------------------------|
+| **Cameras**             | A single frame consisting of images from 1-9 cameras                                  |
+| **LidarsAndCameras**    | A single frame consisting of 1-20 lidar point clouds and images from 1-9 cameras      |
+| **CamerasSeq**          | Sequence of frames, each frame consisting of images from 1-9 cameras                  |
+| **LidarsAndCamerasSeq** | Sequence of frames, consisting of 1-20 lidar point clouds and images from 1-9 cameras |
 
 
 
