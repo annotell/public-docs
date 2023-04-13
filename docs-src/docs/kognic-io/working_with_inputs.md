@@ -165,7 +165,7 @@ from kognic.io.model.input import LidarsAndCamerasSequence
 from kognic.openlabel.models import OpenLabelAnnotation
 
 
-scene_inputs: List[SceneWithPreAnnotation] = [
+scenes_with_pre_annotations: List[SceneWithPreAnnotation] = [
    SceneWithPreAnnotation(
       scene=LidarsAndCamerasSequence(...), 
       preannotation=OpenLabelAnnotation(...) # Optional
@@ -175,7 +175,7 @@ scene_inputs: List[SceneWithPreAnnotation] = [
 
 for input_result in create_inputs(
         client=client, 
-        scene_inputs=scene_inputs, 
+        scenes_with_pre_annotations=scenes_with_pre_annotations, 
         project="project-identifier", 
         batch="batch-identifier"
 ):
