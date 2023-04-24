@@ -132,6 +132,45 @@ Every geometry must have the `stream` property specified. This property determin
 geometry appears in. It is important that the stream is among the ones specified in the scene and of the same type, for
 example `camera` or `lidar`.
 
+## Sparseness
+
+Pre-annotations can be sparse, meaning that its objects or geometries do not need to be present in every frame. Instead,
+they can be present in a subset of frames and then interpolated in the frames in between. Utilizing this feature can speed
+up the annotation process significantly for sequences. Sparseness can be accomplished in two different ways, either by
+using object data pointers or the boolean property `interpolated`. The former is the recommended way of doing it in most 
+cases since it will lead to a more compact pre-annotation. The latter is useful when the pre-annotation is created from 
+exported annotations from the Kognic platform.
+
+### Object Data Pointers
+In OpenLABEL, object data pointers are used to create a specification for objects. For example, you can specify what attributes
+and geometries that are used for specific objects. In addition, you can specify for which frames that these are present.
+If a geometry is specified in the object data pointer, it will be present in all frames that the object data pointer is
+pointing to. If the geometry is not provided in some of these frames, it will be interpolated. Note that geometries **must**
+be provided for the first and last frame in the object data pointer. Otherwise, the pre-annotation will be rejected.
+
+One limitation is that a geometry must be in the same stream for all frames when using object data pointers. This is because
+interpolation is done in the stream coordinate system. If you need to use geometries of the same type in different streams, 
+you can simply use different names for the geometries in the different streams.
+
+
+
+### Interpolated Property
+
+The boolean property `interpolated` can be used to specify that a geometry should be interpolated. Geometries are still
+required to be present in interpolated frames but their geometry values will be ignored. Note that interpolated geometries
+must have corresponding geometries (interpolated or not) in the first and last frame of the pre-annotation. Otherwise, the
+pre-annotation will be rejected. 
+
+Using the `interpolated` property is the recommended way of doing it when the pre-annotation is created from exported 
+annotations from the Kognic platform.
+
+### Attributes
+
+Attributes are handled differently compared to geometries. If an attribute is not present in a frame, its last value 
+will simply be used if the object (or geometry if the property is source-specific) is present in the frame. If the object
+is not present in the frame, the attribute will be ignored. Dense attributes will be sparsified automatically when the
+pre-annotation is uploaded to the Kognic platform.
+
 
 ## Examples
 
@@ -267,4 +306,141 @@ Below follows examples of supported pre-annotations.
 }
 ```
 
+### Sparseness with Object Data pointers
 
+In the example below the object `1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box called `the-bbox-name` that is
+provided in frames 0 and 3. In frames 1 and 2, the bounding box will be interpolated. 
+
+```json
+{
+  "openlabel": {
+    "objects": {
+      "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+          "name": "car-name",
+          "type":  "car",
+          "object_data_pointers": {
+            "the-bbox-name": {
+              "type":"bbox",
+              "frame_intervals": [{"frame_start": 0, "frame_end": 3}]
+            }
+          }
+        }
+    },
+    "frames": {
+      "0": {
+        ...,
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [{"name": "the-bbox-name",...}]
+            }
+          }
+        }
+      },
+      "1": {},
+      "2": {},
+      "3": {
+        ...,
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [{"name": "the-bbox-name",...}]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
+### Sparseness with the interpolated property
+
+In the example below sparseness is determined using the `interpolated` property. The object 
+`1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box for which the `interpolated` property is set to `true` in 
+frames 1 and 2 but not in frames 0 and 3. The geometry values in frames 1 and 2 are ignored and instead interpolated
+from the geometry values in frames 0 and 3.
+
+
+```json
+{
+  "openlabel": {
+    ...,
+    "frames": {
+      "0": {
+        ...,
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [
+                {
+                  "attributes": {
+                    "stream": [{ "name": "stream", "val":  "CAM" }],
+                    "boolean": [{ "name": "interpolated", "val": false }]
+                  },
+                  ...
+                }
+              ]
+            }
+          }
+        }
+      },
+      "1": {
+        ...,
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [
+                {
+                  "attributes": {
+                    "stream": [{ "name": "stream", "val":  "CAM" }],
+                    "boolean": [{ "name": "interpolated", "val": true }]
+                  },
+                  ...
+                }
+              ]
+            }
+          }
+        }
+      },
+      "2": {
+        ...,
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [
+                {
+                  "attributes": {
+                    "stream": [{ "name": "stream", "val":  "CAM" }],
+                    "boolean": [{ "name": "interpolated", "val": true }]
+                  },
+                  ...
+                }
+              ]
+            }
+          }
+        }
+      },
+      "3": {
+        ...,
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [
+                {
+                  "attributes": {
+                    "stream": [{ "name": "stream", "val":  "CAM" }],
+                    "boolean": [{ "name": "interpolated", "val": false }]
+                  },
+                  ...
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
