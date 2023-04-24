@@ -152,7 +152,7 @@ One limitation is that a geometry must be in the same stream for all frames when
 interpolation is done in the stream coordinate system. If you need to use geometries of the same type in different streams, 
 you can simply use different names for the geometries in the different streams.
 
-
+[Sparseness with Object Data Pointers](#sparseness-with-object-data-pointers) shows an example of how to use object data pointers.
 
 ### Interpolated Property
 
@@ -163,6 +163,8 @@ pre-annotation will be rejected.
 
 Using the `interpolated` property is the recommended way of doing it when the pre-annotation is created from exported 
 annotations from the Kognic platform.
+
+[Sparseness with Interpolated Property](#sparseness-with-interpolated-property) shows an example of how to use the `interpolated` property.
 
 ### Attributes
 
@@ -306,7 +308,7 @@ Below follows examples of supported pre-annotations.
 }
 ```
 
-### Sparseness with Object Data pointers
+### Sparseness with Object Data Pointers
 
 In the example below the object `1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box called `the-bbox-name` that is
 provided in frames 0 and 3. In frames 1 and 2, the bounding box will be interpolated. 
@@ -355,7 +357,7 @@ provided in frames 0 and 3. In frames 1 and 2, the bounding box will be interpol
 ```
 
 
-### Sparseness with the interpolated property
+### Sparseness with Interpolated Property
 
 In the example below sparseness is determined using the `interpolated` property. The object 
 `1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box for which the `interpolated` property is set to `true` in 
