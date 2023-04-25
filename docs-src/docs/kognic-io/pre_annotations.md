@@ -142,10 +142,10 @@ cases since it will lead to a more compact pre-annotation. The latter is useful 
 exported annotations from the Kognic platform.
 
 **Interpolation** is done by linearly interpolating the geometry values between key frames. This is done in pixel
-coordinates for 2D geometries. For 3D geometries, the interpolation can be done in either the reference coordinate system
-or the world coordinate system (recommended). This is configured in the annotation instruction so reach out to the Kognic 
-team about this if you are unsure. Note that interpolation in the world coordinate system requires that the scene contains 
-ego poses.
+coordinates for 2D geometries. For 3D geometries, the interpolation can be done in either the frame local coordinate system
+or the world coordinate system (see [Coordinate Systems](./coordinate_systems.md)). This is configured in the annotation 
+instruction so reach out to the Kognic team about this if you are unsure. Note that interpolation in the world coordinate 
+system is recommended but requires that the scene contains ego poses.
 
 ### Object Data Pointers
 In OpenLABEL, object data pointers are used to create a specification for objects. For example, you can specify what attributes
