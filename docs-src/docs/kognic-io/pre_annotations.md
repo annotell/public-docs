@@ -141,6 +141,12 @@ using object data pointers or the boolean property `interpolated`. The former is
 cases since it will lead to a more compact pre-annotation. The latter is useful when the pre-annotation is created from 
 exported annotations from the Kognic platform.
 
+**Interpolation** is done by linearly interpolating the geometry values between key frames. This is done in pixel
+coordinates for 2D geometries. For 3D geometries, the interpolation can be done in either the reference coordinate system
+or the world coordinate system (recommended). This is configured in the annotation instruction so reach out to the Kognic 
+team about this if you are unsure. Note that interpolation in the world coordinate system requires that the scene contains 
+ego poses.
+
 ### Object Data Pointers
 In OpenLABEL, object data pointers are used to create a specification for objects. For example, you can specify what attributes
 and geometries that are used for specific objects. In addition, you can specify for which frames that these are present.
@@ -153,6 +159,7 @@ interpolation is done in the stream coordinate system. If you need to use geomet
 you can simply use different names for the geometries in the different streams.
 
 [Sparseness with Object Data Pointers](#sparseness-with-object-data-pointers) shows an example of how to use object data pointers.
+
 
 ### Interpolated Property
 
