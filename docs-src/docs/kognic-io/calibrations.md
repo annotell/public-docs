@@ -81,7 +81,7 @@ The `KANNALA` camera model changes and expands the `PINHOLE` with the following
 
 | Key                         | Value                                                                                                                                 | Parameters       |
 |:----------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:-----------------|
-| `distortion_coefficients`   | A `KannalaDistortionCoefficients` object. <br/> Note that it is a subset of the `DistortionCoefficients`, omitting the `k3` parameter | `k1`, `k2`, `p1`, `p2` |
+| `distortion_coefficients`   | A `KannalaDistortionCoefficients` object. The distortion parameters `k3`, `k4`, if available, can be assigned to `p1` and `p2` respectively. That is `p1=k3` and `p2=k4`. | `k1`, `k2`, `p1`, `p2` |
 | `undistortion_coefficients` | A `UndistortionCoefficients` object.                                                                                                  | `l1`, `l2`, `l3`, `l4` |
 
 ```python reference
