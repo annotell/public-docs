@@ -1,0 +1,30 @@
+# This workflow will build the documentation with the build_docs script and commit the changes.
+# This in turn will trigger the deploy_docs workflow to deploy the changes to the gh-pages branch.
+
+name: Build and commit docs
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3d
+        - name: Setup Credentials
+          run: |
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+        - name: Build docs
+          run: ./build_docs.sh
+        - name: Commit and push docs
+          run: |
+            git add docs
+            git commit -m "Auto-deploy docs"
+            git push
+          
