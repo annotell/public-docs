@@ -15,7 +15,7 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v3d
+        - uses: actions/checkout@v3
         - name: Setup Credentials
           run: |
             git config user.name github-actions
