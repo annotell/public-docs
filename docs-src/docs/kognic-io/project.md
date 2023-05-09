@@ -9,11 +9,13 @@ Projects are configured by the Kognic Professional Services team, during the Gui
 
 ### List Projects
 
+Projects in your organization can be listed with the KognicIOClient
+
 ```python
 projects = client.project.get_projects()
 ```
 
-Or via `kognicutil` CLI
+or with the `kognicutil` CLI
 
 ```shell
 kognicutil projects
