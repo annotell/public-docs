@@ -25,7 +25,7 @@ The OpenLABEL json can be used as it is or be converted into a pythonic object u
 #### Using input and annotation type
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/get_annotation.py#L7-L10
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/get_annotation.py#L7-L10
 ```
 
 This method returns a single `Annotation` object, containing the OpenLABEL json, using an input uuid and an annotation type.
@@ -33,7 +33,7 @@ This method returns a single `Annotation` object, containing the OpenLABEL json,
 ### Get Annotations for a Project or Batch
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/get_project_annotations.py#L8-L23
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/get_project_annotations.py#L8-L23
 ```
 
 This example fetches annotations for an entire project or batch. The `run()` method returns a generator which will yield `Annotation` objects for all finished annotations

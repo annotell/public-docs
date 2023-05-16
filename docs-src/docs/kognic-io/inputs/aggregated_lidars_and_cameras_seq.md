@@ -16,7 +16,7 @@ check the section related to [Input Overview](/docs/kognic-io/overview).
 Refer to [Coordinate Systems](../coordinate_systems.md) for more information about what coordinate systems to use.
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/agg_lidars_and_cameras_seq.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/agg_lidars_and_cameras_seq.py
 ```
 
 :::tip Use dryrun to validate input

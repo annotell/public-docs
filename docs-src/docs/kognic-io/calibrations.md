@@ -29,7 +29,7 @@ to which the field extends.
 See the code example below for creating a base `LidarCalibration` object.
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_lidar_calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_lidar_calibration.py
 ```
 
 ## Camera
@@ -61,7 +61,7 @@ The `PINHOLE` camera model expands the common model with:
 | `distortion_coefficients` | A `DistortionCoefficients` object | `k1`, `k2`, `p1`, `p2`, `k3` |
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_pinhole_calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_pinhole_calibration.py
 ```
 
 ### Fisheye
@@ -72,7 +72,7 @@ The Fisheye camera model expands the `PINHOLE` model with the following
 | `xi` | Float | NA         |
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_fisheye_calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_fisheye_calibration.py
 ```
 
 
@@ -85,7 +85,7 @@ The `KANNALA` camera model changes and expands the `PINHOLE` with the following
 | `undistortion_coefficients` | A `UndistortionCoefficients` object.                                                                                                  | `l1`, `l2`, `l3`, `l4` |
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_kannala_calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_kannala_calibration.py
 ```
 
 ### Principal point distortion
@@ -100,7 +100,7 @@ The principal point distortion model consists of the common attributes plus
 | `principal_point` | A `PrincipalPoint` object |`x`, `y` |
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_principal_point_distortion_calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_principal_point_distortion_calibration.py
 ```
 
 ### Fused cylindrical
@@ -114,30 +114,15 @@ The fused cylindrical model consists of the common attributes plus
 | `horizontal_fov_degree` (optional. Default 93 degrees) | Float. Note this angle should be expressed in degrees. | NA |
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/create_fused_cylindrical_calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_fused_cylindrical_calibration.py
 ```
 
 ### Cylindrical
 
 The cylindrical model consists only of the common attributes. There are no extra attributes to set for this model.
 
-```python
-from kognic.io.model.calibration.camera.common import CameraMatrix
-from kognic.io.model.calibration.camera.cylindrical_calibration import CylindricalCalibration
-from kognic.io.model.calibration.common import Position, RotationQuaternion
-
-
-def example_cylindrical_calibration():
-    camera_position = Position(x=0.0, y=0.0, z=0.0)
-    camera_rotation = RotationQuaternion(w=1.0, x=0.0, y=0.0, z=0.0)
-    camera_camera_matrix = CameraMatrix(fx=400, fy=400, cx=600, cy=450)
-    return CylindricalCalibration(
-        position=camera_position,
-        rotation_quaternion=camera_rotation,
-        camera_matrix=camera_camera_matrix,
-        image_height=1080,
-        image_width=1920,
-    )
+```python reference
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_cylindrical_calibration.py
 ```
 
 ### Example: Creating a calibration
@@ -146,7 +131,7 @@ The following example code shows how you can create a *unity* (i.e. we assume th
 calibration for a LIDAR sensor and several camera sensors of type `PINHOLE`.
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/calibration/calibration.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/calibration.py
 ```
 
 ### Listing existing calibrations

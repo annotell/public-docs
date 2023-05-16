@@ -7,7 +7,7 @@ on 1-9 camera images as well as 1-20 point clouds. For more documentation on wha
 `LidarsAndCamerasSeq` object please check the section related to [Input Overview](/docs/kognic-io/overview).
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/lidars_and_cameras_seq.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq.py
 ```
 
 :::tip Use dryrun to validate input
@@ -26,7 +26,7 @@ static objects. Ego vehicle motion information is provided by passing a `EgoVehi
 in the input.
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/lidars_and_cameras_seq_full.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq_full.py
 ```
 
 :::note Coordinate Systems
@@ -39,5 +39,5 @@ Shutter timings are optional metadata that may be provided when creating an `Ima
 values: shutter start and end timestamp in nanoseconds since unix epoch and are specified for each image in each frame.
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/lidars_and_cameras_seq_with_imu_and_shutter_times.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq_with_imu_and_shutter_times.py
 ```

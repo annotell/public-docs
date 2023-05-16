@@ -31,7 +31,7 @@ The interface for creating just a scene, without an input, is the same as we are
 The exception is that by not providing a project or a batch in the function call, the scene will be "dangling" until deemed ready for annotation
 
 ```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/examples/lidars_and_cameras_seq_with_pre_annotations.py#L82-L83
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq_with_pre_annotations.py#L82-L83
 ```
 
 ### 2. Uploading an OpenLabel annotation
