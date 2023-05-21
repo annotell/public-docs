@@ -112,7 +112,6 @@ The fused cylindrical model consists of the common attributes plus
 | `cut_angles_degree` | A `CutAngles` object. Note these angles should be expressed in degrees. |`upper`, `lower` |
 | `vertical_fov_degree`  (optional. Default 72.5 degrees)| Float. Note this angle should be expressed in degrees. | NA |
 | `horizontal_fov_degree` (optional. Default 93 degrees) | Float. Note this angle should be expressed in degrees. | NA |
-| `max_altitude_angle_degree` (optional. Default 90 degrees) | Float. Note this angle should be expressed in degrees. | NA |
 
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_fused_cylindrical_calibration.py
