@@ -12,8 +12,12 @@ project/batch or individually via the methods listed below. All methods return e
 a generator yielding `Annotation` objects, which contains indentifiers as well as a dictionary containing the OpenLABEL
 json:
 
-```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/kognic/io/model/annotation/client_annotation.py#L7-L11
+```python
+class Annotation(BaseSerializer):
+    input_uuid: str
+    annotation_type: str
+    created: datetime
+    content: Optional[Dict]
 ```
 
 As the `Annotation` model shows, an annotation is unique for each input and annotation-type.

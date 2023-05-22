@@ -91,11 +91,7 @@ Inputs without a lidar sensor do not require a calibration.
 
 ### Metadata
 Metadata can be added to inputs via the `metadata` field. It consists of _flat_ key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about an input.
-Nothing specified in the metadata can be seen by the annotators, but there are some reserved keywords which can alter the annotation tools behaviour, and can be found here:
-
-```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/kognic/io/model/input/metadata/metadata.py
-```
+Nothing specified in the metadata can be seen by the annotators, but there are some reserved keywords that can alter the behaviour of the annotation tool. Reserved keywords can be found on the `MetaData` object in the python client.
 
 
 ### Frame (non-sequential inputs)
@@ -203,8 +199,12 @@ cameras_sequence = CamerasSequence(
 Every file containing binary sensor data (e.g. image or pointcloud files) is represented as a `Resource`, with 
 `Image` and `PointCloud` being the concrete subclasses.
 
-```python reference
-https://github.com/annotell/annotell-python/blob/master/kognic-io/kognic/io/model/input/resources/resource.py#L12-L16
+```python
+class Resource(ABC, BaseSerializer):
+    filename: str
+    resource_id: Optional[str] = None
+    sensor_name: str
+    file_data: Optional[FileData] = Field(default=None, exclude=True)
 ```
 
 `Resource`s ultimately describe how to obtain some binary or textual sensor data, which can be done in different ways:
