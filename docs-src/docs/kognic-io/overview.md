@@ -196,7 +196,7 @@ cameras_sequence = CamerasSequence(
 ```
 
 ## Image & Pointcloud Resources
-Every file containing binary sensor data (e.g. image or pointcloud files) is represented as a `Resource`, with 
+Every file containing sensor data (image or pointcloud files) is represented as a `Resource`, with 
 `Image` and `PointCloud` being the concrete subclasses.
 
 ```python
@@ -236,26 +236,26 @@ Image(filename="/Users/johndoe/images/img_FC.png",
 
 ### Data in Memory
 
-In addition to  `filename`, provide a `FileData` object via the `data` attribute, which in turn has an `UploadableData` as its own `data` attribute. This example uses raw `bytes`:
+In addition to  `filename`, provide a `FileData` object via the `file_data` attribute, which in turn has an `UploadableData` as its own `data` attribute. This example uses raw `bytes`:
 
 ```python
 png_blob = FileData(data=b'some PNG bytes',
                     format=FileData.Format.PNG)
 Image(filename="FC-frame15",
       sensor_name="FC",
-      data=png_blob)
+      file_data=png_blob)
 ```
 
 ### Data from Callback
 
-In addition to `filename`, provide a `FileData` object via the `data` attribute, which holds a reference to the callback function that produces an `UploadableData`, e.g.
+In addition to `filename`, provide a `FileData` object via the `file_data` attribute, with a `callback` function that produces an `UploadableData`, e.g.
 
 ```python
 png_from_callback = FileData(callback=get_png,
                              format=FileData.Format.PNG)
 Image(filename="FC-frame15",
       sensor_name="FC",
-      data=png_from_callback)
+      file_data=png_from_callback)
 ```
 
 The callback function (`get_png`) is a unary function with the following signature.
