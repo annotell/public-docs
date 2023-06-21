@@ -123,8 +123,10 @@ Invalidation of an input means that it will be removed for all annotation types.
 on how to remove a specific annotation types for an input.
 
 ```python
+from kognic.io.model.input.invalidated_reason_input import InvalidatedReasonInput
+
 invalid_uuids = ["0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", "37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36"]
-reason = IAM.InvalidatedReasonInput.BAD_CONTENT
+reason = InvalidatedReasonInput.BAD_CONTENT
 client.input.invalidate_inputs(invalid_uuids, reason)
 ```
 
