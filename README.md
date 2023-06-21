@@ -29,19 +29,5 @@ this out locally. This can be done with `yarn serve`.
 
 ## Deployment
 
-Deployment is done automatically by GitHub Actions on push to `master`. The steps are as follows:
-```console
-./build_docs.sh
-git add docs
-git commit
-git push
-```
-Note that it may take a few minutes for the changes to be reflected in the documentation.
+Build and deployment are done automatically by GitHub Actions on push to `master`.
 
-
-## Merging
-
-If you are merging PRs and get conflicts in the `docs/` (generated output) dir, the easiest thing to do is drop all 
-those changes from the merge/rebase you're doing (i.e. revert them so they don't feature in the merge at all), 
-and then run the `build-docs.sh` script again to regenerate them anew. Then commit that. It's up to you if you do this 
-during the merge or after as a separate commit.
