@@ -22,7 +22,7 @@ The currently supported format includes the following header:
 ```
 VERSION .7
 FIELDS x y z intensity timestamp
-SIZE 4 4 4 4 4
+SIZE 4 4 4 4 8
 TYPE F F F U U
 COUNT 1 1 1 1 1
 WIDTH <w>
