@@ -125,6 +125,18 @@ The cylindrical model consists only of the common attributes. There are no extra
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_cylindrical_calibration.py
 ```
+### Principal point fisheye
+
+The principal point fisheye model consists of the common attributes plus
+
+| Key                                                                          | Value                                        | Parameters                               |
+|:-----------------------------------------------------------------------------|:---------------------------------------------|:-----------------------------------------|
+| `principal_point_fisheye_coefficients`                                       | A `PrincipalPointFisheyeCoefficients` object | `alpha_l`, `alpha_r`, `beta_u`, `beta_l` |
+
+```python reference
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_principal_point_fisheye_calibration.py
+```
+
 
 ### Example: Creating a calibration
 
