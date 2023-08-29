@@ -31,6 +31,10 @@ module.exports = {
         ]
       }
     ],
+    "Refinement": [
+        "refinement/refinement",
+        "refinement/uploading-predictions"
+    ],
     "OpenLABEL": [
         "openlabel/openlabel-format",
         "openlabel/python-client"
