@@ -1,9 +1,9 @@
 ---
-title: Refinement
+title: Introduction
 ---
 
 :::caution
-The refinement API is in an early release stage and might be subject to changes.
+The dataset API is in an early release stage and might be subject to changes.
 :::
 
 ## Prerequisites
@@ -21,7 +21,7 @@ At the moment we do not provide an API client for the refinement tool. Instead, 
 of how you can interact with our API.
 
 ## Endpoints
-You can discover the list of accessible endpoints within our [swagger documentation](https://dataset-quality.app.kognic.com/api).
+You can discover the list of accessible endpoints within our [swagger documentation](https://dataset.app.kognic.com/api).
 
 ## Request Example
 Here's an example using the kognic-auth library to list all datasets available to the user:
@@ -31,7 +31,7 @@ import requests
 
 from kognic.auth.requests.auth_session import RequestsAuthSession
 
-base_url = "https://dataset-quality.app.kognic.com/v1/"
+base_url = "https://dataset.app.kognic.com/v1/"
 client = RequestsAuthSession()
 
 try:

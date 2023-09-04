@@ -19,7 +19,7 @@ get the uuid of the dataset:
 client.session.get(base_url + "datasets")
 ```
 
-### 2. Get the UUID of the predictions group
+### 2. Get the UUID of the predictions group    
 
 In order to upload predictions, a prediction group needs to exist. Predictions can be organized into groups for any
 purpose imaginable. The UUID of an existing prediction group can be found in the URL after `predictions/` or by using
@@ -38,13 +38,13 @@ import requests
 
 from kognic.auth.requests.auth_session import RequestsAuthSession
 
-base_url = "https://dataset-quality.app.kognic.com/v1/"
+base_url = "https://dataset.app.kognic.com/v1/"
 client = RequestsAuthSession()
 
 predictions_group_uuid = "..."
 openlabel_content = {...}
 data = {
-    "inputUuid": "...",
+    "sceneUuid": "...",
     "openlabelContent": openlabel_content,
 }
 
@@ -66,16 +66,15 @@ the `kognic-auth` library to make 100 asynchronous calls:
 
 ```python
 import asyncio
-import uuid
 
 from kognic.auth.httpx.async_client import HttpxAuthAsyncClient
 
-base_url = "https://dataset-quality.app.kognic.com/v1/"
+base_url = "https://dataset.app.kognic.com/v1/"
 predictions_group_uuid = "..."
 url = base_url + f"predictions-groups/{predictions_group_uuid}/predictions"
-openlabel_content = {"openlabel": {"..."}}
+openlabel_content = {...}
 
-MAX_CONNECTIONS = 20
+MAX_CONNECTIONS = 10
 
 
 async def upload_prediction(payload, session, sem):
@@ -92,7 +91,7 @@ async def main(n_runs: int):
     sem = asyncio.Semaphore(MAX_CONNECTIONS)
     tasks = []
     for i in range(n_runs):
-        payload = {"inputUuid": "...", "openlabelContent": openlabel_content}
+        payload = {"sceneUuid": "...", "openlabelContent": openlabel_content}
         task = upload_prediction(payload, session, sem)
         tasks.append(task)
 
@@ -105,3 +104,5 @@ async def main(n_runs: int):
 if __name__ == '__main__':
     asyncio.run(main(100))
 ```
+
+Setting `MAX_CONNECTIONS` to something bigger than 10 might not work and is not recommended.
