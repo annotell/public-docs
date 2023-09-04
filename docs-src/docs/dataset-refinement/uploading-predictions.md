@@ -6,7 +6,7 @@ title: Uploading predictions
 
 In this example, we'll walk you through how to upload predictions using our API into an already existing dataset.
 
-Before you begin. See [Prerequisites](./#prerequisites)
+Before you begin. See [Prerequisites](./introduction#prerequisites)
 
 ## Steps
 
