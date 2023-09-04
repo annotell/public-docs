@@ -31,6 +31,10 @@ module.exports = {
         ]
       }
     ],
+    "Dataset refinement": [
+        "dataset-refinement/introduction",
+        "dataset-refinement/uploading-predictions"
+    ],
     "OpenLABEL": [
         "openlabel/openlabel-format",
         "openlabel/python-client"
