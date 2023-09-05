@@ -214,11 +214,13 @@ with one hole.
         "poly2d": [
             {
                 "name": "poly1",
+                "mode": "MODE_POLY2D_ABSOLUTE",
                 "val": [...],
                 "attributes": { "boolean": [{"name": "is_hole", "val": false}] }
             },
             {
                 "name": "poly2",
+                "mode": "MODE_POLY2D_ABSOLUTE",
                 "val": [...],
                 "attributes": { "boolean": [{"name": "is_hole", "val": true}] }
             }
@@ -226,6 +228,7 @@ with one hole.
     }
 }
 ```
+The value `MODE_POLY2D_ABSOLUTE` is the only supported value for `mode`. Absolute mode means that the values in `val` are interpreted as pixel coordinates (not as values relative to the first coordinate pair).
 
 ## Representing multi-polygons
 
@@ -240,6 +243,7 @@ with two polygons with one hole each.
         "poly2d": [
             {
                 "name": "poly1",
+                "mode": "MODE_POLY2D_ABSOLUTE",
                 "val": [...],
                 "attributes": {
                     "text": [{"name": "polygon_id", "val": "1"}],
@@ -248,6 +252,7 @@ with two polygons with one hole each.
             },
             {
                 "name": "poly2",
+                "mode": "MODE_POLY2D_ABSOLUTE",
                 "val": [...],
                 "attributes": {
                     "text": [{"name": "polygon_id", "val": "1"}],
@@ -256,6 +261,7 @@ with two polygons with one hole each.
             },
             {
                 "name": "poly3",
+                "mode": "MODE_POLY2D_ABSOLUTE",
                 "val": [...],
                 "attributes": {
                     "text": [{"name": "polygon_id", "val": "2"}],
@@ -264,6 +270,7 @@ with two polygons with one hole each.
             },
             {
                 "name": "poly4",
+                "mode": "MODE_POLY2D_ABSOLUTE",
                 "val": [...],
                 "attributes": {
                     "text": [{"name": "polygon_id", "val": "2"}],
@@ -274,6 +281,7 @@ with two polygons with one hole each.
     }
 }
 ```
+The value `MODE_POLY2D_ABSOLUTE` is the only supported value for `mode`. Absolute mode means that the values in `val` are interpreted as pixel coordinates (not as values relative to the first coordinate pair).
 
 
 ## Representing curves
@@ -301,6 +309,7 @@ the following way.
   ]
 }
 ```
+The value `MODE_POLY2D_ABSOLUTE` is the only supported value for `mode`. Absolute mode means that the values in `val` are interpreted as pixel coordinates (not as values relative to the first coordinate pair).
 
 ## Representing 3D lanes
 
