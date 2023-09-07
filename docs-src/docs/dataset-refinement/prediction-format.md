@@ -7,7 +7,7 @@ our platform. Information about the OpenLabel format can be found in
 [the documentation for uploading pre-annotations](../kognic-io/pre_annotations/#openlabel-support).
 
 :::note
-The API for uploading pre-annotations has support for fewer features compared to the one for
+The API for uploading pre-annotations has support for more features compared to the one for
 uploading predictions. One example being that there is only support for single frame predictions, not sequences.
 :::
 
@@ -20,6 +20,8 @@ The current API for uploading predictions supports the following features:
 | Cuboid       | `cuboid`        | Cuboid in 3D       |
 | Bounding box | `bbox`          | Bounding box in 2D |
 
+Only one type of feature per prediction is supported.
+
 ## Prediction examples
 
 ### 2D bounding box with a static property
@@ -30,22 +32,26 @@ center coordinates of the bounding box. The `width` and `height` are the width a
 Unlike pre-annotations, `external_id` is not required. For non-video data, `external_id` will be resolved automatically
 if it is left empty.
 
+Existence confidence is not required and will be set to 1.0 if it is left empty. If provided, it must be defined as a
+numeric value between 0.0 and 1.0. Existence confidence is set to 0.85 in the example below.
+
 ```json
 {
   "openlabel": {
     "frames": {
       "0": {
-        "frame_properties": {
-          "streams": {
-            "camera_id": {}
-          }
-        },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
             "object_data": {
               "bbox": [
                 {
                   "attributes": {
+                    "num": [
+                      {
+                        "val": 0.85,
+                        "name": "confidence"
+                      }
+                    ],
                     "text": [
                       {
                         "name": "stream",
@@ -53,7 +59,7 @@ if it is left empty.
                       }
                     ]
                   },
-                  "name": "Bounding-box-1",
+                  "name": "any-human-readable-bounding-box-name",
                   "val": [
                     1.0,
                     1.0,
@@ -72,7 +78,7 @@ if it is left empty.
     },
     "objects": {
       "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
-        "name": "1232b4f4-e3ca-446a-91cb-d8d403703df7",
+        "name": "any-human-readable-bounding-box-name",
         "object_data": {
           "text": [
             {
@@ -96,25 +102,29 @@ if it is left empty.
 ### 3D cuboid with a static property
 
 Cuboids are represented as a list of 10 values: `[x, y, z, qx, qy, qz, qw, width, length, height]`, where `x`, `y`,
-and `z` are the center coordinates of the cuboid. `qx`, `qy`, `qz`, and `qw` are the quaternion values for the rotation
-of the cuboid.
+and `z` are the center coordinates of the cuboid. `x`, `y`, `z`, `width`, `length`, and `height` are in meters.
+`qx`, `qy`, `qz`, and `qw` are the quaternion values for the rotation of the cuboid.
+
+Read more about coordinate systems and
+quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
 
 ```json
 {
   "openlabel": {
     "frames": {
       "0": {
-        "frame_properties": {
-          "streams": {
-            "LIDAR1": {}
-          }
-        },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
             "object_data": {
               "cuboid": [
                 {
                   "attributes": {
+                    "num": [
+                      {
+                        "val": 0.85,
+                        "name": "confidence"
+                      }
+                    ],
                     "text": [
                       {
                         "name": "stream",
@@ -122,7 +132,7 @@ of the cuboid.
                       }
                     ]
                   },
-                  "name": "cuboid-89ac8a2b",
+                  "name": "any-human-readable-cuboid-name",
                   "val": [
                     2.079312801361084,
                     -18.919870376586914,
@@ -147,7 +157,7 @@ of the cuboid.
     },
     "objects": {
       "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
-        "name": "1232b4f4-e3ca-446a-91cb-d8d403703df7",
+        "name": "any-human-readable-cuboid-name",
         "object_data": {
           "text": [
             {
