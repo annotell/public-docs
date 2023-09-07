@@ -27,14 +27,15 @@ The current API for uploading predictions supports the following features:
 In OpenLabel, a bounding box is represented as a list of 4 values: `[x, y, width, height]`, where `x` and `y` are the
 center coordinates of the bounding box. The `width` and `height` are the width and height of the bounding box.
 
+Unlike pre-annotations, `external_id` is not required. For non-video data, `external_id` will be resolved automatically
+if it is left empty.
+
 ```json
 {
   "openlabel": {
     "frames": {
       "0": {
         "frame_properties": {
-          "timestamp": 0,
-          "external_id": "0",
           "streams": {
             "camera_id": {}
           }
@@ -104,8 +105,6 @@ of the cuboid.
     "frames": {
       "0": {
         "frame_properties": {
-          "timestamp": 0,
-          "external_id": "0",
           "streams": {
             "LIDAR1": {}
           }
