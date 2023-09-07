@@ -29,11 +29,12 @@ Only one type of feature per prediction is supported.
 In OpenLabel, a bounding box is represented as a list of 4 values: `[x, y, width, height]`, where `x` and `y` are the
 center coordinates of the bounding box. The `width` and `height` are the width and height of the bounding box.
 
-Unlike pre-annotations, `external_id` is not required. For non-video data, `external_id` will be resolved automatically
-if it is left empty.
+Unlike pre-annotations, `frame_properties` is not required. For non-video data, `frame_properties.external_id` will be
+resolved automatically if it is left empty.
 
-Existence confidence is not required and will be set to 1.0 if it is left empty. If provided, it must be defined as a
-numeric value between 0.0 and 1.0. Existence confidence is set to 0.85 in the example below.
+Existence confidence can be provided by specifying the `confidence` attribute. It is not required and will be set to 1.0
+if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence is set
+to 0.85 in the example below.
 
 ```json
 {
