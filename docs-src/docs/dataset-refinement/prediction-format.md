@@ -32,7 +32,7 @@ Existence confidence can be provided by specifying an attribute called `confiden
 to 1.0 if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence
 is set to 0.85 in the examples below.
 
-The `camera_id` must match the id of the camera in the dataset.
+The `camera_id` and `lidar_id` in the examples below must match the id of the sensor in already existing judgements.
 
 The `object_data.type` will show up as the class name in the tool.
 
@@ -137,7 +137,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
                     "text": [
                       {
                         "name": "stream",
-                        "val": "LIDAR1"
+                        "val": "lidar_id"
                       }
                     ]
                   },
@@ -179,7 +179,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
       }
     },
     "streams": {
-      "LIDAR1": {
+      "lidar_id": {
         "type": "lidar"
       }
     }
