@@ -2,16 +2,15 @@
 title: The prediction format
 ---
 
-Predictions use the OpenLabel format/schema. This is the same format as the one used for uploading pre-annotations to
-our platform. Information about the OpenLabel format can be found in
-[the documentation for uploading pre-annotations](../kognic-io/pre_annotations/#openlabel-support).
-
-:::note
-The API for uploading pre-annotations has support for more features compared to the one for
-uploading predictions. One example being that there is only support for single frame predictions, not sequences.
-:::
+Predictions use the OpenLabel format/schema. This is the same format as the one used
+for [uploading pre-annotations](../kognic-io/pre_annotations/#openlabel-support). General information about the
+OpenLabel format can be found in [here](../openlabel/openlabel-format).
 
 ## Supported prediction features
+
+:::note
+Only one type of feature per prediction is supported.
+:::
 
 The current API for uploading predictions supports the following features:
 
@@ -20,21 +19,30 @@ The current API for uploading predictions supports the following features:
 | Cuboid       | `cuboid`        | Cuboid in 3D       |
 | Bounding box | `bbox`          | Bounding box in 2D |
 
-Only one type of feature per prediction is supported.
+Note that all geometries should be specified under frames rather than in the root of the pre-annotation. The rotation of
+cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids). 2D geometries
+should be expressed in pixel coordinates. See [coordinate systems](../kognic-io/coordinate_systems.md) for more
+information.
+
+Unlike for pre-annotations, `frame_properties` is not required. For non-video data, `frame_properties.external_id` will
+be
+resolved automatically if it is left empty.
+
+Existence confidence can be provided by specifying an attribute called `confidence`. It is not required and will be set
+to 1.0 if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence
+is set to 0.85 in the examples below.
+
+The `camera_id` must match the id of the camera in the dataset.
+
+The `object_data.type` will show up as the class name in the tool.
 
 ## Prediction examples
 
 ### 2D bounding box with a static property
 
 In OpenLabel, a bounding box is represented as a list of 4 values: `[x, y, width, height]`, where `x` and `y` are the
-center coordinates of the bounding box. The `width` and `height` are the width and height of the bounding box.
-
-Unlike pre-annotations, `frame_properties` is not required. For non-video data, `frame_properties.external_id` will be
-resolved automatically if it is left empty.
-
-Existence confidence can be provided by specifying the `confidence` attribute. It is not required and will be set to 1.0
-if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence is set
-to 0.85 in the example below.
+center coordinates of the bounding box. The `width` and `height` are the width and height of the bounding box. The `x`
+and `y` coordinates are relative to the upper left corner of the image.
 
 ```json
 {
