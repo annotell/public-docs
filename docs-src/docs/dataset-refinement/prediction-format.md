@@ -9,10 +9,10 @@ OpenLabel format can be found in [here](../openlabel/openlabel-format).
 ## Supported prediction features
 
 :::note
-Only one type of feature per prediction is supported.
+Only one type of geometry, e.g. cuboid in 3D, per prediction is supported
 :::
 
-The current API for uploading predictions supports the following features:
+The current API for uploading predictions supports the following geometries:
 
 | Name         | OpenLABEL field | Description        |
 |--------------|-----------------|--------------------|
@@ -25,14 +25,13 @@ should be expressed in pixel coordinates. See [coordinate systems](../kognic-io/
 information.
 
 Unlike for pre-annotations, `frame_properties` is not required. For non-video data, `frame_properties.external_id` will
-be
-resolved automatically if it is left empty.
+be resolved automatically if it is left empty.
 
 Existence confidence can be provided by specifying an attribute called `confidence`. It is not required and will be set
 to 1.0 if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence
 is set to 0.85 in the examples below.
 
-The `camera_id` and `lidar_id` in the examples below must match the id of the sensor in already existing judgements.
+The `camera_id` and `lidar_id` in the examples below must match the id of the sensor in already existing annotations.
 
 The `object_data.type` will show up as the class name in the tool.
 
