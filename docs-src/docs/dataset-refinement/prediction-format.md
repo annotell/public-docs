@@ -197,3 +197,6 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
   }
 }
 ```
+
+### Using `kognic-openlabel` to validate the format
+See [kognic-openlabel](https://pypi.org/project/kognic-openlabel/) for more information.
