@@ -9,7 +9,7 @@ OpenLabel format can be found in [here](../openlabel/openlabel-format).
 ## Supported prediction features
 
 :::note
-Only one type of geometry, e.g. cuboid in 3D, per prediction is supported
+Only one type of geometry, e.g. cuboid, per prediction is supported
 :::
 
 The current API for uploading predictions supports the following geometries:
@@ -24,8 +24,10 @@ cuboids should be the same as that in [exports](../openlabel/openlabel-format.md
 should be expressed in pixel coordinates. See [coordinate systems](../kognic-io/coordinate_systems.md) for more
 information.
 
-Unlike for pre-annotations, `frame_properties` is not required. For non-video data, `frame_properties.external_id` will
-be resolved automatically if it is left empty.
+`frame_properties` is required, same as for uploading pre annotations. For non-video
+data, `frame_properties.external_id` will be resolved automatically if it is left as an empty string.
+`frame_properties.timestamp` will be ignored for non-video data and can therefore be set to 0. `frame_properties.stream`
+can be left as an empty dict.
 
 Existence confidence can be provided by specifying an attribute called `confidence`. It is not required and will be set
 to 1.0 if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence
@@ -48,6 +50,11 @@ and `y` coordinates are relative to the upper left corner of the image.
   "openlabel": {
     "frames": {
       "0": {
+        "frame_properties": {
+          "timestamp": 0,
+          "external_id": "",
+          "streams": {}
+        },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
             "object_data": {
@@ -121,6 +128,11 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
   "openlabel": {
     "frames": {
       "0": {
+        "frame_properties": {
+          "timestamp": 0,
+          "external_id": "",
+          "streams": {}
+        },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
             "object_data": {
