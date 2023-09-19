@@ -33,6 +33,7 @@ module.exports = {
     ],
     "Dataset refinement": [
         "dataset-refinement/introduction",
+        "dataset-refinement/prediction-format",
         "dataset-refinement/uploading-predictions"
     ],
     "OpenLABEL": [

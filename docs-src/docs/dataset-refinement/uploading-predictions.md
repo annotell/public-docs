@@ -6,7 +6,8 @@ title: Uploading predictions
 
 In this example, we'll walk you through how to upload predictions using our API into an already existing dataset.
 
-Before you begin. See [Prerequisites](./introduction#prerequisites)
+Before you begin: See [Prerequisites](./introduction#prerequisites) and learn about
+the [prediction format](./prediction-format).
 
 ## Steps
 
@@ -19,7 +20,7 @@ get the uuid of the dataset:
 client.session.get(base_url + "datasets")
 ```
 
-### 2. Get the UUID of the predictions group    
+### 2. Get the UUID of the predictions group
 
 In order to upload predictions, a prediction group needs to exist. Predictions can be organized into groups for any
 purpose imaginable. The UUID of an existing prediction group can be found in the URL after `predictions/` or by using
@@ -42,7 +43,7 @@ base_url = "https://dataset.app.kognic.com/v1/"
 client = RequestsAuthSession()
 
 predictions_group_uuid = "..."
-openlabel_content = {...}
+openlabel_content = {"openlabel": ...}
 data = {
     "sceneUuid": "...",
     "openlabelContent": openlabel_content,
@@ -72,7 +73,7 @@ from kognic.auth.httpx.async_client import HttpxAuthAsyncClient
 base_url = "https://dataset.app.kognic.com/v1/"
 predictions_group_uuid = "..."
 url = base_url + f"predictions-groups/{predictions_group_uuid}/predictions"
-openlabel_content = {...}
+openlabel_content = {"openlabel": ...}
 
 MAX_CONNECTIONS = 10
 
