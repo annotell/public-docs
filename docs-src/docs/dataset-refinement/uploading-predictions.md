@@ -58,8 +58,8 @@ try:
     response_json = response.json()
     print(f"Created prediction with uuid {response_json['data']}")
 except requests.exceptions.RequestException as e:
-    msg = e.response.json()["message"]
-    print(f"Request error: {e}. with message: {msg}")
+    msg = e.response.text
+    print(f"Request error: {e}. {msg}")
 ```
 
 For larger amounts of predictions, asynchronous calls are recommended. The following example uses the async client from
