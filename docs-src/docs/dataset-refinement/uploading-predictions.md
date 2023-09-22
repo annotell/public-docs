@@ -11,6 +11,18 @@ the [prediction format](./prediction-format).
 
 ## Steps
 
+Create a new python file and import the following libraries:
+
+```python
+import requests
+
+from kognic.auth.requests.auth_session import RequestsAuthSession
+
+base_url = "https://dataset.app.kognic.com/v1/"
+client = RequestsAuthSession()
+```
+
+
 ### 1. Get the UUID of the dataset
 
 You can either access the tool and copy the UUID following `dataset/` in the URL, or utilize the datasets endpoint to
@@ -20,14 +32,28 @@ get the uuid of the dataset:
 client.session.get(base_url + "datasets")
 ```
 
-### 2. Get the UUID of the predictions group
-
+### 2. Get the UUID of an existing predictions group
 In order to upload predictions, a prediction group needs to exist. Predictions can be organized into groups for any
 purpose imaginable. The UUID of an existing prediction group can be found in the URL after `predictions/` or by using
 the endpoint
 
 ```python
 client.session.get(base_url + f"/datasets/{datasetUuid}/predictions-groups")
+```
+
+You can also create a new prediction group using the following code snippet
+
+```python
+path = base_url + f"/datasets/{datasetUuid}/predictions-groups"
+body = {"name": "My predictions group", "description": "A description of my new predictions group"}
+try:
+    response = client.session.post(path, json=body)
+    response.raise_for_status()
+    response_json = response.json()
+    print(f"Created predictions group with uuid {response_json['data']}")
+except requests.exceptions.RequestException as e:
+    msg = e.response.text
+    print(f"Request error: {e}. {msg}")
 ```
 
 ### 3. Upload predictions
