@@ -50,7 +50,7 @@ Note that this list does not need to contain all Annotation Types in the project
 ### Create inputs for specific Annotation Types
 ```python
 from kognic.io.client import KognicIOClient
-from kognic.io.model.input.cameras_sequence import CamerasSequence
+from kognic.io.model.scene.cameras_sequence import CamerasSequence
 
 client = KognicIOClient()
 camera_input = CamerasSequence(external_id=..., frames=...)
@@ -71,7 +71,7 @@ no batch is specified the inputs will be created in the latest batch with status
 ### Create inputs for all Annotation Types in batch
 ```python
 from kognic.io.client import KognicIOClient
-from kognic.io.model.input.cameras_sequence import CamerasSequence
+from kognic.io.model.scene.cameras_sequence import CamerasSequence
 
 client = KognicIOClient()
 camera_input = CamerasSequence(external_id=..., frames=...)

@@ -20,7 +20,7 @@ Packages under `annotell.input_api` were moved to `kognic.io`. In most cases, up
 
 Previously some classes could be imported via multiple packages due to how we had used `*` imports internally. The `kognic.io.model.*` subpackages are now stricter about which internal classes they export than their equivalents in `annotell.input_api.model.*`
 
-It is no longer possible to, for example, use `from kognic.io.model.input.lidars_and_cameras import *` or `from kognic.io.model.lidars_and_cameras import IMUData` to import `IMUData` along with all other classes related to Lidar+Camera scenes.
+It is no longer possible to, for example, use `from kognic.io.model.scene.lidars_and_cameras import *` or `from kognic.io.model.lidars_and_cameras import IMUData` to import `IMUData` along with all other classes related to Lidar+Camera scenes.
 
 :::info
 

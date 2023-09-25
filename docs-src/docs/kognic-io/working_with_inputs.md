@@ -163,7 +163,7 @@ or all of the inputs have completed in one way or another. The function takes a 
 
 ```python
 from kognic.io.tools.input_creation import create_inputs, SceneWithPreAnnotation, InputCreationStatus
-from kognic.io.model.input import LidarsAndCamerasSequence
+from kognic.io.model.scene import LidarsAndCamerasSequence
 from kognic.openlabel.models import OpenLabelAnnotation
 
 

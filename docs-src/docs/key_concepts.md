@@ -93,15 +93,11 @@ to create them in.
 
 ## Annotation
 
-Inputs are annotated in requests, producing _annotations_. Version v1.0.x provide by default annotations in Kognic's
-annotation format. Version v1.1.x and above provide annotations in the [ASAM OpenLABEL](https://www.asam.net/project-detail/asam-openlabel-v100/) format.
+Inputs are annotated in requests, producing _annotations_. Annotations are provided by `kognic-io` as json objects 
+on the [ASAM OpenLABEL](openlabel/openlabel-format) format. More information on how to download these annotations along with some examples of 
+how to work with them is available in the [Downloading Annotations](kognic-io/annotations.md) chapter.
 
-### v1.1.x Format
-Annotations are provided by the `kognic-io` as json objects in the [ASAM OpenLABEL](openlabel/openlabel-format) format.
-More information on how to download these annotations along with some examples of how to work with them is available 
-in the [Downloading Annotations](kognic-io/annotations.md) chapter.
-
-Apart from the `kognic-io`, Kognic also provides a [library](openlabel/python-client) called `kognic-openlabel`,
+Apart from `kognic-io`, Kognic also provides a [library](openlabel/python-client) called `kognic-openlabel`,
 which makes it easy to parse and work with the OpenLABEL json.
 
 Any conversion away from the OpenLABEL format will have to occur client-side.

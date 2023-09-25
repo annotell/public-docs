@@ -2,7 +2,8 @@
 title: Downloading Annotations
 ---
 
-Annotations are made available for each [input](overview) and [annotation type](annotation_types) as soon as they are quality assured by the Kognic platform. Information about the format can be found in the [Key Concepts](../key_concepts.md#annotation) section.
+Annotations are made available for each [input](overview) and [annotation type](annotation_types) as soon as they are quality assured 
+by the Kognic platform. Information about the format can be found in the [Key Concepts](../key_concepts.md#annotation) section.
 
 ## v1.1.x
 

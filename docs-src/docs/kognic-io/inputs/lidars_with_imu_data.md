@@ -40,7 +40,7 @@ IMU data is provided as a list of `IMUData` objects in the root of the input obj
 
 from kognic.io.model.ego import IMUData
 from kognic.io.model.calibration import Position, RotationQuaternion
-from kognic.io.model.input.lidars_and_cameras_sequence import LidarsAndCamerasSequence, Frame
+from kognic.io.model.scene.lidars_and_cameras_sequence import LidarsAndCamerasSequence, Frame
 
 from kognic.io.client import KognicIOClient
 
