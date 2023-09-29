@@ -251,11 +251,12 @@ Image(filename="FC-frame15",
 In addition to `filename`, provide a `FileData` object via the `file_data` attribute, with a `callback` function that produces an `UploadableData`, e.g.
 
 ```python
-png_from_callback = FileData(callback=get_png,
-                             format=FileData.Format.PNG)
-Image(filename="FC-frame15",
-      sensor_name="FC",
-      file_data=png_from_callback)
+png_from_callback = FileData(callback=get_png, format=FileData.Format.PNG)
+Image(
+    filename="FC-frame15",
+    sensor_name="FC",
+    file_data=png_from_callback
+)
 ```
 
 The callback function (`get_png`) is a unary function with the following signature.
@@ -276,8 +277,29 @@ def get_callback(arg1, arg2, **kwargs):
       
      return callback
      
-FileData(callback=get_callback("foo", "bar", extra1="baz", extra2="qux"),
-         format=FileData.Format.JPG)
+FileData(
+    callback=get_callback("foo", "bar", extra1="baz", extra2="qux"),
+    format=FileData.Format.JPG
+)
+```
+
+### Data from Asynchronous Callback (new in version 1.5.0)
+
+Using asynchronous callbacks can be useful to speed up data uploads, especially when the data is not available locally.
+In the same way as for synchronous callbacks, the callback function is invoked with the `Resource.filename` as its 
+argument when it is time to upload that single file. Asynchronous callbacks can be used in the following way:
+
+```python
+async def get_png(filename: str) -> UploadableData:
+    pass
+
+png_from_async_callback = FileData(callback=get_png, format=FileData.Format.PNG)
+
+Image(
+    filename="FC-frame15",
+    sensor_name="FC",
+    file_data=png_from_async_callback
+)
 ```
 
 ## IMU Data
