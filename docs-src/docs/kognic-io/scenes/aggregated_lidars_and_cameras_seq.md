@@ -19,10 +19,10 @@ Refer to [Coordinate Systems](../coordinate_systems.md) for more information abo
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/agg_lidars_and_cameras_seq.py
 ```
 
-:::tip Use dryrun to validate input
-Setting `dryrun` parameter to true in the method call, will validate the input using the API but not create any inputs.
+:::tip Use dryrun to validate 
+Setting `dryrun` parameter to true in the method call, will validate the  using the API but not create any s.
 :::
 
 :::tip reuse calibration
-Note that you can, and should, reuse the same calibration for multiple inputs if possible.
+Note that you can, and should, reuse the same calibration for multiple s if possible.
 :::

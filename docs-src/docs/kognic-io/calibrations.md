@@ -92,12 +92,12 @@ https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calib
 
 The principal point distortion model consists of the common attributes plus
 
-| Key  | Value | Parameters |
-|:-----|:------|:-----------|
-| `principal_point_distortion_coefficients` | A `PrincipalPointDistortionCoefficients` object |`k1`, `k2` |
-| `lens_projection_coefficients` (optional. Default to values for model SF806)| A `LensProjectionCoefficients` object |`c1`, `c2`,`c3`, `c4`,`c5`, `c6` |
-| `distortion_center` | A `DistortionCenter` object |`x`, `y` |
-| `principal_point` | A `PrincipalPoint` object |`x`, `y` |
+| Key                                                                          | Value                                           | Parameters                       |
+|:-----------------------------------------------------------------------------|:------------------------------------------------|:---------------------------------|
+| `principal_point_distortion_coefficients`                                    | A `PrincipalPointDistortionCoefficients` object | `k1`, `k2`                       |
+| `lens_projection_coefficients` (optional. Default to values for model SF806) | A `LensProjectionCoefficients` object           | `c1`, `c2`,`c3`, `c4`,`c5`, `c6` |
+| `distortion_center`                                                          | A `DistortionCenter` object                     | `x`, `y`                         |
+| `principal_point`                                                            | A `PrincipalPoint` object                       | `x`, `y`                         |
 
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_principal_point_distortion_calibration.py
@@ -107,12 +107,12 @@ https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calib
 
 The fused cylindrical model consists of the common attributes plus
 
-| Key                                                        | Value | Parameters |
-|:-----------------------------------------------------------|:------|:-----------|
-| `cut_angles_degree`                                        | A `CutAngles` object. Note these angles should be expressed in degrees. |`upper`, `lower` |
-| `vertical_fov_degree`  (optional. Default 72.5 degrees)    | Float. Note this angle should be expressed in degrees. | NA |
-| `horizontal_fov_degree` (optional. Default 93 degrees)     | Float. Note this angle should be expressed in degrees. | NA |
-| `max_altitude_angle_degree` (optional. Default 90 degrees) | Float. Note this angle should be expressed in degrees. | NA |
+| Key                                                        | Value                                                                   | Parameters       |
+|:-----------------------------------------------------------|:------------------------------------------------------------------------|:-----------------|
+| `cut_angles_degree`                                        | A `CutAngles` object. Note these angles should be expressed in degrees. | `upper`, `lower` |
+| `vertical_fov_degree`  (optional. Default 72.5 degrees)    | Float. Note this angle should be expressed in degrees.                  | NA               |
+| `horizontal_fov_degree` (optional. Default 93 degrees)     | Float. Note this angle should be expressed in degrees.                  | NA               |
+| `max_altitude_angle_degree` (optional. Default 90 degrees) | Float. Note this angle should be expressed in degrees.                  | NA               |
 
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/create_fused_cylindrical_calibration.py

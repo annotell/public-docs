@@ -34,7 +34,7 @@ unit of time. Therefore, all unix timestamps needs to be provided in nanoseconds
 Note that all timestamps (in point clouds and the provided `unix_timestamp_ns`) must be encompassed by
 the timestamps in the imu data. Otherwise, the scene creation will fail.
 
-IMU data is provided as a list of `IMUData` objects in the root of the input object in the following way:
+IMU data is provided as a list of `IMUData` objects in the root of the  object in the following way:
 
 ```python
 
@@ -74,14 +74,14 @@ client.lidars_and_cameras_sequence.create(
 )
 ```
 
-:::tip Use dryrun to validate input
-Setting `dryrun` parameter to true in the method call, will validate the input using the API but not create any inputs.
+:::tip Use dryrun to validate 
+Setting `dryrun` parameter to true in the method call, will validate the  using the API but not create any s.
 :::
 
 ## Enable/disable motion compensation
 
-By default motion compensation is performed for inputs with LIDAR pointclouds when IMU data is provided.
+By default motion compensation is performed for s with LIDAR pointclouds when IMU data is provided.
 
-Whether motion compensation is enabled is controlled by an [input feature flag](../feature_flags), the default is enabled. To disable motion compensation you must provide a different set of flags from the default, and not include the motion compensation flag. Calling the `create` method for an input, and not specifying feature flags at all is equivalent to using the defaults, and motion compensation will be performed.
+Whether motion compensation is enabled is controlled by an [ feature flag](../feature_flags), the default is enabled. To disable motion compensation you must provide a different set of flags from the default, and not include the motion compensation flag. Calling the `create` method for an , and not specifying feature flags at all is equivalent to using the defaults, and motion compensation will be performed.
 
 It may be desirable to disable motion compensation in cases where pointclouds are already motion compensated outside of the Kognic platform.

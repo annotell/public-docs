@@ -47,7 +47,7 @@ $$
 $$
 
 This can be used to compensate each lidar point for the motion of the ego vehicle, a process also known as 
-[motion compensation](./inputs/lidars_with_imu_data.md). It is highly recommended to motion compensate point clouds
+[motion compensation](./scenes/lidars_with_imu_data.md). It is highly recommended to motion compensate point clouds
 since lidar points are recorded at different instants in time. This can be done by providing high frequency ego motion 
 data (IMU data) when creating a scene. 
 

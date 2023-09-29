@@ -2,38 +2,37 @@
 title: Downloading Annotations
 ---
 
-Annotations are made available for each [input](overview) and [annotation type](annotation_types) as soon as they are quality assured 
-by the Kognic platform. Information about the format can be found in the [Key Concepts](../key_concepts.md#annotation) section.
+Annotations are made available for each [scene](overview) and [annotation type](annotation_types) as soon as they are quality assured 
+by the Kognic platform. This section describes how these annotations can be downloaded.
 
 ## v1.1.x
 
 This section describes how you can fetch annotations on the [OpenLABEL format](../openlabel/openlabel-format). These
 annotations are automatically available as soon as they are finished and can be downloaded either for an entire
 project/batch or individually via the methods listed below. All methods return either a single `Annotation` object or
-a generator yielding `Annotation` objects, which contains indentifiers as well as a dictionary containing the OpenLABEL
+a generator yielding `Annotation` objects, which contains identifiers as well as a dictionary containing the OpenLABEL
 json:
 
 ```python
 class Annotation(BaseSerializer):
-    input_uuid: str
+    scene_uuid: str
     annotation_type: str
     created: datetime
     content: Optional[Dict]
 ```
 
-As the `Annotation` model shows, an annotation is unique for each input and annotation-type.
 The OpenLABEL json can be used as it is or be converted into a pythonic object using the `kognic-openlabel` library, described
 [here](../openlabel/python-client).
 
 ### Get Single Annotation
 
-#### Using input and annotation type
+#### Using scene and annotation type
 
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/get_annotation.py#L7-L10
 ```
 
-This method returns a single `Annotation` object, containing the OpenLABEL json, using an input uuid and an annotation type.
+This method returns a single `Annotation` object, containing the OpenLABEL json, using an scene uuid and an annotation type.
 
 ### Get Annotations for a Project or Batch
 
@@ -67,7 +66,7 @@ class CustomAnnotationFormat(BaseModel):
 client = KognicIOClient()
 
 annotation = client.annotation.get_annotation(
-    input_uuid='<input-uuid-identifier>',
+    scene_uuid='<scene-uuid-identifier>',
     annotation_type='<annotation-type>'
 )
 
@@ -95,7 +94,7 @@ with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:
             annotation_type="Annotation-Type-identifier"
     ):
         encoded_annotation = io.BytesIO(json.dumps(annotation.content, indent=4).encode())
-        zip_file.writestr(f"{annotation.input_uuid}.json", encoded_annotation.getvalue())
+        zip_file.writestr(f"{annotation.scene_uuid}.json", encoded_annotation.getvalue())
 
 with open('path/to/annotations.zip', 'wb') as f:
     f.write(zip_buffer.getvalue())

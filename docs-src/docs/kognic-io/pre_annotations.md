@@ -18,7 +18,7 @@ There are 3 steps that are needed in order to create pre-annotations in the Kogn
 3. Create an input from the scene
 
 Note that these steps can be performed in one call with the `create_inputs` function, 
-see [Creating Multiple Inputs With One Call](working_with_inputs.md#creating-multiple-inputs-with-one-call)
+see [Creating Multiple Inputs With One Call](working_with_scenes_and_inputs.md#creating-multiple-inputs-with-one-call)
 
 ### 1. Creating a scene
 
