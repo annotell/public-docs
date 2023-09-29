@@ -13,7 +13,7 @@ This implies that the authenticated user does not have access to the endpoint be
 
 Whenever a `.create(...)` call for an input has been successfully made it's (asynchronously) submitted for pre-processing in the Kognic platform. The input is available only once the pre-processing has been successfully executed. However, pre-processing can also fail, for example if the pointcloud or image files are poorly formatted or corrupt. 
 
-The easiest way to check the status of an input is the [input status](./working_with_inputs#input-status) field present on inputs returned by the methods `get_inputs(...)` and `get_inputs_by_uuids(...)`. The input is successfully created and available in the platform once the status is set to `created`. 
+The easiest way to check the status of an input is the [input status](./working_with_scenes_and_inputs#input-status) field present on inputs returned by the methods `get_inputs(...)` and `get_inputs_by_uuids(...)`. The input is successfully created and available in the platform once the status is set to `created`. 
 
 :::note
 Since pre-processing is an asynchronous process it might take a while before the input changes status from `processing` to either `created` or `failed`. 
@@ -32,7 +32,7 @@ print(f'Input {uuid} status:', i.status)
 
 ### How can I view my input?
 
-Successfully created inputs can be viewed in the Kognic platform via their *view-link*. The view-link can be accessed via the [`view_link`](./working_with_inputs#response) field present on inputs returned by the methods `get_inputs(...)` and `get_inputs_by_uuids(...)`.
+Successfully created inputs can be viewed in the Kognic platform via their *view-link*. The view-link can be accessed via the [`view_link`](./working_with_scenes_and_inputs#response) field present on inputs returned by the methods `get_inputs(...)` and `get_inputs_by_uuids(...)`.
 
 
 ```python

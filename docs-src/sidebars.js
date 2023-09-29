@@ -4,22 +4,24 @@ module.exports = {
     "Key Concepts": ["key_concepts"],
     "Kognic IO": [
       "kognic-io/project",
-      {"Inputs": [
+      {"Scenes": [
         "kognic-io/overview",
         "kognic-io/annotation_types",
-        {"Input Types": [
-          "kognic-io/inputs/cameras",
-          "kognic-io/inputs/lidars_and_cameras",
-          "kognic-io/inputs/cameras_seq",
-          "kognic-io/inputs/lidars_and_cameras_seq",
-          "kognic-io/inputs/aggregated_lidars_and_cameras_seq"
+        {"Scene Types": [
+          "kognic-io/scenes/cameras",
+          "kognic-io/scenes/lidars_and_cameras",
+          "kognic-io/scenes/cameras_seq",
+          "kognic-io/scenes/lidars_and_cameras_seq",
+          "kognic-io/scenes/aggregated_lidars_and_cameras_seq"
         ]},
-        "kognic-io/working_with_inputs",
-        "kognic-io/pre_annotations",
-        "kognic-io/inputs/lidars_with_imu_data",
+        "kognic-io/scenes/lidars_with_imu_data",
         "kognic-io/feature_flags",
       ]},
-      "kognic-io/annotations",
+      {"Annotations": [
+        "kognic-io/pre_annotations",
+        "kognic-io/annotations",
+       ]},
+      "kognic-io/working_with_scenes_and_inputs",
       "kognic-io/calibrations",
       "kognic-io/coordinate_systems",
       "kognic-io/error_handling",

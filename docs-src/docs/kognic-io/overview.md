@@ -2,19 +2,19 @@
 title: Overview
 ---
 
-## Different types of inputs
-An Input represents a grouping of sensor data (e.g. camera images, lidar pointclouds) that should be annotated together. Any information necessary to express the relationship between the sensors and their captured data is also present, be it camera resolution, sensor name or the frequency at which the data was recorded at.
+## Different types of scenes
+A Scene represents a grouping of sensor data (e.g. camera images, lidar pointclouds) that should be annotated together. Any information necessary to express the relationship between the sensors and their captured data is also present, be it camera resolution, sensor name or the frequency at which the data was recorded at.
 
-There are different input types depending on what kind of sensor(s) are used to represent the contents of the input. For example, if we want to create an input only consisting of data from camera sensors then we would use the input type `Cameras`. Similarly, if we want to create an input consisting of lidar sensors and camera sensors then we would use the input type `LidarsAndCameras`. Additionally, inputs can either be **sequential** or **non-sequential**.
+There are different scene types depending on what kind of sensor(s) are used to represent the contents of the scene. For example, if we want to create a scene only consisting of data from camera sensors then we would use the scene type `Cameras`. Similarly, if we want to create a scene consisting of lidar sensors and camera sensors then we would use the scene type `LidarsAndCameras`. Additionally, scenes can either be **sequential** or **non-sequential**.
 
 ### Sequential vs non-sequential
-Sequential inputs represent a *sequence* of sensor data, whereas non-sequential inputs only contain a single snapshot of sensor data. The sequential relationship is expressed via a sequence of **Frames**, where each **Frame** object contains information related to what kind of sensor data constitues the frame (e.g. which image and/or point cloud is a part of the Frame) as well as a *relative timestamp* that captures where in time (relative to the other frames) the Frame is located.
+Sequential scenes represent a *sequence* of sensor data, whereas non-sequential scenes only contain a single snapshot of sensor data. The sequential relationship is expressed via a sequence of **Frames**, where each **Frame** object contains information related to what kind of sensor data constitues the frame (e.g. which image and/or point cloud is a part of the Frame) as well as a *relative timestamp* that captures where in time (relative to the other frames) the Frame is located.
 
-Non-sequential inputs only express a single snapshot of sensor data. As such, these kinds of inputs only contain a single Frame object and do not require any relative timestamp information.
+Non-sequential scenes only express a single snapshot of sensor data. As such, these kinds of scenes only contain a single Frame object and do not require any relative timestamp information.
 
-Sequential input types are easily identified by the suffix `Seq` present in their name.
+Sequential scene types are easily identified by the suffix `Seq` present in their name.
 
-The following input types are currently supported
+The following scene types are currently supported
 
 * `Cameras`
 * `LidarsAndCameras`
@@ -22,11 +22,11 @@ The following input types are currently supported
 * `LidarsAndCamerasSeq`
 * `AggregatedLidarsAndCamerasSeq`
 
-## Input Fields
-All non-sequential inputs have the following structure
+## Scene Fields
+All non-sequential scenes have the following structure
 
 ```python
-class Input(BaseModel):
+class Scene(BaseModel):
     external_id: str
     frame: Frame
     sensor_specification: SensorSpecification
@@ -34,10 +34,10 @@ class Input(BaseModel):
     metadata: Mapping[str, Union[int, float, str, bool]] = field(default_factory=dict)
 ```
 
-Sequential inputs are similarly represented, except that they instead contain a list of Frames
+Sequential scenes are similarly represented, except that they instead contain a list of Frames
 
 ```python
-class InputSeq(BaseModel):
+class SceneSeq(BaseModel):
     external_id: str
     frames: List[Frame]
     sensor_specification: SensorSpecification
@@ -45,14 +45,14 @@ class InputSeq(BaseModel):
     metadata: Mapping[str, Union[int, float, str, bool]] = field(default_factory=dict)
 ```
 
-The fields contain all the information required to create the input.
+The fields contain all the information required to create the scene.
 
 ### External Id
-Whenever an input is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific inputs easier we also allow for clients to include any kind of identifier to the input via the external id.
+Whenever an scene is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific scenes easier we also allow for clients to include any kind of identifier to the scene via the external id.
 
 ### Sensor Specification
 The sensor specification contains information related to the different camera and/or lidar sensors
-used for capturing the data present on the input.
+used for capturing the data present on the scene.
 
 The additional fields are optional and relate to specifying the order of the camera sensors and
 human readable variants of the sensor name (e.g. "Front Camera" instead of "FC").
@@ -79,30 +79,30 @@ sensor_spec = SensorSpecification(
 The specified `sensor_order` will cause the different camera sensors to be presented in a clockwise manner in the annotation tool (Left -> Front -> Right), while the `sensor_to_pretty_name` parameter will result in the annotation tool showing the human readable version of all the sensor names when changing sensor.
 
 ### Calibration Id
-Any input consisting of lidar and camera sensors requires a calibration. The calibration captures the spatial relationship (position and rotation) between the different sensors, as well as different camera specific parameters.
+Any scene consisting of lidar and camera sensors requires a calibration. The calibration captures the spatial relationship (position and rotation) between the different sensors, as well as different camera specific parameters.
 
 This information is used by the annotation tool to highlight regions in the point cloud visible in the selected camera sensors as well as for projecting information from the pointcloud onto the different camera sensors (points, cuboids etc).
 
 Detailed documentation on how to create calibrations via the API is present in the [Calibration section](calibrations).
 
-When including calibration id make sure that all of the sensors present on the input are also present in the calibration as well. If this is not the case the input will not be created and a validation error will be returned by the API.
+When including calibration id make sure that all sensors present on the scene are also present in the calibration as well. If this is not the case the scene will not be created and a validation error will be returned by the API.
 
-Inputs without a lidar sensor do not require a calibration.
+Scenes without a lidar sensor do not require a calibration.
 
 ### Metadata
-Metadata can be added to inputs via the `metadata` field. It consists of _flat_ key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about an input.
+Metadata can be added to scenes via the `metadata` field. It consists of _flat_ key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about a scene.
 Nothing specified in the metadata can be seen by the annotators, but there are some reserved keywords that can alter the behaviour of the annotation tool. Reserved keywords can be found on the `MetaData` object in the python client.
 
 
-### Frame (non-sequential inputs)
+### Frame (non-sequential scenes)
 The Frame object specifies the binary data to be annotated (.jpg, .png, .las etc) as well as which sensor the data originated from.
 
-The Frame object is different for each input type since they all support different kinds of sensors, even though the overall structure is the same.
+The Frame object is different for each scene type since they all support different kinds of sensors, even though the overall structure is the same.
 
-As an example, let's say we want to create an input consiting of images from three different camera sensors `R`, `F` and `L`. The corresponding binary data is present in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond to creating a `Cameras` input.
+As an example, let's say we want to create a scene consiting of images from three different camera sensors `R`, `F` and `L`. The corresponding binary data is present in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond to creating a `Cameras` scene.
 
 ```python
-cameras_input = Cameras(
+cameras_scene = Cameras(
     ...,
     frame=Frame(
         images=[
@@ -114,7 +114,7 @@ cameras_input = Cameras(
 )
 ```
 
-Similarly, if we also had an associated lidar pointcloud from the sensor `VDL-64` and a corresponding binary file `scan_vdl_64.las` we would instead express this as a `LidarsAndCameras` input instead.
+Similarly, if we also had an associated lidar pointcloud from the sensor `VDL-64` and a corresponding binary file `scan_vdl_64.las` we would instead express this as a `LidarsAndCameras` scene instead.
 
 ```python
 lidars_and_cameras = LidarsAndCameras(
@@ -133,8 +133,8 @@ lidars_and_cameras = LidarsAndCameras(
 )
 ```
 
-### Frames (sequential inputs)
-Sequential inputs deal with a list of Frame objects instead of a single Frame object. In addition, Frame objects associated with sequential inputs have three additional parameters not present in their non-sequential Frame counterparts: `frame_id`, `relative_timestamp` and `metadata`.
+### Frames (sequential scenes)
+Sequential scenes deal with a list of Frame objects instead of a single Frame object. In addition, Frame objects associated with sequential scenes have three additional parameters not present in their non-sequential Frame counterparts: `frame_id`, `relative_timestamp` and `metadata`.
 
 The sequential relationship is expressed via the ordering of the Frame objects in the `frames` list
 
@@ -145,7 +145,7 @@ frame_3 = Frame(...)
 frames = [frame_1, frame_2, frame_3]
 ```
 
-This representation captures that `frame_1` comes first, then `frame_2` and `frame_3`, but it does not express how much time has passed between the different frames. This information is encoded via the `relative_timestamp` parameter present on each Frame object. The relative timestamp is expressed in milliseconds and describes the relative time between the Frame and the start of the input.
+This representation captures that `frame_1` comes first, then `frame_2` and `frame_3`, but it does not express how much time has passed between the different frames. This information is encoded via the `relative_timestamp` parameter present on each Frame object. The relative timestamp is expressed in milliseconds and describes the relative time between the Frame and the start of the scene.
 
 For example, let's say that the sensor data is collected and aggregated at 2Hz. That would then be expressed as
 
@@ -161,13 +161,13 @@ The `frame_id` is used as a top-level key in the produced annotations, indicatin
 belong to this specific frame.
 
 A common use case is to use uuids for each `frame_id`, or a combination of `external_id` and `frame_index`. 
-For example, if the `external_id` of the input is `shanghai_20200101` then the `frame_id` could be encoded as 
+For example, if the `external_id` of the scene is `shanghai_20200101` then the `frame_id` could be encoded as 
 `shanghai_20200101:0` for the first frame, `shanghai_20200101:1` for the second frame and so on.
 
-Similarly to the metadata capability available on an input-level, it's also possible to provide metadata on a _frame_ level as well. 
+Similarly to the metadata capability available on a scene-level, it's also possible to provide metadata on a _frame_ level as well. 
 It behaves the same way, i.e. consists of _flat_ key-value pairs and is not exposed to annotators during the production of annotators.
 
-As an example, let's say we want to create an input of type `CamerasSeq` consisting of 2 frames, each with camera data 
+As an example, let's say we want to create a scene of type `CamerasSeq` consisting of 2 frames, each with camera data 
 from two different sensors `R` and `L`. If we have individual images for each frame and sensor, this would correspond 
 to the following list of frames
 
@@ -215,7 +215,7 @@ class Resource(ABC, BaseSerializer):
 
 `Resource`s must always be given a `filename`. For alternative 1 this must point to the local file to upload. For alternatives 2 & 3 the filename is treated more as an identifier; it is used to name the uploaded file but does not have to correspond to anything in the filesystem.
 
-`Resource`s also always have a `sensor_name` which identifies the sensor they were captured from. In sequential inputs, each `Frame` will have a `Resource` for each sensor.
+`Resource`s also always have a `sensor_name` which identifies the sensor they were captured from. In sequential scenes, each `Frame` will have a `Resource` for each sensor.
 
 `Resource`s take their actual data (bytes) from `bytes`, a `BinaryIO` or an `IOBase`-compatible object. These are referred to with the type alias `UploadableData  = Union[bytes, BinaryIO, IOBase]`.
 
@@ -304,14 +304,14 @@ Image(
 
 ## IMU Data
 
-Intertial Measurement Unit (IMU) data may be provided for inputs containing LIDAR pointclouds. This can be used to 
+Intertial Measurement Unit (IMU) data may be provided for scenes containing LIDAR pointclouds. This can be used to 
 perform motion compensation in multi-lidar setups, and by default if any IMU data is provided this will be done. 
-Motion compensation may be disabled via an [input feature flag](feature_flags), for cases where motion compensation has
+Motion compensation may be disabled via an [scene feature flag](feature_flags), for cases where motion compensation has
 already been performed prior to upload.
 
-Refer to [Motion Compensation for Multi-Lidar Setups](inputs/lidars_with_imu_data).
+Refer to [Motion Compensation for Multi-Lidar Setups](scenes/lidars_with_imu_data).
 
-## Input Feature Flags
+## Scene Feature Flags
 
-Control over optional parts of the input creation process is possible via `FeatureFlags` that are passed when invoking 
-the create operation on the input. Refer to [the feature flags documentation](feature_flags) for details.
+Control over optional parts of the scene creation process is possible via `FeatureFlags` that are passed when invoking 
+the create operation on the scene. Refer to [the feature flags documentation](feature_flags) for details.

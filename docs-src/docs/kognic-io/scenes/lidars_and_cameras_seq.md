@@ -2,7 +2,7 @@
 title: Lidars and Cameras Sequence
 ---
 
-A `LidarsAndCamerasSeq` input consists of a sequence of camera images and lidar point clouds, where each frame consists 
+A `LidarsAndCamerasSeq`  consists of a sequence of camera images and lidar point clouds, where each frame consists 
 on 1-9 camera images as well as 1-20 point clouds. For more documentation on what each field corresponds to in the 
 `LidarsAndCamerasSeq` object please check the section related to [Input Overview](/docs/kognic-io/overview).
 
@@ -10,20 +10,20 @@ on 1-9 camera images as well as 1-20 point clouds. For more documentation on wha
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq.py
 ```
 
-:::tip Use dryrun to validate input
-Setting `dryrun` parameter to true in the method call, will validate the input using the API but not create any inputs.
+:::tip Use dryrun to validate 
+Setting `dryrun` parameter to true in the method call, will validate the  using the API but not create any s.
 :::
 
 :::tip reuse calibration
-Note that you can, and should, reuse the same calibration for multiple inputs if possible.
+Note that you can, and should, reuse the same calibration for multiple s if possible.
 :::
 
 ## Providing Ego Vehicle Motion Information
 
 Ego vehicle motion (i.e. the position and rotation of the ego vehicle) is optional information that can be provided when 
-creating `LidarsAndCamerasSeq` inputs. This information can enable a massive reduction in the time it takes to annotate 
+creating `LidarsAndCamerasSeq` s. This information can enable a massive reduction in the time it takes to annotate 
 static objects. Ego vehicle motion information is provided by passing a `EgoVehicleMotion` object to **each** `Frame` 
-in the input.
+in the .
 
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq_full.py

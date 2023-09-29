@@ -84,8 +84,8 @@ information is important for producing the annotation.
 
 Once a scene has been uploaded to the Kognic Platform, you can create annotation tasks for it. We call these annotation
 tasks **inputs**, where each input is added to a request. Separating the input from the scene in this way enables 
-efficient reuse of the uploaded data. For instance, multiple inputs can easily be created from the same scene in the 
-same batch. In the future, this will also be possible across batches.
+efficient reuse of the uploaded data. For instance, multiple inputs can easily be created from the same scene enabling 
+different kinds of annotation setups. 
 
 Note that you can specify that inputs should also be created when creating the scene by providing the project/batch
 to create them in.

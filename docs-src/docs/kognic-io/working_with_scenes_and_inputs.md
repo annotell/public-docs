@@ -1,18 +1,58 @@
 ---
-title: Working with Inputs
+title: Working with Scenes & Inputs
 ---
 
-## Creating Inputs
-
 :::note
-For detailed information about different input modalities, check the Input Types section.
+For detailed information about different scene modalities, check the Scene Types section.
 :::
 
 :::tip Kognic Users
-As a Kognic user, it is possible to specify `client_organization_id` to `KognicIOClient` constructor to create inputs on behalf of a client organization
+As a Kognic user, it is possible to specify `client_organization_id` to `KognicIOClient` constructor to create scenes on behalf of a client organization
 :::
 
-In order to create inputs, they need to be associated with a [project](project) and an [input batch](project#batch). Consider the following project setup:
+## Creating Scenes
+
+Each scene resource has a `create` method that can be used to create a scene of the corresponding type. It takes the 
+corresponding scene model as input, so for example to create a `Cameras` scene you would do the following:
+
+```python
+from kognic.io.model.scene.cameras import Cameras
+
+cameras_scene = Cameras(...)
+created_scene = client.cameras.create(cameras_scene)
+scene_uuid = created_scene.uuid
+```
+
+As you can see, the `create` method returns the associated `scene_uuid`, which can later be used to work with the scene.
+At this point all files have been uploaded to the Kognic Platform and the scene starts to be pre-processed. When 
+pre-processing is finished, we say that the scene has been created. Refer to the [Scene Status](#scene-status) section
+for more information about the different scene statuses.
+
+Note that it is often useful to use the `dryrun` parameter when experimenting. This will validate the scene format
+but not create it.
+
+### Scene Status
+
+Once a scene has been created, it might be preprocessed before being made available for annotation. Also, postprocessing 
+such as conversion to the client-specific format might take place after annotation has been performed. During this process, 
+the status property of an scene can be used to keep track of progress.
+
+| Status                          | Description                                                                                                                                  |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| pending                         | Scene has been validated but the server is waiting for the associated data to be uploaded                                                    |
+| processing                      | Associated data has been uploaded and is currently being processed by the Kognic Platform, potentially performing conversion of file formats |
+| created                         | Scene is created and available for annotation                                                                                                |
+| failed                          | Conversion of scene failed                                                                                                                   |
+| invalidated:broken-input        | Scene was invalidated since it did not load                                                                                                  |
+| invalidated:duplicate           | Scene was invalidated due to being uploaded several times                                                                                    |
+| invalidated:incorrectly-created | Scene was invalidated because it was incorrectly created                                                                                     |
+
+
+
+## Creating Input from Scene
+
+Once a scene has been created, it can be used to create inputs which is done by associating it with a [project](project) 
+and an [input batch](project#batch). Consider the following project setup:
 
 ```
 organization # root for projects
@@ -29,49 +69,41 @@ organization # root for projects
        └── ...
 ```
 
-There are 2 ways to associate inputs with a project and batch:
-
-- Adding inputs to the latest open batch for a project
-- Adding inputs to specified batch for a project
-
-The following examples all use an input of type `Cameras`, however the interface applies to all input types. Note that
-we also provide a wrapper function `create_inputs` to help with this process, see [Creating Multiple Inputs With One Call](#creating-multiple-inputs-with-one-call).
-
-### Adding inputs to the latest open batch for a project
+The `create_from_scene` method is used to create inputs from a scene. The method takes the scene uuid as input along 
+with annotation information such as project, batch and annotation types. For example, to create an input in `project-a` 
+and `batch-2`, you would do the following:
 
 ```python
-client.cameras.create(
-    ...,
-    project="project-a")
+client.cameras.create_from_scene(
+   scene_uuid="0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", 
+   project="project-a", 
+   batch="batch-2"
+)
 ```
 
-Will add inputs to `project-a` `batch-2` because it's the latest open batch.
+The above code will create inputs for the scene in all requests in batch `batch-2` for project `project-a`. If the `batch`
+parameter is omitted, the latest open batch for the project will be used. You can later reuse the same scene to create 
+inputs for other projects and batches.
 
-### Adding inputs to specified batch in a project
+
+## Creating Inputs directly
+
+It is often useful to create inputs directly instead of the 2-step process described above. To do this, you can simply 
+pass the annotation information directly into the `create` method of the corresponding scene type. For example, to create
+an input in `project-a` and `batch-2`, you would do the following:
 
 ```python
-client.cameras.create(
-    ...,
-    project="project-a",
-    batch="batch-3")
+client.cameras_sequence.create(
+   ..., 
+   project="project-a", 
+   batch="batch-2"
+)
 ```
 
-Will add inputs to `project-a` `batch-3`.
+This would trigger the scene creation process, and once the scene is created, inputs are created in all requests in
+the given batch. If the `batch` parameter is omitted, the latest open batch for the project will be used. We also provide
+a wrapper function `create_inputs` to help with this process, see [Creating Multiple Inputs With One Call](#creating-multiple-inputs-with-one-call).
 
-
-## Input Status
-
-Once an input has been created, it might be preprocessed before being made available for annotation. Also, postprocessing such as conversion to the client-specific format might take place after annotation has been performed. During this process, the status property of an input can be used to keep track of progress.
-
-| Status                          | Description                                                                                                                                  |
-|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| pending                         | Input has been validated but the server is waiting for the associated data to be uploaded                                                    |
-| processing                      | Associated data has been uploaded and is currently being processed by the Kognic Platform, potentially performing conversion of file formats |
-| created                         | Input is created and available for annotation                                                                                                |
-| failed                          | Conversion of input failed                                                                                                                   |
-| invalidated:broken-input        | Input was invalidated since it did not load                                                                                                  |
-| invalidated:duplicate           | Input was invalidated due to being uploaded several times                                                                                    |
-| invalidated:incorrectly-created | Input was invalidated because it was incorrectly created                                                                                     |
 
 ## List Inputs
 
@@ -108,14 +140,14 @@ The response is a list of `Input` objects containing the following properties
 
 | Property         | Description                                                                                          |
 |------------------|------------------------------------------------------------------------------------------------------|
-| uuid             | ID used to identify the input within the Kognic Platform                                             |
-| external_id      | External ID supplied during input creation                                                           |
+| scene_uuid       | ID used to identify the scene within the Kognic Platform                                             |
+| external_id      | External ID supplied during scene creation                                                           |
 | batch            | Which batch does the input belong to                                                                 |
 | view_link        | A url to view the input in the Kognic Platform                                                       |
-| input_type       | Type of input (see [Input Types](../key_concepts.md))                                                |
-| status           | Input status (see [Input Statuses](#input-status))                                                   |
-| error_message    | If there is an error during input creation the error message will be included, otherwise it's `None` |
-| annotation_types | List of annotation types for the input                                                               |
+| scene_type       | Type of input (see [Scene Types](../key_concepts.md))                                                |
+| status           | Scene status (see [Scene Statuses](#scene-status))                                                   |
+| error_message    | If there is an error during scene creation the error message will be included, otherwise it's `None` |
+| annotation_types | List of annotation types for the scene                                                               |
 
 ## Invalidate Inputs
 
