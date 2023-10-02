@@ -75,7 +75,7 @@ client.lidars_and_cameras_sequence.create(
 ```
 
 :::tip Use dryrun to validate 
-Setting `dryrun` parameter to true in the method call, will validate the  using the API but not create any s.
+Setting `dryrun` parameter to true in the method call, will validate the scene using the API but not create it.
 :::
 
 ## Enable/disable motion compensation
