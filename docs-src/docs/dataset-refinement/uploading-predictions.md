@@ -20,7 +20,7 @@ get the uuid of the dataset:
 client.session.get(base_url + "datasets")
 ```
 
-### 2. Get the UUID of the predictions group
+### 2. Get the UUID of the predictions group or create a new
 
 In order to upload predictions, a prediction group needs to exist. Predictions can be organized into groups for any
 purpose imaginable. The UUID of an existing prediction group can be found in the URL after `predictions/` or by using
@@ -28,6 +28,12 @@ the endpoint
 
 ```python
 client.session.get(base_url + f"/datasets/{datasetUuid}/predictions-groups")
+```
+
+You can also create a new prediction group as
+```python
+data = {"name": "My new prediction group", "description": "A sentence describing the prediction group"}
+client.session.post(base_url + f"/datasets/{datasetUuid}/predictions-groups", json=data)
 ```
 
 ### 3. Upload predictions
