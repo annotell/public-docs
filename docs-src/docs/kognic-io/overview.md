@@ -48,7 +48,7 @@ class SceneSeq(BaseModel):
 The fields contain all the information required to create the scene.
 
 ### External Id
-Whenever an scene is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific scenes easier we also allow for clients to include any kind of identifier to the scene via the external id.
+Whenever a scene is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific scenes easier we also allow for clients to include any kind of identifier to the scene via the external id.
 
 ### Sensor Specification
 The sensor specification contains information related to the different camera and/or lidar sensors
@@ -304,9 +304,9 @@ Image(
 
 ## IMU Data
 
-Intertial Measurement Unit (IMU) data may be provided for scenes containing LIDAR pointclouds. This can be used to 
+Inertial Measurement Unit (IMU) data may be provided for scenes containing LIDAR point clouds. This can be used to 
 perform motion compensation in multi-lidar setups, and by default if any IMU data is provided this will be done. 
-Motion compensation may be disabled via an [scene feature flag](feature_flags), for cases where motion compensation has
+Motion compensation may be disabled via a [scene feature flag](feature_flags), for cases where motion compensation has
 already been performed prior to upload.
 
 Refer to [Motion Compensation for Multi-Lidar Setups](scenes/lidars_with_imu_data).

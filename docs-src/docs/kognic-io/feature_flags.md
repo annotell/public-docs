@@ -14,7 +14,7 @@ Feature flags are used to turn on or off parts of the scene creation process.
 
 The `FeatureFlags` constructor takes one or more params, each of which is a flag from the lists defined below.
 
-If feature flags are not passed when an scene is created, or they are `None`, then the default set will be used. This
+If feature flags are not passed when a scene is created, or they are `None`, then the default set will be used. This
 means that there is no need to specify feature flags in most cases.
 
 ## Supported Features

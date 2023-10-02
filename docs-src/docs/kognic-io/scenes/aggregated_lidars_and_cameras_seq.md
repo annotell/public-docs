@@ -11,7 +11,7 @@ frame consists on 1-9 camera images as well as 1-20 point clouds. What different
 from `LidarsAndCamerasSeq` is that point clouds are aggregated over time during annotation which results in one big 
 point cloud in the coordinate system of the first frame. Therefore, ego motion data is **mandatory** for this type of 
 scene. For more documentation on what each field corresponds to in the `AggregatedLidarsAndCamerasSeq` object please 
-check the section related to [Input Overview](/docs/kognic-io/overview).
+check the section related to [Scene Overview](/docs/kognic-io/overview).
 
 Refer to [Coordinate Systems](../coordinate_systems.md) for more information about what coordinate systems to use.
 
@@ -19,8 +19,8 @@ Refer to [Coordinate Systems](../coordinate_systems.md) for more information abo
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/agg_lidars_and_cameras_seq.py
 ```
 
-:::tip Use dryrun to validate 
-Setting `dryrun` parameter to true in the method call, will validate the  using the API but not create any s.
+:::tip Use dryrun to validate scene
+Setting `dryrun` parameter to true in the method call, will validate the scene using the API but not create it.
 :::
 
 :::tip reuse calibration

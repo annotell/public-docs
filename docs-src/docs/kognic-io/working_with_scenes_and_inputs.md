@@ -35,7 +35,7 @@ but not create it.
 
 Once a scene has been created, it might be preprocessed before being made available for annotation. Also, postprocessing 
 such as conversion to the client-specific format might take place after annotation has been performed. During this process, 
-the status property of an scene can be used to keep track of progress.
+the status property of a scene can be used to keep track of progress.
 
 | Status                          | Description                                                                                                                                  |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|

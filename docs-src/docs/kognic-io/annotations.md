@@ -32,7 +32,7 @@ The OpenLABEL json can be used as it is or be converted into a pythonic object u
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/get_annotation.py#L7-L10
 ```
 
-This method returns a single `Annotation` object, containing the OpenLABEL json, using an scene uuid and an annotation type.
+This method returns a single `Annotation` object, containing the OpenLABEL json, using a scene uuid and an annotation type.
 
 ### Get Annotations for a Project or Batch
 
