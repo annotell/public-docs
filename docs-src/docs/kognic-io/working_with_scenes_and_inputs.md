@@ -61,8 +61,8 @@ organization # root for projects and scenes
        ├── batch-1 - completed 
        ├── batch-2 - open
            ├── request-1
-              ├── input 0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3 – scene 9c08
-              ├── input 37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36 - scene ddf5
+              ├── input 9c08f7a3-3216-4bd6-a41a-1dda6f66f53e – using scene 9c08
+              ├── input ddf548e3-9806-433c-afb5-fb951a721462 - using scene ddf5
               └── ...
            └── request-2   
        └── batch-3 - pending
@@ -70,8 +70,8 @@ organization # root for projects and scenes
        ├── batch-1
        └── ...
 └── scenes
-   ├── scene 9c08f7a3-3216-4bd6-a41a-1dda6f66f53e
-   ├── scene ddf548e3-9806-433c-afb5-fb951a721462
+   ├── scene 0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3
+   ├── scene 37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36
    └── ...
 ```
 
@@ -81,7 +81,7 @@ and `batch-2`, you would do the following:
 
 ```python
 client.cameras.create_from_scene(
-   scene_uuid="9c08f7a3-3216-4bd6-a41a-1dda6f66f53e", 
+   scene_uuid="0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", 
    project="project-a", 
    batch="batch-2"
 )
@@ -199,7 +199,7 @@ Deleting an input means that no annotations will be produced for it and any comp
 removed. There is no way to undo this operation so use with caution.
 
 ```python
-input_uuid = "0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3"
+input_uuid = "9c08f7a3-3216-4bd6-a41a-1dda6f66f53e"
 client.input.delete_input(input_uuid)
 ```
 
@@ -226,7 +226,6 @@ If issues are detected upstream related to inputs created, it is possible to inv
 Invalidated inputs will not produce annotations and any completed annotations of the input will be invalidated.
 
 See [Invalidate Scenes](#invalidate-scenes) for more information about invalidation reasons.
-
 
 
 
