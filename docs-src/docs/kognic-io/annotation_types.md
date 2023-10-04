@@ -89,7 +89,18 @@ In order to get the best possible validation it is recommended that you always
 specify annotation types when you create inputs.
 :::
 
-### Add/remove annotation types for an input
+### Add/remove annotation types for an input (deprecated)
+
+:::caution Deprecated
+Removing annotation types has been deprecated in favor of 
+[Deleting Inputs](/docs/kognic-io/working_with_scenes_and_inputs#deleting-inputs) and will be removed in
+the near future. 
+:::
+:::caution Deprecated
+Adding annotation types has been deprecated in favor of
+[Creating Inputs from Scene](/docs/kognic-io/working_with_scenes_and_inputs#creating-inputs-from-scene) and will be 
+removed in the near future.
+:::
 
 Adding an annotation type to an input means that an annotation will be produced for that input with the specified
 annotation type. In the same way, removing annotation types from an input means that annotations will **not** be
