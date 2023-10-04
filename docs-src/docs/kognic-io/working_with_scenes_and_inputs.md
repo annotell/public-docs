@@ -49,33 +49,39 @@ the status property of a scene can be used to keep track of progress.
 
 
 
-## Creating Input from Scene
+## Creating Inputs from Scene
 
 Once a scene has been created, it can be used to create inputs which is done by associating it with a [project](project) 
 and an [input batch](project#batch). Consider the following project setup:
 
 ```
-organization # root for projects
+organization # root for projects and scenes
 └── projects
    ├── project-a
-       ├── batch-1 - completed
+       ├── batch-1 - completed 
        ├── batch-2 - open
-           ├── input 0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3
-           ├── input 37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36
-           └── ...
+           ├── request-1
+              ├── input 0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3 – scene 9c08
+              ├── input 37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36 - scene ddf5
+              └── ...
+           └── request-2   
        └── batch-3 - pending
    └── project-b
        ├── batch-1
        └── ...
+└── scenes
+   ├── scene 9c08f7a3-3216-4bd6-a41a-1dda6f66f53e
+   ├── scene ddf548e3-9806-433c-afb5-fb951a721462
+   └── ...
 ```
 
 The `create_from_scene` method is used to create inputs from a scene. The method takes the scene uuid as input along 
-with annotation information such as project, batch and annotation types. For example, to create an input in `project-a` 
+with annotation information such as project, batch and annotation types. For example, to create inputs in `project-a` 
 and `batch-2`, you would do the following:
 
 ```python
 client.cameras.create_from_scene(
-   scene_uuid="0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", 
+   scene_uuid="9c08f7a3-3216-4bd6-a41a-1dda6f66f53e", 
    project="project-a", 
    batch="batch-2"
 )
@@ -86,7 +92,7 @@ parameter is omitted, the latest open batch for the project will be used. You ca
 inputs for other projects and batches.
 
 
-## Creating Inputs directly
+## Creating Inputs Directly
 
 It is often useful to create inputs directly instead of the 2-step process described above. To do this, you can simply 
 pass the annotation information directly into the `create` method of the corresponding scene type. For example, to create
@@ -106,7 +112,6 @@ a wrapper function `create_inputs` to help with this process, see [Creating Mult
 
 
 ## List Inputs
-
 
 
 Inputs can be retrieved from the API in two ways:
@@ -149,7 +154,62 @@ The response is a list of `Input` objects containing the following properties
 | error_message    | If there is an error during scene creation the error message will be included, otherwise it's `None` |
 | annotation_types | List of annotation types for the scene                                                               |
 
-## Invalidate Inputs
+## Invalidate Scenes
+
+:::note
+This feature is new in version 1.6.0
+:::
+
+
+If issues are detected upstream related to scenes created, it is possible to invalidate them. This could be useful during
+development or if issues are detected with the data. Invalidating a scene means that it will be removed from requests, 
+meaning that **all** inputs using the scene will be deleted. In turn invalidated scenes will not produce annotations 
+and any completed annotations of the scene will be removed. There is no way to undo this operation so use with caution.
+
+```python
+from kognic.io.model.scene.invalidated_reason import SceneInvalidatedReason
+
+scene_uuids = ["0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", "37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36"]
+reason = SceneInvalidatedReason.BAD_CONTENT
+client.scene.invalidate_scenes(scene_uuids, reason)
+```
+
+The following reasons are available when invalidating scenes:
+
+| Reason              | Description                                                                |
+|---------------------|----------------------------------------------------------------------------|
+| bad-content         | Scene does not load, or has erroneous metadata such as invalid calibration |
+| duplicate           | If the same scene has been created several times                           |
+| incorrectly-created | If the scene was unintentionally created.                                  |
+
+
+## Deleting Inputs
+
+:::note
+This feature is new in version 1.6.0
+:::
+
+
+If issues are detected upstream related to inputs created, it is possible to delete them. This could be useful when
+the issues are related to the input itself and not the scene. One example would be if there are two inputs for a lidars
+and cameras scene, one where we want to annotate in 2D/3D and one where we only want to annotate in 2D. If the issue
+is an erroneous calibration the 2D input can still be used while the 2D/3D input should be deleted. 
+
+Deleting an input means that no annotations will be produced for it and any completed annotations of the input will be
+removed. There is no way to undo this operation so use with caution.
+
+```python
+input_uuid = "0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3"
+client.input.delete_input(input_uuid)
+```
+
+
+## Invalidate Inputs (deprecated)
+
+:::caution Deprecated
+This has been deprecated in favor of [Invalidate Scenes](#invalidate-scenes) or [Deleting Inputs](#deleting-inputs) 
+and will be removed in the near future.
+:::
 
 Invalidation of an input means that it will be removed for all annotation types. See [Annotation Types](annotation_types.md)
 on how to remove a specific annotation types for an input.
@@ -165,20 +225,9 @@ client.input.invalidate_inputs(invalid_uuids, reason)
 If issues are detected upstream related to inputs created, it is possible to invalidate inputs.
 Invalidated inputs will not produce annotations and any completed annotations of the input will be invalidated.
 
-| Reason              | Description                                                                |
-|---------------------|----------------------------------------------------------------------------|
-| bad-content         | Input does not load, or has erroneous metadata such as invalid calibration |
-| duplicate           | If same input has been created several times                               |
-| incorrectly-created | If the input was unintentionally created.                                  |
+See [Invalidate Scenes](#invalidate-scenes) for more information about invalidation reasons.
 
-## List Invalidated Inputs
 
-If errors are detected by Kognic, inputs will be invalidated and a reason will be supplied.
-
-```python
-project = "project-identifier"
-client.input.get_inputs(project=project, include_invalidated=True)
-```
 
 
 ## Creating Multiple Inputs With One Call
