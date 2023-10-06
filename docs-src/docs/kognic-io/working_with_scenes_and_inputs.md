@@ -110,6 +110,34 @@ This would trigger the scene creation process, and once the scene is created, in
 the given batch. If the `batch` parameter is omitted, the latest open batch for the project will be used. We also provide
 a wrapper function `create_inputs` to help with this process, see [Creating Multiple Inputs With One Call](#creating-multiple-inputs-with-one-call).
 
+## List Scenes
+
+:::note
+This feature is new in version 1.6.0
+:::
+
+It can be useful to list scenes that have been uploaded to the Kognic Platform. One example is to check the status during 
+scene creation. Scenes can be retrieved in the following way:
+
+```python
+scene_uuids = ["cca60a67-cb68-4645-8bae-00c6e6415555", "cc8776d0-f537-4094-8b11-8c2111741e2f"]
+client.scene.get_scenes_by_uuids(scene_uuids=scene_uuids)
+```
+
+### Response
+The response is a list of `Scene` objects containing the following properties
+
+| Property       | Description                                                                                          |
+|----------------|------------------------------------------------------------------------------------------------------|
+| uuid           | UUID used to identify the scene within the Kognic Platform                                           |
+| external_id    | External ID supplied during scene creation                                                           |
+| scene_type     | Type of scene (see [Scene Types](../key_concepts.md))                                                |
+| status         | Scene status (see [Scene Statuses](#scene-status))                                                   |
+| created        | When the scene was created                                                                           |
+| calibration_id | Calibration used for the scene (if any)                                                              |
+| view_link      | A url to view the scene in the Kognic Platform                                                       |
+| error_message  | If there is an error during scene creation the error message will be included, otherwise it's `None` |
+
 
 ## List Inputs
 
