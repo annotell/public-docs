@@ -58,7 +58,7 @@ and an [input batch](project#batch). Consider the following project setup:
 organization # root for projects and scenes
 └── projects
    ├── project-a
-       ├── batch-1 - completed 
+       ├── batch-1 - completed
        ├── batch-2 - open
            ├── request-1
               ├── input 9c08f7a3-3216-4bd6-a41a-1dda6f66f53e – using scene 0edb
