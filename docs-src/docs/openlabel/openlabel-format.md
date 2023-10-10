@@ -285,6 +285,10 @@ The value `MODE_POLY2D_ABSOLUTE` is the only supported value for `mode`. Absolut
 
 
 ## Representing curves
+:::caution
+The name of the interpolation method has changed from `interpolation-method` to `interpolation_method`. However, old annotations
+might still contain the old name
+:::
 
 Curves are represented using the `poly2d` geometry and the interpolation method is specified as a text property in
 the following way.
