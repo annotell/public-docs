@@ -42,7 +42,7 @@ Load your OpenLabel annotation according to the documentation in `kognic-openlab
 
 ```python
 client.pre_annotation.create(
-    scene_uuid=scene_response.input_uuid, # from step 1
+    scene_uuid=scene_response.scene_uuid, # from step 1
     pre_annotation=OpenLabelAnnotation(...), 
     dryrun=dryrun
 )
@@ -57,7 +57,7 @@ and be ready for annotation with the pre-annotation present.
 
 ```python
 client.lidars_and_cameras_sequence.create_from_scene(
-    scene_uuid=scene_response.input_uuid, # from step 1
+    scene_uuid=scene_response.scene_uuid, # from step 1
     annotation_types=annotation_types,
     project=project,
     dryrun=dryrun
@@ -90,13 +90,14 @@ These features or combinations of features are not currently supported, or only 
 Objects cannot have multiple 3D geometries in the same frame
 :::
 
-| Name          | OpenLABEL field | Description                                                                                                                                    |
-|---------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| Cuboid        | `cuboid`        | Cuboid in 3D                                                                                                                                   |
-| Bounding box  | `bbox`          | Bounding box in 2D                                                                                                                             |
-| 3D line       | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.                                                                     |
-| Polygon       | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D. The property `is_hole` is mandatory.                                 |
-| Multi-polygon | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D. The properties `is_hole` and  `polygon_id` are mandatory. |
+| Name          | OpenLABEL field | Description                                                                         | Attributes               |
+|---------------|-----------------|-------------------------------------------------------------------------------------|--------------------------|
+| Cuboid        | `cuboid`        | Cuboid in 3D                                                                        | -                        |
+| Bounding box  | `bbox`          | Bounding box in 2D                                                                  | -                        |
+| 3D line       | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.          | -                        |
+| Polygon       | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D            | `is_hole`                |
+| Multi-polygon | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D | `is_hole` & `polygon_id` |
+| Curve         | `poly2d`        | [Curve](../openlabel/openlabel-format.md#representing-curves) or line in 2D         | `interpolation_method`   |
 
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
