@@ -31,7 +31,7 @@ In order for the motion compensation to work correctly it is important with a co
 unit of time. Therefore, all unix timestamps needs to be provided in nanoseconds.
 :::
 
-Note that all timestamps (in point clouds and the provided `unix_timestamp_ns`) must be encompassed by
+Note that all timestamps (in point clouds and the provided `unix_timestamp`) must be encompassed by
 the timestamps in the imu data. Otherwise, the scene creation will fail.
 
 IMU data is provided as a list of `IMUData` objects in the root of the  object in the following way:
@@ -54,8 +54,8 @@ imu_data = [
 ]
 
 frames = [
-    Frame(..., unix_timestamp_ns = 1665997358832901120),
-    Frame(..., unix_timestamp_ns = 1665997503951270144),
+    Frame(..., unix_timestamp = 1665997358832901120),
+    Frame(..., unix_timestamp = 1665997503951270144),
 ]
 
 
