@@ -285,6 +285,10 @@ The value `MODE_POLY2D_ABSOLUTE` is the only supported value for `mode`. Absolut
 
 
 ## Representing curves
+:::caution
+The name of the interpolation method has changed from `interpolation-method` to `interpolation_method`. However, old annotations
+might still contain the old name
+:::
 
 Curves are represented using the `poly2d` geometry and the interpolation method is specified as a text property in
 the following way.
@@ -300,7 +304,7 @@ the following way.
       "attributes": {
         "text": [
           {
-            "name": "interpolation-method",
+            "name": "interpolation_method",
             "val": "natural-cubic-spline"
           }
         ]
@@ -310,6 +314,11 @@ the following way.
 }
 ```
 The value `MODE_POLY2D_ABSOLUTE` is the only supported value for `mode`. Absolute mode means that the values in `val` are interpreted as pixel coordinates (not as values relative to the first coordinate pair).
+The property `interpolation_method` is mandatory and determines how the nodes should be associated to each other. The following values are supported:
+- `natural-cubic-spline`
+- `catmull-rom-0.5`
+- `polyline`
+
 
 ## Representing 3D lanes
 
