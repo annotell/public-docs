@@ -19,7 +19,7 @@ Additionally, each point in the provided point clouds need to have a unix timest
 (in nanoseconds), so that the motion compensation can work. 
 
 What instant in time to motion-compensate the points to can be specified
-with the `unix_timestamp_ns` parameter. If this is not specified then, for each 
+with the `unix_timestamp` parameter. If this is not specified then, for each 
 frame, the median time of all points in the frame will be used instead.
 
 Motion compensation is of particular importance when annotation is to be performed on multiple lidar
