@@ -201,6 +201,31 @@ belong to the same road, while it is unclear whether `lane-2` belongs to a road.
 }
 ```
 
+### Stream specific relations
+
+If a relation is stream specific, there will be a property `stream_relations` denoting which stream the list of relations belong to. 
+
+```json
+{ // frames.0
+    // ...
+    "frame_properties": {
+        "streams": {
+            "CAMERA_FRONT": {
+                "description": null,
+                "stream_properties": {
+                    "stream_relations": {
+                        "1": {}
+                    }
+                }
+            }
+        }
+    },
+    "relations": {
+        "0": {}
+    }
+}
+```
+
 
 ## Representing polygons
 
