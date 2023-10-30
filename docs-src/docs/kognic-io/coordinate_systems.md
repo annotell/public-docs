@@ -3,7 +3,7 @@ title: Coordinate Systems
 ---
 
 Scenes such as `lidars_and_cameras_sequence` need to be able to combine the data from different sensors and from
-different instants in time. This is done by transforming the recordings with sensor [calibrations](calibrations.md) and 
+different instants in time. This is done by transforming the recordings with sensor [calibrations](calibrations/overview.md) and 
 the ego motion data. This section describes how this is done in 3D space and provides a summary about the coordinate 
 systems that different kinds of data is expressed in. For camera sensors, we also need to be able to map
 3D points to pixel coordinates in 2D. This is done using intrinsic parameters of the camera and these vary depending
