@@ -2,6 +2,11 @@
 title: Custom Camera Calibrations
 ---
 
+
+:::note
+This feature is new in version 1.8.0 of kognic-io and some parts require optional dependencies. Run `pip install kognic-io[wasm]` to install it.
+:::
+
 If your calibration is not in the list of supported standard camera calibrations, you can provide a custom calibration. The table below
 show the attributes of the `CustomCameraCalibration` object. The `wasm_base64` attribute is a base64 encoded string of the
 WebAssembly module that implements the calibration. The `test_cases` attribute is a list of `TestCase` objects that are used
