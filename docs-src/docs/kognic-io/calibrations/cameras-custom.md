@@ -5,7 +5,7 @@ title: Custom Camera Calibrations
 If your calibration is not in the list of supported standard camera calibrations, you can provide a custom calibration. The table below
 show the attributes of the `CustomCameraCalibration` object. The `wasm_base64` attribute is a base64 encoded string of the
 WebAssembly module that implements the calibration. The `test_cases` attribute is a list of `TestCase` objects that are used
-to validate the calibration when during creation. It is recommended to provide a few test cases to make sure that the
+to validate the calibration during creation. It is recommended to provide a few test cases to make sure that the
 calibration is correct. The `CustomCameraCalibration` object can conveniently be instantiated directly from the binary or 
 a wasm-file:
 ```python
