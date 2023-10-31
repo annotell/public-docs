@@ -22,7 +22,12 @@ module.exports = {
         "kognic-io/annotations",
        ]},
       "kognic-io/working_with_scenes_and_inputs",
-      "kognic-io/calibrations",
+      {"Calibrations": [
+        "kognic-io/calibrations/overview",
+        "kognic-io/calibrations/lidars",
+        "kognic-io/calibrations/cameras-standard",
+        "kognic-io/calibrations/cameras-custom",
+      ]},
       "kognic-io/coordinate_systems",
       "kognic-io/error_handling",
       "kognic-io/FAQ",
