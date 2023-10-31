@@ -6,7 +6,20 @@ If your calibration is not in the list of supported standard camera calibrations
 show the attributes of the `CustomCameraCalibration` object. The `wasm_base64` attribute is a base64 encoded string of the
 WebAssembly module that implements the calibration. The `test_cases` attribute is a list of `TestCase` objects that are used
 to validate the calibration during creation. It is recommended to provide a few test cases to make sure that the
-calibration is correct. The `CustomCameraCalibration` object can conveniently be instantiated directly from the binary or 
+calibration is correct. 
+
+
+| Key                   | Value                         | Parameters         |
+|:----------------------|:------------------------------|:-------------------|
+| `rotation_quaternion` | A `RotationQuaternion` object | `w`, `x`, `y`, `z` |
+| `position`            | A `Position` object           | `x`, `y`, `z`      |
+| `image_width`         | Integer                       | NA                 |
+| `image_height`        | Integer                       | NA                 |
+| `wasm_base64`         | String                        | NA                 |
+| `test_cases`          | A list of `TestCase` objects  | point3d, point2d   |
+
+
+The `CustomCameraCalibration` object can conveniently be instantiated directly from the binary or 
 a wasm-file:
 ```python
 calibration_file = CustomCameraCalibration.from_file("/path/to/calibration.wasm", ...)
@@ -17,14 +30,6 @@ We provide a set of utilities that will make it easier to work with the WebAssem
 validation code and compilation code from a few different languages to WebAssembly. The code is available both as python
 functions and via the `kognicutil` cli.
 
-| Key                   | Value                         | Parameters         |
-|:----------------------|:------------------------------|:-------------------|
-| `rotation_quaternion` | A `RotationQuaternion` object | `w`, `x`, `y`, `z` |
-| `position`            | A `Position` object           | `x`, `y`, `z`      |
-| `image_width`         | Integer                       | NA                 |
-| `image_height`        | Integer                       | NA                 |
-| `wasm_base64`         | String                        | NA                 |
-| `test_cases`          | A list of `TestCase` objects  | point3d, point2d   |
 
 
 ## The WebAssembly module
@@ -99,7 +104,15 @@ it may be preferred to implement some mathematical functions yourself instead of
 
 As stated above the WebAssembly module must follow a strict interface and compilation requires the multi-value proposal.
 We provide a set of utilities that will make it easier to compile the WebAssembly module from a few languages, see table below. 
-The utilities are available both as python functions and via the `kognicutil` cli. From python you can compile the module
+
+| **Language** | **Target**  | **Compilation tool** |
+|--------------|-------------|----------------------|
+| Rust         | *.rs        | rustc                |
+| Rust (Cargo) | Cargo.toml  | cargo                |
+| C++          | *.cc, *.cpp | emscripten           |
+| C            | *.c         | emscripten           |
+
+The utilities are available both as python functions and via the `kognicutil` cli. From Python, you can compile the module
 with 
 
 ```python
@@ -115,12 +128,7 @@ koignicutil wasm compile path/to/source path/to/output.wasm
 
 Note that, validation is run by default after compilation. This can be disabled with the `--skip-validation` flag.
 
-| **Language** | **Target**  | **Compilation tool** |
-|--------------|-------------|----------------------|
-| Rust         | *.rs        | rustc                |
-| Rust (Cargo) | Cargo.toml  | cargo                |
-| C++          | *.cc, *.cpp | emscripten           |
-| C            | *.c         | emscripten           |
+
 
 Calibration parameters have to be embedded in the binary so that they can be used by the WebAssembly module. Try to 
 pre-compute as much as possible to increase the speed of the projection function at runtime.

@@ -25,8 +25,8 @@ module.exports = {
       {"Calibrations": [
         "kognic-io/calibrations/overview",
         "kognic-io/calibrations/lidars",
-        "kognic-io/calibrations/cameras-custom",
         "kognic-io/calibrations/cameras-standard",
+        "kognic-io/calibrations/cameras-custom",
       ]},
       "kognic-io/coordinate_systems",
       "kognic-io/error_handling",
