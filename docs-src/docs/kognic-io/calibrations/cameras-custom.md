@@ -30,7 +30,7 @@ functions and via the `kognicutil` cli.
 ## The WebAssembly module
 
 The WebAssembly must follow a strict interface where the module exports a function called `project_point_to_image`. The
-function must take three arguments of type `float64` and return two values of type `float64`. So the text representation
+function must take three arguments of type `float64` and return two values of type `float64`. Thus, the WebAssembly text representation of
 this interface is `func (param f64 f64 f64) (result f64 f64)`. The three arguments are the x, y and z coordinates of 
 the 3D point. The two return values are the x and y coordinates of the projected point in the image plane. WebAssembly
 doesn't support multiple return values by default but this can be enabled with the [multi-value](https://github.com/WebAssembly/multi-value)
