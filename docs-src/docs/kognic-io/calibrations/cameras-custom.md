@@ -47,7 +47,7 @@ This requires `wasmtime` to be installed which is an optional of dependency kogn
 install it.
 :::
 
-We provide validation code both as python functions and via the `kognicutil` cli. We validate things such as but limited to
+We provide validation code both as python functions and via the `kognicutil` cli. We validate things such as but not limited to
 1. The module can be loaded
 2. The function exists and has the correct signature
 3. That a point can be projected using the module
