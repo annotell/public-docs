@@ -43,7 +43,7 @@ both the x and y coordinates.
 ## Validation
 
 :::note
-This requires `wasmtime` to be installed which is an optional dependency kognic-io. Run `pip install kognic-io[wasm]` to
+This requires `wasmtime` to be installed which is an optional of dependency kognic-io. Run `pip install kognic-io[wasm]` to
 install it.
 :::
 
