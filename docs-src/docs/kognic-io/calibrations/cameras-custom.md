@@ -137,7 +137,7 @@ Below follows examples of a simplified version of the pinhole calibration in a f
 
 ### Example: Rust
 
-A [Rust file](https://github.com/annotell/kognic-io-python/blob/1aa5a12496296ec943d68ec94eefab42158fedac/examples/calibration/custom/pinhole.rs)
+A [Rust file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.rs)
 can be compiled with
 ```bash
 koignicutil wasm compile path/to/source.rs path/to/output.wasm
@@ -148,7 +148,7 @@ Note that `panics` are not supported and compilation will fail if the code conta
 
 #### Rust with Cargo
 
-A [Rust module with Cargo](https://github.com/annotell/kognic-io-python/blob/1aa5a12496296ec943d68ec94eefab42158fedac/examples/calibration/custom/pinhole-rust-cargo)
+A [Rust module with Cargo](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole-rust-cargo)
 can be compiled with
 ```bash
 koignicutil wasm compile path/to/source/Cargo.toml path/to/output.wasm
@@ -167,7 +167,7 @@ strip = true
 
 ### Example: C++
 
-A [C++ file](https://github.com/annotell/kognic-io-python/blob/1aa5a12496296ec943d68ec94eefab42158fedac/examples/calibration/custom/pinhole.cc)
+A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.cc)
 can be compiled with
 ```bash
 koignicutil wasm compile path/to/source.cc path/to/output.wasm
@@ -181,7 +181,7 @@ koignicutil wasm compile path/to/source.cpp path/to/output.wasm
 
 ### Example: C
 
-A [C++ file](https://github.com/annotell/kognic-io-python/blob/1aa5a12496296ec943d68ec94eefab42158fedac/examples/calibration/custom/pinhole.c)
+A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.c)
 can be compiled with
 ```bash
 koignicutil wasm compile path/to/source.c path/to/output.wasm
