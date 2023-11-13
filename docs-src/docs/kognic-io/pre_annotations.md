@@ -98,6 +98,7 @@ Objects cannot have multiple 3D geometries in the same frame
 | Polygon       | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D            | `is_hole`                |
 | Multi-polygon | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D | `is_hole` & `polygon_id` |
 | Curve         | `poly2d`        | [Curve](../openlabel/openlabel-format.md#representing-curves) or line in 2D         | `interpolation_method`   |
+| 2D point      | `point2d`       | [Point](../openlabel/openlabel-format.md#representing-2d-points) or line in 2D      | -                        |
 
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries

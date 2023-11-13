@@ -392,3 +392,63 @@ A 3D lane is represented as two lines in 3D (`poly3d`), one to the right and the
   }
 }
 ```
+
+## Representing 2D points
+
+A 2D point is represented, as you might expect, as a single point2d. The caveat is that we export it with the attributed `point_class`. Due to future representation of other point geometries, this attribute has to be equal to the `type` of the point object. The `point_class` is also completely optional for 2D points so omitting it is treated the same as if the `point_class` was equal to the `type`
+
+```json 
+{
+  "openlabel": {
+    ...,
+    "frames": {
+      "0": {
+        "objects": {
+          "a940239d-ff27-4480-8294-c482977a1b32": {
+            "object_data": {
+              "point2d": [
+                {
+                  "attributes": {
+                    "text": [
+                      { "name": "point_class", "val": "APoint" },
+                      { "name": "stream", "val": "stream1" }
+                    ]
+                  },
+                  ...
+                }
+              ]
+            }
+          },
+          "e027e626-eb7a-4a8e-a9ae-083464e137d1": {
+            "object_data": {
+              "point2d": [
+                {
+                  "attributes": {
+                    "text": [
+                      { "name": "stream", "val": "stream1" }
+                    ]
+                  },
+                  ....
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "metadata": {...},
+    "objects": {
+      "a940239d-ff27-4480-8294-c482977a1b32": {
+        ...
+        "type": "APoint"
+      },
+      "e027e626-eb7a-4a8e-a9ae-083464e137d1": {
+        ...
+        "type": "AnotherPoint"
+      }
+    },
+    ...
+  }
+}
+
+```
