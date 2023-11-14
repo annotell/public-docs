@@ -138,49 +138,38 @@ The response is a list of `Scene` objects containing the following properties
 | view_link      | A url to view the scene in the Kognic Platform                                                       |
 | error_message  | If there is an error during scene creation the error message will be included, otherwise it's `None` |
 
-
 ## List Inputs
 
+:::note
+This feature is new in version 1.7.0
+:::
 
-Inputs can be retrieved from the API in two ways:
-1. Filtering on a project using the `get_inputs` method. Additional filter parameters are also available 
-   (see table below) for querying inputs.
-2. Providing the input uuids of the inputs to be retrieved using the `get_inputs_by_uuids` method
+Inputs can be queried from the platform using the `query_inputs` method, which can be used in the following way
 
-```python
-# List all inputs for a project
-client.input.get_inputs(project="project-identifier")
-
-# List all inputs for a project and a batch
-client.input.get_inputs(project="project-identifier", batch="batch-identifier") 
-
-# List all inputs for specific input uuids
-input_uuids = ['cca60a67-cb68-4645-8bae-00c6e6415555', 'cc8776d0-f537-4094-8b11-8c2111741e2f', ...]
-client.input.get_inputs_by_uuids(input_uuids=input_uuids)
+```python reference
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/query_inputs.py#L6-L10
 ```
 
-Additional filter parameters for querying inputs using `get_inputs` are listed below.
+Additional filter parameters for querying inputs are listed below.
 
-| Parameter           | Description                                               |
-|---------------------|-----------------------------------------------------------|
-| project             | Project identifier to filter by                           |
-| batch               | Which batch in the project to return inputs for           |
-| external_ids        | Return inputs matching the `external_ids` supplied        |
-| include_invalidated | Filters inputs based on their status, defaults to `False` |
+| Parameter    | Description                                                     |
+|--------------|-----------------------------------------------------------------|
+| project      | Project identifier to filter by                                 |
+| batch        | Which batch in the project to return inputs for                 |
+| scene_uuids  | Return inputs using scenes matching the supplied uuids          |
+| external_ids | Return inputs using scenes matching the supplied `external_ids` |
 
 ### Response
 The response is a list of `Input` objects containing the following properties
 
 | Property         | Description                                                                                          |
 |------------------|------------------------------------------------------------------------------------------------------|
-| scene_uuid       | ID used to identify the scene within the Kognic Platform                                             |
-| external_id      | External ID supplied during scene creation                                                           |
-| batch            | Which batch does the input belong to                                                                 |
+| uuid             | ID used to identify the input within the Kognic Platform                                             |
+| scene_uuid       | ID used to identify the scene that the input using                                                   |
+| request_uid      | ID used to identify the request that the input belongs to                                            |
 | view_link        | A url to view the input in the Kognic Platform                                                       |
-| scene_type       | Type of input (see [Scene Types](../key_concepts.md))                                                |
-| status           | Scene status (see [Scene Statuses](#scene-status))                                                   |
-| error_message    | If there is an error during scene creation the error message will be included, otherwise it's `None` |
-| annotation_types | List of annotation types for the scene                                                               |
+
+
 
 ## Invalidate Scenes
 
