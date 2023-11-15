@@ -165,7 +165,7 @@ The response is a list of `Input` objects containing the following properties
 | Property         | Description                                                                                          |
 |------------------|------------------------------------------------------------------------------------------------------|
 | uuid             | ID used to identify the input within the Kognic Platform                                             |
-| scene_uuid       | ID used to identify the scene that the input using                                                   |
+| scene_uuid       | ID used to identify the scene that the input is using                                                   |
 | request_uid      | ID used to identify the request that the input belongs to                                            |
 | view_link        | A url to view the input in the Kognic Platform                                                       |
 
