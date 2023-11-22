@@ -454,3 +454,9 @@ This attribute is reserved for future use on other point-based geometries.
 }
 
 ```
+
+## Representing groups of 2d points
+
+A group of points is used when multiple points refere to the same object.
+The attribute `point_class` is required for each of the points in the point group, and the `point_class` has to be different from the object type.
+The `point_class` value `"line_reference_point"` is reserved for future use cases.
