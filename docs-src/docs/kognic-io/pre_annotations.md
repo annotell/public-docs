@@ -90,15 +90,16 @@ These features or combinations of features are not currently supported, or only 
 Objects cannot have multiple 3D geometries in the same frame
 :::
 
-| Name          | OpenLABEL field | Description                                                                         | Attributes               |
-|---------------|-----------------|-------------------------------------------------------------------------------------|--------------------------|
-| Cuboid        | `cuboid`        | Cuboid in 3D                                                                        | -                        |
-| Bounding box  | `bbox`          | Bounding box in 2D                                                                  | -                        |
-| 3D line       | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.          | -                        |
-| Polygon       | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D            | `is_hole`                |
-| Multi-polygon | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D | `is_hole` & `polygon_id` |
-| Curve         | `poly2d`        | [Curve](../openlabel/openlabel-format.md#representing-curves) or line in 2D         | `interpolation_method`   |
-| 2D point      | `point2d`       | [Point](../openlabel/openlabel-format.md#representing-2d-points)                    | -                        |
+| Name                | OpenLABEL field | Description                                                                         | Attributes               |
+|---------------------|-----------------|-------------------------------------------------------------------------------------|--------------------------|
+| Cuboid              | `cuboid`        | Cuboid in 3D                                                                        | -                        |
+| Bounding box        | `bbox`          | Bounding box in 2D                                                                  | -                        |
+| 3D line             | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.          | -                        |
+| Polygon             | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D            | `is_hole`                |
+| Multi-polygon       | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D | `is_hole` & `polygon_id` |
+| Curve               | `poly2d`        | [Curve](../openlabel/openlabel-format.md#representing-curves) or line in 2D         | `interpolation_method`   |
+| 2D point            | `point2d`       | [Point](../openlabel/openlabel-format.md#representing-2d-points)                    | -                        |
+| Group of 2D points  | `point2d`       | [Group of points](../openlabel/openlabel-format.md#representing-groups-of-2d-points)| `point_class`            |
 
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
