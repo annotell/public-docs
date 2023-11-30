@@ -91,11 +91,12 @@ in the lidar coordinate system in the single-lidar case but in the reference coo
 for example. 
 
 
-| Type of data                        | Single-lidar     | Multi-lidar |
-|:------------------------------------|:-----------------|:------------|
-| Ego poses & IMU data                | Lidar            | Reference   |
-| OpenLABEL export <br/>3D geometries | Lidar            | Reference   |
-| OpenLABEL export <br/>2D geometries | Pixel            | Pixel       | 
-| Pre-annotations <br/>3D geometries  | Lidar            | Reference   |
-| Pre-annotations <br/>2D geometries  | Pixel            | Pixel       | 
+| Type of data                           | Single-lidar     | Multi-lidar |
+|:---------------------------------------|:-----------------|:------------|
+| Ego poses & IMU data <br/> (rotation)  | Lidar            | Reference   |
+| Ego poses & IMU data <br/> (position)  | World            | World       |
+| OpenLABEL export <br/>3D geometries    | Lidar            | Reference   |
+| OpenLABEL export <br/>2D geometries    | Pixel            | Pixel       | 
+| Pre-annotations <br/>3D geometries     | Lidar            | Reference   |
+| Pre-annotations <br/>2D geometries     | Pixel            | Pixel       | 
 
