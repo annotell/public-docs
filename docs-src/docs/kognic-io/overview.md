@@ -48,7 +48,7 @@ class SceneSeq(BaseModel):
 The fields contain all the information required to create the scene.
 
 ### External Id
-Whenever a scene is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific scenes easier we also allow for clients to include any kind of identifier to the scene via the external id.
+Whenever a scene is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific scenes easier we also require clients to include an identifier to the scene via the external id.
 
 ### Sensor Specification
 The sensor specification contains information related to the different camera and/or lidar sensors
