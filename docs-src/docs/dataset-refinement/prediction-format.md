@@ -8,10 +8,6 @@ OpenLabel format can be found in [here](../openlabel/openlabel-format).
 
 ## Supported prediction features
 
-:::note
-Only one type of geometry, e.g. cuboid, per prediction is supported
-:::
-
 The current API for uploading predictions supports the following geometries:
 
 | Name         | OpenLABEL field | Description        |
