@@ -23,12 +23,12 @@ see [Creating Multiple Inputs With One Call](working_with_scenes_and_inputs.md#c
 ### 1. Creating a scene
 
 :::note
-The scene is a subset of the input, specifically referring to the data, such as images or point clouds.
-An input is what is created when this data is ready to be annotated.
+The scene is a subset of the input, specifically referring to the raw data, such as images or point clouds.
+An input is created when this data is associated to a request in a project with task definition and guildline, and is ready to be annotated.
 :::
 
-The interface for creating just a scene, without an input, is the same as we are familiar with.
-The exception is that by not providing a project or a batch in the function call, the scene will be "dangling" until deemed ready for annotation
+The interface for creating a scene is similar to creating an input.
+The exception is to omit a project or a batch in the function call, then the scene will be "dangling" until deemed ready for annotation
 
 ```python reference
 https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq_with_pre_annotations.py#L83-L84
