@@ -25,4 +25,4 @@ Individual flags are found on the enums found within `FeatureFlags`.
 
 | Flag                  | Default state | Description                                                                               |
 |:----------------------|:--------------|:------------------------------------------------------------------------------------------|
-| `MOTION_COMPENSATION` | Enabled       | Causes [motion compensation of point clouds](inputs/lidars_with_imu_data) using IMU data. |
+| `MOTION_COMPENSATION` | Enabled       | Causes [motion compensation of point clouds](scenes/lidars_with_imu_data) using IMU data. |
