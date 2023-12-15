@@ -49,9 +49,9 @@ the status property of a scene can be used to keep track of progress.
 
 
 
-## Creating Inputs from Scene
+## Creating Request Inputs from Scene
 
-Once a scene has been created, it can be used to create inputs which is done by associating it with a [project](project) 
+Once a scene has been created, it can be used to create request inputs which is done by associating it with a [project](project) 
 and an [input batch](project#batch). Consider the following project setup:
 
 ```
@@ -75,8 +75,8 @@ organization # root for projects and scenes
    └── ...
 ```
 
-The `create_from_scene` method is used to create inputs from a scene. The method takes the scene uuid as input along 
-with annotation information such as project, batch and annotation types. For example, to create inputs in `project-a` 
+The `create_from_scene` method is used to create request inputs from a scene. The method takes the scene uuid as input along 
+with annotation information such as project, batch and annotation types. For example, to create request inputs in `project-a` 
 and `batch-2`, you would do the following:
 
 ```python
@@ -87,12 +87,12 @@ client.cameras.create_from_scene(
 )
 ```
 
-The above code will create inputs for the scene in all requests in batch `batch-2` for project `project-a`. If the `batch`
+The above code will create request inputs for the scene in all requests in batch `batch-2` for project `project-a`. If the `batch`
 parameter is omitted, the latest open batch for the project will be used. You can later reuse the same scene to create 
 inputs for other projects and batches.
 
 
-## Creating Inputs Directly
+## Creating Request Inputs Directly
 
 It is often useful to create inputs directly instead of the 2-step process described above. To do this, you can simply 
 pass the annotation information directly into the `create` method of the corresponding scene type. For example, to create
@@ -106,9 +106,9 @@ client.cameras_sequence.create(
 )
 ```
 
-This would trigger the scene creation process, and once the scene is created, inputs are created in all requests in
+This would trigger the scene creation process, and once the scene is created, request inputs are created in all requests in
 the given batch. If the `batch` parameter is omitted, the latest open batch for the project will be used. We also provide
-a wrapper function `create_inputs` to help with this process, see [Creating Multiple Inputs With One Call](#creating-multiple-inputs-with-one-call).
+a wrapper function `create_inputs` to help with this process, see [Creating Multiple Request Inputs With One Call](#creating-multiple-inputs-with-one-call).
 
 ## List Scenes
 
