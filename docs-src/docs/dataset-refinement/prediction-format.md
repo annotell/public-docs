@@ -10,10 +10,11 @@ OpenLabel format can be found in [here](../openlabel/openlabel-format).
 
 The current API for uploading predictions supports the following geometries:
 
-| Name         | OpenLABEL field | Description        |
-|--------------|-----------------|--------------------|
-| Cuboid       | `cuboid`        | Cuboid in 3D       |
-| Bounding box | `bbox`          | Bounding box in 2D |
+| Name                  | OpenLABEL field | Description                                            |
+|-----------------------|-----------------|--------------------------------------------------------|
+| Cuboid                | `cuboid`        | Cuboid in 3D                                           |
+| Bounding box          | `bbox`          | Bounding box in 2D                                     |
+| Semantic Segmentation | `image`         | Bitmap images representing semantic segmentation task. |  
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. The rotation of
 cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids). 2D geometries
@@ -194,5 +195,160 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
 }
 ```
 
+### Semantic segmentation bitmaps
+
+Semantic segmentation predictions are represented as images. The images should contain one integer channel only
+and the mapping between channel value and class name should be represented as a map beneath the key `ontologies`. The
+bitmap images have to be base64 encoded and added as string values to the OpenLabel. See the following example for a
+semantic segmentation prediction containing the three classes cats, dogs and human.
+
+```json
+{
+  "openlabel": {
+    "frames": {
+      "0": {
+        "objects": {
+          "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2": {
+            "object_data": {
+              "image": [
+                {
+                  "name": "semantic mask - dictionary 1",
+                  "val": "base64encodedimagestring",
+                  "mime_type": "image/png",
+                  "encoding": "base64",
+                  "attributes": {
+                    "text": [
+                      {
+                        "val": "BACK_CAMERA",
+                        "name": "stream"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "semantic mask - dictionary 2",
+                  "val": "base64encodedimagestring2",
+                  "mime_type": "image/png",
+                  "encoding": "base64",
+                  "attributes": {
+                    "text": [
+                      {
+                        "val": "FRONT_CAMERA",
+                        "name": "stream"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "frame_properties": {
+          "streams": {},
+          "timestamp": 0,
+          "external_id": ""
+        }
+      },
+      "1": {
+        "objects": {
+          "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2": {
+            "object_data": {
+              "image": [
+                {
+                  "name": "semantic mask - dictionary 3",
+                  "val": "base64encodedimagestring3",
+                  "mime_type": "image/png",
+                  "encoding": "base64",
+                  "attributes": {
+                    "text": [
+                      {
+                        "val": "BACK_CAMERA",
+                        "name": "stream"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "semantic mask - dictionary 4",
+                  "val": "base64encodedimagestring4",
+                  "mime_type": "image/png",
+                  "encoding": "base64",
+                  "attributes": {
+                    "text": [
+                      {
+                        "val": "FRONT_CAMERA",
+                        "name": "stream"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "frame_properties": {
+          "streams": {},
+          "timestamp": 100,
+          "external_id": ""
+        }
+      }
+    },
+    "objects": {
+      "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2": {
+        "name": "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2",
+        "type": "typitype"
+      }
+    },
+    "streams": {
+      "BACK_CAMERA": {
+        "type": "camera"
+      },
+      "FRONT_CAMERA": {
+        "type": "camera"
+      }
+    },
+    "metadata": {
+      "schema_version": "1.0.0"
+    },
+    "ontologies": {
+      "0": {
+        "classifications": {
+          "0": "cat",
+          "128": "dog",
+          "255": "human"
+        },
+        "uri": ""
+      },
+      "1": {
+        "classifications": {
+          "0": "cat",
+          "128": "dog",
+          "255": "human"
+        },
+        "uri": ""
+      }
+    }
+  }
+}
+```
+
+
+#### BASE64 Encoding an image using python
+
+```python
+
+img = Image.open("/path/to/your/png/example_segmentation_1.png")
+
+image_io = BytesIO()
+img.save(image_io, format="PNG")
+image_data = image_io.getvalue()
+base64_encoded = base64.b64encode(image_data).decode("utf-8")
+```
+
+
+
 ### Using `kognic-openlabel` to validate the format
+
 See [kognic-openlabel](https://pypi.org/project/kognic-openlabel/) for more information.
+
+###       
