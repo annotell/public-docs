@@ -7,7 +7,7 @@ different instants in time. This is done by transforming the recordings with sen
 the ego motion data. This section describes how this is done in 3D space and provides a summary about the coordinate 
 systems that different kinds of data is expressed in. For camera sensors, we also need to be able to map
 3D points to pixel coordinates in 2D. This is done using intrinsic parameters of the camera and these vary depending
-on the type of the camera. Refer to [camera calibrations](./calibrations.md#camera) for more information about this.
+on the type of the camera. Refer to [camera calibrations](./calibrations/cameras-standard.md) for more information about this.
 
 ## The reference coordinate system and calibrations
 
