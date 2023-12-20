@@ -12,7 +12,7 @@ Before you begin, make sure you have:
 
 * Access to the refinement tool
 * An account with permissions to use our API
-* Generated API credentials. See [API Credentials](../kognic_auth.md/#generating-credentials)
+* Generated API credentials. See [API Credentials](../kognic_apis.md/#generating-credentials)
 * Installed our Python 3 SDK for authentication - [kognic-auth](https://pypi.org/project/kognic-auth/)
 
 ## No API Client Available
