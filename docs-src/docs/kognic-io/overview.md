@@ -83,7 +83,7 @@ Any scene consisting of lidar and camera sensors requires a calibration. The cal
 
 This information is used by the annotation tool to highlight regions in the point cloud visible in the selected camera sensors as well as for projecting information from the pointcloud onto the different camera sensors (points, cuboids etc).
 
-Detailed documentation on how to create calibrations via the API is present in the [Calibration section](calibrations).
+Detailed documentation on how to create calibrations via the API is present in the [Calibration section](./calibrations/overview.md).
 
 When including calibration id make sure that all sensors present on the scene are also present in the calibration as well. If this is not the case the scene will not be created and a validation error will be returned by the API.
 

@@ -1,6 +1,6 @@
 module.exports = {
   docs: {
-    "Kognic Auth": ["kognic-auth"],
+    "Kognic APIs": ["kognic-apis"],
     "Key Concepts": ["key_concepts"],
     "Kognic IO": [
       "kognic-io/project",
