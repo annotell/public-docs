@@ -3,16 +3,16 @@ title: Overview
 ---
 
 ## Different types of scenes
-A Scene represents a grouping of sensor data (e.g. camera images, lidar pointclouds) that should be annotated together. Any information necessary to express the relationship between the sensors and their captured data is also present, be it camera resolution, sensor name or the frequency at which the data was recorded at.
+A scene represents a grouping of sensor data (e.g. camera images, lidar pointclouds) that should be annotated together. Any information necessary to describe the relationship between the sensors and their captured data is also specifed in the scene, be it camera resolution, sensor name, and the frequency at which the data was recorded at, etc.
 
-There are different scene types depending on what kind of sensor(s) are used to represent the contents of the scene. For example, if we want to create a scene only consisting of data from camera sensors then we would use the scene type `Cameras`. Similarly, if we want to create a scene consisting of lidar sensors and camera sensors then we would use the scene type `LidarsAndCameras`. Additionally, scenes can either be **sequential** or **non-sequential**.
+There are different scene types depending on what kind of sensor(s) are used to represent the contents of the scene. For example, if one wants to create a scene only consisting of image data from camera sensors then one would use the scene type `Cameras`. Similarly, if one wants to create a scene consisting of both lidar and camera sensors then one would use the scene type `LidarsAndCameras`. Additionally, scenes can either be *single frame* or *sequence* type.
 
 ### Sequential vs non-sequential
-Sequential scenes represent a *sequence* of sensor data, whereas non-sequential scenes only contain a single snapshot of sensor data. The sequential relationship is expressed via a sequence of **Frames**, where each **Frame** object contains information related to what kind of sensor data constitues the frame (e.g. which image and/or point cloud is a part of the Frame) as well as a *relative timestamp* that captures where in time (relative to the other frames) the Frame is located.
+Sequential scenes represent a *sequence* of frames in time, whereas non-sequential scenes only contain one snapshot of the sensor data. The sequential relationship is expressed via a sequence of **Frames**, where each Frame contains information related to what kind of sensor data constitues the frame (e.g. which image and/or point cloud is part of the Frame) as well as a *relative timestamp* that captures where in time (relative to the other frames) the Frame is located.
 
-Non-sequential scenes only express a single snapshot of sensor data. As such, these kinds of scenes only contain a single Frame object and do not require any relative timestamp information.
+Non-sequential scenes only contains a single Frame and do not require any relative timestamp information.
 
-Sequential scene types are easily identified by the suffix `Seq` present in their name.
+Sequential scene types are identified by the suffix `Seq` in their type name.
 
 The following scene types are currently supported
 
@@ -23,7 +23,7 @@ The following scene types are currently supported
 * `AggregatedLidarsAndCamerasSeq`
 
 ## Scene Fields
-All non-sequential scenes have the following structure
+Non-sequential scenes have the following structure
 
 ```python
 class Scene(BaseModel):
@@ -45,16 +45,14 @@ class SceneSeq(BaseModel):
     metadata: Mapping[str, Union[int, float, str, bool]] = field(default_factory=dict)
 ```
 
-The fields contain all the information required to create the scene.
-
 ### External Id
-Whenever a scene is uploaded it automatically gets a UUID, this is used as the primary identifier by Kognic and by all of our internal systems. However, in order to make communication around specific scenes easier we also require clients to include an identifier to the scene via the external id.
+A scene automatically gets a UUID when it is created. This UUID is used as the primary identifier by Kognic and all of our internal systems. Additionally, an external id is required as an identifier when creating the scene in order to make communication around specific scenes easier.
 
 ### Sensor Specification
 The sensor specification contains information related to the different camera and/or lidar sensors
 used for capturing the data present on the scene.
 
-The additional fields are optional and relate to specifying the order of the camera sensors and
+The additional fields are optional and related to specifying the order of the camera sensors and
 human readable variants of the sensor name (e.g. "Front Camera" instead of "FC").
 
 ```python
@@ -63,9 +61,9 @@ class SensorSpecification(BaseModel):
     sensor_order: Optional[List[str]] = None
 ```
 
-As an example, let's say we have three different camera sensors `R`, `F` and `L`. The `R` sensor is mounted on the right side of the ego vehicle, the `F` sensor at the front and the `L` sensor to the left. Creating a sensor specification for this scenario would correspond to
-
+As an example, let's say we have three different camera sensors `R`, `F` and `L`. The `R` sensor is mounted on the right side of the ego vehicle, the `F` sensor at the front and the `L` sensor to the left. Creating a sensor specification would be
 ```python
+from kognic.io.model.scene.sensor_specification import SensorSpecification
 sensor_spec = SensorSpecification(
     sensor_to_pretty_name={
         "R": "Right Camera",
@@ -76,32 +74,35 @@ sensor_spec = SensorSpecification(
 )
 ```
 
-The specified `sensor_order` will cause the different camera sensors to be presented in a clockwise manner in the annotation tool (Left -> Front -> Right), while the `sensor_to_pretty_name` parameter will result in the annotation tool showing the human readable version of all the sensor names when changing sensor.
+The specified `sensor_order` configures the images to be presented in a clockwise manner in the Kognic annotation App (Left -> Front -> Right), while the `sensor_to_pretty_name` parameter changes the labels in when viewed in the Kognic annotation App.
 
-### Calibration Id
+### Calibration
 Any scene consisting of lidar and camera sensors requires a calibration. The calibration captures the spatial relationship (position and rotation) between the different sensors, as well as different camera specific parameters.
 
-This information is used by the annotation tool to highlight regions in the point cloud visible in the selected camera sensors as well as for projecting information from the pointcloud onto the different camera sensors (points, cuboids etc).
+Calibration is used by the annotation tool to highlight the corresponding regions in the point cloud a camera image is selected, as well as for projecting information from the pointcloud onto the different camera sensors (points, cuboids, etc).
 
 Detailed documentation on how to create calibrations via the API is present in the [Calibration section](./calibrations/overview.md).
 
-When including calibration id make sure that all sensors present on the scene are also present in the calibration as well. If this is not the case the scene will not be created and a validation error will be returned by the API.
+When creating a calibration make sure that all sensors present on the scene are also present in the calibration as well. If this is not the case the scene will not be created and a validation error will be returned by the Kognic API.
 
 Scenes without a lidar sensor do not require a calibration.
 
 ### Metadata
-Metadata can be added to scenes via the `metadata` field. It consists of _flat_ key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about a scene.
-Nothing specified in the metadata can be seen by the annotators, but there are some reserved keywords that can alter the behaviour of the annotation tool. Reserved keywords can be found on the `MetaData` object in the python client.
+Metadata can be added to scenes via the `metadata` field. It consists of flat key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about a scene.
+Metadata cannot be seen by the annotators, but there are some reserved keywords that can alter the behaviour of the Kognic annotation tool. Reserved keywords can be found in the `MetaData` object in the python client.
 
 
 ### Frame (non-sequential scenes)
 The Frame object specifies the binary data to be annotated (.jpg, .png, .las etc) as well as which sensor the data originated from.
 
-The Frame object is different for each scene type since they all support different kinds of sensors, even though the overall structure is the same.
+The Frame object is different for each scene type, even though the overall structure is similar.
 
-As an example, let's say we want to create a scene consiting of images from three different camera sensors `R`, `F` and `L`. The corresponding binary data is present in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond to creating a `Cameras` scene.
+As an example, let's say we want to create a scene consiting of images from three different camera sensors `R`, `F` and `L`. The corresponding binary data are in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond to creating a `Cameras` scene.
 
 ```python
+from kognic.io.model.scene.cameras import Cameras
+from kognic.io.model.scene import Image
+
 cameras_scene = Cameras(
     ...,
     frame=Frame(
