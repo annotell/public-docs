@@ -16,7 +16,7 @@ Within the Kognic APIs, projects are identified using an external identifier.
 
 ## Batch
 
-Input *batches** allow grouping of input data into smaller batches within a project. By default, every project has at least one input batch.
+Input **batches** allow grouping of input data into smaller batches within a project. By default, every project has at least one input batch.
 
 Ongoing projects can be benefited from having multiple batches in two ways:
 
