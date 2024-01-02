@@ -202,6 +202,11 @@ and the mapping between channel value and class name should be represented as a 
 bitmap images have to be base64 encoded and added as string values to the OpenLabel. See the following example for a
 semantic segmentation prediction containing the three classes cats, dogs and human.
 
+You can provide multiple semantic segmentation images per frame, which is useful if you have multiple cameras. You can
+add these images as a list of dictionaries under the key `image` for each object. An object can have multiple images per
+frame as the example below shows. Each image should have a mime type, encoding and a `stream` attribute that specifies which sensor the image
+relates to.
+
 ```json
 {
   "openlabel": {
@@ -332,7 +337,6 @@ semantic segmentation prediction containing the three classes cats, dogs and hum
 }
 ```
 
-
 #### BASE64 Encoding an image using python
 
 ```python
@@ -345,10 +349,8 @@ image_data = image_io.getvalue()
 base64_encoded = base64.b64encode(image_data).decode("utf-8")
 ```
 
-
-
 ### Using `kognic-openlabel` to validate the format
 
 See [kognic-openlabel](https://pypi.org/project/kognic-openlabel/) for more information.
 
-###       
+###          
