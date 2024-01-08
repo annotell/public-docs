@@ -3,12 +3,14 @@ title: Overview
 ---
 
 ## Different types of scenes
+
 A scene represents a grouping of sensor data (e.g. camera images, lidar pointclouds) that should be annotated together. Any information necessary to describe the relationship between the sensors and their captured data is also specifed in the scene, be it camera resolution, sensor name, and the frequency at which the data was recorded at, etc.
 
-There are different scene types depending on what kind of sensor(s) are used to represent the contents of the scene. For example, if one wants to create a scene only consisting of image data from camera sensors then one would use the scene type `Cameras`. Similarly, if one wants to create a scene consisting of both lidar and camera sensors then one would use the scene type `LidarsAndCameras`. Additionally, scenes can either be *single frame* or *sequence* type.
+There are different scene types depending on what kind of sensor(s) are used to represent the contents of the scene. For example, if one wants to create a scene only consisting of image data from camera sensors then one would use the scene type `Cameras`. Similarly, if one wants to create a scene consisting of both lidar and camera sensors then one would use the scene type `LidarsAndCameras`. Additionally, scenes can either be _single frame_ or _sequence_ type.
 
 ### Sequential vs non-sequential
-Sequential scenes represent a *sequence* of frames in time, whereas non-sequential scenes only contain one snapshot of the sensor data. The sequential relationship is expressed via a sequence of **Frames**, where each Frame contains information related to what kind of sensor data constitues the frame (e.g. which image and/or point cloud is part of the Frame) as well as a *relative timestamp* that captures where in time (relative to the other frames) the Frame is located.
+
+Sequential scenes represent a _sequence_ of frames in time, whereas non-sequential scenes only contain one snapshot of the sensor data. The sequential relationship is expressed via a sequence of **Frames**, where each Frame contains information related to what kind of sensor data constitues the frame (e.g. which image and/or pointcloud is part of the Frame) as well as a _relative timestamp_ that captures where in time (relative to the other frames) the Frame is located.
 
 Non-sequential scenes only contains a single Frame and do not require any relative timestamp information.
 
@@ -16,13 +18,14 @@ Sequential scene types are identified by the suffix `Seq` in their type name.
 
 The following scene types are currently supported
 
-* `Cameras`
-* `LidarsAndCameras`
-* `CamerasSeq`
-* `LidarsAndCamerasSeq`
-* `AggregatedLidarsAndCamerasSeq`
+- `Cameras`
+- `LidarsAndCameras`
+- `CamerasSeq`
+- `LidarsAndCamerasSeq`
+- `AggregatedLidarsAndCamerasSeq`
 
 ## Scene Fields
+
 Non-sequential scenes have the following structure
 
 ```python
@@ -46,22 +49,19 @@ class SceneSeq(BaseModel):
 ```
 
 ### External Id
+
 A scene automatically gets a UUID when it is created. This UUID is used as the primary identifier by Kognic and all of our internal systems. Additionally, an external id is required as an identifier when creating the scene in order to make communication around specific scenes easier.
 
 ### Sensor Specification
-The sensor specification contains information related to the different camera and/or lidar sensors
-used for capturing the data present on the scene.
 
-The additional fields are optional and related to specifying the order of the camera sensors and
-human readable variants of the sensor name (e.g. "Front Camera" instead of "FC").
+The sensor specification contains information about the camera and/or lidar sensors
+used in the scene.
 
-```python
-class SensorSpecification(BaseModel):
-    sensor_to_pretty_name: Optional[Dict[str, str]] = None
-    sensor_order: Optional[List[str]] = None
-```
+The additional fields are optional, and can be used to specify the order of the camera images and
+a human readable sensor name (e.g. "Front Camera" instead of "FC") when viewed in the Kognic annotation App.
 
-As an example, let's say we have three different camera sensors `R`, `F` and `L`. The `R` sensor is mounted on the right side of the ego vehicle, the `F` sensor at the front and the `L` sensor to the left. Creating a sensor specification would be
+As an example, let's say we have three camera sensors `R`, `F` and `L` positioned on the ego vehicle. Creating a sensor specification would be
+
 ```python
 from kognic.io.model.scene.sensor_specification import SensorSpecification
 sensor_spec = SensorSpecification(
@@ -74,34 +74,34 @@ sensor_spec = SensorSpecification(
 )
 ```
 
-The specified `sensor_order` configures the images to be presented in a clockwise manner in the Kognic annotation App (Left -> Front -> Right), while the `sensor_to_pretty_name` parameter changes the labels in when viewed in the Kognic annotation App.
+`sensor_order` configures the order of camera images, and `sensor_to_pretty_name` affects the labels when viewed in the Kognic annotation App.
 
 ### Calibration
-Any scene consisting of lidar and camera sensors requires a calibration. The calibration captures the spatial relationship (position and rotation) between the different sensors, as well as different camera specific parameters.
 
-Calibration is used by the annotation tool to highlight the corresponding regions in the point cloud a camera image is selected, as well as for projecting information from the pointcloud onto the different camera sensors (points, cuboids, etc).
+Any scene consisting of lidar and camera sensors requires a calibration. The calibration specifies the spatial relationship (position and rotation) between the sensors, and the camera intrinsic parameters.
+
+However, scenes without a lidar sensor do not require a calibration.
+
+Calibration is used by the Kognic annotation App to project regions in the pointcloud when a camera image is selected, and, similarly, to project the selected object (e.g. point, cuboid) in the pointcloud onto the images .
+
+When creating a calibration, all sensors must match those present on the scene. If this is not the case the scene will not be created and a validation error will be returned by the Kognic API.
 
 Detailed documentation on how to create calibrations via the API is present in the [Calibration section](./calibrations/overview.md).
 
-When creating a calibration make sure that all sensors present on the scene are also present in the calibration as well. If this is not the case the scene will not be created and a validation error will be returned by the Kognic API.
-
-Scenes without a lidar sensor do not require a calibration.
-
 ### Metadata
+
 Metadata can be added to scenes via the `metadata` field. It consists of flat key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about a scene.
 Metadata cannot be seen by the annotators, but there are some reserved keywords that can alter the behaviour of the Kognic annotation tool. Reserved keywords can be found in the `MetaData` object in the python client.
 
+### Frame (non-sequential scene)
 
-### Frame (non-sequential scenes)
-The Frame object specifies the binary data to be annotated (.jpg, .png, .las etc) as well as which sensor the data originated from.
+The Frame object specifies the binary data to be annotated (.jpg, .png, .las etc) as well as which sensor the data originated from. Note that the `Frame` object is different for each scene type, even though the overall structure is similar (see details below).
 
-The Frame object is different for each scene type, even though the overall structure is similar.
-
-As an example, let's say we want to create a scene consiting of images from three different camera sensors `R`, `F` and `L`. The corresponding binary data are in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond to creating a `Cameras` scene.
+As an example, let's say we want to create a scene consiting of images from three camera sensors `R`, `F` and `L`. The corresponding binary data are in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond the scene type `Cameras`.
 
 ```python
-from kognic.io.model.scene.cameras import Cameras
-from kognic.io.model.scene import Image
+from kognic.io.model.scene.resources import Image
+from kognic.io.model.scene.cameras import Cameras, Frame
 
 cameras_scene = Cameras(
     ...,
@@ -115,9 +115,12 @@ cameras_scene = Cameras(
 )
 ```
 
-Similarly, if we also had an associated lidar pointcloud from the sensor `VDL-64` and a corresponding binary file `scan_vdl_64.las` we would instead express this as a `LidarsAndCameras` scene instead.
+Similarly, if we also had an associated lidar pointcloud from the sensor `VDL-64` and a corresponding binary file `scan_vdl_64.las`, we would instead use the scene type `LidarsAndCameras`. Note that the `Frame` class shall be imported under the corresponding scene type.
 
 ```python
+from kognic.io.model.scene.resources import Image, PointCloud
+from kognic.io.model.scene.lidars_and_cameras import LidarsAndCameras, Frame
+
 lidars_and_cameras = LidarsAndCameras(
     ...,
     frame=Frame(
@@ -134,21 +137,15 @@ lidars_and_cameras = LidarsAndCameras(
 )
 ```
 
-### Frames (sequential scenes)
-Sequential scenes deal with a list of Frame objects instead of a single Frame object. In addition, Frame objects associated with sequential scenes have three additional parameters not present in their non-sequential Frame counterparts: `frame_id`, `relative_timestamp` and `metadata`.
+### Frames (sequential scene)
 
-The sequential relationship is expressed via the ordering of the Frame objects in the `frames` list
+Sequential scene takes a list of `Frame` objects instead of a single `Frame`. In addition, the `Frame` object associated with sequential scenes have three additional parameters: `frame_id`, `relative_timestamp` and `metadata`.
 
-```python
-frame_1 = Frame(...)
-frame_2 = Frame(...)
-frame_3 = Frame(...)
-frames = [frame_1, frame_2, frame_3]
-```
+The sequential relationship is expressed via the order of the list of `Frame`.
 
-This representation captures that `frame_1` comes first, then `frame_2` and `frame_3`, but it does not express how much time has passed between the different frames. This information is encoded via the `relative_timestamp` parameter present on each Frame object. The relative timestamp is expressed in milliseconds and describes the relative time between the Frame and the start of the scene.
+To express how much time has passed between the different frames, one can use the `relative_timestamp` parameter for each `Frame`. The relative timestamp is expressed in milliseconds and describes the relative time between the `Frame` and the start of the scene.
 
-For example, let's say that the sensor data is collected and aggregated at 2Hz. That would then be expressed as
+For example, let's say that the sensor data is collected and aggregated at 2Hz.
 
 ```python
 frame_1 = Frame(..., relative_timestamp=0)
@@ -157,22 +154,22 @@ frame_3 = Frame(..., relative_timestamp=1000)
 frames = [frame_1, frame_2, frame_3]
 ```
 
-The `frame_id` is expressed as a string and is used to produce a unique identifier for each frame in the list of frames.
-The `frame_id` is used as a top-level key in the produced annotations, indicating which parts of the complete annotation 
-belong to this specific frame.
+The `frame_id` is a string that uniquely identifies each frame in the list of frames.
 
-A common use case is to use uuids for each `frame_id`, or a combination of `external_id` and `frame_index`. 
-For example, if the `external_id` of the scene is `shanghai_20200101` then the `frame_id` could be encoded as 
+A common use case is to use uuids for each `frame_id`, or a combination of `external_id` and `frame_index`.
+For example, if the `external_id` of the scene is `shanghai_20200101` then the `frame_id` could be encoded as
 `shanghai_20200101:0` for the first frame, `shanghai_20200101:1` for the second frame and so on.
 
-Similarly to the metadata capability available on a scene-level, it's also possible to provide metadata on a _frame_ level as well. 
-It behaves the same way, i.e. consists of _flat_ key-value pairs and is not exposed to annotators during the production of annotators.
+Similar to the metadata capability available on a scene-level, it's also possible to provide metadata on a _frame_ level.
+It consists of _flat_ key-value pairs and is not exposed to annotators during the production of annotators.
 
-As an example, let's say we want to create a scene of type `CamerasSeq` consisting of 2 frames, each with camera data 
-from two different sensors `R` and `L`. If we have individual images for each frame and sensor, this would correspond 
-to the following list of frames
+As an example, let's say we want to create a scene of type `CamerasSequence` consisting of 2 frames, each with camera images
+from two sensors `R` and `L`.
 
 ```python
+from kognic.io.model.scene.resources import Image
+from kognic.io.model.scene.cameras_sequence import CamerasSequence, Frame
+
 frames = [
     Frame(
         frame_id="1",
@@ -197,7 +194,8 @@ cameras_sequence = CamerasSequence(
 ```
 
 ## Image & Pointcloud Resources
-Every file containing sensor data (image or pointcloud files) is represented as a `Resource`, with 
+
+Every file containing sensor data is represented as a `Resource`, with
 `Image` and `PointCloud` being the concrete subclasses.
 
 ```python
@@ -214,7 +212,7 @@ class Resource(ABC, BaseSerializer):
 2. Directly: provide some bytes-like object at creation time
 3. Lazily: provide a callback function which can provide the bytes later in the process
 
-`Resource`s must always be given a `filename`. For alternative 1 this must point to the local file to upload. For alternatives 2 & 3 the filename is treated more as an identifier; it is used to name the uploaded file but does not have to correspond to anything in the filesystem.
+`Resource`s must always be given a `filename`. For alternative 1 this must point to the local file to upload. For alternatives 2 & 3 the value of `filename` parameter is treated as an identifier; it is used to name the uploaded file but does not have to correspond to anything in the filesystem.
 
 `Resource`s also always have a `sensor_name` which identifies the sensor they were captured from. In sequential scenes, each `Frame` will have a `Resource` for each sensor.
 
@@ -237,7 +235,7 @@ Image(filename="/Users/johndoe/images/img_FC.png",
 
 ### Data in Memory
 
-In addition to  `filename`, provide a `FileData` object via the `file_data` attribute, which in turn has an `UploadableData` as its own `data` attribute. This example uses raw `bytes`:
+In addition to `filename`, provide a `FileData` object via the `file_data` attribute, which in turn has an `UploadableData` as its own `data` attribute. This example uses raw `bytes`:
 
 ```python
 png_blob = FileData(data=b'some PNG bytes',
@@ -275,9 +273,9 @@ If the callback requires extra arguments then we recommend creating a closure ov
 def get_callback(arg1, arg2, **kwargs):
      def callback(filename) -> bytes:
          # ... use arg1, arg2, filename and kwargs
-      
+
      return callback
-     
+
 FileData(
     callback=get_callback("foo", "bar", extra1="baz", extra2="qux"),
     format=FileData.Format.JPG
@@ -287,7 +285,7 @@ FileData(
 ### Data from Asynchronous Callback (new in version 1.5.0)
 
 Using asynchronous callbacks can be useful to speed up data uploads, especially when the data is not available locally.
-In the same way as for synchronous callbacks, the callback function is invoked with the `Resource.filename` as its 
+In the same way as for synchronous callbacks, the callback function is invoked with the `Resource.filename` as its
 argument when it is time to upload that single file. Asynchronous callbacks can be used in the following way:
 
 ```python
@@ -305,8 +303,8 @@ Image(
 
 ## IMU Data
 
-Inertial Measurement Unit (IMU) data may be provided for scenes containing LIDAR point clouds. This can be used to 
-perform motion compensation in multi-lidar setups, and by default if any IMU data is provided this will be done. 
+Inertial Measurement Unit (IMU) data may be provided for scenes containing LIDAR pointclouds. This can be used to
+perform motion compensation in multi-lidar setups, and by default if any IMU data is provided this will be done.
 Motion compensation may be disabled via a [scene feature flag](feature_flags), for cases where motion compensation has
 already been performed prior to upload.
 
@@ -314,5 +312,5 @@ Refer to [Motion Compensation for Multi-Lidar Setups](scenes/lidars_with_imu_dat
 
 ## Scene Feature Flags
 
-Control over optional parts of the scene creation process is possible via `FeatureFlags` that are passed when invoking 
+Control over optional parts of the scene creation process is possible via `FeatureFlags` that are passed when invoking
 the create operation on the scene. Refer to [the feature flags documentation](feature_flags) for details.
