@@ -128,7 +128,7 @@ wasm_binary = compile_to_wasm("path/to/source")
 The returned binary can then be used to create a `CustomCameraCalibration` object. If the `output_wasm` parameter is passed,
 the binary will be saved to the specified path. The `kognicutil` cli can be used as follows
 ```bash
-koignicutil wasm compile path/to/source path/to/output.wasm
+kognicutil wasm compile path/to/source path/to/output.wasm
 ```
 
 Note that, validation is run by default after compilation. This can be disabled with the `--skip-validation` flag.
@@ -145,7 +145,7 @@ Below follows examples of a simplified version of the pinhole calibration in a f
 A [Rust file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.rs)
 can be compiled with
 ```bash
-koignicutil wasm compile path/to/source.rs path/to/output.wasm
+kognicutil wasm compile path/to/source.rs path/to/output.wasm
 ```
 
 Note that `panics` are not supported and compilation will fail if the code contains it.
@@ -156,7 +156,7 @@ Note that `panics` are not supported and compilation will fail if the code conta
 A [Rust module with Cargo](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole-rust-cargo)
 can be compiled with
 ```bash
-koignicutil wasm compile path/to/source/Cargo.toml path/to/output.wasm
+kognicutil wasm compile path/to/source/Cargo.toml path/to/output.wasm
 ```
 
 Note that it is important to specify that the library is a `cdylib` and it is also recommended to set `strip = true` to
@@ -175,12 +175,12 @@ strip = true
 A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.cc)
 can be compiled with
 ```bash
-koignicutil wasm compile path/to/source.cc path/to/output.wasm
+kognicutil wasm compile path/to/source.cc path/to/output.wasm
 ```
 
 or with
 ```bash
-koignicutil wasm compile path/to/source.cpp path/to/output.wasm
+kognicutil wasm compile path/to/source.cpp path/to/output.wasm
 ```
 
 
@@ -189,5 +189,5 @@ koignicutil wasm compile path/to/source.cpp path/to/output.wasm
 A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.c)
 can be compiled with
 ```bash
-koignicutil wasm compile path/to/source.c path/to/output.wasm
+kognicutil wasm compile path/to/source.c path/to/output.wasm
 ```
