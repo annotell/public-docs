@@ -463,6 +463,10 @@ The `point_class` value `"line_reference_point"` is reserved for future use case
 
 ## Representing Geometry Collections
 
+:::note
+Introduced in `kognic_format_version` 2.2
+:::
+
 Related documenation for the task view
 https://docs.kognic.com/class-groups
 
