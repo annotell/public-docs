@@ -460,3 +460,133 @@ This attribute is reserved for future use on other point-based geometries.
 A group of points is used when multiple points refere to the same object.
 The attribute `point_class` is required for each of the points in the point group, and the `point_class` has to be different from the object type.
 The `point_class` value `"line_reference_point"` is reserved for future use cases.
+
+## Representing Geometry Collections
+
+:::note
+Introduced in `kognic_format_version` 2.2
+:::
+
+Related documenation for the task view
+https://docs.kognic.com/class-groups
+
+A collection of geometries as described in the link above will be represented as having a reserved relation as type `geometry_collection`.
+
+```json
+{
+  "openlabel": {
+    "frames": {
+      "0": {
+        "objects": {
+          "516b6045-87e8-40e4-a104-5eaa600e8e3a": {
+            "object_data": {
+              "bbox": [
+                {
+                  "name": "bbox-abc123",
+                  "val": [
+                    ...
+                  ]
+                }
+              ]
+            }
+          },
+          "fe07e9cf-f42c-4b48-b4d8-bab75b7e9827": {
+            "object_data": {
+              "poly2d": [
+                {
+                  "name": "curve-abc123",
+                  "val": [
+                    ...
+                  ]
+                }
+              ]
+            }
+          },
+          "329508b7-729c-4298-8141-f329dbc32ad0": {
+            "object_data": {
+              "poly2d": [
+                {
+                  "name": "curve-abc123",
+                  "val": [
+                    ...
+                  ]
+                }
+              ]
+            }
+          },
+          "4c321584-0e88-4578-b0f0-b5e8c974244b": {
+            "object_data": {
+              "text": [
+                {
+                  "name": "lane",
+                  "val": "right"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "schema_version": "1.0.0",
+      "kognic_format_version": "2.2"
+    },
+    "objects": {
+      "516b6045-87e8-40e4-a104-5eaa600e8e3a": {
+        "name": "516b6045-87e8-40e4-a104-5eaa600e8e3a",
+        "object_data": {
+            ...
+        },
+        "type": "some_bbox"
+      },
+      "fe07e9cf-f42c-4b48-b4d8-bab75b7e9827": {
+        "name": "fe07e9cf-f42c-4b48-b4d8-bab75b7e9827",
+        "object_data": {
+            ...
+        },
+        "type": "some_line"
+      },
+      "329508b7-729c-4298-8141-f329dbc32ad0": {
+        "name": "329508b7-729c-4298-8141-f329dbc32ad0",
+        "object_data": {
+            ...
+        },
+        "type": "some_line"
+      },
+      "4c321584-0e88-4578-b0f0-b5e8c974244b": {
+        "name": "4c321584-0e88-4578-b0f0-b5e8c974244b",
+        "object_data": {
+            ...
+        },
+        "type": "some_collection"
+      }
+    },
+    "relations": {
+      "0": {
+        "name": "0",
+        "rdf_objects": [
+          {
+            "uid": "516b6045-87e8-40e4-a104-5eaa600e8e3a",
+            "type": "object"
+          },
+          {
+            "uid": "fe07e9cf-f42c-4b48-b4d8-bab75b7e9827",
+            "type": "object"
+          },
+          {
+            "uid": "329508b7-729c-4298-8141-f329dbc32ad0",
+            "type": "object"
+          }
+        ],
+        "rdf_subjects": [
+          {
+            "uid": "4c321584-0e88-4578-b0f0-b5e8c974244b",
+            "type": "object"
+          }
+        ],
+        "type": "geometry_collection"
+      }
+    }
+  }
+}
+```
