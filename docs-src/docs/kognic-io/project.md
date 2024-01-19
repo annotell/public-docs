@@ -65,7 +65,7 @@ project_batch = client.project.create_batch(
   batch="<batch_external_id>",
 )
 ```
-The newly created batch will contain the same Annotation Types (see [Annotation Types](annotation_types)) as 
+The newly created batch will contain the same [Annotation Types](annotation_types) as 
 the latest batch by default.
 
 This method has an optional flag `publish_previous_batches` which defaults to `False`. By setting this flag to 
