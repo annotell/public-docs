@@ -93,9 +93,11 @@ Detailed documentation on how to create calibrations via the API is present in t
 Metadata can be added to scenes via the `metadata` field. It consists of flat key-value pairs, which means that nested data structures are not allowed. Metadata can be used to include additional information about a scene.
 Metadata cannot be seen by the annotators, but there are some reserved keywords that can alter the behaviour of the Kognic annotation tool. Reserved keywords can be found in the `MetaData` object in the python client.
 
-### Frame (non-sequential scene)
+### Frame
 
 The Frame object specifies the binary data to be annotated (.jpg, .png, .las etc) as well as which sensor the data originated from. Note that the `Frame` object is different for each scene type, even though the overall structure is similar (see details below).
+
+#### Non sequential frame
 
 As an example, let's say we want to create a scene consiting of images from three camera sensors `R`, `F` and `L`. The corresponding binary data are in the files `img_cam_R.jpg`, `img_cam_F.jpg` and `img_cam_F.jpg`. This would correspond the scene type `Cameras`.
 
@@ -137,7 +139,7 @@ lidars_and_cameras = LidarsAndCameras(
 )
 ```
 
-### Frames (sequential scene)
+#### Sequential frames
 
 Sequential scene takes a list of `Frame` objects instead of a single `Frame`. In addition, the `Frame` object associated with sequential scenes have three additional parameters: `frame_id`, `relative_timestamp` and `metadata`.
 
@@ -160,8 +162,7 @@ A common use case is to use uuids for each `frame_id`, or a combination of `exte
 For example, if the `external_id` of the scene is `shanghai_20200101` then the `frame_id` could be encoded as
 `shanghai_20200101:0` for the first frame, `shanghai_20200101:1` for the second frame and so on.
 
-Similar to the metadata capability available on a scene-level, it's also possible to provide metadata on a _frame_ level.
-It consists of _flat_ key-value pairs and is not exposed to annotators during the production of annotators.
+It's also possible to provide `metadata` on a _frame_ level for sequential frames. It consists of _flat_ key-value pairs and is not exposed to annotators during the production of annotators.
 
 As an example, let's say we want to create a scene of type `CamerasSequence` consisting of 2 frames, each with camera images
 from two sensors `R` and `L`.
