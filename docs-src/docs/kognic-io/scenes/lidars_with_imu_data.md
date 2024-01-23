@@ -1,6 +1,7 @@
 ---
 title: Motion Compensation
 ---
+
 An inherent problem with labeling any lidar setup
 is that the resulting point
 cloud is not a snapshot from a single instant in time but a time interval
@@ -16,15 +17,14 @@ motion compensation, adjusting the points in the point cloud so that they repres
 instant in time.
 
 Additionally, each point in the provided point clouds need to have a unix timestamp specified
-(in nanoseconds), so that the motion compensation can work. 
+(in nanoseconds), so that the motion compensation can work.
 
 What instant in time to motion-compensate the points to can be specified
-with the `unix_timestamp` parameter. If this is not specified then, for each 
+with the `unix_timestamp` parameter. If this is not specified then, for each
 frame, the median time of all points in the frame will be used instead.
 
 Motion compensation is of particular importance when annotation is to be performed on multiple lidar
 sweeps at once, e.g. in multi-lidar setups and when point clouds are aggregated across frames.
-
 
 :::caution All Unix Timestamps need to be in nanoseconds
 In order for the motion compensation to work correctly it is important with a consistent
@@ -34,7 +34,7 @@ unit of time. Therefore, all unix timestamps needs to be provided in nanoseconds
 Note that all timestamps (in point clouds and the provided `unix_timestamp`) must be encompassed by
 the timestamps in the imu data. Otherwise, the scene creation will fail.
 
-IMU data is provided as a list of `IMUData` objects in the root of the  object in the following way:
+IMU data is provided as a list of `IMUData` objects in the root of the object in the following way:
 
 ```python
 
@@ -61,7 +61,7 @@ frames = [
 
 lidars_and_cam_seq = LidarsAndCamerasSequence(
     ...,
-    imu_data = imu_data, 
+    imu_data = imu_data,
     frames = frames,
 )
 
@@ -70,18 +70,28 @@ client = KognicIOClient()
 client.lidars_and_cameras_sequence.create(
     lidars_and_cam_seq,
     project="project-ext-id",
-    dryrun=False
+    dryrun=True,
 )
 ```
 
-:::tip Use dryrun to validate 
+:::tip Use dryrun to validate
 Setting `dryrun` parameter to true in the method call, will validate the scene using the API but not create it.
 :::
 
 ## Enable/disable motion compensation
 
-By default motion compensation is performed for s with LIDAR pointclouds when IMU data is provided.
+By default motion compensation is performed for scenes with LIDAR pointclouds when IMU data is provided.
 
-Whether motion compensation is enabled is controlled by an [ feature flag](../feature_flags), the default is enabled. To disable motion compensation you must provide a different set of flags from the default, and not include the motion compensation flag. Calling the `create` method for an , and not specifying feature flags at all is equivalent to using the defaults, and motion compensation will be performed.
+Whether motion compensation is enabled is controlled by an [feature flag](../feature_flags), the default is enabled. To disable motion compensation, you must explicitly provide an empty feature flag
+
+````python
+from kognic.io.model.scene.feature_flags import FeatureFlags
+
+client.lidars_and_cameras_sequence.create(
+    ...,
+    feature_flags=FeatureFlags()
+)
+```.
 
 It may be desirable to disable motion compensation in cases where pointclouds are already motion compensated outside of the Kognic platform.
+````
