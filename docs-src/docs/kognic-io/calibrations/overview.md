@@ -17,8 +17,8 @@ Note that after a calibration has been created you can, and should, reuse the sa
 ## Types of calibrations
 
 All calibration types contain information about the position and orientation of the sensor in 3D. This is relative to
-the reference coordinate system. More information about lidar calibrations can be found [here](lidars.md). For cameras, the calibration also contains information about mapping 3D points to the
-image plane of the camera. We support different a few different types of [standard camera calibrations](cameras-standard.md), where you only
+the reference coordinate system. More information about lidar calibrations can be found [here](lidars.md). The calibration also contains information about mapping 3D points to the
+image plane of the camera. For cameras, we support different types of [standard camera calibrations](cameras-standard.md), where you only
 have to provide the intrinsic parameters of the camera. If your camera model is not supported, you can also provide
 a [custom camera calibration](cameras-custom.md) where you provide the implementation in the form of a WebAssembly module.
 

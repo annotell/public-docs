@@ -13,25 +13,25 @@ The Kognic platform supports uploading pre-annotations in the OpenLabel format u
 ## Creating pre-annotations using the kognic-io client
 
 There are 3 steps that are needed in order to create pre-annotations in the Kognic platform.
+
 1. Create a scene by uploading all the needed data
 2. Upload an OpenLabel annotation as a pre-annotation
 3. Create an input from the scene
 
-Note that these steps can be performed in one call with the `create_inputs` function, 
+Note that these steps can be performed in one call with the `create_inputs` function,
 see [Creating Multiple Inputs With One Call](working_with_scenes_and_inputs.md#creating-multiple-inputs-with-one-call)
 
 ### 1. Creating a scene
 
-:::note
-The scene is a subset of the input, specifically referring to the data, such as images or point clouds.
-An input is what is created when this data is ready to be annotated.
-:::
+The interface for creating a scene is similar to creating an input.
 
-The interface for creating just a scene, without an input, is the same as we are familiar with.
-The exception is that by not providing a project or a batch in the function call, the scene will be "dangling" until deemed ready for annotation
+```python
+from kognic.io.client import KognicIOClient
+client = KognicIOClient()
 
-```python reference
-https://github.com/annotell/kognic-io-examples-python/blob/master/examples/lidars_and_cameras_seq_with_pre_annotations.py#L83-L84
+# Create Scene but not input since we don't provide project or batch
+    scene_response = client.lidars_and_cameras_sequence.create(lidars_and_cameras_seq, annotation_types=annotation_types, dryrun=dryrun)
+
 ```
 
 ### 2. Uploading an OpenLabel annotation
@@ -43,11 +43,10 @@ Load your OpenLabel annotation according to the documentation in `kognic-openlab
 ```python
 client.pre_annotation.create(
     scene_uuid=scene_response.scene_uuid, # from step 1
-    pre_annotation=OpenLabelAnnotation(...), 
+    pre_annotation=OpenLabelAnnotation(...),
     dryrun=dryrun
 )
 ```
-
 
 ### 3. Create the input
 
@@ -72,15 +71,15 @@ Pre-annotations use the OpenLabel format/schema but not all OpenLabel features a
 
 These features or combinations of features are not currently supported, or only have partial support.
 
-* Static geometries: not supported
-    * These are bounding boxes, cuboids, etc. declared in the OpenLabel under `objects.*.objectData`
-* Geometry-specific attributes: not supported on 3D geometry
-    * These are attributes declared in the OpenLabel on a single geometric shape, in other words an attribute that only applies to the object as seen by one sensor; a common example is `occlusion` which is recorded separately for each camera.
-    * May also be referred to as source-, stream- or sensor-specific attributes.
-    * 3D geometry is anything that can be drawn when annotating a pointcloud, e.g. cuboids.
-    * Geometry-specific attributes are permitted on 2D geometry e.g. bounding boxes
-    * Note that the [task definition](../key_concepts.md#task-definition), must designate a property as source specific before it may be used in this way.
-    * The `stream` attribute is a special case and is excepted from this rule
+- Static geometries: not supported
+  - These are bounding boxes, cuboids, etc. declared in the OpenLabel under `objects.*.objectData`
+- Geometry-specific attributes: not supported on 3D geometry
+  - These are attributes declared in the OpenLabel on a single geometric shape, in other words an attribute that only applies to the object as seen by one sensor; a common example is `occlusion` which is recorded separately for each camera.
+  - May also be referred to as source-, stream- or sensor-specific attributes.
+  - 3D geometry is anything that can be drawn when annotating a pointcloud, e.g. cuboids.
+  - Geometry-specific attributes are permitted on 2D geometry e.g. bounding boxes
+  - Note that the [task definition](../key_concepts.md#task-definition), must designate a property as source specific before it may be used in this way.
+  - The `stream` attribute is a special case and is excepted from this rule
 
 ## Supported pre-annotation features
 
@@ -90,21 +89,20 @@ These features or combinations of features are not currently supported, or only 
 Objects cannot have multiple 3D geometries in the same frame
 :::
 
-| Name                | OpenLABEL field | Description                                                                         | Attributes               |
-|---------------------|-----------------|-------------------------------------------------------------------------------------|--------------------------|
-| Cuboid              | `cuboid`        | Cuboid in 3D                                                                        | -                        |
-| Bounding box        | `bbox`          | Bounding box in 2D                                                                  | -                        |
-| 3D line             | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.          | -                        |
-| Polygon             | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons)  in 2D            | `is_hole`                |
-| Multi-polygon       | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D | `is_hole` & `polygon_id` |
-| Curve               | `poly2d`        | [Curve](../openlabel/openlabel-format.md#representing-curves) or line in 2D         | `interpolation_method`   |
-| 2D point            | `point2d`       | [Point](../openlabel/openlabel-format.md#representing-2d-points)                    | -                        |
-| Group of 2D points  | `point2d`       | [Group of points](../openlabel/openlabel-format.md#representing-groups-of-2d-points)| `point_class`            |
-
+| Name               | OpenLABEL field | Description                                                                          | Attributes               |
+| ------------------ | --------------- | ------------------------------------------------------------------------------------ | ------------------------ |
+| Cuboid             | `cuboid`        | Cuboid in 3D                                                                         | -                        |
+| Bounding box       | `bbox`          | Bounding box in 2D                                                                   | -                        |
+| 3D line            | `poly3d`        | Line in 3D. Append the first point at the end if you want it to be closed.           | -                        |
+| Polygon            | `poly2d`        | [Polygon](../openlabel/openlabel-format.md#representing-polygons) in 2D              | `is_hole`                |
+| Multi-polygon      | `poly2d`        | [Multi-polygon](../openlabel/openlabel-format.md#representing-multi-polygons) in 2D  | `is_hole` & `polygon_id` |
+| Curve              | `poly2d`        | [Curve](../openlabel/openlabel-format.md#representing-curves) or line in 2D          | `interpolation_method`   |
+| 2D point           | `point2d`       | [Point](../openlabel/openlabel-format.md#representing-2d-points)                     | -                        |
+| Group of 2D points | `point2d`       | [Group of points](../openlabel/openlabel-format.md#representing-groups-of-2d-points) | `point_class`            |
 
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
 should be expressed in the lidar coordinate system in the single-lidar case, but in the reference coordinate system in
-the multi-lidar case. The rotation of cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids). 
+the multi-lidar case. The rotation of cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids).
 2D geometries should be expressed in pixel coordinates. See [coordinate systems](calibrations/overview.md) for more information.
 
 ### Attributes
@@ -121,7 +119,7 @@ Currently not supported. Contact Kognic if you need support for this or use regu
 
 ### Frames
 
-Every pre-annotation must contain frames with unique timestamps that are among the ones specified in the scene. The 
+Every pre-annotation must contain frames with unique timestamps that are among the ones specified in the scene. The
 reason for this is that the timestamps are used to map the frame in the pre-annotation to the correct frame in the scene.
 In the static case, one frame should be used with timestamp 0.
 
@@ -131,7 +129,7 @@ Currently not supported. Contact Kognic if you need support for this or use regu
 
 ### Streams
 
-Every geometry must have the `stream` property specified. This property determines which stream (or sensor) that the 
+Every geometry must have the `stream` property specified. This property determines which stream (or sensor) that the
 geometry appears in. It is important that the stream is among the ones specified in the scene and of the same type, for
 example `camera` or `lidar`.
 
@@ -140,17 +138,18 @@ example `camera` or `lidar`.
 Pre-annotations can be sparse, meaning that its objects or geometries do not need to be present in every frame. Instead,
 they can be present in a subset of frames and then interpolated in the frames in between. Utilizing this feature can speed
 up the annotation process significantly for sequences. Sparseness can be accomplished in two different ways, either by
-using object data pointers or the boolean property `interpolated`. The former is the recommended way of doing it in most 
-cases since it will lead to a more compact pre-annotation. The latter is useful when the pre-annotation is created from 
+using object data pointers or the boolean property `interpolated`. The former is the recommended way of doing it in most
+cases since it will lead to a more compact pre-annotation. The latter is useful when the pre-annotation is created from
 exported annotations from the Kognic platform.
 
 **Interpolation** is done by linearly interpolating the geometry values between key frames. This is done in pixel
 coordinates for 2D geometries. For 3D geometries, the interpolation can be done in either the frame local coordinate system
-or the world coordinate system (see [Coordinate Systems](./coordinate_systems.md)). This is configured in the annotation 
-instruction so reach out to the Kognic team about this if you are unsure. Note that interpolation in the world coordinate 
+or the world coordinate system (see [Coordinate Systems](./coordinate_systems.md)). This is configured in the annotation
+instruction so reach out to the Kognic team about this if you are unsure. Note that interpolation in the world coordinate
 system is recommended but requires that the scene contains ego poses.
 
 ### Object Data Pointers
+
 In OpenLABEL, object data pointers are used to create a specification for objects. For example, you can specify what attributes
 and geometries that are used for specific objects. In addition, you can specify for which frames that these are present.
 If a geometry is specified in the object data pointer, it will be present in all frames that the object data pointer is
@@ -158,31 +157,29 @@ pointing to. If the geometry is not provided in some of these frames, it will be
 be provided for the first and last frame in the object data pointer. Otherwise, the pre-annotation will be rejected.
 
 One limitation is that a geometry must be in the same stream for all frames when using object data pointers. This is because
-interpolation is done in the stream coordinate system. If you need to use geometries of the same type in different streams, 
+interpolation is done in the stream coordinate system. If you need to use geometries of the same type in different streams,
 you can simply use different names for the geometries in the different streams.
 
 [Sparseness with Object Data Pointers](#sparseness-with-object-data-pointers) shows an example of how to use object data pointers.
-
 
 ### Interpolated Property
 
 The boolean property `interpolated` can be used to specify that a geometry should be interpolated. Geometries are still
 required to be present in interpolated frames but their geometry values will be ignored. Note that interpolated geometries
 must have corresponding geometries (interpolated or not) in the first and last frame of the pre-annotation. Otherwise, the
-pre-annotation will be rejected. 
+pre-annotation will be rejected.
 
-Using the `interpolated` property is the recommended way of doing it when the pre-annotation is created from exported 
+Using the `interpolated` property is the recommended way of doing it when the pre-annotation is created from exported
 annotations from the Kognic platform.
 
 [Sparseness with Interpolated Property](#sparseness-with-interpolated-property) shows an example of how to use the `interpolated` property.
 
 ### Attributes
 
-Attributes are handled differently compared to geometries. If an attribute is not present in a frame, its last value 
+Attributes are handled differently compared to geometries. If an attribute is not present in a frame, its last value
 will simply be used if the object (or geometry if the property is source-specific) is present in the frame. If the object
 is not present in the frame, the attribute will be ignored. Dense attributes will be sparsified automatically when the
 pre-annotation is uploaded to the Kognic platform.
-
 
 ## Examples
 
@@ -199,7 +196,7 @@ Below follows examples of supported pre-annotations.
         "frame_properties": {
           "timestamp": 0,
           "external_id": "0",
-          "streams": {"LIDAR1":  {}, "ZFC":  {}}
+          "streams": { "LIDAR1": {}, "ZFC": {} }
         },
         "objects": {
           "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
@@ -207,9 +204,7 @@ Below follows examples of supported pre-annotations.
               "bbox": [
                 {
                   "attributes": {
-                    "text": [
-                      { "name": "stream", "val": "ZFC" }
-                    ]
+                    "text": [{ "name": "stream", "val": "ZFC" }]
                   },
                   "name": "Bounding-box-1",
                   "val": [1.0, 1.0, 40.0, 30.0]
@@ -218,22 +213,14 @@ Below follows examples of supported pre-annotations.
               "cuboid": [
                 {
                   "attributes": {
-                    "text": [
-                      { "name": "stream", "val": "LIDAR1" }
-                    ]
+                    "text": [{ "name": "stream", "val": "LIDAR1" }]
                   },
                   "name": "cuboid-89ac8a2b",
                   "val": [
-                    2.079312801361084,
-                    -18.919870376586914,
-                    0.3359137773513794,
-                    -0.002808041640852679,
-                    0.022641949116037438,
-                    0.06772797660868829,
-                    0.9974429197838155,
-                    1.767102435869269,
-                    4.099334155319101,
-                    1.3691029802958168
+                    2.079312801361084, -18.919870376586914, 0.3359137773513794,
+                    -0.002808041640852679, 0.022641949116037438,
+                    0.06772797660868829, 0.9974429197838155, 1.767102435869269,
+                    4.099334155319101, 1.3691029802958168
                   ]
                 }
               ]
@@ -249,21 +236,18 @@ Below follows examples of supported pre-annotations.
       "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
         "name": "1232b4f4-e3ca-446a-91cb-d8d403703df7",
         "object_data": {
-          "text": [
-            { "name": "color", "val": "red" }
-          ]
+          "text": [{ "name": "color", "val": "red" }]
         },
         "type": "PassengerCar"
       }
     },
-    "streams": { 
-      "LIDAR1": { "type": "lidar" }, 
+    "streams": {
+      "LIDAR1": { "type": "lidar" },
       "ZFC": { "type": "camera" }
     }
   }
 }
 ```
-
 
 ### 3D line with a dynamic property
 
@@ -289,11 +273,8 @@ Below follows examples of supported pre-annotations.
                   "closed": false,
                   "name": "line-3d-1",
                   "val": [
-                    -5.0, 0.0, 0.0, 
-                    -5.0, 10.0, 0.0,
-                    5.0, 10.0, 0.0,
-                    5.0, 0.0, 0.0, 
-                    -5.0, 0.0, 0.0
+                    -5.0, 0.0, 0.0, -5.0, 10.0, 0.0, 5.0, 10.0, 0.0, 5.0, 0.0,
+                    0.0, -5.0, 0.0, 0.0
                   ]
                 }
               ],
@@ -321,7 +302,7 @@ Below follows examples of supported pre-annotations.
 ### Sparseness with Object Data Pointers
 
 In the example below the object `1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box called `the-bbox-name` that is
-provided in frames 0 and 3. In frames 1 and 2, the bounding box will be interpolated. 
+provided in frames 0 and 3. In frames 1 and 2, the bounding box will be interpolated.
 
 ```json
 {
@@ -366,14 +347,12 @@ provided in frames 0 and 3. In frames 1 and 2, the bounding box will be interpol
 }
 ```
 
-
 ### Sparseness with Interpolated Property
 
-In the example below sparseness is determined using the `interpolated` property. The object 
-`1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box for which the `interpolated` property is set to `true` in 
+In the example below sparseness is determined using the `interpolated` property. The object
+`1232b4f4-e3ca-446a-91cb-d8d403703df7` has a bounding box for which the `interpolated` property is set to `true` in
 frames 1 and 2 but not in frames 0 and 3. The geometry values in frames 1 and 2 are ignored and instead interpolated
 from the geometry values in frames 0 and 3.
-
 
 ```json
 {
