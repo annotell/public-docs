@@ -82,7 +82,7 @@ Setting `dryrun` parameter to true in the method call, will validate the scene u
 
 By default motion compensation is performed for scenes with LIDAR pointclouds when IMU data is provided.
 
-Whether motion compensation is enabled is controlled by an [feature flag](../feature_flags), the default is enabled. To disable motion compensation, you must explicitly provide an empty feature flag
+Whether motion compensation is enabled or not is controlled by a [feature flag](../feature_flags). By default it is enabled but it can be disabled by providing an empty feature flag.
 
 ````python
 from kognic.io.model.scene.feature_flags import FeatureFlags
