@@ -91,7 +91,6 @@ client.lidars_and_cameras_sequence.create(
     ...,
     feature_flags=FeatureFlags()
 )
-```.
+```
 
 It may be desirable to disable motion compensation in cases where pointclouds are already motion compensated outside of the Kognic platform.
-````
