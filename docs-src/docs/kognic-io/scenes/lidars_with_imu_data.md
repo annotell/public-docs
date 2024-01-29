@@ -84,7 +84,7 @@ By default motion compensation is performed for scenes with LIDAR pointclouds wh
 
 Whether motion compensation is enabled or not is controlled by a [feature flag](../feature_flags). By default it is enabled but it can be disabled by providing an empty feature flag.
 
-````python
+```python
 from kognic.io.model.scene.feature_flags import FeatureFlags
 
 client.lidars_and_cameras_sequence.create(
