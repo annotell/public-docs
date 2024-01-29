@@ -258,7 +258,7 @@ The `prediction_str` and `grayscale_mapping` can thereafter be used in the openl
                             "image": [
                                 {
                                     "name": "a_human_readable_name",
-                                    "val": "prediction_str",
+                                    "val": prediction_str,
                                     "mime_type": "image/png",
                                     "encoding": "base64",
                                     "attributes": {
@@ -284,7 +284,7 @@ The `prediction_str` and `grayscale_mapping` can thereafter be used in the openl
         "objects": {
             "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2": {
                 "name": "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2",
-                "type": segmentation_bitmap
+                "type": "segmentation_bitmap"
             }
         },
         "streams": {
