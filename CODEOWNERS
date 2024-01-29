@@ -1,2 +1,9 @@
+# Docs for codeowners https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
 # Make Team Scenes & Predictions default PR reviewer for this repo
-* @annotell/scenes-and-predictions
+
+- @annotell/scenes-and-predictions
+
+# Make team data quality owner of dataset refinement directory
+
+docs-src/docs/dataset-refinement @annotell/data-quality
