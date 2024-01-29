@@ -195,7 +195,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
 
 ### Segmentation bitmap
 
-## Transforming, upscaling, padding and base64-encoding a small color-image to a larger grayscale image using Python PIL
+#### Transforming, upscaling, padding and base64-encoding a small color-image to a larger grayscale image using Python PIL
 
 This code example gives an example of how to go from a multicolor prediction bitmap image of resolution 300 x 200 to a grayscale image of resolution 1000 x 800, by first converting to grayscale, then rescaling the prediction to 600 x 400 and then padding equally on the sides. It also includes code for base64-encoding the image as a string, that later can be used in the openlabel. This code only makes use of built-in numpy functions, but is not optimized for performance.
 
@@ -243,7 +243,7 @@ prediction_str = base64.b64encode(image_bytes.getvalue()).decode("utf-8")
 
 ```
 
-## Openlabel for a segmentation bitmap
+#### Openlabel for a segmentation bitmap
 
 The `prediction_str` and `grayscale_mapping` can thereafter be used in the openlabel like
 
@@ -284,7 +284,7 @@ The `prediction_str` and `grayscale_mapping` can thereafter be used in the openl
         "objects": {
             "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2": {
                 "name": "07d469f9-c9ab-44ec-8d09-0c72bdb44dc2",
-                "type": "segmentation_bitmap"
+                "type": segmentation_bitmap
             }
         },
         "streams": {
