@@ -10,14 +10,14 @@ The dataset API is in an early release stage and might be subject to changes.
 
 Before you begin, make sure you have:
 
-* Access to the refinement tool
+* Access to the dataset exploration tool
 * An account with permissions to use our API
 * Generated API credentials. See [API Credentials](../kognic_apis.md/#generating-credentials)
 * Installed our Python 3 SDK for authentication - [kognic-auth](https://pypi.org/project/kognic-auth/)
 
 ## No API Client Available
 
-At the moment we do not provide an API client for the refinement tool. Instead, we'll provide examples
+At the moment we do not provide an API client for the dataset exploration tool. Instead, we'll provide examples
 of how you can interact with our API.
 
 ## Endpoints

@@ -2,7 +2,7 @@
 title: The prediction format
 ---
 
-Predictions use the OpenLabel format/schema. This is the same format as the one used
+Predictions use the OpenLabel format, which is a JSON schema. This is the same format as the one used
 for [uploading pre-annotations](../kognic-io/pre_annotations/#openlabel-support). General information about the
 OpenLabel format can be found in [here](../openlabel/openlabel-format).
 
@@ -16,25 +16,36 @@ The current API for uploading predictions supports the following geometries:
 | Bounding box           | `bbox`          | Bounding box in 2D             |
 | Bitmaps (segmentation) | `image`         | Segmentation bitmap for images |
 
-Note that all geometries should be specified under frames rather than in the root of the pre-annotation. The rotation of
-cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids). 2D geometries
-should be expressed in pixel coordinates. See [coordinate systems](../kognic-io/coordinate_systems.md) for more
-information.
+The rotation of cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids) (see [coordinate systems](../kognic-io/coordinate_systems.md) for more information). 2D geometries should be expressed in pixel coordinates.
 
-`frame_properties` is required, same as for uploading pre annotations. For non-video
-data, `frame_properties.external_id` will be resolved automatically if it is left as an empty string.
-`frame_properties.timestamp` will be ignored for non-video data and can therefore be set to 0. `frame_properties.stream`
-can be left as an empty dict.
+For this API, the relevant parts (keys) are `frames`, `objects`, `streams`, `ontologies` and `metadata`. The last one (`metadata`) is the easiet one, and should just read `schema_version": "1.0.0"` (see examples below for full context). Also `stream` is straightforward, and should specify what sensors (cameras, lidars, ...) there are and what their name, like `sensor_name: {"type": "camera"}` or `sensor_name: {"type": "lidar"}`. Again, see the examples below for full context.
 
-For cuboids and bounding boxes, existence confidence can be provided by specifying an attribute called `confidence`. It is not required and will be set to 1.0 if it is left empty. If provided, it must be defined as a numeric value between 0.0 and 1.0. Existence confidence is set to 0.85 in the examples below. The `object_data.type` will show up as the class name in the tool.
+All parts of a prediction that is time-varying throughout a sequence is described in `frames`, such as corodinates and dynamic properties. Each frame in the sequence is represented by a key-value pair under `frames`. The key is the `frame_id`, and should look like
+```json
+frame_id: {
+  "frame_properties": {
+    "timestamp": 0,
+    "external_id": "",
+    "streams": {}
+  },
+  "objects": {
+    ...
+  }
+}
+```
+The value for `frame_properties.timestamp` (measured in ms, recommended to set to `0` for non-sequence data) will be used for matching each predicted frame to the relevant annotated frame, and must therefore match the scene that has been annotated. We recommend that `frame_id` (a string) follows the `frame_id` used to describe the underlying scene, although `frame_properties.timestamp` will take precendence in case of mismatch. In case of non-sequence data, a good choice for `frame_id` is `"0"`. The values for `frame_properties.external_id` and `frame_properties.stream` will be resolved automatically if left empty as shown.
 
-For segmentation bitmaps, the image itself is a grayscale 8-bit PNG image of the same resolution as the annotated images (if the actual prediction only partially cover the annotated image or is of lower resolution, it has to be padded and/or upscaled). The image itself is supplied in the openlabel by pasting its base64-encoding as a string. Moreover, also an `ontology` has to be supplied which describes what class corresponds to each color level, see the example below. With an 8-bit grayscale image, it is possible to encode up to 256 classes.
+The key `objects` in turn contains key-value pairs, where each such pair is basically an object in that frame. Note that there is the key `objects` in each frame, as well as in the root. They describe basically the same objects, but the information that is potentially time-varying (i.e. frame-specific, such as coordinates) belongs to the frame, whereas static information (such as the object class) belongs in the root. The object keys (strings) are arbitrary, but must match the keys in the different `objects` if they are describing the same object.
 
-The `camera_id` and `lidar_id` in the examples below must match the id of the sensor in already existing annotations.
+Please refer to the examples below on how to describe the objects in detail. For cuboids and bounding boxes, an existence confidence can be provided by specifying the frame-specific attribute `confidence`. It must be a numeric value between 0.0 and 1.0, and will be set to `1.0` if left empty. If provided, it must be defined as a numeric value. The static `object_data.type` will show up as the class name in the tool.
+
+For segmentation bitmaps, the image itself is a grayscale 8-bit PNG image of the same resolution as the annotated images (if the actual prediction only partially cover the annotated image or is of lower resolution, it has to be padded and/or upscaled). The image itself is supplied in the openlabel by pasting its base64-encoding as a string as an object to a frame. See the example below. Moreover, also an `ontology` has to be supplied which describes what class corresponds to each color level. With an 8-bit grayscale image, it is possible to encode up to 256 classes. The `ontology`can be left out for non-segmentation predictions.
+
+The `camera_id` and `lidar_id` in the examples below must match the id of the sensors in the annotated scene.
 
 ## Prediction examples
 
-### 2D bounding box with a static property
+### 2D bounding box in two frames with a static property `color`
 
 In OpenLabel, a bounding box is represented as a list of 4 values: `[x, y, width, height]`, where `x` and `y` are the
 center coordinates of the bounding box. The `width` and `height` are the width and height of the bounding box. The `x`
@@ -81,6 +92,44 @@ and `y` coordinates are relative to the upper left corner of the image.
             }
           }
         }
+      },
+      "1": {
+        "frame_properties": {
+          "timestamp": 50,
+          "external_id": "",
+          "streams": {}
+        },
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "bbox": [
+                {
+                  "attributes": {
+                    "num": [
+                      {
+                        "val": 0.82,
+                        "name": "confidence"
+                      }
+                    ],
+                    "text": [
+                      {
+                        "name": "stream",
+                        "val": "camera_id"
+                      }
+                    ]
+                  },
+                  "name": "any-human-readable-bounding-box-name",
+                  "val": [
+                    2.0,
+                    3.0,
+                    30.0,
+                    20.0
+                  ]
+                }
+              ]
+            }
+          }
+        }
       }
     },
     "metadata": {
@@ -109,7 +158,7 @@ and `y` coordinates are relative to the upper left corner of the image.
 }
 ```
 
-### 3D cuboid with a static property
+### 3D cuboid in two frames with a static property `color`
 
 Cuboids are represented as a list of 10 values: `[x, y, z, qx, qy, qz, qw, width, length, height]`, where `x`, `y`,
 and `z` are the center coordinates of the cuboid. `x`, `y`, `z`, `width`, `length`, and `height` are in meters.
@@ -165,6 +214,50 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
             }
           }
         }
+      },
+    "1": {
+        "frame_properties": {
+          "timestamp": 50,
+          "external_id": "",
+          "streams": {}
+        },
+        "objects": {
+          "1232b4f4-e3ca-446a-91cb-d8d403703df7": {
+            "object_data": {
+              "cuboid": [
+                {
+                  "attributes": {
+                    "num": [
+                      {
+                        "val": 0.87,
+                        "name": "confidence"
+                      }
+                    ],
+                    "text": [
+                      {
+                        "name": "stream",
+                        "val": "lidar_id"
+                      }
+                    ]
+                  },
+                  "name": "any-human-readable-cuboid-name",
+                  "val": [
+                    3.123312801361927,
+                    -20.285740376586913,
+                    0.0649137773513349,
+                    -0.002808041640852679,
+                    0.022641949116037438,
+                    0.06772797660868829,
+                    0.9974429197838155,
+                    1.767102435869269,
+                    4.099334155319101,
+                    1.3691029802958168
+                  ]
+                }
+              ]
+            }
+          }
+        }
       }
     },
     "metadata": {
@@ -193,7 +286,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
 }
 ```
 
-### Segmentation bitmap
+### A single frame segmentation bitmap
 
 #### Transforming, upscaling, padding and base64-encoding a small color-image to a larger grayscale image using Python PIL
 
