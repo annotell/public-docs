@@ -2,7 +2,7 @@
 title: The prediction format
 ---
 
-Predictions use the OpenLabel format, which is a JSON schema. This is the same format as the one used
+Predictions use the [OpenLabel format](https://www.asam.net/standards/detail/openlabel/), which is expressed in JSON. This is the same format as the one used
 for [uploading pre-annotations](../kognic-io/pre_annotations/#openlabel-support). General information about the
 OpenLabel format can be found in [here](../openlabel/openlabel-format).
 
