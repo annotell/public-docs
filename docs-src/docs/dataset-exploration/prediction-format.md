@@ -20,7 +20,7 @@ The rotation of cuboids should be the same as that in [exports](../openlabel/ope
 
 For this API, the relevant parts (keys) are `frames`, `objects`, `streams`, `ontologies` and `metadata`. The last one (`metadata`) is the easiet one, and should just read `schema_version": "1.0.0"` (see examples below for full context). Also `stream` is straightforward, and should specify what sensors (cameras, lidars, ...) there are and what their name, like `sensor_name: {"type": "camera"}` or `sensor_name: {"type": "lidar"}`. Again, see the examples below for full context.
 
-All parts of a prediction that is time-varying throughout a sequence is described in `frames`, such as corodinates and dynamic properties. Each frame in the sequence is represented by a key-value pair under `frames`. The key is the `frame_id`, and should look like
+All parts of a prediction that is time-varying throughout a sequence is described in `frames`, such as corodinates and dynamic properties. Each frame in the sequence is represented by a key-value pair under `frames`. The key is the `frame_id`, and the value should look like
 ```json
 frame_id: {
   "frame_properties": {
@@ -33,7 +33,7 @@ frame_id: {
   }
 }
 ```
-The value for `frame_properties.timestamp` (measured in ms, recommended to set to `0` for non-sequence data) will be used for matching each predicted frame to the relevant annotated frame, and must therefore match the scene that has been annotated. We recommend that `frame_id` (a string) follows the `frame_id` used to describe the underlying scene, although `frame_properties.timestamp` will take precendence in case of mismatch. In case of non-sequence data, a good choice for `frame_id` is `"0"`. The values for `frame_properties.external_id` and `frame_properties.stream` will be resolved automatically if left empty as shown.
+The value for `frame_properties.timestamp` (measured in ms, recommended to set to `0` for non-sequence data) will be used for matching each predicted frame to the relevant annotated frame, and must therefore match the scene that has been annotated. We recommend that `frame_id` (a string) follows the `frame_id` used to describe the underlying scene, although `frame_properties.timestamp` will take precedence in case of mismatch. In case of non-sequence data, a good choice for `frame_id` is `"0"`. The values for `frame_properties.external_id` and `frame_properties.stream` will be resolved automatically if left empty as shown.
 
 The key `objects` in turn contains key-value pairs, where each such pair is basically an object in that frame. Note that there is the key `objects` in each frame, as well as in the root. They describe basically the same objects, but the information that is potentially time-varying (i.e. frame-specific, such as coordinates) belongs to the frame, whereas static information (such as the object class) belongs in the root. The object keys (strings) are arbitrary, but must match the keys in the different `objects` if they are describing the same object.
 
