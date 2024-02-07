@@ -38,10 +38,10 @@ module.exports = {
         ]
       }
     ],
-    "Dataset refinement": [
-        "dataset-refinement/introduction",
-        "dataset-refinement/prediction-format",
-        "dataset-refinement/uploading-predictions"
+    "Dataset exploration": [
+        "dataset-exploration/introduction",
+        "dataset-exploration/prediction-format",
+        "dataset-exploration/uploading-predictions"
     ],
     "OpenLABEL": [
         "openlabel/openlabel-format",
