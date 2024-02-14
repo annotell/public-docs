@@ -1,6 +1,7 @@
 ---
 title: Understand what your dataset contains
 ---
+This page will help you comprehend the contents of your dataset.
 
 ## Understand which scenes you have annotations for in your dataset
 
