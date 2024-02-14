@@ -41,7 +41,8 @@ module.exports = {
     "Dataset exploration": [
         "dataset-exploration/introduction",
         "dataset-exploration/prediction-format",
-        "dataset-exploration/uploading-predictions"
+        "dataset-exploration/uploading-predictions",
+        "dataset-exploration/understand-dataset-content"
     ],
     "OpenLABEL": [
         "openlabel/openlabel-format",
