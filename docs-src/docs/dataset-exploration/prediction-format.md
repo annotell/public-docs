@@ -41,7 +41,7 @@ Please refer to the examples below on how to describe the objects in detail. For
 
 For segmentation bitmaps, the image itself is a grayscale 8-bit PNG image of the same resolution as the annotated images (if the actual prediction only partially cover the annotated image or is of lower resolution, it has to be padded and/or upscaled). The image itself is supplied in the openlabel by pasting its base64-encoding as a string as an object to a frame. See the example below. Moreover, also an `ontology` has to be supplied which describes what class corresponds to each color level. With an 8-bit grayscale image, it is possible to encode up to 256 classes. The `ontology`can be left out for non-segmentation predictions.
 
-The `camera_id` and `lidar_id` in the examples below must match the id of the sensors in the annotated scene.
+The `camera_id` in the examples below must match the id of the sensors in the annotated scene, whereas the corresponding id for the lidar sensor should be set to `@lidar`.
 
 ## Prediction examples
 
@@ -192,7 +192,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
                     "text": [
                       {
                         "name": "stream",
-                        "val": "lidar_id"
+                        "val": "@lidar"
                       }
                     ]
                   },
@@ -236,7 +236,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
                     "text": [
                       {
                         "name": "stream",
-                        "val": "lidar_id"
+                        "val": "@lidar"
                       }
                     ]
                   },
@@ -278,7 +278,7 @@ quaternions [here](../openlabel/openlabel-format/#rotation-of-cuboids).
       }
     },
     "streams": {
-      "lidar_id": {
+      "@lidar": {
         "type": "lidar"
       }
     }
