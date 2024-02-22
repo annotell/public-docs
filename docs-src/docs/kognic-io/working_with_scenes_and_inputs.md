@@ -18,15 +18,15 @@ corresponding scene model as input, so for example to create a `Cameras` scene y
 ```python
 from kognic.io.model.scene.cameras import Cameras
 
-cameras_scene = Cameras(...)
-created_scene = client.cameras.create(cameras_scene)
+scene = Cameras(...)
+scene = client.cameras.create(cameras_scene)
 scene_uuid = created_scene.uuid
 ```
 
 As you can see, the `create` method returns the associated `scene_uuid`, which can later be used to work with the scene.
 At this point all files have been uploaded to the Kognic Platform and the scene starts to be pre-processed. When 
 pre-processing is finished, we say that the scene has been created. Refer to the [Scene Status](#scene-status) section
-for more information about the different scene statuses.
+for more information about the different scene statuses. 
 
 Note that it is often useful to use the `dryrun` parameter when experimenting. This will validate the scene format
 but not create it.
@@ -287,3 +287,12 @@ wait-behavior. The `wait_timeout` parameter specifies the maximum time to wait f
 `sleep_time` specifies the time to sleep between each check. Units are in seconds. The time it takes for inputs to be created 
 depends on their size and the number of inputs to be created so the `wait_timeout` should be set accordingly. 
 The default value is 30 minutes, starting from the time when all scene jobs have been committed.
+
+
+## Waiting for Scene Creation
+
+It can sometimes be useful to wait for a scene to be created before continuing. This can be done by using below example in utils.py
+
+```python reference
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/utils.py
+```
