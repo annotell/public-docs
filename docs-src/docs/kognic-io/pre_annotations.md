@@ -23,16 +23,23 @@ see [Creating Multiple Inputs With One Call](working_with_scenes_and_inputs.md#c
 
 ### 1. Creating a scene
 
-The interface for creating a scene is similar to creating an input.
+Start by creating a scene
 
 ```python
 from kognic.io.client import KognicIOClient
 client = KognicIOClient()
 
 # Create Scene but not input since we don't provide project or batch
-    scene_response = client.lidars_and_cameras_sequence.create(lidars_and_cameras_seq, annotation_types=annotation_types, dryrun=dryrun)
-
+scene_response = client.lidars_and_cameras_sequence.create(
+  lidars_and_cameras_seq, 
+  annotation_types=annotation_types, 
+  dryrun=dryrun
+)
 ```
+
+Note that you now have to wait for the scene to be created before you can proceed to the next step. More information
+this can be found [Waiting for Scene Creation](working_with_scenes_and_inputs.md#waiting-for-scene-creation). 
+
 
 ### 2. Uploading an OpenLabel annotation
 
