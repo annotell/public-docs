@@ -9,7 +9,7 @@ Projects are usually configured by the Kognic Professional Services team, during
 
 ### List Projects
 
-All existing projects within your organization can be listed by using the Python API KognicIOClient. Make sure the authentication are set (see [Authentication](../kognic_auth.md)).
+All existing projects within your organization can be listed by using the Python API KognicIOClient. Make sure the authentication are set (see [Authentication](../kognic_apis.md#authentication)).
 
 ```python
 from kognic.io.client import KognicIOClient
