@@ -33,16 +33,15 @@ but not create it.
 
 ### Scene Status
 
-Once a scene has been created, it might be preprocessed before being made available for annotation. Also, postprocessing 
-such as conversion to the client-specific format might take place after annotation has been performed. During this process, 
-the status property of a scene can be used to keep track of progress.
+Once a scene has been uploaded, it might be preprocessed before being made available in the platform. 
+During this process, the status property of a scene can be used to keep track of progress.
 
 | Status                          | Description                                                                                                                                  |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| pending                         | Scene has been validated but the server is waiting for the associated data to be uploaded                                                    |
+| pending                         | Scene has been validated but the server is waiting for the associated resources to be uploaded                                               |
 | processing                      | Associated data has been uploaded and is currently being processed by the Kognic Platform, potentially performing conversion of file formats |
-| created                         | Scene is created and available for annotation                                                                                                |
-| failed                          | Conversion of scene failed                                                                                                                   |
+| created                         | Scene is created and available in the platform                                                                                               |
+| failed                          | Conversion of scene failed. More information can be found in the associated error message                                                    |
 | invalidated:broken-input        | Scene was invalidated since it did not load                                                                                                  |
 | invalidated:duplicate           | Scene was invalidated due to being uploaded several times                                                                                    |
 | invalidated:incorrectly-created | Scene was invalidated because it was incorrectly created                                                                                     |
@@ -127,15 +126,15 @@ client.scene.get_scenes_by_uuids(scene_uuids=scene_uuids)
 ### Response
 The response is a list of `Scene` objects containing the following properties
 
-| Property       | Description                                                                                          |
-|----------------|------------------------------------------------------------------------------------------------------|
-| uuid           | UUID used to identify the scene within the Kognic Platform                                           |
-| external_id    | External ID supplied during scene creation                                                           |
-| scene_type     | Type of scene (see [Scene Types](../key_concepts.md))                                                |
-| status         | Scene status (see [Scene Statuses](#scene-status))                                                   |
-| created        | When the scene was created                                                                           |
-| calibration_id | Calibration used for the scene (if any)                                                              |
-| view_link      | A url to view the scene in the Kognic Platform                                                       |
+| Property       | Description                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------------|
+| uuid           | UUID used to identify the scene within the Kognic Platform                                         |
+| external_id    | External ID supplied during scene creation                                                         |
+| scene_type     | Type of scene (see [Scene Types](../key_concepts.md))                                              |
+| status         | Scene status (see [Scene Status](#scene-status))                                                   |
+| created        | When the scene was created                                                                         |
+| calibration_id | Calibration used for the scene (if any)                                                            |
+| view_link      | A url to view the scene in the Kognic Platform                                                     |
 | error_message  | If there is an error during scene creation the error message will be included, otherwise it's `None` |
 
 ## List Inputs
