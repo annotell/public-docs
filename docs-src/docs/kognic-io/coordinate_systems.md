@@ -93,6 +93,7 @@ for example.
 
 | Type of data                        | Single-lidar     | Multi-lidar |
 |:------------------------------------|:-----------------|:------------|
+| Lidar point clouds                  | Lidar            | Lidar       |
 | Ego poses & IMU data                | Lidar            | Reference   |
 | OpenLABEL export <br/>3D geometries | Lidar            | Reference   |
 | OpenLABEL export <br/>2D geometries | Pixel            | Pixel       | 
