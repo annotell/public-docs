@@ -32,7 +32,8 @@ get the uuid of the dataset:
 client.session.get(base_url + "datasets")
 ```
 
-### 2. Get the UUID of an existing predictions group
+### 2. Get the UUID of an existing predictions group or create a new one
+#### 2.a Get the UUID of an existing predictions group
 In order to upload predictions, a prediction group needs to exist. Predictions can be organized into groups for any
 purpose imaginable. The UUID of an existing prediction group can be found in the URL after `predictions/` or by using
 the endpoint
@@ -41,7 +42,8 @@ the endpoint
 client.session.get(base_url + f"/datasets/{datasetUuid}/predictions-groups")
 ```
 
-You can also create a new prediction group using the following code snippet
+#### 2.b Creating a predictions group (optional)
+For datasets not containing segmentation tasks, a new prediction group is created using the following code snippet
 
 ```python
 path = base_url + f"/datasets/{datasetUuid}/predictions-groups"
@@ -54,6 +56,23 @@ try:
 except requests.exceptions.RequestException as e:
     msg = e.response.text
     print(f"Request error: {e}. {msg}")
+```
+
+Predictions groups connected to segmentation datasets require one extra parameter called `classMapping`. This is used to map the class names 
+in the predictions to the class names in the annotations. The `classMapping` parameter is a list of dictionaries, where each dictionary
+contains the keys `annotated` and `predicted`. The `annotated` key is the class name in the annotations, and the `predicted` key is the 
+class name in the predictions. All class names in the predictions and the annotations must be present in the class mappings, even if they 
+don't need to be mapped.
+
+```python
+example_body = {
+    "name": "My predictions group",
+    "description": "A description of my new predictions group",
+    "classMapping": [
+        {"annotated": "oak", "predicted": "tree"},
+        {"annotated": "only_in_annotations"}
+    ]
+}
 ```
 
 ### 3. Upload predictions
