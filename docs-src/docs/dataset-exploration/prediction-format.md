@@ -390,7 +390,7 @@ The `prediction_str` and `grayscale_mapping` can thereafter be used in the openl
         },
         "ontologies": {
             "0": {
-                "classifications": grayscale_mapping,
+                "classifications": {str(v): k for k, v in grayscale_mapping.items()},
                 "uri": ""
             }
         }
