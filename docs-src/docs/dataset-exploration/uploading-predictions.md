@@ -32,7 +32,8 @@ get the uuid of the dataset:
 client.session.get(base_url + "datasets")
 ```
 
-### 2. Get the UUID of an existing predictions group
+### 2. Get the UUID of an existing predictions group or create a new one
+#### 2.a Get the UUID of an existing predictions group
 In order to upload predictions, a prediction group needs to exist. Predictions can be organized into groups for any
 purpose imaginable. The UUID of an existing prediction group can be found in the URL after `predictions/` or by using
 the endpoint
@@ -41,7 +42,8 @@ the endpoint
 client.session.get(base_url + f"/datasets/{datasetUuid}/predictions-groups")
 ```
 
-You can also create a new prediction group using the following code snippet
+#### 2.b Creating a predictions group (optional)
+For datasets not containing segmentation tasks, a new prediction group is created using the following code snippet
 
 ```python
 path = base_url + f"/datasets/{datasetUuid}/predictions-groups"
@@ -54,6 +56,29 @@ try:
 except requests.exceptions.RequestException as e:
     msg = e.response.text
     print(f"Request error: {e}. {msg}")
+```
+
+**Special case: Segmentation datasets**
+
+Predictions groups connected to segmentation datasets require one extra parameter called `classMapping`. The mapping is used when 
+calculating disagreement between predictions and annotations and will impact the sorting as well as how disagreements appear in the gallery. 
+The `classMapping` parameter is a list of dictionaries, where each dictionary contains the keys `annotated` and `predicted`. The `annotated` 
+key is the class name in the annotations, and the `predicted` key is the class name in the predictions.
+`{"annotated": "oak", "predicted": "tree"}` if you have annotated different species of trees, but only predict wether it is a tree or not.
+
+All class names in the predictions and the annotations must be present in the class mappings, even if they don't need to be mapped. In the 
+annotations, non-segmented areas are labeled with the class name `_background`.
+
+```python
+example_body = {
+    "name": "My predictions group",
+    "description": "A description of my new predictions group",
+    "classMapping": [
+        {"annotated": "oak", "predicted": "tree"},
+        {"annotated": "_background", "predicted": "not_tree"},
+        {"annotated": "only_in_annotations"}
+    ]
+}
 ```
 
 ### 3. Upload predictions
