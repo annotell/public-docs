@@ -58,11 +58,16 @@ except requests.exceptions.RequestException as e:
     print(f"Request error: {e}. {msg}")
 ```
 
-Predictions groups connected to segmentation datasets require one extra parameter called `classMapping`. This is used to map the class names 
-in the predictions to the class names in the annotations. The `classMapping` parameter is a list of dictionaries, where each dictionary
-contains the keys `annotated` and `predicted`. The `annotated` key is the class name in the annotations, and the `predicted` key is the 
-class name in the predictions. All class names in the predictions and the annotations must be present in the class mappings, even if they 
-don't need to be mapped.
+**Special case: Segmentation datasets**
+
+Predictions groups connected to segmentation datasets require one extra parameter called `classMapping`. The mapping is used when 
+calculating disagreement between predictions and annotations and will impact the sorting as well as how disagreements appear in the gallery. 
+The `classMapping` parameter is a list of dictionaries, where each dictionary contains the keys `annotated` and `predicted`. The `annotated` 
+key is the class name in the annotations, and the `predicted` key is the class name in the predictions.
+`{"annotated": "oak", "predicted": "tree"}` if you have annotated different species of trees, but only predict wether it is a tree or not.
+
+All class names in the predictions and the annotations must be present in the class mappings, even if they don't need to be mapped. In the 
+annotations, non-segmented areas are labeled with the class name `_background`.
 
 ```python
 example_body = {
@@ -70,6 +75,7 @@ example_body = {
     "description": "A description of my new predictions group",
     "classMapping": [
         {"annotated": "oak", "predicted": "tree"},
+        {"annotated": "_background", "predicted": "not_tree"},
         {"annotated": "only_in_annotations"}
     ]
 }
