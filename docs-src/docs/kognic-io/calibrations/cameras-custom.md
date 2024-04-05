@@ -142,6 +142,11 @@ Below follows examples of a simplified version of the pinhole calibration in a f
 
 ### Example: Rust
 
+:::note
+Rust needs to be installed with the `wasm32-wasi` target for this. Install Rust according to the instructions 
+[here](https://www.rust-lang.org/tools/install) and then add the target with `rustup target add wasm32-wasi`.
+:::
+
 A [Rust file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.rs)
 can be compiled with
 ```bash
@@ -152,6 +157,12 @@ Note that `panics` are not supported and compilation will fail if the code conta
 
 
 #### Rust with Cargo
+
+:::note
+Rust and Cargo need to be installed with the `wasm32-wasi` target for this. Install Rust and Cargo 
+according to the instructions [here](https://doc.rust-lang.org/cargo/getting-started/installation.html) and then add 
+the target with `rustup target add wasm32-wasi`.
+:::
 
 A [Rust module with Cargo](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole-rust-cargo)
 can be compiled with
@@ -172,6 +183,11 @@ strip = true
 
 ### Example: C++
 
+:::note
+Emscripten needs to be installed for this, which can be done according to the instructions 
+[here](https://emscripten.org/docs/getting_started/downloads.html).
+:::
+
 A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.cc)
 can be compiled with
 ```bash
@@ -185,8 +201,12 @@ kognicutil wasm compile path/to/source.cpp path/to/output.wasm
 
 
 ### Example: C
+:::note
+Emscripten needs to be installed for this, which can be done according to the instructions 
+[here](https://emscripten.org/docs/getting_started/downloads.html).
+:::
 
-A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.c)
+A [C file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.c)
 can be compiled with
 ```bash
 kognicutil wasm compile path/to/source.c path/to/output.wasm
