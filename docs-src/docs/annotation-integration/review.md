@@ -14,7 +14,7 @@ annotations](../kognic-io/annotations).
 
 When posting a review, the API expects feedback data as well as a boolean `accepted` that indicates whether the 
 quality is perceived as sufficient or not. The API also expects an enum `workflow` that details how the improvement 
-should happen. 
+should happen. For a rejected review and the workflow 'correct', a single correction task is triggered, with no follow-up Review task. The completed Correction task becomes the new delivered Annotation. 
 
 :::caution
 This integration API is currently limited to reviewing delivered annotations, the possible values of these input 
