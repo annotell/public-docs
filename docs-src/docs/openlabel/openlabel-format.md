@@ -529,8 +529,7 @@ A collection of geometries as described in the link above will be represented as
     },
     "metadata": {
       "schema_version": "1.0.0",
-      "kognic_format_version": "2.2",
-      "uuid": "63698712-b18e-426b-9ad5-1b178cc29838"
+      "kognic_format_version": "2.2"
     },
     "objects": {
       "516b6045-87e8-40e4-a104-5eaa600e8e3a": {
