@@ -14,11 +14,12 @@ annotations](../kognic-io/annotations).
 
 When posting a review, the API expects feedback data as well as a boolean `accepted` that indicates whether the 
 quality is perceived as sufficient or not. The API also expects an enum `workflow` that details how the improvement 
-should happen. For a rejected review and the workflow 'correct', a single correction task is triggered, with no follow-up Review task. The completed Correction task becomes the new delivered Annotation. 
+should happen. For a rejected review and the workflow 'correct', a single correction task is triggered, with no 
+follow-up Review task. The completed Correction task becomes the new delivered Annotation. 
 
 :::caution
-This integration API is currently limited to reviewing delivered annotations, the possible values of these input 
-parameters are thus limited to `accepted=true` and `workflow="correct"`. They are included in the interface at this
+This integration API is currently limited to rejecting delivered annotations, the possible values of these input 
+parameters are thus limited to `accepted=false` and `workflow="correct"`. They are included in the interface at this
 stage in order to allow future expansions on the available use cases, workflows and actions.
 :::
 
@@ -34,7 +35,7 @@ available to add, and will be available for annotators when improving the annota
 * **Description** - a string describing what should be improved
 * **Sensor ID** - the identifier of the [sensor](../kognic-io/overview#sensor-specification) where the error appears
 * **Frame ID** - the identifier of the [frame](../kognic-io/overview#sequential-frames) the error appears
-* **Object ID** - the UUID of a particular object that is subject to this particular feedback
+* **Object ID** - the identifier of a particular object that is subject to this particular feedback
 * **Pin** - a pointer to a specific area where something is of interest, this can be used to indicate missing objects (a 
 pin contains mandatory x and y coordinates with an optional z coordinate, the coordinate unit in images are pixels and 
 is sensor specific in 3d data)
