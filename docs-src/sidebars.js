@@ -44,6 +44,10 @@ module.exports = {
         "dataset-exploration/uploading-predictions",
         "dataset-exploration/understand-dataset-content"
     ],
+    "Annotation integration": [
+      "annotation-integration/introduction",
+      "annotation-integration/review"
+    ],
     "OpenLABEL": [
         "openlabel/openlabel-format",
         "openlabel/python-client"
