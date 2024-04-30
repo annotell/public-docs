@@ -27,6 +27,8 @@ yarn build
 Note that the search bar does not work in development mode, so you need to run the build content if you want to test
 this out locally. This can be done with `yarn serve`.
 
+Commiting changes to yarn.lock might break the Github Action build.
+
 ## Adding a new page to the documentation
 
 It's easy to add a new page to the documentation. Create a new markdown file in `docs-srs/docs` according to the page
