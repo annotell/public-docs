@@ -26,7 +26,7 @@ uploaded. (See the client docs regarding these concepts [here](../kognic-io/proj
 
 ## Endpoints
 You can discover the list of accessible endpoints within our 
-[swagger documentation](https://shape-integration.app.kognic.com/api).
+[swagger documentation](https://annotation-integration.app.kognic.com/api).
 
 ## Request Example
 Here's an example using the kognic-auth library to fetch the [feedback error types](review#feedback) available to the user:

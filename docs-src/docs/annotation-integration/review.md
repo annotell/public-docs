@@ -34,7 +34,7 @@ be a need for this to be coordinated with the project's managers.
 
 A feedback item details something noteworthy in an annotation. In order to do this the following information is 
 available to add, and will be available for annotators when improving the annotation:
-* **Error type ID** - a UUID selected from the list of [available error types](https://shape-integration.app.kognic.com/api#/Reviews/getErrorTypes)
+* **Error type ID** - a UUID selected from the list of [available error types](https://annotation-integration.app.kognic.com/api#/Reviews/getErrorTypes)
 * **Description** - a string describing what should be improved
 * **Sensor ID** - the identifier of the [sensor](../kognic-io/overview#sensor-specification) where the error appears
 * **Frame ID** - the identifier of the [frame](../kognic-io/overview#sequential-frames) the error appears
