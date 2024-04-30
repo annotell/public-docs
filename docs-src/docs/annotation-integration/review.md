@@ -11,7 +11,7 @@ are currently somewhat limited, as detailed below.
 
 ## Posting a review
 
-The current integration capabilities only allow posting reviews for delivered annotations. The annotations are 
+The current integration capabilities only allow posting reviews for delivered annotations. It is only available in requests where your organization is the [producer](https://docs.kognic.com/request-details#HXuNx). The annotations are 
 identified using their open label UUID that can be found in the metadata (and in the file name) of [downloaded 
 annotations](../kognic-io/annotations).
 
