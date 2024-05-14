@@ -12,9 +12,14 @@ module.exports = {
   organizationName: "kognic", // Usually your GitHub org/user name.
   projectName: "public-docs", // Usually your repo name.
   themes: [
-    '@saucelabs/theme-github-codeblock'
+    'docusaurus-theme-github-codeblock'
   ],
   themeConfig: {
+    codeblock: {
+      showGithubLink: true,
+      githubLinkLabel: 'View on GitHub',
+      showRunmeLink: false
+    },
     navbar: {
       logo: {
         alt: "Kognic",
