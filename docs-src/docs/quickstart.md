@@ -24,7 +24,7 @@ pip install kognic-io
 
 ## Setup and verify credentials
 
-Generate and download credentials from the Kognic Platform according to [this](./kognic-apis#generating-credentials) guide. Then you can set the environment variable `KOGNIC_CREDENTIALS` to point to it. Assuming that you save your credentials in `~/.config/kognic/credentials.json` you can do this by running
+Generate and download credentials from the Kognic Platform according to [this](./kognic-apis#generating-credentials) guide. Then you can set the environment variable `KOGNIC_CREDENTIALS` to point to it. Assuming that you save your credentials in `~/.config/kognic/credentials.json`, you can do this by running
 ```bash
 export KOGNIC_CREDENTIALS=~/.config/kognic/credentials.json
 ```
@@ -33,7 +33,7 @@ in the terminal. To verify that they are correct you can simply list projects:
 ```python
 from kognic.io.client import KognicIOClient
 
-client = KognicIOClient(auth = "~/.config/kognic/credentials.json")
+client = KognicIOClient()
 
 # Verify that the client is authenticated by listing projects
 client.project.get_projects()
