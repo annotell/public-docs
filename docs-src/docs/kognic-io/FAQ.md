@@ -26,7 +26,7 @@ resp = client.cameras.create(...)
 [scene] = client.scene.get_scenes_by_uuids([resp.scene_uuid])
 
 # Successfully created and available once status is `created`
-print(f'Scene {uuid} status:', scene.status)
+print(f'Scene {scene.uuid} status:', scene.status)
 ```
 
 ### How can I view my scene?
