@@ -48,7 +48,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.com/annotell/public-docs/docs-src/", // TODO: remove annotell
+          editUrl: "https://github.com/annotell/public-docs/edit/master/docs-src/", // TODO: remove annotell
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
