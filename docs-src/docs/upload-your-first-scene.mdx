@@ -22,7 +22,7 @@ import GetSceneViewLink from "./code-snippets/_get-scene-view-link.md";
 
 When uploading raw data to the Kognic Platform, you need to do so in the form of a **scene**. 
 A scene is a collection of data from different sources, such as images, point clouds, and other sensor data.
-This guide will walk you through the process of uploading your first scene, either 2D or 3D.
+This guide will walk you through the process of uploading your first scene, either in 2D or 3D.
 
 ## Prerequisites
 
@@ -83,6 +83,11 @@ Below follows examples for a few different cases.
     <LidarsAndCamerasSeq />
   </TabItem>
 </Tabs>
+
+:::note
+Multiple point clouds is also supported, but not shown in the examples above since that requires a bit more data.
+See the [Motion Compensation](./kognic-io/scenes/motion-compensation) section for more details.
+:::
 
 The `scene_uuid` returned in the response can be used to reference the scene in future API calls. For example, to check the status of the scene:
 
