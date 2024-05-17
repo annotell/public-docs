@@ -1,5 +1,9 @@
 module.exports = {
   docs: {
+    "Getting Started": [
+        "quickstart",
+        "upload-your-first-scene",
+     ],
     "Kognic APIs": ["kognic-apis"],
     "Key Concepts": ["key_concepts"],
     "Kognic IO": [
