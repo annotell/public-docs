@@ -1,0 +1,105 @@
+---
+id: upload-your-first-scene
+title: Upload your first scene
+slug: /upload-your-first-scene
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import CamerasOneImage from "./code-snippets/scenes-2d/_one-image.md";
+import CamerasMultipleImages from "./code-snippets/scenes-2d/_multiple-images.md";
+import CamerasSeq from "./code-snippets/scenes-2d/_cameras-seq.md";
+import LidarsAndCamerasOne from "./code-snippets/scenes-3d/_one-lidar-one-image.md";
+import LidarsAndCamerasMultiple from "./code-snippets/scenes-3d/_one-lidar-multiple-images.md";
+import LidarsAndCamerasSeq from "./code-snippets/scenes-3d/_lidars-and-cameras-seq.md";
+
+import CheckSceneStatus from "./code-snippets/_check-scene-status.md";
+import GetSceneViewLink from "./code-snippets/_get-scene-view-link.md";
+
+
+# Upload your first scene
+
+
+When uploading raw data to the Kognic Platform, you need to do so in the form of a **scene**. 
+A scene is a collection of data from different sources, such as images, point clouds, and other sensor data.
+This guide will walk you through the process of uploading your first scene, either 2D or 3D.
+
+## Prerequisites
+
+You have successfully followed the [Quickstart](./quickstart) guide and have the `kognic-io` client installed.
+
+
+## Uploading a 2D scene
+
+To upload a 2D scene, you need to have the raw images available on your local machine (or create a [callback](https://developers.kognic.com/docs/kognic-io/overview#data-from-callback) for remote data).
+It is a two-step process:
+1. Build the scene object in Python
+2. Upload the scene object to the Kognic Platform
+
+Below follows examples for a few different cases.
+
+<Tabs>
+  <TabItem value="one-image" label="One Image" default>
+    <CamerasOneImage />
+  </TabItem>
+  <TabItem value="multiple-images" label="Multiple Images" default>
+    <CamerasMultipleImages />
+  </TabItem>
+  <TabItem value="sequence" label="Sequence">
+    <CamerasSeq />
+  </TabItem>
+</Tabs>
+
+The `scene_uuid` returned in the response can be used to reference the scene in future API calls. For example, to check the status of the scene:
+
+<CheckSceneStatus />
+
+This is often useful when uploading large scenes that take some time to process. If the scene is ready, you can view it in the Kognic Platform by following the link retrieved from the API:
+
+<GetSceneViewLink />
+
+{/* TODO: Add link to scenes table when that is released */}
+
+
+## Uploading a 2D/3D scene
+
+To upload a 2D/3D scene, you need to have the raw images and point clouds available on your local machine (or create a [callback](https://developers.kognic.com/docs/kognic-io/overview#data-from-callback) for remote data).
+In addition you need to have calibration data available. 
+It is a three-step process:
+1. Create a [calibration](./kognic-io/calibrations/overview)
+2. Build the scene object in Python, referencing the calibration from the previous step
+3. Upload the scene object to the Kognic Platform
+
+Below follows examples for a few different cases.
+
+<Tabs>
+  <TabItem value="one-image-one-lidar" label="One Image" default>
+    <LidarsAndCamerasOne />
+  </TabItem>
+  <TabItem value="multiple-images" label="Multiple Images" default>
+    <LidarsAndCamerasMultiple />
+  </TabItem>
+  <TabItem value="2d/3d-sequence" label="Sequence" default>
+    <LidarsAndCamerasSeq />
+  </TabItem>
+</Tabs>
+
+The `scene_uuid` returned in the response can be used to reference the scene in future API calls. For example, to check the status of the scene:
+
+<CheckSceneStatus />
+
+This is often useful when uploading large scenes that take some time to process. If the scene is ready, you can view it in the Kognic Platform by following the link retrieved from the API:
+
+<GetSceneViewLink />
+
+
+{/* TODO: Add link to scenes table when that is released */}
+
+
+## Next steps
+
+- [Key concepts](./key_concepts): Learn about the key concepts of the Kognic Platform
+- [Calibrations](./kognic-io/calibrations/overview): Learn how to create and manage calibrations
+- [Scenes](./kognic-io/scenes/overview): Learn how to interact with scenes on the Kognic Platform
+- [Sending scene for annotation](./working_with_scenes_and_inputs#creating-inputs-from-scene): Learn how to send a scene for annotation
+
