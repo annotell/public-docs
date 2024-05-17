@@ -1,7 +1,7 @@
 ---
 id: quickstart
 title: Quickstart
-slug: /quickstart
+slug: /
 ---
 
 # Quickstart
@@ -45,4 +45,4 @@ You should now be set up to interact with the Kognic Platform.
 ## Next steps
 
 - [Upload your first scene](./upload-your-first-scene): Quick guide on how to upload data to the Kognic Platform
-- [Key concepts](./): Learn about the key concepts of the Kognic Platform
+- [Key concepts](./key_concepts.md): Learn about the key concepts of the Kognic Platform

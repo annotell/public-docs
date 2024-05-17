@@ -4,7 +4,7 @@ title: Projects
 
 ## Project
 
-A Kognic [project](../key_concepts.md) must first be set in order to create inputs.
+A Kognic [project](../key-concepts) must first be set in order to create inputs.
 Projects are usually configured by the Kognic Professional Services team, during the Guideline Agreement Process (GAP) of a new client engagement.
 
 ### List Projects
@@ -25,7 +25,7 @@ kognicutil projects
 
 ## Batch
 
-Input [batches](../key_concepts.md) allow further grouping of inputs into smaller batches within a project. Specifying batch during the input creation is optional, and will otherwise be the latest open batch by default.
+Input [batches](../key-concepts) allow further grouping of inputs into smaller batches within a project. Specifying batch during the input creation is optional, and will otherwise be the latest open batch by default.
 
 ### Batch Status
 

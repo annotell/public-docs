@@ -85,7 +85,7 @@ These features or combinations of features are not currently supported, or only 
   - May also be referred to as source-, stream- or sensor-specific attributes.
   - 3D geometry is anything that can be drawn when annotating a pointcloud, e.g. cuboids.
   - Geometry-specific attributes are permitted on 2D geometry e.g. bounding boxes
-  - Note that the [task definition](../key_concepts.md#task-definition), must designate a property as source specific before it may be used in this way.
+  - Note that the [task definition](../key-concepts#task-definition), must designate a property as source specific before it may be used in this way.
   - The `stream` attribute is a special case and is excepted from this rule
 
 ## Supported pre-annotation features
@@ -118,7 +118,7 @@ the multi-lidar case. The rotation of cuboids should be the same as that in [exp
 - Num
 - Boolean
 
-For 2D geometry, attributes may be specified as geometry specific (aka source/sensor specific), or object specific. Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the object in the frame) and must be allowed by the [task definition](../key_concepts.md#task-definition), if one exists. Geometry specific attributes (those which appear on a single shape within frames) must also be declared as such in the task definition; arbitrary properties cannot be used in a source-specific way.
+For 2D geometry, attributes may be specified as geometry specific (aka source/sensor specific), or object specific. Attributes can be static (specified in the `objects` key) or dynamic (specified in the `object_data` for the object in the frame) and must be allowed by the [task definition](../key-concepts#task-definition), if one exists. Geometry specific attributes (those which appear on a single shape within frames) must also be declared as such in the task definition; arbitrary properties cannot be used in a source-specific way.
 
 ### Contexts
 
