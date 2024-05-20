@@ -130,7 +130,7 @@ The response is a list of `Scene` objects containing the following properties
 |----------------|----------------------------------------------------------------------------------------------------|
 | uuid           | UUID used to identify the scene within the Kognic Platform                                         |
 | external_id    | External ID supplied during scene creation                                                         |
-| scene_type     | Type of scene (see [Scene Types](../key_concepts.md))                                              |
+| scene_type     | Type of scene (see [Scene Types](../key_concepts.md#scene-types))                                  |
 | status         | Scene status (see [Scene Status](#scene-status))                                                   |
 | created        | When the scene was created                                                                         |
 | calibration_id | Calibration used for the scene (if any)                                                            |
