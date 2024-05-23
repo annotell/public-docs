@@ -15,7 +15,7 @@ sensor_calibration = SensorCalibration(
         "lidar": LidarCalibration(...)
     }
 )
-created_calibration = client.calibration.create(sensor_calibration)
+created_calibration = client.calibration.create_calibration(sensor_calibration)
 
 # 2. Build scene object
 scene = LidarsAndCamerasSequence(
