@@ -39,11 +39,11 @@ Note that `kognic-io` uses `kognic-auth` under the hood for authentication so yo
 
 Generate and download credentials from the Kognic Platform according to [this](./kognic-apis#generating-credentials) guide. 
 Then you can set the environment variable `KOGNIC_CREDENTIALS` to point to it. Assuming that you saved your credentials in `~/.config/kognic/credentials.json`, 
-you can do this by running
+you can do this by running the following in the terminal
 ```bash
 export KOGNIC_CREDENTIALS=~/.config/kognic/credentials.json
 ```
-in the terminal. To verify that they are correct you can simply list projects:
+To verify that they are correct you can simply list projects in Python:
 
 <Tabs>
   <TabItem value="kognic-io-verify" label="kognic-io" default>
