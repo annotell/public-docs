@@ -8,7 +8,7 @@ client = KognicIOClient()
 
 # 1. Create calibration (see calibration section for more details)
 sensor_calibration = SensorCalibration(
-    external_id = "my-first-calibration",
+    external_id = my-first-calibration",
     calibration = {
         "CAM": PinholeCalibration(...),
         "lidar": LidarCalibration(...)
@@ -27,6 +27,6 @@ scene = LidarsAndCameras(
 )
 
 # 3. Upload scene
-resp = client.lidars_and_cameras.create(scene)
-print("Scene uploaded, got uuid:", resp.scene_uuid)
+scene_uuid = client.lidars_and_cameras.create(scene).scene_uuid
+print("Scene uploaded, got uuid:", scene_uuid)
 ```
