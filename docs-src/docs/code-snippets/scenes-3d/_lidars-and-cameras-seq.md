@@ -19,7 +19,7 @@ created_calibration = client.calibration.create(sensor_calibration)
 
 # 2. Build scene object
 scene = LidarsAndCamerasSequence(
-    external_id=f"my-first-scene",
+    external_id="my-first-scene",
     calibration_id = created_calibration.id,
     frames=[
         # Relative timestamps must be unique and strictly increasing
@@ -42,6 +42,6 @@ scene = LidarsAndCamerasSequence(
 )
 
 # 3. Upload scene
-resp = client.lidars_and_cameras_sequence.create(scene)
-print("Scene uploaded, got uuid:", resp.scene_uuid) 
+scene_uuid = client.lidars_and_cameras_sequence.create(scene).scene_uuid
+print("Scene uploaded, got uuid:", scene_uuid) 
 ```
