@@ -95,7 +95,7 @@ wasm_validation.validate_wasm_bytes(wasm_bytes, test_cases=test_cases)
 ```
 
 The `kognicutil` cli can be used as follows
-```bash
+```bash frame="none"
 kognicutil wasm validate calibration.wasm
 ```
 
@@ -127,7 +127,7 @@ wasm_binary = compile_to_wasm("path/to/source")
 
 The returned binary can then be used to create a `CustomCameraCalibration` object. If the `output_wasm` parameter is passed,
 the binary will be saved to the specified path. The `kognicutil` cli can be used as follows
-```bash
+```bash frame="none"
 kognicutil wasm compile path/to/source path/to/output.wasm
 ```
 
@@ -149,7 +149,7 @@ Rust needs to be installed with the `wasm32-wasi` target for this. Install Rust 
 
 A [Rust file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.rs)
 can be compiled with
-```bash
+```bash frame="none"
 kognicutil wasm compile path/to/source.rs path/to/output.wasm
 ```
 
@@ -166,7 +166,7 @@ the target with `rustup target add wasm32-wasi`.
 
 A [Rust module with Cargo](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole-rust-cargo)
 can be compiled with
-```bash
+```bash frame="none"
 kognicutil wasm compile path/to/source/Cargo.toml path/to/output.wasm
 ```
 
@@ -190,12 +190,12 @@ Emscripten needs to be installed for this, which can be done according to the in
 
 A [C++ file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.cc)
 can be compiled with
-```bash
+```bash frame="none"
 kognicutil wasm compile path/to/source.cc path/to/output.wasm
 ```
 
 or with
-```bash
+```bash frame="none"
 kognicutil wasm compile path/to/source.cpp path/to/output.wasm
 ```
 
@@ -208,6 +208,6 @@ Emscripten needs to be installed for this, which can be done according to the in
 
 A [C file](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration/custom/pinhole.c)
 can be compiled with
-```bash
+```bash frame="none"
 kognicutil wasm compile path/to/source.c path/to/output.wasm
 ```

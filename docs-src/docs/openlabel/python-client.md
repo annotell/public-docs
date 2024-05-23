@@ -7,7 +7,7 @@ to work with annotations.
 The python client models the OpenLABEL format as `pydantic` models. It is publicly available
 [here](https://pypi.org/project/kognic-openlabel) and can be installed with
 
-```bash
+```bash frame="none"
 pip install kognic-openlabel
 ```
 

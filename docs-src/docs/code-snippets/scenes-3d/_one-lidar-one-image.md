@@ -1,4 +1,4 @@
-```python
+```python collapse={10-15}
 from kognic.io.client import KognicIOClient
 from kognic.io.model.calibration import SensorCalibration, PinholeCalibration, LidarCalibration
 from kognic.io.model.scene.lidars_and_cameras import LidarsAndCameras, Frame

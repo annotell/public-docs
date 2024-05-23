@@ -42,6 +42,6 @@ kognicutil tool.
 client.calibration.get_calibration(external_id="Collection 2020-06-16")
 ```
 
-```bash
+```bash frame="none"
 $ kognicutil calibration --external-id "Collection 2020-06-16"
 ```

@@ -1,4 +1,4 @@
-```python
+```python collapse={14-22}
 from kognic.io.client import KognicIOClient
 from kognic.io.model.scene.cameras_sequence import CamerasSequence, Frame
 from kognic.io.model.scene.resources import Image

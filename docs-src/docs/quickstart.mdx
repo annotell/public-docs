@@ -21,12 +21,12 @@ Installation can be done via pip:
 
 <Tabs>
   <TabItem value="kognic-io-installation" label="kognic-io" default>
-    ```bash
+    ```bash frame="none"
     pip install kognic-io
     ```
   </TabItem>
   <TabItem value="kognic-auth-installation" label="kognic-auth" default>
-    ```bash
+    ```bash frame="none"
     pip install kognic-auth
     ```
   </TabItem>
@@ -40,7 +40,7 @@ Note that `kognic-io` uses `kognic-auth` under the hood for authentication so yo
 Generate and download credentials from the Kognic Platform according to [this](./kognic-apis#generating-credentials) guide. 
 Then you can set the environment variable `KOGNIC_CREDENTIALS` to point to it. Assuming that you saved your credentials in `~/.config/kognic/credentials.json`, 
 you can do this by running the following in the terminal
-```bash
+```bash frame="none"
 export KOGNIC_CREDENTIALS=~/.config/kognic/credentials.json
 ```
 To verify that they are correct you can simply list projects in Python:

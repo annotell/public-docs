@@ -1,5 +1,14 @@
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
+
+
 const math = require('remark-math');
 const katex = require('rehype-katex');
+const rehypeExpressiveCode = require('rehype-expressive-code');
+
+const rehypeExpressiveCodeOptions = {
+  plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
+}
 
 module.exports = {
   title: "Kognic",
@@ -50,7 +59,7 @@ module.exports = {
           // Please change this to your repo.
           editUrl: "https://github.com/annotell/public-docs/edit/master/docs-src/", // TODO: remove annotell
           remarkPlugins: [math],
-          rehypePlugins: [katex],
+          rehypePlugins: [katex, [rehypeExpressiveCode, rehypeExpressiveCodeOptions]],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
