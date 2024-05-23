@@ -5,7 +5,7 @@ from kognic.io.model.scene.resources import Image
 
 # 1. Build scene object
 scene = CamerasSequence(
-    external_id=f"my-first-scene",
+    external_id="my-first-scene",
     frames=[
         # Relative timestamps must be unique and strictly increasing
         Frame(
@@ -25,6 +25,6 @@ scene = CamerasSequence(
 
 # 2. Upload scene
 client = KognicIOClient()
-resp = client.cameras_sequence.create(scene)
-print("Scene uploaded, got uuid:", resp.scene_uuid) 
+scene_uuid = client.cameras_sequence.create(scene).scene_uuid
+print("Scene uploaded, got uuid:", scene_uuid) 
 ```
