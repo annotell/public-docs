@@ -5,12 +5,12 @@ from kognic.io.model.scene.resources import Image
 
 # 1. Build scene object
 scene = Cameras(
-    external_id=f"my-first-scene",
+    external_id="my-first-scene",
     frame=Frame(images=[Image(filename="path/to/image.jpg")])
 )
 
 # 2. Upload scene
 client = KognicIOClient()
-resp = client.cameras.create(scene)
-print("Scene uploaded, got uuid:", resp.scene_uuid)
+scene_uuid = client.cameras.create(scene).scene_uuid
+print("Scene uploaded, got uuid:", scene_uuid)
 ```
