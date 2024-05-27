@@ -17,11 +17,9 @@ import LidarsAndCamerasSeq from "./code-snippets/scenes-3d/_lidars-and-cameras-s
 import CheckSceneStatus from "./code-snippets/_check-scene-status.md";
 import GetSceneViewLink from "./code-snippets/_get-scene-view-link.md";
 
-
 # Upload your first scene
 
-
-When uploading raw data to the Kognic Platform, you need to do so in the form of a **scene**. 
+When uploading raw data to the Kognic Platform, you need to do so in the form of a **scene**.
 A scene is a collection of data from different sources, such as images, point clouds, and other sensor data.
 This guide will walk you through the process of uploading your first scene, either in 2D or 3D.
 
@@ -29,11 +27,14 @@ This guide will walk you through the process of uploading your first scene, eith
 
 You have successfully followed the [Quickstart](./quickstart.mdx) guide and have the `kognic-io` client installed.
 
-
-## Uploading a 2D scene
+<details style={{backgroundColor: 'white', borderColor: 'var(--kognic-lavender)'}}>
+  <summary>
+    <h2 style={{margin: 0}}>Uploading a 2D scene</h2>
+  </summary>
 
 To upload a 2D scene, you need to have the raw images available on your local machine (or create a [callback](https://developers.kognic.com/docs/kognic-io/overview#data-from-callback) for remote data).
 It is a two-step process:
+
 1. Build the scene object in Python
 2. Upload the scene object to the Kognic Platform
 
@@ -61,12 +62,17 @@ This is often useful when uploading large scenes that take some time to process.
 
 {/* TODO: Add link to scenes table when that is released */}
 
+</details>
 
-## Uploading a 2D/3D scene
+<details style={{backgroundColor: 'white', borderColor: 'var(--kognic-lavender)'}}>
+  <summary>
+    <h2 style={{margin: 0}}>Uploading a 2D/3D scene</h2>
+  </summary>
 
 To upload a 2D/3D scene, you need to have the raw images and point clouds available on your local machine (or create a [callback](https://developers.kognic.com/docs/kognic-io/overview#data-from-callback) for remote data).
-In addition you need to have calibration data available. 
+In addition you need to have calibration data available.
 It is a three-step process:
+
 1. Create a [calibration](./kognic-io/calibrations/overview)
 2. Build the scene object in Python, referencing the calibration from the previous step
 3. Upload the scene object to the Kognic Platform
@@ -98,9 +104,9 @@ This is often useful when uploading large scenes that take some time to process.
 
 <GetSceneViewLink />
 
-
 {/* TODO: Add link to scenes table when that is released */}
 
+</details>
 
 ## Next steps
 
@@ -108,4 +114,3 @@ This is often useful when uploading large scenes that take some time to process.
 - [Scenes](./kognic-io/overview): Dive deeper into scenes and how to work with them
 - [Calibrations](./kognic-io/calibrations/overview): Learn how to create and manage calibrations
 - [Sending scene for annotation](./kognic-io/working_with_scenes_and_inputs#creating-inputs-from-scene): Learn how to send a scene for annotation
-
