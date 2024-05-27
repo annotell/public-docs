@@ -10,14 +10,17 @@ scene = CamerasSequence(
         # Relative timestamps must be unique and strictly increasing
         Frame(
             relative_timestamp=0,
+            frame_id="1",
             images=[Image(filename="path/to/image1.jpg")],
         ),
         Frame(
             relative_timestamp=100,
+            frame_id="2",
             images=[Image(filename="path/to/image2.jpg")],
         ),
         Frame(
             relative_timestamp=200,
+            frame_id="3",
             images=[Image(filename="path/to/image3.jpg")],
         ),
     ]
@@ -26,5 +29,5 @@ scene = CamerasSequence(
 # 2. Upload scene
 client = KognicIOClient()
 scene_uuid = client.cameras_sequence.create(scene).scene_uuid
-print("Scene uploaded, got uuid:", scene_uuid) 
+print("Scene uploaded, got uuid:", scene_uuid)
 ```
