@@ -25,16 +25,19 @@ scene = LidarsAndCamerasSequence(
         # Relative timestamps must be unique and strictly increasing
         Frame(
             relative_timestamp=0,
+            frame_id="1",
             images=[Image(sensor_name = "CAM", filename="path/to/image1.jpg")],
             point_clouds=[PointCloud(sensor_name = "lidar", filename="path/to/pointcloud1.pcd")]
         ),
         Frame(
             relative_timestamp=100,
+            frame_id="2",
             images=[Image(sensor_name = "CAM", filename="path/to/image2.jpg")],
             point_clouds=[PointCloud(sensor_name = "lidar", filename="path/to/pointcloud2.pcd")]
         ),
         Frame(
             relative_timestamp=200,
+            frame_id="3",
             images=[Image(sensor_name = "CAM", filename="path/to/image3.jpg")],
             point_clouds=[PointCloud(sensor_name = "lidar", filename="path/to/pointcloud3.pcd")]
         ),
@@ -43,5 +46,5 @@ scene = LidarsAndCamerasSequence(
 
 # 3. Upload scene
 scene_uuid = client.lidars_and_cameras_sequence.create(scene).scene_uuid
-print("Scene uploaded, got uuid:", scene_uuid) 
+print("Scene uploaded, got uuid:", scene_uuid)
 ```
