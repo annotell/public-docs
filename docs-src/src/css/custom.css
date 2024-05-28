@@ -37,4 +37,4 @@ html[data-theme="dark"] {
   --ifm-background-surface-color: var(--kognic-black);
 }
 
-@import "./override/details.css";
+@import "override/details.css";
