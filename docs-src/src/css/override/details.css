@@ -13,8 +13,8 @@ details {
 /* Light mode */
 [data-theme="light"] {
   details {
-    background-color: white !important;
-    border: 1px solid var(--kognic-lavender) !important;
+    background-color: white;
+    border: 1px solid var(--kognic-lavender);
 
     .tabs {
       color: #525860;
@@ -32,7 +32,7 @@ details {
 
     /* Override horizontal line */
     [class^="collapsibleContent"] {
-      border-top: 1px solid var(--kognic-lavender) !important;
+      border-top: 1px solid var(--kognic-lavender);
     }
   }
 }
@@ -40,8 +40,8 @@ details {
 /* Dark mode */
 [data-theme="dark"] {
   details {
-    background-color: var(--kognic-black) !important;
-    border: 1px solid var(--kognic-green) !important;
+    background-color: var(--kognic-black);
+    border: 1px solid var(--kognic-green);
 
     .tabs .tabs__item--active {
       color: var(--kognic-green);
@@ -60,7 +60,7 @@ details {
 
     /* Override horizontal line */
     [class^="collapsibleContent"] {
-      border-top: 1px solid var(--kognic-green) !important;
+      border-top: 1px solid var(--kognic-green);
     }
   }
 }
