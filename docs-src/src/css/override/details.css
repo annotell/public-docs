@@ -7,18 +7,18 @@
   border-bottom-color: var(--kognic-lavender);
 }
 
-.collapsibleContent_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module {
-  border-top: 1px solid var(--kognic-lavender) !important;
-}
+details {
+  background-color: white !important;
+  border: 1px solid var(--kognic-lavender) !important;
 
-.details_node_modules-\@docusaurus-theme-classic-lib-theme-Details-styles-module {
-  background-color: white;
-  border-color: var(--kognic-lavender);
-}
-
-.details_node_modules-\@docusaurus-theme-classic-lib-theme-Details-styles-module {
+  /* Fixes margin jumping around when expanding/collapsing */
   h2 {
     margin: 0;
+  }
+
+  /* Override horizontal line */
+  [class^="collapsibleContent"] {
+    border-top: 1px solid var(--kognic-lavender) !important;
   }
 }
 
