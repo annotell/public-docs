@@ -20,6 +20,7 @@
   --ifm-color-primary-light: var(--ifm-color-primary);
   --ifm-color-primary-lighter: var(--ifm-color-primary);
   --ifm-color-primary-lightest: var(--ifm-color-primary);
+  --ifm-details-background-color: white;
   --ifm-code-font-size: 95%;
 }
 
@@ -35,6 +36,40 @@ html[data-theme="dark"] {
   --ifm-navbar-background-color: var(--kognic-black);
   --ifm-background-color: var(--kognic-black);
   --ifm-background-surface-color: var(--kognic-black);
+  --ifm-details-background-color: var(--kognic-black);
 }
 
-@import "override/details.css";
+/* @import "override/details.css";*/
+
+/* Light mode */
+article div details[class^="details"] {
+  background-color: var(--ifm-details-background-color) !important;
+  border: 1px solid var(--ifm-color-primary) !important;
+
+  .tabs {
+    color: #525860;
+  }
+
+  .tabs .tabs__item--active {
+    color: var(--ifm-color-primary);
+    border-bottom-color: var(--ifm-color-primary);
+  }
+
+  .alert a {
+    color: var(--ifm-color-primary);
+    text-decoration-color: var(--ifm-color-primary);
+  }
+
+  /* Override horizontal line */
+  div div[class^="collapsibleContent"] {
+    border-top: 1px solid var(--ifm-color-primary);
+  }
+}
+
+details[class*=" details_"],
+details[class*=" isBrowser_"],
+details[class*=" alert--"] {
+  summary::before h2 {
+    margin: 0px !important;
+  }
+}
