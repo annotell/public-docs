@@ -39,9 +39,6 @@ html[data-theme="dark"] {
   --ifm-details-background-color: var(--kognic-black);
 }
 
-/* @import "override/details.css";*/
-
-/* Light mode */
 article div details[class^="details"] {
   background-color: var(--ifm-details-background-color) !important;
   border: 1px solid var(--ifm-color-primary) !important;
@@ -63,13 +60,5 @@ article div details[class^="details"] {
   /* Override horizontal line */
   div div[class^="collapsibleContent"] {
     border-top: 1px solid var(--ifm-color-primary);
-  }
-}
-
-details[class*=" details_"],
-details[class*=" isBrowser_"],
-details[class*=" alert--"] {
-  summary::before h2 {
-    margin: 0px !important;
   }
 }
