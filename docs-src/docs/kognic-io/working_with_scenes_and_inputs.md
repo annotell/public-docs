@@ -50,8 +50,8 @@ During this process, the status property of a scene can be used to keep track of
 
 ## Creating Inputs from Scene
 
-Once a scene has been created, it can be used to create inputs which is done by associating it with a [project](project) 
-and an [input batch](project#batch). Consider the following project setup:
+Once a scene has been created, it can be used to create inputs which is done by associating it with a [project](project.mdx) 
+and an [input batch](project.mdx#batch). Consider the following project setup:
 
 ```
 organization # root for projects and scenes

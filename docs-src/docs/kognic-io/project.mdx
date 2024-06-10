@@ -2,6 +2,9 @@
 title: Projects
 ---
 
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
 ## Project
 
 A Kognic [project](../key-concepts) must first be set in order to create inputs.
@@ -9,19 +12,21 @@ Projects are usually configured by the Kognic Professional Services team, during
 
 ### List Projects
 
-All existing projects within your organization can be listed by using the Python API KognicIOClient. Make sure the authentication are set (see [Authentication](../kognic_apis.md#authentication)).
+Projects can be listed either via the client in Python or via the `kognicutil` CLI.
 
-```python
-from kognic.io.client import KognicIOClient
-client = KognicIOClient()
-projects = client.project.get_projects()
-```
+<Tabs>
+  <TabItem value="python" label="Python" default>
+    ```python
+    projects = client.project.get_projects()
+    ```
+  </TabItem>
+  <TabItem value="kognicutil" label="kognicutil" default>
+    ```bash
+    kognicutil projects
+    ```
+  </TabItem>
+</Tabs>
 
-Alternatively, projects can be listed with the `kognicutil` command line interface (CLI)
-
-```shell
-kognicutil projects
-```
 
 ## Batch
 
@@ -39,19 +44,21 @@ Input [batches](../key-concepts) allow further grouping of inputs into smaller b
 
 ### Listing Batches
 
-All existing batches withint a project can be listed by using the Python API KognicIOClient.
+Batches within a project can be listed either via the client in Python or via the `kognicutil` CLI.
 
-```python
-from kognic.io.client import KognicIOClient
-client = KognicIOClient()
-project_batches = client.project.get_project_batches(project="<project_external_id>")
-```
+<Tabs>
+  <TabItem value="python" label="Python" default>
+    ```python
+    batches = client.project.get_project_batches(project="<project-external-id>")
+    ```
+  </TabItem>
+  <TabItem value="kognicutil" label="kognicutil" default>
+    ```bash
+    kognicutil projects <project-external-id> --get-batches
+    ```
+  </TabItem>
+</Tabs>
 
-Alternatively, batches can be listed with the `kognicutil` CLI
-
-```shell
-kognicutil projects <project_external_id> --get-batches
-```
 
 ### Creating Batches
 

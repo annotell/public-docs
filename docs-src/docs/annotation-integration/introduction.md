@@ -22,7 +22,7 @@ At the moment we do not provide an API client for this integration. Instead, we'
 interact with our API.
 
 This page will also assume that the user has access to at least one project where at least one input batch has been
-uploaded. (See the client docs regarding these concepts [here](../kognic-io/project).)
+uploaded. (See the client docs regarding these concepts [here](../kognic-io/project.mdx).)
 
 ## Endpoints
 
