@@ -93,7 +93,7 @@ with zipfile.ZipFile(zip_buffer, 'a', zipfile.ZIP_DEFLATED, False) as zip_file:
             batch="Batch-identifier",
             annotation_type="Annotation-Type-identifier"
     ):
-        encoded_annotation = io.BytesIO(json.dumps(annotation.content, indent=4).encode())
+        encoded_annotation = io.BytesIO(json.dumps(annotation.content).encode())
         zip_file.writestr(f"{annotation.scene_uuid}.json", encoded_annotation.getvalue())
 
 with open('path/to/annotations.zip', 'wb') as f:
