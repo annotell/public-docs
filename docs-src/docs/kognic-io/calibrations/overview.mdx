@@ -2,6 +2,9 @@
 title: Calibrations Overview
 ---
 
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
 Scenes including both a 2D and 3D representation such as `lidars_and_cameras` deal with data in a number of different 
 [coordinate systems](../coordinate_systems.md). These scenes require a calibration that relate the different sensors to
 each other in terms of location and orientation. The calibration should also contain the required information for 
@@ -35,13 +38,28 @@ https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calib
 
 ### Listing existing calibrations
 
-As a final step we can fetch the calibration via the external id. This can either be done via the client, or via the CLI 
-kognicutil tool.
+As a final step we can fetch the calibration with the retrieved id or with the provided external id. 
+This can either be done via the client in Python or via `kognicutil`.
 
-```python
-client.calibration.get_calibration(external_id="Collection 2020-06-16")
-```
+<Tabs>
+  <TabItem value="python" label="Python" default>
+    ```python
+    # Fetch calibration by id
+    client.calibration.get_calibration("e95980c4-fee2-4b91-9316-1bffbcb5a896")
 
-```bash
-$ kognicutil calibration --external-id "Collection 2020-06-16"
-```
+    # Fetch calibration by external id
+    client.calibration.get_calibrations(external_id="Collection 2020-06-16")
+    ```
+  </TabItem>
+  <TabItem value="kognicutil" label="kognicutil" default>
+    ```bash
+    # Fetch calibration by id
+    kognicutil calibration --id "e95980c4-fee2-4b91-9316-1bffbcb5a896"
+
+    # Fetch calibration by external id
+    kognicutil calibration --external-id "Collection 2020-06-16"
+    ```
+  </TabItem>
+</Tabs>
+
+
