@@ -25,20 +25,40 @@ image plane of the camera. For cameras, we support different types of [standard 
 have to provide the intrinsic parameters of the camera. If your camera model is not supported, you can also provide
 a [custom camera calibration](cameras-custom.md) where you provide the implementation in the form of a WebAssembly module.
 
-## Examples
+## Creating calibrations
 
-### Creating a calibration
+Calibrations are created by providing a dictionary where the keys are the sensor names and the values are the calibration objects. 
+An example of how to create a calibration for a LIDAR sensor and two camera sensors is shown below. 
+Note that the contruction of the calibration objects is not shown here, but can be found in [kognic-io-examples](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration).
 
-The following example code shows how you can create a *unity* (i.e. we assume that all sensors are placed at origin and have no rotation)
-calibration for a LIDAR sensor and several camera sensors of different types.
 
-```python reference
-https://github.com/annotell/kognic-io-examples-python/blob/master/examples/calibration/calibration.py
+```python
+from kognic.io.client import KognicIOClient
+from kognic.io.model import SensorCalibration
+
+from examples.calibration.create_kannala_calibration import unity_kannala_calibration
+from examples.calibration.create_lidar_calibration import unity_lidar_calibration
+from examples.calibration.create_pinhole_calibration import unity_pinhole_calibration
+
+client = KognicIOClient()
+
+calibrations = {
+  # Note that the sensor names must match the names of the sensors in the scenes that use this calibration
+  "lidar": unity_lidar_calibration(),
+  "CAM1": unity_pinhole_calibration(),
+  "CAM2": unity_kannala_calibration()
+}
+
+sensor_calibration = SensorCalibration(external_id="Collection 2020-06-16", calibration=calibrations)
+created_calibration = client.calibration.create_calibration(sensor_calibration)
+print(f"Created calibration with id {created_calibration.id}")
 ```
 
-### Listing existing calibrations
+The retrieved calibration id is unique and should be referred to when creating scenes that use this calibration.
 
-As a final step we can fetch the calibration with the retrieved id or with the provided external id. 
+## Listing calibrations
+
+Existing calibrations can be fetched with the retrieved id or with the provided external id. 
 This can either be done via the client in Python or via `kognicutil`.
 
 <Tabs>
@@ -63,3 +83,9 @@ This can either be done via the client in Python or via `kognicutil`.
 </Tabs>
 
 
+## Next steps
+
+- [Lidar calibrations](lidars.md): Learn about lidar calibrations
+- [Standard camera calibrations](cameras-standard.md): Learn about the different types standard camera calibrations that are supported
+- [Custom camera calibrations](cameras-custom.md): Learn how to create a custom camera calibration
+- [Upload your first scene](/docs/upload-your-first-scene): Quick guide on how to upload scenes to the Kognic Platform
