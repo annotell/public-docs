@@ -1,17 +1,15 @@
 ---
-title: The Python client
+title: kognic-openlabel
 ---
 
-Using this schema we have developed a python client `kognic-openlabel` which makes it easier
-to work with annotations.
-The python client models the OpenLABEL format as `pydantic` models. It is publicly available
-[here](https://pypi.org/project/kognic-openlabel) and can be installed with
+Using this OpenLABEL json schema we have created a python package [`kognic-openlabel`](https://pypi.org/project/kognic-openlabel) 
+which makes it easier to work with annotations. The python models the OpenLABEL format as `pydantic` models and can be installed with
 
 ```bash
-pip install kognic-openlabel
+pip install --upgrade kognic-openlabel
 ```
 
-Since `pydantic` is used, the model contains validation as well as methods for serialization and deserialition.
+Since `pydantic` is used, the model contains validation as well as methods for serialization and deserialization.
 Below are examples of how you can easily change between different formats
 
 ```python
@@ -26,15 +24,15 @@ openlabel_dict = {
 from kognic.openlabel.models import OpenLabelAnnotation
 
 # Deserialize dict
-openlabel_annotation = OpenLabelAnnotation.parse_obj(openlabel_dict)
+openlabel_annotation = OpenLabelAnnotation.model_validate(openlabel_dict)
 
 # Serialize to json
-openlabel_json = openlabel_annotation.json(exclude_none=True)
+openlabel_json = openlabel_annotation.model_dump_json(exclude_none=True)
 
 # Deserialize json
-openlabel_annotation = OpenLabelAnnotation.parse_raw(openlabel_json)
+openlabel_annotation = OpenLabelAnnotation.model_validate_json(openlabel_json)
 
 # Serialize to dict
-openlabel_dict = openlabel_annotation.dict(exclude_none=True)
+openlabel_dict = openlabel_annotation.model_dump(exclude_none=True)
 ```
 
