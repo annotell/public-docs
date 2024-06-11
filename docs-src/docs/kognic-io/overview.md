@@ -86,7 +86,7 @@ Calibration is used by the Kognic annotation App to project regions in the point
 
 When creating a calibration, all sensors must match those present on the scene. If this is not the case the scene will not be created and a validation error will be returned by the Kognic API.
 
-Detailed documentation on how to create calibrations via the API is present in the [Calibration section](./calibrations/overview.md).
+Detailed documentation on how to create calibrations via the API is present in the [Calibration section](./calibrations/overview.mdx).
 
 ### Metadata
 
