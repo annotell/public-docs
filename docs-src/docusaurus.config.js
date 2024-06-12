@@ -19,6 +19,7 @@ module.exports = {
   themeConfig: {
     prism: {
       theme: prismThemes.vsDark, // Code block theme
+      additionalLanguages: ['json', 'bash']
     },
     codeblock: {
       showGithubLink: true,
