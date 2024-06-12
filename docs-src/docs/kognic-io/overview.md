@@ -64,6 +64,7 @@ As an example, let's say we have three camera sensors `R`, `F` and `L` positione
 
 ```python
 from kognic.io.model import SensorSpecification
+
 sensor_spec = SensorSpecification(
     sensor_to_pretty_name={
         "R": "Right Camera",
@@ -188,10 +189,7 @@ frames = [
         ])
 ]
 
-cameras_sequence = CamerasSequence(
-        ...,
-        frames=frames,
-    )
+cameras_sequence = CamerasSequence(frames=frames, ...)
 ```
 
 ## Image & Pointcloud Resources
@@ -238,11 +236,10 @@ Image(filename="/path/to/images/img_FC.png", sensor_name="FC")
 In addition to `filename`, provide a `FileData` object via the `file_data` attribute, which in turn has an `UploadableData` as its own `data` attribute. This example uses raw `bytes`:
 
 ```python
-png_blob = FileData(data=b'some PNG bytes', format=FileData.Format.PNG)
 Image(
     filename="FC-frame15",
     sensor_name="FC",
-    file_data=png_blob
+    file_data=FileData(data=b'some PNG bytes', format=FileData.Format.PNG)
 )
 ```
 
@@ -251,11 +248,10 @@ Image(
 In addition to `filename`, provide a `FileData` object via the `file_data` attribute, with a `callback` function that produces an `UploadableData`, e.g.
 
 ```python
-png_from_callback = FileData(callback=get_png, format=FileData.Format.PNG)
 Image(
     filename="FC-frame15",
     sensor_name="FC",
-    file_data=png_from_callback
+    file_data=FileData(callback=get_png, format=FileData.Format.PNG)
 )
 ```
 
@@ -293,12 +289,10 @@ argument when it is time to upload that single file. Asynchronous callbacks can 
 async def get_png(filename: str) -> UploadableData:
     pass
 
-png_from_async_callback = FileData(callback=get_png, format=FileData.Format.PNG)
-
 Image(
     filename="FC-frame15",
     sensor_name="FC",
-    file_data=png_from_async_callback
+    file_data=FileData(callback=get_png, format=FileData.Format.PNG)
 )
 ```
 
