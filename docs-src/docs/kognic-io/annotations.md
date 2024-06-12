@@ -37,7 +37,7 @@ This method returns a single `Annotation` object, containing the OpenLABEL json,
 ### Get Annotations for a Project or Batch
 
 ```python reference
-https://github.com/annotell/kognic-io-examples-python/blob/master/examples/get_project_annotations.py#L10-L13
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/get_project_annotations.py#L10-L12
 ```
 
 This example fetches annotations for an entire project or batch. The `run()` method returns a generator which will yield `Annotation` objects for all finished annotations
