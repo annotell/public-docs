@@ -26,13 +26,9 @@ see [Creating Multiple Inputs With One Call](working_with_scenes_and_inputs.md#c
 Start by creating a scene
 
 ```python
-from kognic.io.client import KognicIOClient
-client = KognicIOClient()
-
 # Create Scene but not input since we don't provide project or batch
 scene_response = client.lidars_and_cameras_sequence.create(
-  lidars_and_cameras_seq, 
-  annotation_types=annotation_types, 
+  lidars_and_cameras_seq,
   dryrun=dryrun
 )
 ```
@@ -55,7 +51,7 @@ client.pre_annotation.create(
 )
 ```
 
-### 3. Create the input
+### 3. Create input
 
 When the scene and pre-annotation have been successfully created, the input can be created.
 This will add it to the latest open batch in a project, or the specific batch that's specified,
@@ -64,7 +60,6 @@ and be ready for annotation with the pre-annotation present.
 ```python
 client.lidars_and_cameras_sequence.create_from_scene(
     scene_uuid=scene_response.scene_uuid, # from step 1
-    annotation_types=annotation_types,
     project=project,
     dryrun=dryrun
 )
@@ -110,7 +105,7 @@ Objects cannot have multiple 3D geometries in the same frame
 Note that all geometries should be specified under frames rather than in the root of the pre-annotation. 3D geometries
 should be expressed in the lidar coordinate system in the single-lidar case, but in the reference coordinate system in
 the multi-lidar case. The rotation of cuboids should be the same as that in [exports](../openlabel/openlabel-format.md#rotation-of-cuboids).
-2D geometries should be expressed in pixel coordinates. See [coordinate systems](calibrations/overview.md) for more information.
+2D geometries should be expressed in pixel coordinates. See [coordinate systems](calibrations/overview.mdx) for more information.
 
 ### Attributes
 

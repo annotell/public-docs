@@ -5,60 +5,90 @@ title: Calibrations Overview
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-Scenes including both a 2D and 3D representation deal with data in a number of different 
-[coordinate systems](../coordinate_systems.md). These scenes require a calibration that relate the different sensors to
-each other in terms of location and orientation. The calibration should also contain the required information for 
-projecting 3D points into the image plane of the camera.
+Scenes with 2D and 3D data across various [coordinate systems](../coordinate_systems.md) need **calibration** to align sensors by location and orientation.
+This includes projecting 3D points onto the camera’s image plane.
 
-A `Calibration` object consists of a set of key-value pairs where the key is the name of the sensor (i.e. sensor name) 
-and the value is either a `LidarCalibration` object or any of the different camera calibrations.
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Types of calibrations</h2>
+  </summary>
+All calibrations detail a sensor’s 3D position and orientation relative to the reference system.
+They also map 3D points to the camera’s image plane.
 
-:::tip reuse calibration
-Note that after a calibration has been created you can, and should, reuse the same calibration for multiple scenes if possible.
+- For LiDAR/RADAR, there is only one type of calibration available, [read more here](lidars.md)
+- For cameras, we support different types of [standard camera calibrations](cameras-standard.md), where you only
+  have to provide the intrinsic parameters of the camera.
+
+:::tip Unsupported camera model
+If your camera model is not supported, you can also provide
+a [custom camera calibration](cameras-custom.md) where you provide the implementation in the form of a WebAssembly module.
 :::
 
-## Types of calibrations
+</details>
 
-All calibration types contain information about the position and orientation of the sensor in 3D. This is relative to
-the reference coordinate system. More information about lidar calibrations can be found [here](lidars.md). The calibration also contains information about mapping 3D points to the
-image plane of the camera. For cameras, we support different types of [standard camera calibrations](cameras-standard.md), where you only
-have to provide the intrinsic parameters of the camera. If your camera model is not supported, you can also provide
-a [custom camera calibration](cameras-custom.md) where you provide the implementation in the form of a WebAssembly module.
+## How to create a calibration
 
-## Creating calibrations
-
-Calibrations are created by providing a dictionary where the keys are the sensor names and the values are the calibration objects. 
-An example of how to create a calibration for a LIDAR sensor and two camera sensors is shown below. 
-Note that the contruction of the calibration objects is not shown here, but can be found in [kognic-io-examples](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration).
-
+See this example of how to create a calibration for a LIDAR sensor and two camera sensors of type Pinhole. **For other camera types as Kannala, Fisheye etc, see** [**kognic-io-examples**](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration).
 
 ```python
 from kognic.io.client import KognicIOClient
 from kognic.io.model import SensorCalibration
-
-from examples.calibration.create_kannala_calibration import unity_kannala_calibration
-from examples.calibration.create_lidar_calibration import unity_lidar_calibration
-from examples.calibration.create_pinhole_calibration import unity_pinhole_calibration
+from kognic.io.model.calibration.camera.common import CameraMatrix, DistortionCoefficients
+from kognic.io.model.calibration.camera.pinhole_calibration import PinholeCalibration
+from kognic.io.model.calibration.common import Position, RotationQuaternion
+from kognic.io.model.calibration.common import Position, RotationQuaternion
+from kognic.io.model.calibration.lidar.lidar_calibration import LidarCalibration, LidarFieldOfView
 
 client = KognicIOClient()
 
-calibrations = {
-  # Note that the sensor names must match the names of the sensors in the scenes that use this calibration
-  "lidar": unity_lidar_calibration(),
-  "CAM1": unity_pinhole_calibration(),
-  "CAM2": unity_kannala_calibration()
-}
+# Create a sample calibration for lidar.
+lidar_position = Position(x=0.0, y=0.0, z=0.0)
+lidar_rotation = RotationQuaternion(w=1.0, x=0.0, y=0.0, z=0.0)
+lidar_fov = LidarFieldOfView(start_angle_deg=315, stop_angle_deg=45, depth=200)
 
-sensor_calibration = SensorCalibration(external_id="Collection 2020-06-16", calibration=calibrations)
+lidar_calibration = LidarCalibration(position=lidar_position, rotation_quaternion=lidar_rotation, field_of_view=lidar_fov)
+
+# Create a sample calibration for a Pinhole camera. For other camera types visit:
+# https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration
+camera_position = Position(x=0.0, y=0.0, z=0.0)
+camera_rotation = RotationQuaternion(w=1.0, x=0.0, y=0.0, z=0.0)
+camera_camera_matrix = CameraMatrix(fx=3450, fy=3250, cx=622, cy=400)
+camera_distortion_coefficients = DistortionCoefficients(k1=0.0, k2=0.0, p1=0.0, p2=0.0, k3=1.0)
+
+pinhole_calibration = PinholeCalibration(
+    position=camera_position,
+    rotation_quaternion=camera_rotation,
+    camera_matrix=camera_camera_matrix,
+    distortion_coefficients=camera_distortion_coefficients,
+    image_height=1080,
+    image_width=1920,
+    field_of_view=190.0,
+)
+
+sensor_calibration = SensorCalibration(
+  external_id="Create your own id here", # to make it easier for you to find the calibration later
+  calibration={
+    # The keys: "lidar", "LEFT_FRONT_CAMERA" etc, must match the
+    # names of the sensors in the scenes that use this calibration
+    "lidar": lidar_calibration,
+    "LEFT_FRONT_CAMERA": pinhole_calibration,
+    "RIGHT_FRONT_CAMERA": pinhole_calibration
+  }
+)
 created_calibration = client.calibration.create_calibration(sensor_calibration)
 print(f"Created calibration with id {created_calibration.id}")
 ```
 
-The retrieved calibration id is unique and should be referred to when creating scenes that use this calibration.
+:::tip reuse calibration
+Note that after a calibration has been created you can, and should, reuse the same calibration for multiple scenes if possible, see below.
+:::
 
-## Listing calibrations
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Get calibrations</h2>
+  </summary>
 
-Existing calibrations can be fetched with the retrieved id or with the provided external id. 
+Existing calibrations can be fetched with the retrieved id or with the provided external id.
 This can either be done via the client in Python or via `kognicutil`.
 
 <Tabs>
@@ -70,6 +100,7 @@ This can either be done via the client in Python or via `kognicutil`.
     # Fetch calibration by external id
     client.calibration.get_calibrations(external_id="Collection 2020-06-16")
     ```
+
   </TabItem>
   <TabItem value="kognicutil" label="kognicutil" default>
     ```bash
@@ -79,9 +110,10 @@ This can either be done via the client in Python or via `kognicutil`.
     # Fetch calibration by external id
     kognicutil calibration --external-id "Collection 2020-06-16"
     ```
+
   </TabItem>
 </Tabs>
-
+</details>
 
 ## Next steps
 

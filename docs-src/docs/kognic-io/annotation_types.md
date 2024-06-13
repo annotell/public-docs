@@ -8,8 +8,8 @@ the Guideline Agreement Process (GAP). During the GAP a set of taxonomies are de
 which will be used in order to annotate all the inputs that are uploaded to the platform.
 
 Annotation Types are identifiers that each map to one of these taxonomies and allows you
-to programmatically define, for every input that you create, what taxonomies that you
-would like that input to be annotated with. You do not **need** to use annotation types
+to programmatically define, for every scene that you create, what taxonomies that you
+would like that scene to be annotated with. You do not **need** to use annotation types
 in a project but by skipping annotation types your inputs would always be created for all
 taxonomies available in the specified batch.
 
@@ -21,8 +21,8 @@ Services team.
 :::
 
 ## Examples
-For the following examples we will be creating `cameras_sequence` inputs, however the
-procedure would be identical for any other input type. We will also assume that the
+For the following examples we will be creating `cameras_sequence` scenes, however the
+procedure would be identical for any other scene type. We will also assume that the
 project `example_project_id` is configured with the Annotation Types:
 `static_objects`, and `dynamic_objects`, and that they are also available in the batch
 `example_batch_id`.
@@ -53,13 +53,13 @@ from kognic.io.client import KognicIOClient
 from kognic.io.model.scene.cameras_sequence import CamerasSequence
 
 client = KognicIOClient()
-camera_input = CamerasSequence(external_id=..., frames=...)
-client.cameras_sequence.create(camera_input,
+scene = CamerasSequence(external_id=..., frames=...)
+client.cameras_sequence.create(scene,
                                project="example_project_id",
                                batch="example_batch_id",
                                annotation_types=["static_objects", "dynamic_objects"])
 ```
-The above example will create a new input which will be annotated for the annotation 
+The above example will create a new scene which will be annotated for the annotation 
 types specified. If one or more of the specified annotation types would not be available
 in the specified batch the validation in the API would fail. 
 
@@ -74,14 +74,14 @@ from kognic.io.client import KognicIOClient
 from kognic.io.model.scene.cameras_sequence import CamerasSequence
 
 client = KognicIOClient()
-camera_input = CamerasSequence(external_id=..., frames=...)
-client.cameras_sequence.create(camera_input,
+scene = CamerasSequence(external_id=..., frames=...)
+client.cameras_sequence.create(scene,
                                project="example_project_id",
                                batch="example_batch_id")
 ```
-The above example will create a new input which will be annotated for all Annotation
+The above example will create a new scene which will be annotated for all Annotation
 Types available in the batch `example_batch_id`. However, this way it is not explicit
-what Annotation Types that the inputs will be annotated with, and you would not get an
+what Annotation Types that the scene will be annotated with, and you would not get an
 error if e.g. `static_objects` was missing from the specified batch. 
 
 :::tip Always specify Annotation Types
@@ -102,26 +102,26 @@ Adding annotation types has been deprecated in favor of
 removed in the near future.
 :::
 
-Adding an annotation type to an input means that an annotation will be produced for that input with the specified
-annotation type. In the same way, removing annotation types from an input means that annotations will **not** be
-produced for that input with the specified annotation types. 
+Adding an annotation type to a scene means that an annotation will be produced for that scene with the specified
+annotation type. In the same way, removing annotation types from a scene means that annotations will **not** be
+produced for that scene with the specified annotation types. 
 
 In the case when multiple annotation types are annotated in the same task, it is enough to specify
 one annotation type when adding but **all** annotation types must be specified when removing. 
 
-Note that it is currently not possible to add an annotation type that has already been removed from an input.
+Note that it is currently not possible to add an annotation type that has already been removed from a scene.
 
 ```python
 from kognic.io.client import KognicIOClient
 
 client = KognicIOClient()
-input_uuid = 'cca60a67-cb68-4645-8bae-00c6e6415555'
+scene_uuid = 'cca60a67-cb68-4645-8bae-00c6e6415555'
 
-# Add an annotation type to an input
-client.input.add_annotation_type(input_uuid=input_uuid, annotation_type="annotation-type")
+# Add an annotation type to a scene
+client.input.add_annotation_type(scene_uuid=scene_uuid, annotation_type="annotation-type")
 
-# Remove annotation types from an input
+# Remove annotation types from a scene
 annotation_types = ["annotation-type-1", "annotation-type-2", ...]
-client.input.remove_annotation_types(input_uuid=input_uuid, annotation_type=annotation_types)
+client.input.remove_annotation_types(scene_uuid=scene_uuid, annotation_type=annotation_types)
 
 ```

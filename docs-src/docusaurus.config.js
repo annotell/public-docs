@@ -1,3 +1,5 @@
+import { themes as prismThemes } from 'prism-react-renderer';
+
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
@@ -15,6 +17,10 @@ module.exports = {
     'docusaurus-theme-github-codeblock'
   ],
   themeConfig: {
+    prism: {
+      theme: prismThemes.vsDark, // Code block theme
+      additionalLanguages: ['json', 'bash']
+    },
     codeblock: {
       showGithubLink: true,
       githubLinkLabel: 'View on GitHub',
