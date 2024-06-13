@@ -8,8 +8,10 @@ import TabItem from "@theme/TabItem";
 Scenes with 2D and 3D data across various [coordinate systems](../coordinate_systems.md) need **calibration** to align sensors by location and orientation.
 This includes projecting 3D points onto the camera’s image plane.
 
-## Types of calibrations
-
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Types of calibrations</h2>
+  </summary>
 All calibrations detail a sensor’s 3D position and orientation relative to the reference system.
 They also map 3D points to the camera’s image plane. For more about lidar calibrations, see [here](lidars.md).
 
@@ -20,6 +22,8 @@ have to provide the intrinsic parameters of the camera.
 If your camera model is not supported, you can also provide
 a [custom camera calibration](cameras-custom.md) where you provide the implementation in the form of a WebAssembly module.
 :::
+
+</details>
 
 ## Creating calibrations
 
@@ -55,7 +59,10 @@ The retrieved calibration id is unique and should be referred to when creating s
 Note that after a calibration has been created you can, and should, reuse the same calibration for multiple scenes if possible.
 :::
 
-## Listing calibrations
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Listing calibrations</h2>
+  </summary>
 
 Existing calibrations can be fetched with the retrieved id or with the provided external id.
 This can either be done via the client in Python or via `kognicutil`.
@@ -82,6 +89,7 @@ This can either be done via the client in Python or via `kognicutil`.
 
   </TabItem>
 </Tabs>
+</details>
 
 ## Next steps
 
