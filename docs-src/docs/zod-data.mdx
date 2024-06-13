@@ -179,7 +179,10 @@ zod
     To convert a lidar we need this function, the main thing to note here is that Kognic expects the timestamp column to be called `ts_gps`.
 
     ```python
-    def convert_zod_lidar_frame_to_point_cloud(lidar_frame: ZodSensorFrame, timestamp_ns: int) -> PointCloud:
+    from kognic.io.model import PointCloud
+    from zod.constants import Lidar as ZodLidar
+
+    def convert_zod_lidar_frame_to_point_cloud(lidar_frame, timestamp_ns: int) -> PointCloud:
 
       pc = np.load(lidar_frame.filepath)
       cols = ["ts_gps", "x", "y", "z", "intensity"]
@@ -199,7 +202,10 @@ zod
     To convert a camera we need the following function
 
     ```python
-    def convert_zod_camera_frame_to_image(camera_frame: ZodCameraFrame) -> Image:
+    from kognic.io.model import Image, ImageMetadata
+    from zod.constants import Camera as ZodCamera
+
+    def convert_zod_camera_frame_to_image(camera_frame) -> Image:
       camera_timestamp_ns = seconds_to_ns(camera_frame.time.timestamp())
       return Image(
           filename=camera_frame.filepath,
@@ -213,9 +219,15 @@ zod
 
     ```
 
-    and finally we need to be able to convert the imu data
+    and finally we can create the frames:
 
     ```python
+    from scipy.spatial.transform import Rotation as R
+    from zod.constants import Camera as ZodCamera
+    from zod.constants import Lidar as ZodLidar
+    from kognic.io.model.ego import EgoVehiclePose
+    from kognic.io.model.calibration import Position, RotationQuaternion
+
     frames, seen_frame_timestamps = list(), set()
     start_ts_ms = ns_to_ms(seconds_to_ns(sequence.info.get_lidar_frames()[0].time.timestamp()))
 
@@ -232,9 +244,15 @@ zod
 
         point_cloud = convert_zod_lidar_frame_to_point_cloud(lidar_frame, frame_ts_ns)
 
+        # Ego pose
+        # Ego pose is actaully just using the IMU data to 
         ego_pose_ref = sequence.ego_motion.get_poses(frame_ts_s)  # reference coordinate system
         # transform to lidar coordinate system, since single-lidar
         ego_pose = np.matmul(ego_pose_ref, lidar_calibration.extrinsics.transform)
+        rot = R.from_matrix(ego_pose[:3, :3]).as_quat()
+        ego_pose_converted = EgoVehiclePose(
+          position=Position(x=ego_pose[0][3], y=ego_pose[1][3], z=extrinsic[2][3]),
+          rotation=RotationQuaternion(w=rot[3], x=rot[0], y=rot[1], z=rot[2]))
 
         frames.append(
             LCSFrame(
@@ -242,7 +260,7 @@ zod
                 frame_id=str(frame_ts_ns),
                 images=[convert_zod_camera_frame_to_image(camera_frame)],
                 point_clouds=[point_cloud],
-                ego_vehicle_pose=convert_to_ego_vehicle_pose(ego_pose),
+                ego_vehicle_pose=ego_pose_converted,
                 unix_timestamp=frame_ts_ns,
             )
         )
