@@ -1,0 +1,62 @@
+---
+id: prerequisites-for-annotation
+title: Prerequisites for Annotation
+slug: /prerequisites-for-annotation
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Prerequisites for Annotation
+
+Before scenes can be annotated a few things need to be in place. From a developer perspective there is not too much to do;
+this is mostly organization and workforce level preparation, but it is good to be aware of the process.
+
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Projects and Requests</h2>
+  </summary>
+
+A scene is sent for annotation by adding it to a *Request*, creating what we call and *Input*, which has its own UUID.
+This is detailed on the next page.
+
+The request is part of a *Batch*, itself part of a *Project*. Projects and initial Requests and Batches will be set up,
+possibly in conjunction with Perception Experts from Kognic, during the onboarding/setup phase for new customers.
+They may also be managed independently or in conjunction with a BPO who provides annotation services through the Kognic platform.
+</details>
+
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Annotation Types</h2>
+  </summary>
+
+Annotation types are a niche part of the configuration but the concept appears in the API and library so it is important to know about them.
+
+Annotations types are configured on a project, and a subset of those on each request. Every input produces an output *Annotation* (the final deliverable) for each annotation type.
+
+In the majority of cases there will be a single annotation type, so one scene is annotated in a request to produce one *Annotation*, or set of labels.
+
+If the use of multiple annotation types is relevant to your use-case, Kognic will work with you to understand how to use them further.
+</details>
+
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Taxonomies</h2>
+  </summary>
+
+The taxonomy defines the "what" of annotation: what is there to annotate, and hence what does the resulting annotation describe?
+The classes of object and the domain and range of their properties, plus annotatable properties of the scene.
+</details>
+
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Annotation Instruction</h2>
+  </summary>
+
+In essence, the Annotation Instruction defines the arrangements for the annotation process itself: for example that
+polylines are to be drawn to label lane markings.
+</details>
+
+Projects, Requests, Taxonomies and Annotation Instructions are not required to exist or be completely configured in order to upload scenes.
+However, the relevant configuration must have been completed in the Kognic Platform before scenes can be added to requests, and hence before they can be annotated.
+

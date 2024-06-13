@@ -3,6 +3,10 @@ module.exports = {
     "Getting Started": [
         "quickstart",
         "upload-your-first-scene",
+        "view-uploaded-scene",
+        "prerequisites-for-annotation",
+        "ordering-annotation",
+//        "downloading-annotation"
      ],
     "Kognic APIs": ["kognic-apis"],
     "Key Concepts": ["key_concepts"],
