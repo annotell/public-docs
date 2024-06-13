@@ -25,35 +25,62 @@ a [custom camera calibration](cameras-custom.md) where you provide the implement
 
 </details>
 
-## Creating calibrations
+## How to create a calibration
 
-Calibrations are created by providing a dictionary where the keys are the sensor names and the values are the calibration objects.
-An example of how to create a calibration for a LIDAR sensor and two camera sensors is shown below.
-Note that the contruction of the calibration objects is not shown here, but can be found in [kognic-io-examples](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration).
+See this example of how to create a calibration for a LIDAR sensor and two camera sensors of type Pinhole. **For other camera types as Kannala, Fisheye etc, see** [**kognic-io-examples**](https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration).
 
 ```python
 from kognic.io.client import KognicIOClient
 from kognic.io.model import SensorCalibration
-
-from examples.calibration.create_kannala_calibration import unity_kannala_calibration
-from examples.calibration.create_lidar_calibration import unity_lidar_calibration
-from examples.calibration.create_pinhole_calibration import unity_pinhole_calibration
+from kognic.io.model.calibration.camera.common import CameraMatrix, DistortionCoefficients
+from kognic.io.model.calibration.camera.pinhole_calibration import PinholeCalibration
+from kognic.io.model.calibration.common import Position, RotationQuaternion
+from kognic.io.model.calibration.common import Position, RotationQuaternion
+from kognic.io.model.calibration.lidar.lidar_calibration import LidarCalibration, LidarFieldOfView
 
 client = KognicIOClient()
 
-calibrations = {
-  # Note that the sensor names (i.e. "lidar", "LEFT_FRONT_CAMERA" etc) must match the names of the sensors in the scenes that use this calibration
-  "lidar": unity_lidar_calibration(),
-  "LEFT_FRONT_CAMERA": unity_pinhole_calibration(),
-  "RIGHT_FRONT_CAMERA": unity_kannala_calibration()
-}
+# Creates a sample calibration for lidar.
+def unity_lidar_calibration():
+    lidar_position = Position(x=0.0, y=0.0, z=0.0)
+    lidar_rotation = RotationQuaternion(w=1.0, x=0.0, y=0.0, z=0.0)
+    lidar_fov = LidarFieldOfView(start_angle_deg=315, stop_angle_deg=45, depth=200)
+    return LidarCalibration(position=lidar_position, rotation_quaternion=lidar_rotation, field_of_view=lidar_fov)
 
-sensor_calibration = SensorCalibration(external_id="Create your own id here", calibration=calibrations)
+
+# Creates a sample calibration for a Pinhole camera. For other camera types visit:
+# https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration
+def unity_pinhole_calibration():
+    camera_position = Position(x=0.0, y=0.0, z=0.0)
+    camera_rotation = RotationQuaternion(w=1.0, x=0.0, y=0.0, z=0.0)
+    camera_camera_matrix = CameraMatrix(fx=3450, fy=3250, cx=622, cy=400)
+    camera_distortion_coefficients = DistortionCoefficients(k1=0.0, k2=0.0, p1=0.0, p2=0.0, k3=1.0)
+    return PinholeCalibration(
+        position=camera_position,
+        rotation_quaternion=camera_rotation,
+        camera_matrix=camera_camera_matrix,
+        distortion_coefficients=camera_distortion_coefficients,
+        image_height=1080,
+        image_width=1920,
+        field_of_view=190.0,
+    )
+
+sensor_calibration = SensorCalibration(
+  external_id="Create your own id here", # to make it easier for you to find the calibration later
+  calibration={
+    # The keys: "lidar", "LEFT_FRONT_CAMERA" etc, must match the
+    # names of the sensors in the scenes that use this calibration
+    "lidar": unity_lidar_calibration(),
+    "LEFT_FRONT_CAMERA": unity_pinhole_calibration(),
+    "RIGHT_FRONT_CAMERA": unity_pinhole_calibration()
+  }
+)
 created_calibration = client.calibration.create_calibration(sensor_calibration)
+
+# The retrieved calibration id is unique and should be referred
+# to when creating scenes that use this calibration.
 print(f"Created calibration with id {created_calibration.id}")
 ```
-
-The retrieved calibration id is unique and should be referred to when creating scenes that use this calibration.
 
 :::tip reuse calibration
 Note that after a calibration has been created you can, and should, reuse the same calibration for multiple scenes if possible.
