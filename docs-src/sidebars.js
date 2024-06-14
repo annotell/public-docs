@@ -1,5 +1,13 @@
 module.exports = {
   docs: {
+    "Getting Started": [
+        "quickstart",
+        "upload-your-first-scene",
+        "view-uploaded-scene",
+        "prerequisites-for-annotation",
+        "ordering-annotation",
+//        "downloading-annotation"
+     ],
     "Kognic APIs": ["kognic-apis"],
     "Key Concepts": ["key_concepts"],
     "Kognic IO": [
@@ -54,13 +62,4 @@ module.exports = {
     ],
     "Migration Guide": ["a2k_migration_guide"],
   },
-    guide: {
-    "Getting Started": [
-        "guide/quickstart",
-        "guide/upload-your-first-scene",
-        "guide/view-uploaded-scene",
-        "guide/prerequisites-for-annotation",
-        "guide/ordering-annotation"
-     ]
-   }
 };

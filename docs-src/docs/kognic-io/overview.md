@@ -1,6 +1,5 @@
 ---
 title: Overview
-slug: /
 ---
 
 ## Different types of scenes
