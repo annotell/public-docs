@@ -39,7 +39,7 @@ module.exports = {
         },
         {
           to: "docs/kognic-io/overview",
-          activeBaseRegex: "docs/(?!guide).*",
+          activeBaseRegex: "^docs/(?!guide).*",
           label: "Documentation",
           position: "left",
         },
