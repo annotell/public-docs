@@ -32,15 +32,15 @@ module.exports = {
       },
       items: [
         {
-          to: "docs/",
-          activeBaseRegex: "^docs/(?!guide).*",
-          label: "Documentation",
-          position: "left",
-        },
-        {
           to: "docs/guide/quickstart",
           activeBasePath: "docs/guide",
           label: "Getting started",
+          position: "left",
+        },
+        {
+          to: "docs/kognic-io/overview",
+          activeBaseRegex: "^docs/(?!guide).*",
+          label: "Documentation",
           position: "left",
         },
         {
