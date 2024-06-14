@@ -40,6 +40,12 @@ module.exports = {
           position: "left",
         },
         {
+          to: "docs/guide/quickstart",
+          activeBasePath: "guide",
+          label: "Guide",
+          position: "left",
+        },
+        {
           href: "https://github.com/annotell/public-docs", // TODO: remove annotell
           label: "GitHub",
           position: "right",
