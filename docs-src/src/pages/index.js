@@ -8,36 +8,58 @@ import styles from "./styles.module.css";
 
 const features = [
   {
-    title: "Create inputs",
+    title: "Upload 2D data",
+    pageUrl: "docs/upload-your-first-scene",
     imageUrl: "https://www.kognic.com/images/uploads/laptop-annotation.png",
     description: (
       <>
-        Create inputs using our Input API, allowing you to add 2D inputs as well
-        as 2D and 3D LiDAR sequence inputs.
+        Learn how to upload 2D data for Annotation in the Kognic Platform for simpler use-cases.
       </>
     ),
   },
   {
-    title: "Browse your data",
-    imageUrl:
-      "https://www.kognic.com/images/uploads/laptop-data_browsing.png",
+    title: "Upload 3D data",
+    pageUrl: "docs/upload-your-first-scene",
+    imageUrl: "https://www.kognic.com/images/uploads/laptop-annotation.png",
     description: (
-      <>Track progress of annotations and download annotations via our APIs</>
+      <>
+        Learn how to upload 3D data to the Kognic Platform, including powerful multi-sensor scenes.
+      </>
+    ),
+  },{
+    title: "Download annotations",
+    pageUrl: "docs/kognic-io/annotations",
+    imageUrl: "https://www.kognic.com/images/uploads/laptop-annotation.png",
+    description: (
+      <>
+        Download your completed annotations from the Kognic Platform in the industry-standard OpenLABEL format.
+      </>
     ),
   },
+
 ];
 
-function Feature({ imageUrl, title, description }) {
+const count = features?.length ?? 0;
+const cw = Math.min(12, Math.max(3, Math.floor(12 / count)));
+function Feature({ imageUrl, title, description, pageUrl }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
-    <div className={clsx("col col--6", styles.feature)}>
-      {imgUrl && (
+    <div className={clsx("col col--" + cw, styles.feature)} style={{display: "flex", flexDirection: "column"}}>
+      {/*{imgUrl && (
         <div className="text--center">
           <img className={styles.featureImage} src={imgUrl} alt={title} />
         </div>
-      )}
+      )}*/}
       <h3>{title}</h3>
-      <p>{description}</p>
+      <p style={{flexGrow: "1" }}>{description}</p>
+      <div style={{verticalAlign: 'bottom'}}>
+        <Link
+          style={{ color: "white" }}
+          className={clsx("button button--outline button--secondary button--lg", styles.getStarted, "button", "button--secondary", "button--block")}
+          to={useBaseUrl(pageUrl)}>
+            Show me!
+          </Link>
+      </div>
     </div>
   );
 }
@@ -63,23 +85,21 @@ function Home() {
               )}
               to={useBaseUrl("docs/getting-started/quickstart")}
             >
-              Get Started
+              Quickstart Guide
             </Link>
           </div>
         </div>
       </header>
       <main>
-        {/* {features && features.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
-              </div>
+        <section className={styles.features}>
+          <div className="container">
+            <div className="row">
+              {features.map((props, idx) => (
+                <Feature key={idx} {...props} />
+              ))}
             </div>
-          </section>
-        )} */}
+          </div>
+        </section>
       </main>
     </Layout>
   );
