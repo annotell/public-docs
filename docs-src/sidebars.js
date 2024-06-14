@@ -2,6 +2,7 @@ module.exports = {
   docs: {
     "Getting Started": [
       "getting-started/quickstart",
+      "kognic-apis",
       //"upload-your-first-scene",
       //"view-uploaded-scene",
       //"prerequisites-for-annotation",
@@ -11,8 +12,10 @@ module.exports = {
     "Upload data": [
       "upload-data/upload-your-first-scene",
       "upload-data/view-uploaded-scene",
+      "upload-data/prerequisites-for-annotation",
+      "upload-data/ordering-annotation",
       {
-        "Examples": [
+        "More examples": [
           "kognic-io/scenes/cameras",
           "kognic-io/scenes/lidars_and_cameras",
           "kognic-io/scenes/cameras_seq",
@@ -21,9 +24,41 @@ module.exports = {
         ]
       },
     ],
-    "Kognic APIs": ["kognic-apis"],
-    "Key Concepts": ["key_concepts"],
-    "Kognic IO": [
+    "Dataset exploration": [
+      "dataset-exploration/introduction",
+      "dataset-exploration/prediction-format",
+      "dataset-exploration/uploading-predictions",
+      "dataset-exploration/understand-dataset-content"
+    ],
+    "Annotation integration": [
+      "annotation-integration/introduction",
+      "annotation-integration/review"
+    ],
+    "Concepts": [
+      "key_concepts",
+      "kognic-io/project",
+      // projects
+      // scenes
+      //   - overview
+      //   - calibrations
+      //   - motion compensation
+      //   - feature flags
+      //   - supported file formats
+      // annotations
+      //   - overview
+      //   - pre-annotations
+      //   - OpenLABEL
+      // coordinate systems (under scenes?)
+      // annotation types (deprecated?)
+
+    ],
+    //"API Reference": [
+    // kognic-io
+    //   - error-handling
+    // proxy settings
+    //],
+
+    "API Reference": [
       "kognic-io/project",
       {
         "Scenes": [
@@ -46,6 +81,8 @@ module.exports = {
         "Annotations": [
           "kognic-io/pre_annotations",
           "kognic-io/annotations",
+          "openlabel/openlabel-format",
+          "openlabel/python-client"
         ]
       },
       "kognic-io/working_with_scenes_and_inputs",
@@ -60,27 +97,18 @@ module.exports = {
       "kognic-io/coordinate_systems",
       "kognic-io/error_handling",
       "kognic-io/FAQ",
+      "api/proxy-configuration",
       {
         "Supported File Formats": [
           "kognic-io/resources/images",
           "kognic-io/resources/pointclouds"
         ]
+      },
+      {
+        "Migration Guides": [
+          "a2k_migration_guide",
+        ]
       }
-    ],
-    "Dataset exploration": [
-      "dataset-exploration/introduction",
-      "dataset-exploration/prediction-format",
-      "dataset-exploration/uploading-predictions",
-      "dataset-exploration/understand-dataset-content"
-    ],
-    "Annotation integration": [
-      "annotation-integration/introduction",
-      "annotation-integration/review"
-    ],
-    "OpenLABEL": [
-      "openlabel/openlabel-format",
-      "openlabel/python-client"
-    ],
-    "Migration Guide": ["a2k_migration_guide"],
+    ]
   },
 };
