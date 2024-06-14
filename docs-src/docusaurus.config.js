@@ -33,13 +33,13 @@ module.exports = {
       items: [
         {
           to: "docs/",
-          activeBasePath: "docs",
+          activeBaseRegex: "^docs/(?!guide).*",
           label: "Documentation",
           position: "left",
         },
         {
           to: "docs/guide/quickstart",
-          activeBasePath: "guide",
+          activeBasePath: "docs/guide",
           label: "Getting started",
           position: "left",
         },
