@@ -38,12 +38,7 @@ module.exports = {
             "kognic-io/feature_flags",
           ],
         },
-        {
-          "Supported File Formats": [
-            "kognic-io/resources/images",
-            "kognic-io/resources/pointclouds",
-          ],
-        },
+        "kognic-io/file_formats",
         "kognic-io/pre_annotations",
       ],
     },
