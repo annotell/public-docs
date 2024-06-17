@@ -66,7 +66,6 @@ module.exports = {
       {
         "Annotations": [
           "kognic-io/pre_annotations",
-          "kognic-io/annotations",
           "openlabel/openlabel-format",
           "openlabel/python-client"
         ]
