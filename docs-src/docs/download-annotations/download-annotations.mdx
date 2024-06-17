@@ -20,16 +20,16 @@ Once the annotations are made delivery-ready and are exported, they can be downl
   </summary>
 
 ```python
-import json
 from kognic.io.client import KognicIOClient
 
 client = KognicIOClient()
-annotation = client.annotation.get_annotation(scene_uuid=scene_uuid,
-                                              annotation_type=annotation_type)
-openlabel_json = json.dumps(annotation.content)
+
+for annotation in client.annotation.get_annotations_for_scene(scene_uuid=scene_uuid):
+    openlabel_dict = annotation.content
+    # ...
 ```
 
-This method returns a single `Annotation` object, containing the OpenLABEL json, using a Scene UUID and an annotation type.
+This method returns all delivered annotations in the form of `Annotation` objects, containing the OpenLABEL json, using a Scene UUID.
 
 </Details>
 
@@ -39,18 +39,19 @@ This method returns a single `Annotation` object, containing the OpenLABEL json,
     </summary>
 
 ```python
-import json
 from kognic.io.client import KognicIOClient
 
 client = KognicIOClient()
-annotations = client.annotation.get_project_annotations(project="project-id",
-                                                        batch="batch-id",
+
+# Get generator with annotations
+annotations = client.annotation.get_project_annotations(project="project-identifier",
+                                                        batch="batch-identifier",
                                                         annotation_type="annotation-type")
 for annotation in annotations:
-    openlabel_json = json.dumps(annotation.content)
+    openlabel_dict = annotation.content
     # ...
 ```
 
-This example fetches annotations for an entire project or batch. This retrieves `Annotation` objects for all finished
+This example fetches annotations for an entire project or batch. This retrieves `Annotation` objects for all delivered
 annotations for the given `project`, `batch` and `annotation_type`.
 </Details>

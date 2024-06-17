@@ -20,32 +20,22 @@ module.exports = {
     },
     { "Download annotations": ["download-annotations/download-annotations"] },
     {
-      Concepts: [
-        "key_concepts",
-        "kognic-io/project",
-        // projects
-        // scenes
-        //   - overview
-        //   - calibrations
-        //   - motion compensation
-        //   - feature flags
-        //   - supported file formats
-        // annotations
-        //   - overview
-        //   - pre-annotations
-        //   - OpenLABEL
-        // coordinate systems (under scenes?)
-        // annotation types (deprecated?)
+      "Dataset exploration": [
+        "dataset-exploration/introduction",
+        "dataset-exploration/prediction-format",
+        "dataset-exploration/uploading-predictions",
+        "dataset-exploration/understand-dataset-content",
       ],
     },
-    //"API Reference": [
-    // kognic-io
-    //   - error-handling
-    // proxy settings
-    //],
-
     {
-      "API Reference": [
+      "Annotation integration": [
+        "annotation-integration/introduction",
+        "annotation-integration/review",
+      ],
+    },
+    {
+      Documentation: [
+        "key_concepts",
         "kognic-io/project",
         {
           Scenes: [
@@ -93,20 +83,6 @@ module.exports = {
         {
           "Migration Guides": ["a2k_migration_guide"],
         },
-      ],
-    },
-    {
-      "Dataset exploration": [
-        "dataset-exploration/introduction",
-        "dataset-exploration/prediction-format",
-        "dataset-exploration/uploading-predictions",
-        "dataset-exploration/understand-dataset-content",
-      ],
-    },
-    {
-      "Annotation integration": [
-        "annotation-integration/introduction",
-        "annotation-integration/review",
       ],
     },
   ],
