@@ -27,7 +27,6 @@ client = KognicIOClient()
 for annotation in client.annotation.get_annotations_for_scene(scene_uuid=scene_uuid):
     openlabel_dict = annotation.content
     # ...
-
 ```
 
 This method returns all delivered annotations in the form of `Annotation` objects, containing the OpenLABEL json, using a Scene UUID.
