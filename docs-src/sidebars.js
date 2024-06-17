@@ -18,7 +18,11 @@ module.exports = {
         },
       ],
     },
-    { "Download annotations": ["download-annotations/download-annotations"] },
+    { "Download annotations": [
+        "download-annotations/download-annotations",
+        "openlabel/openlabel-format",
+        "openlabel/python-client",
+    ] },
     {
       "Dataset exploration": [
         "dataset-exploration/introduction",
