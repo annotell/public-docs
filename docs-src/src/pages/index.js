@@ -54,7 +54,6 @@ function Feature({ imageUrl, title, description, pageUrl }) {
       <p style={{flexGrow: "1" }}>{description}</p>
       <div style={{verticalAlign: 'bottom'}}>
         <Link
-          style={{ color: "white" }}
           className={clsx("button button--outline button--secondary button--lg", styles.getStarted, "button", "button--secondary", "button--block")}
           to={useBaseUrl(pageUrl)}>
             Show me!
