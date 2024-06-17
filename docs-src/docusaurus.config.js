@@ -56,7 +56,6 @@ module.exports = {
             "https://github.com/annotell/public-docs/edit/master/docs-src/", // TODO: remove annotell
           remarkPlugins: [math],
           rehypePlugins: [katex],
-          sidebarCollapsible: false,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
