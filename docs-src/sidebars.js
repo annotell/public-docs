@@ -1,6 +1,12 @@
 module.exports = {
   docs: [
-    { "Getting Started": ["getting-started/quickstart", "kognic-apis"] },
+    {
+      "Getting Started": [
+        "getting-started/quickstart",
+        "kognic-apis",
+        "key_concepts",
+      ]
+    },
     {
       "Upload data": [
         "upload-data/upload-your-first-scene",
@@ -16,13 +22,44 @@ module.exports = {
             "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
           ],
         },
+        "kognic-io/working_with_scenes_and_inputs",
+        {
+          Calibrations: [
+            "kognic-io/calibrations/overview",
+            "kognic-io/calibrations/lidars",
+            "kognic-io/calibrations/cameras-standard",
+            "kognic-io/calibrations/cameras-custom",
+          ],
+        },
+        {
+          Scenes: [
+            "kognic-io/overview",
+            "kognic-io/scenes/lidars_with_imu_data",
+            "kognic-io/feature_flags",
+          ],
+        },
+        {
+          "Supported File Formats": [
+            "kognic-io/resources/images",
+            "kognic-io/resources/pointclouds",
+          ],
+        },
+        "kognic-io/pre_annotations",
       ],
     },
-    { "Download annotations": [
+    {
+      "Download annotations": [
         "download-annotations/download-annotations",
         "openlabel/openlabel-format",
         "openlabel/python-client",
-    ] },
+      ]
+    },
+    {
+      "Project Management": [
+        "kognic-io/project",
+        "kognic-io/annotation_types",
+      ],
+    },
     {
       "Dataset exploration": [
         "dataset-exploration/introduction",
@@ -38,52 +75,11 @@ module.exports = {
       ],
     },
     {
-      Documentation: [
-        "key_concepts",
-        "kognic-io/project",
-        {
-          Scenes: [
-            "kognic-io/overview",
-            "kognic-io/annotation_types",
-            {
-              "Scene Types": [
-                "kognic-io/scenes/cameras",
-                "kognic-io/scenes/lidars_and_cameras",
-                "kognic-io/scenes/cameras_seq",
-                "kognic-io/scenes/lidars_and_cameras_seq",
-                "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
-              ],
-            },
-            "kognic-io/scenes/lidars_with_imu_data",
-            "kognic-io/feature_flags",
-          ],
-        },
-        {
-          Annotations: [
-            "kognic-io/pre_annotations",
-            "openlabel/openlabel-format",
-            "openlabel/python-client",
-          ],
-        },
-        "kognic-io/working_with_scenes_and_inputs",
-        {
-          Calibrations: [
-            "kognic-io/calibrations/overview",
-            "kognic-io/calibrations/lidars",
-            "kognic-io/calibrations/cameras-standard",
-            "kognic-io/calibrations/cameras-custom",
-          ],
-        },
+      Documentation: [ // TODO: where do these go?
         "kognic-io/coordinate_systems",
         "kognic-io/error_handling",
         "kognic-io/FAQ",
         "api/proxy-configuration",
-        {
-          "Supported File Formats": [
-            "kognic-io/resources/images",
-            "kognic-io/resources/pointclouds",
-          ],
-        },
         {
           "Migration Guides": ["a2k_migration_guide"],
         },
