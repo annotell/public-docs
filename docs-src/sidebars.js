@@ -3,11 +3,6 @@ module.exports = {
     "Getting Started": [
       "getting-started/quickstart",
       "kognic-apis",
-      //"upload-your-first-scene",
-      //"view-uploaded-scene",
-      //"prerequisites-for-annotation",
-      //"ordering-annotation",
-      //        "downloading-annotation"
     ],
     "Upload data": [
       "upload-data/upload-your-first-scene",
@@ -24,16 +19,7 @@ module.exports = {
         ]
       },
     ],
-    "Dataset exploration": [
-      "dataset-exploration/introduction",
-      "dataset-exploration/prediction-format",
-      "dataset-exploration/uploading-predictions",
-      "dataset-exploration/understand-dataset-content"
-    ],
-    "Annotation integration": [
-      "annotation-integration/introduction",
-      "annotation-integration/review"
-    ],
+    "Download annotations": ["download-annotations/download-annotations"],
     "Concepts": [
       "key_concepts",
       "kognic-io/project",
@@ -109,6 +95,16 @@ module.exports = {
           "a2k_migration_guide",
         ]
       }
-    ]
+    ],
+    "Dataset exploration": [
+      "dataset-exploration/introduction",
+      "dataset-exploration/prediction-format",
+      "dataset-exploration/uploading-predictions",
+      "dataset-exploration/understand-dataset-content"
+    ],
+    "Annotation integration": [
+      "annotation-integration/introduction",
+      "annotation-integration/review"
+    ],
   },
 };
