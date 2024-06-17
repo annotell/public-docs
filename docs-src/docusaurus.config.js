@@ -1,7 +1,7 @@
-import { themes as prismThemes } from 'prism-react-renderer';
+import { themes as prismThemes } from "prism-react-renderer";
 
-const math = require('remark-math');
-const katex = require('rehype-katex');
+const math = require("remark-math");
+const katex = require("rehype-katex");
 
 module.exports = {
   title: "Kognic",
@@ -13,18 +13,16 @@ module.exports = {
   favicon: "img/favicon.ico",
   organizationName: "kognic", // Usually your GitHub org/user name.
   projectName: "public-docs", // Usually your repo name.
-  themes: [
-    'docusaurus-theme-github-codeblock'
-  ],
+  themes: ["docusaurus-theme-github-codeblock"],
   themeConfig: {
     prism: {
       theme: prismThemes.vsDark, // Code block theme
-      additionalLanguages: ['json', 'bash']
+      additionalLanguages: ["json", "bash"],
     },
     codeblock: {
       showGithubLink: true,
-      githubLinkLabel: 'View on GitHub',
-      showRunmeLink: false
+      githubLinkLabel: "View on GitHub",
+      showRunmeLink: false,
     },
     navbar: {
       logo: {
@@ -54,9 +52,11 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.com/annotell/public-docs/edit/master/docs-src/", // TODO: remove annotell
+          editUrl:
+            "https://github.com/annotell/public-docs/edit/master/docs-src/", // TODO: remove annotell
           remarkPlugins: [math],
           rehypePlugins: [katex],
+          sidebarCollapsible: false,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -66,12 +66,12 @@ module.exports = {
   ],
   stylesheets: [
     {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
       integrity:
-        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
     },
   ],
-  plugins: [require.resolve('docusaurus-lunr-search')],
+  plugins: [require.resolve("docusaurus-lunr-search")],
 };
