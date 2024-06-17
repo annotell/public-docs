@@ -24,7 +24,7 @@ from kognic.io.client import KognicIOClient
 
 client = KognicIOClient()
 
-for annotation in client.annotation.get_annotations(scene_uuid=scene_uuid):
+for annotation in client.annotation.get_annotations_for_scene(scene_uuid=scene_uuid):
     openlabel_dict = annotation.content
     # ...
 
