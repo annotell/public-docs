@@ -13,7 +13,7 @@ We currently support the following image formats: **png**, **jpg**, **jpeg**, **
 Kognic uses a potree format internally to represent and present point clouds, this means that uploaded point cloud data needs to be converted into this format before it can be used as scene in the system. 
 We currently support automatic conversion of the following formats: **pcd**, **csv** and **las**. The converter does not however exhaustively support all possible versions of these formats, see below for details of each format.
 
-A timestamp field must always be present in point clouds, both in single-frame and sequence scenes, but the values are irrelevant [if motion compensation is not enabled](../scenes/lidars_with_imu_data.md#enabledisable-motion-compensation).
+A timestamp field must always be present in point clouds, both in single-frame and sequence scenes, but the values are irrelevant [if motion compensation is not enabled](./scenes/lidars_with_imu_data.md#enabledisable-motion-compensation).
 
 An intensity field may be provided in point clouds and will be preserved during conversion. If omitted, the intensity for all points will be zero.
 

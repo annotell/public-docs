@@ -22,7 +22,15 @@ module.exports = {
             "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
           ],
         },
-        "kognic-io/working_with_scenes_and_inputs",
+        {
+          Scenes: [
+            "kognic-io/overview",
+            "kognic-io/scenes/lidars_with_imu_data",
+            "kognic-io/feature_flags",
+            "kognic-io/working_with_scenes_and_inputs",
+            "kognic-io/file_formats",
+          ],
+        },
         {
           Calibrations: [
             "kognic-io/calibrations/overview",
@@ -31,14 +39,6 @@ module.exports = {
             "kognic-io/calibrations/cameras-custom",
           ],
         },
-        {
-          Scenes: [
-            "kognic-io/overview",
-            "kognic-io/scenes/lidars_with_imu_data",
-            "kognic-io/feature_flags",
-          ],
-        },
-        "kognic-io/file_formats",
         "kognic-io/pre_annotations",
       ],
     },
