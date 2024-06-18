@@ -1,7 +1,7 @@
 module.exports = {
   docs: [
     {
-      "Getting Started": [
+      "Getting started": [
         "getting-started/quickstart",
         "kognic-apis",
         "key_concepts",
@@ -51,7 +51,7 @@ module.exports = {
       ]
     },
     {
-      "Project Management": [
+      "Project management": [
         "kognic-io/project",
         "kognic-io/annotation_types",
       ],

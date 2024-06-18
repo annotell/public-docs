@@ -1,14 +1,10 @@
 ---
 id: kognic-apis
-title: Kognic APIs
+title: Authentication
 description: Overview of Kognic API usage including authentication
 ---
 
-# API Client Overview
-
 Kognic provides HTTP APIs to our client-facing services, and an API client library ([`kognic-io`](https://pypi.org/project/kognic-io/)), to wrap basic API calls and simplify calling the APIs from Python code.
-
-## Authentication
 
 Authentication is handled by [kognic-auth](https://pypi.org/project/kognic-auth/), a Python 3 library providing foundations for Kognic Authentication on top of the requests library.
 
