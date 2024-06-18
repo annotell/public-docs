@@ -71,10 +71,9 @@ module.exports = {
       ],
     },
     {
-      Documentation: [
+      Support: [
         "kognic-io/error_handling",
         "kognic-io/FAQ",
-        "api/proxy-configuration",
         {
           "Migration Guides": ["a2k_migration_guide"],
         },
