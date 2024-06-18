@@ -62,3 +62,24 @@ article div details[class^="details"] {
     border-top: 1px solid var(--ifm-color-primary);
   }
 }
+
+/* Better sidebar { */
+.menu a.menu__link {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+html[data-theme="dark"] .menu a.menu__link {
+  color: grey;
+}
+
+.menu li ul.menu__list a.menu__link {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: none;
+}
+/* } */

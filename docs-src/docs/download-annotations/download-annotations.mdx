@@ -1,0 +1,57 @@
+---
+id: download-annotations
+title: Download annotations
+pagination_prev: upload-data/ordering-annotation
+pagination_next: key_concepts
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Download Annotations
+
+After annotations are ordered for a scene they will be produced, reviewed and quality-controlled within the Kognic Platform.
+
+Once the annotations are made delivery-ready and are exported, they can be downloaded in the [OpenLABEL format](../openlabel/openlabel-format).
+
+<Details>
+  <summary>
+    <h2>Annotations for a Scene</h2>
+  </summary>
+
+```python
+from kognic.io.client import KognicIOClient
+
+client = KognicIOClient()
+
+for annotation in client.annotation.get_annotations_for_scene(scene_uuid=scene_uuid):
+    openlabel_dict = annotation.content
+    # ...
+```
+
+This method returns all delivered annotations in the form of `Annotation` objects, containing the OpenLABEL json, using a Scene UUID.
+
+</Details>
+
+<Details>
+    <summary>
+      <h2>Annotations for a Project or Batch</h2>
+    </summary>
+
+```python
+from kognic.io.client import KognicIOClient
+
+client = KognicIOClient()
+
+# Get generator with annotations
+annotations = client.annotation.get_project_annotations(project="project-identifier",
+                                                        batch="batch-identifier",
+                                                        annotation_type="annotation-type")
+for annotation in annotations:
+    openlabel_dict = annotation.content
+    # ...
+```
+
+This example fetches annotations for an entire project or batch. This retrieves `Annotation` objects for all delivered
+annotations for the given `project`, `batch` and `annotation_type`.
+</Details>

@@ -90,7 +90,7 @@ Note that one can create an input simultaneously when creating a scene by provid
 
 An **annotation** is produced when inputs are successfully annotated in a request. Annotations are provided by `kognic-io` API as json objects 
 in [ASAM OpenLABEL](openlabel/openlabel-format) format. More information on how to download these annotations along with some examples of 
-how to work with them is available in the [Downloading Annotations](kognic-io/annotations.md) chapter.
+how to work with them is available in the [Downloading Annotations](download-annotations/download-annotations.mdx) chapter.
 
 Apart from `kognic-io` API, Kognic also provides a [library](openlabel/python-client) called `kognic-openlabel`,
 which makes it easy to parse and work with the OpenLABEL json objects.
