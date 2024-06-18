@@ -28,7 +28,7 @@ const features = [
     ),
   },{
     title: "Download annotations",
-    pageUrl: "docs/kognic-io/annotations",
+    pageUrl: "docs/download-annotations",
     imageUrl: "https://www.kognic.com/images/uploads/laptop-annotation.png",
     description: (
       <>
