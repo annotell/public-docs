@@ -40,6 +40,7 @@ module.exports = {
           ],
         },
         "kognic-io/pre_annotations",
+        "kognic-io/coordinate_systems"
       ],
     },
     {
@@ -70,8 +71,7 @@ module.exports = {
       ],
     },
     {
-      Documentation: [ // TODO: where do these go?
-        "kognic-io/coordinate_systems",
+      Documentation: [
         "kognic-io/error_handling",
         "kognic-io/FAQ",
         "api/proxy-configuration",
