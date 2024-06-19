@@ -1,0 +1,21 @@
+import { codeRef } from "./_code_ref.mdx";
+
+This example follows the same structure as the LiDAR-and-camera sequence example.
+
+[Aggregated scenes](kognic-io/scenes/aggregated_lidars_and_cameras_seq) are a special case of LiDAR + camera sequence
+scenes where the LiDAR data is aggregated across frames into a single pointcloud. This gives a dense, static pointcloud
+that represents the entire scene across all frames.
+
+Aggregated scenes may be created by providing a pointcloud on every frame and allowing the Kognic platform to handle
+aggregation, or, they may be pre-aggregated and uploaded by specifying a pointcloud on the first frame, then nothing on
+subsequent frames.
+
+In the case of ZOD data, we only have per-frame pointclouds, so the example uploads a pointcloud on every frame and
+leaves aggregation to the platform. As such it is very similar to the LiDAR-and-camera sequence example, except that:
+
+1. The scene type is different: `AggregatedLidarsAndCamerasSequence` instead of `LidarsAndCamerasSequence`.
+{codeRef('examples/zod/upload_alcs_scene.py#L56-L58', '{3}')}
+2. The `Frame`s are of an aggregated-scene specific type
+{codeRef('examples/zod/upload_alcs_scene.py#L82-L91', '{2}')}
+
+Otherwise the two approaches are very similar - refer to the *Lidars and Cameras Sequence* tab.

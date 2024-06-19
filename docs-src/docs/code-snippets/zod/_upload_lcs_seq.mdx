@@ -1,0 +1,48 @@
+import { codeRef } from "./_code_ref.mdx";
+
+This example follows the same broad structure as the cameras-only sequence with the addition of:
+
+- A LiDAR sensor
+- A [calibration](kognic-io/calibrations/overview), to allow projection between 2D and 3D [coordinate systems](kognic-io/coordinate_systems#single-lidar-case).
+- Conversion of point clouds from ZOD's packed NumPy arrays.
+- Conversion of ego poses for each frame.
+
+As before we initialise a Kognic IO Client at the top-level, then create the scene from ZOD data for (potentially)
+multiple scenes at once using a function.
+
+{codeRef('examples/zod/upload_lcs_scene.py#L93-L130', '{4}')}
+
+When using both camera and LiDAR sensors we need a calibrations to relate them to each other in space.
+The process for converting and creating the scene thus gains a step: calibration conversion.
+
+{codeRef('examples/zod/upload_lcs_scene.py#L35-L43', '{6}')}
+
+ZOD provides calibrations that we need to map to Kognic's format. We've provided some utility functions in the examples
+repository that do this work for the sensors used in this example: the `FRONT` camera and the `VELODYNE` lidar.
+
+{codeRef('examples/zod/conversion.py#L78-L87')}
+
+Take a look in the example code for the full LiDAR and camera calibration conversion details; suffice to say we must
+unpack the intrinsics & extrinsics from ZOD format and plug them in to Kognic format.
+
+Next we need to create the frames. As with camera-only sequences, each frame consists of a collection of images for each
+camera sensor, but now also a point cloud per LiDAR. We also specify the ego vehicle pose for each frame, telling us how
+the vehicle has moved through the world. This is optional but valuable, as it simplifies annotation of static objects
+which do not move in world space even though they do move in the [*reference* coordinate system](kognic-io/coordinate_systems#the-reference-coordinate-system-and-calibrations),
+by allowing very accurate interpolation across frames.
+
+{codeRef('examples/zod/upload_lcs_scene.py#L59-L90', '{16,19,20}')}
+
+We convert the pointclouds from ZOD's packed NumPy arrays (`.npy`) to one of the formats supported by Kognic IO.
+Refer to the linked `conversion.py` for details of exactly how the data is read and reformatted.
+
+{codeRef('examples/zod/conversion.py#L105-L111')}
+
+In the Kognic platform, single LiDAR scenes should have their ego motion data expressed in the LiDAR coordinate system.
+For multi-lidar scenes we expect the reference coordinate system. Since ZOD uses the reference coordinate system (which
+moves with the vehidle), we convert to the LiDAR's coordinate system by applying the calibration transform:
+
+{codeRef('examples/zod/upload_lcs_scene.py#L77-L78')}
+
+Once we have created the frames, the main conversion function proceeds as it did in the cameras example: build the scene
+object and post it to Kognic.
