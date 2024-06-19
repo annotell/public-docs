@@ -1,0 +1,116 @@
+---
+id: upload-your-first-scene
+title: Upload your First Scene
+slug: /upload-your-first-scene
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import CamerasOneImage from "./code-snippets/scenes-2d/_one-image.md";
+import CamerasMultipleImages from "./code-snippets/scenes-2d/_multiple-images.md";
+import CamerasSeq from "./code-snippets/scenes-2d/_cameras-seq.md";
+import LidarsAndCamerasOne from "./code-snippets/scenes-3d/_one-lidar-one-image.md";
+import LidarsAndCamerasMultiple from "./code-snippets/scenes-3d/_one-lidar-multiple-images.md";
+import LidarsAndCamerasSeq from "./code-snippets/scenes-3d/_lidars-and-cameras-seq.md";
+
+# Upload your first scene
+
+When uploading raw data to the Kognic Platform, you need to do so in the form of a **scene**.
+A scene is a collection of data from different sources, such as images, point clouds, and other sensor data.
+This guide will walk you through the process of uploading your first scene, either in 2D (camera only) or 3D (camera and LiDAR/RADAR).
+
+## Prerequisites
+
+You have successfully followed the [Quickstart](../getting-started/quickstart.mdx) guide and have the `kognic-io` library installed.
+
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Uploading a 2D scene</h2>
+  </summary>
+
+To upload a 2D scene, you need to have the raw images available on your local machine (or create a [callback](https://developers.kognic.com/docs/kognic-io/overview#data-from-callback) for remote data).
+It is a two-step process:
+
+1. Build the scene object in Python
+2. Upload the scene object to the Kognic Platform
+
+Below follows examples for a few different cases.
+
+<Tabs>
+  <TabItem value="one-image" label="One Image" default>
+    <CamerasOneImage />
+  </TabItem>
+  <TabItem value="multiple-images" label="Multiple Images" default>
+    <CamerasMultipleImages />
+  </TabItem>
+  <TabItem value="sequence" label="Sequence">
+    <CamerasSeq />
+  </TabItem>
+</Tabs>
+
+</details>
+
+<details>
+  <summary>
+    <h2 style={{margin: '0px'}}>Uploading a 2D/3D scene</h2>
+  </summary>
+
+To upload a 2D/3D scene, you need to have the raw images and point clouds available on your local machine (or create a [callback](https://developers.kognic.com/docs/kognic-io/overview#data-from-callback) for remote data).
+In addition you need to have calibration data available.
+It is a three-step process:
+
+1. Create a [calibration](./kognic-io/calibrations/overview)
+2. Build the scene object in Python, referencing the calibration from the previous step
+3. Upload the scene object to the Kognic Platform
+
+Below follows examples for a few different cases.
+
+<Tabs>
+  <TabItem value="one-image-one-lidar" label="One Image" default>
+    <LidarsAndCamerasOne />
+  </TabItem>
+  <TabItem value="multiple-images" label="Multiple Images" default>
+    <LidarsAndCamerasMultiple />
+  </TabItem>
+  <TabItem value="2d/3d-sequence" label="Sequence" default>
+    <LidarsAndCamerasSeq />
+  </TabItem>
+</Tabs>
+
+:::note
+Multiple point clouds is also supported, but not shown in the examples above since that requires a bit more data.
+See the [Motion Compensation](../kognic-io/scenes/lidars_with_imu_data.md) section for more details.
+:::
+
+</details>
+
+## What happens now?
+
+The response given when creating the scene, the `scene_uuid`, is used to refer to the scene in the future. You can now
+check the status of the scene via the Platform or the Python client.
+
+<Tabs>
+    <TabItem value="platform" label="Kognic Platform" default>
+        Go to the [Data Orchestration tab](https://app.kognic.com/data-orchestration) in the Kognic Platform and search for the scene by its UUID or use any other suitable search criteria.
+        The status is shown in a column in the scenes list.
+
+        Note that you may need to contact Kognic to get access to _Data Orchestration_ in case you do not see it.
+    </TabItem>
+    <TabItem value="python" label="Python" default>
+        Use the `get_scenes_by_uuids` method to get the scene object from its UUID:
+
+        ```python
+        scene = client.scene.get_scenes_by_uuids([scene_uuid])[0]
+        ```
+
+        The scene object will contain the status of the scene.
+
+        ```python
+        print(f"Scene {scene.uuid} has status {scene.status}")
+        ```
+    </TabItem>
+</Tabs>
+
+You may see the scene initially in the *processing* state while Kognic performs a little background processing, or in the
+*ready* or *failed* state after processing completes.

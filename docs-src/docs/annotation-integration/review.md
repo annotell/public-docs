@@ -2,7 +2,7 @@
 title: Review
 ---
 
-A review is a decision that determines whether an [annotation](../#annotation) is of sufficient quality or if it needs 
+A review is a decision that determines whether an annotation is of sufficient quality or if it needs 
 improvement. In order to facilitate efficient improvements, the person or system that made the decision can provide 
 [feedback](#feedback) data that details potential errors or mistakes. Please refer to our [user documentation](https://docs.kognic.com/AHwD-introduction) 
 regarding feedback to gain insight on how these concepts are used in the platform, note that these describe the full
@@ -11,9 +11,11 @@ are currently somewhat limited, as detailed below.
 
 ## Posting a review
 
-The current integration capabilities only allow posting reviews for delivered annotations. It is only available in requests where your organization is the [producer](https://docs.kognic.com/request-details#HXuNx). The annotations are 
-identified using their open label UUID that can be found in the metadata (and in the file name) of [downloaded 
-annotations](../kognic-io/annotations).
+The current integration capabilities only allow posting reviews for delivered annotations. It is only available in 
+requests where your organization is the [producer](https://docs.kognic.com/request-details#HXuNx). The annotations are 
+identified using their open label UUID that can be found in the metadata (and in the file name) of 
+[downloaded annotations](../download-annotations/download-annotations.mdx).
+
 
 When posting a review, the API expects feedback data as well as a boolean `accepted` that indicates whether the 
 quality is perceived as sufficient or not. The API also expects an enum `workflow` that details how the improvement 
@@ -29,6 +31,24 @@ stage in order to allow future expansions on the available use cases, workflows 
 A successful review post will return a UUID that identifies the review, and that can be used to fetch the posted
 feedback data. This will also create a task according to the chosen workflow. Depending on project set up, there might 
 be a need for this to be coordinated with the project's managers.
+
+## Posting a partial review
+
+A partial review is an incomplete review with optional feedback data, this capability may be used in order to achieve 
+one or more of the following:
+* Prepare a review task with manual or machine generated feedback 
+* Select what should be reviewed
+
+This feature is available in requests where your organization is the 
+[producer](https://docs.kognic.com/request-details#HXuNx) or the [owner](https://docs.kognic.com/request-details#Qm7yR). 
+Like the capability to post a complete review, this feature is currently only available for delivered annotations.
+
+When a partial review is posted, a review task will be created for the annotation. This review task will contain the 
+feedback that may have been supplied when posting the partial review. The reviewer can then delete or invalidate any 
+feedback they disagree with, or add their own feedback. It is currently not possible to override the workflow of a 
+partial review, the default workflow is a review loop - where the correction of a rejected review task will be followed 
+by a new review task. If the review is accepted by the reviewer, the annotation will be delivered again, updated to 
+account for any potential changes the reviewer might have done.
 
 ## Feedback
 

@@ -1,0 +1,62 @@
+---
+id: view-uploaded-scene
+title: View an Uploaded Scene
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# View an uploaded scene
+
+Once a scene has been created, and we have processed it, it is possible to view it in the annotation tool (without annotation capabilities).
+
+## Find the view link
+
+Every scene has a view link that allows it to be viewed in the annotation tool, without any annotation capabilities.
+You can find the scene again either in the Kognic Platform or via the Python client:
+
+<Tabs>
+    <TabItem value="platform" label="Kognic Platform" default>
+        Go to the [Data Orchestration tab](https://app.kognic.com/data-orchestration) in the Kognic Platform and search for
+        the scene by its UUID or use any other suitable search criteria. Once it is ready, you can view it by clicking on
+        the link provided when opening the menu. It may take a short time for the scene to transition from "processing" to "ready".
+
+        Note that you may need to contact Kognic to get access to _Data Orchestration_ in case you do not see it.
+    </TabItem>
+    <TabItem value="python" label="Python" default>
+        Use the `get_scenes_by_uuids` method to get the scene object, and then access its `view_link` attribute, which
+        is populated once the scene is ready.
+
+        ```python
+        scene = client.scene.get_scenes_by_uuids([scene_uuid])[0]
+        print(f"View the scene at {scene.view_link}")
+        ```
+    </TabItem>
+</Tabs>
+
+## Check calibration of 3D scenes
+
+3D scenes (those with LiDAR/RADAR) require a calibration, which can be checked for accuracy when viewing the scene.
+Start by opening the scene view link as described above.
+
+ <Tabs>
+     <TabItem value="python" label="2D (Camera) View" default>
+         In the 2D view you can overlay the projected pointcloud onto the camera images.
+
+        - Click on the "2D" button at the top left of the scene view
+        - Open the "View" menu, then "Pointcloud overlay" and then "Depth"
+        - Compare the overlaid points with the features of the image.
+    </TabItem>
+    <TabItem value="3d-view" label="3D (Pointcloud) View" default>
+        In the 3D view you can compare where specific 3D points end up when projected into 2D.
+
+        1. Click on the "3D" button at the top left of the scene view
+        2. Find a well defined object in the pointcloud and hover the mouse cursor over a point on it.
+        3. The cursor position is projected into the selected camera and shown as a dot on the camera thumbnail at the top right.
+    </TabItem>
+</Tabs>
+
+:::info Calibrations are immutable
+If you detect a calibration error this way, it is necessary to recreate the scene with a corrected calibration.
+It is therefore a good idea to check a few scenes before uploading a large dataset that all use the same calibration.
+:::

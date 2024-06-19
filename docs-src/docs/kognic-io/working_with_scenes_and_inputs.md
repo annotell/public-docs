@@ -19,7 +19,7 @@ corresponding scene model as input, so for example to create a `Cameras` scene y
 from kognic.io.model.scene.cameras import Cameras
 
 scene = Cameras(...)
-scene = client.cameras.create(cameras_scene)
+created_scene = client.cameras.create(cameras_scene)
 scene_uuid = created_scene.uuid
 ```
 
@@ -146,7 +146,7 @@ This feature is new in version 1.7.0
 Inputs can be queried from the platform using the `query_inputs` method, which can be used in the following way
 
 ```python reference
-https://github.com/annotell/kognic-io-examples-python/blob/master/examples/query_inputs.py#L6-L10
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/query_inputs.py#L7-L10
 ```
 
 Additional filter parameters for querying inputs are listed below.
