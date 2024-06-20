@@ -23,7 +23,7 @@ We must also convert timestamps to different precision as we go.
 {codeRef('examples/zod/upload_cameras_sequence_scene.py#L49-L69', '{18}')}
 
 Converting the camera frame to an image is a simple mapping in this case, which we have abstracted out. Note that we
-do not know the [shutter timing](https://developers.kognic.com/docs/kognic-io/scenes/lidars_and_cameras_seq#shutter-timings)
+do not know the [shutter timing](/docs/kognic-io/scenes/lidars_and_cameras_seq#shutter-timings)
 of the ZOD frames, but we set it to 1 ns in this example. This is not a problem in this case where there is no 3D data.
 
 {codeRef('examples/zod/conversion.py#L93-L102')}

@@ -3,7 +3,7 @@ import { codeRef } from "./_code_ref.mdx";
 This example follows the same broad structure as the cameras-only sequence with the addition of:
 
 - A LiDAR sensor
-- A [calibration](kognic-io/calibrations/overview), to allow projection between 2D and 3D [coordinate systems](kognic-io/coordinate_systems#single-lidar-case).
+- A [calibration](/docs/kognic-io/calibrations/overview), to allow projection between 2D and 3D [coordinate systems](/docs/kognic-io/coordinate_systems#single-lidar-case).
 - Conversion of point clouds from ZOD's packed NumPy arrays.
 - Conversion of ego poses for each frame.
 
@@ -28,7 +28,7 @@ unpack the intrinsics & extrinsics from ZOD format and plug them in to Kognic fo
 Next we need to create the frames. As with camera-only sequences, each frame consists of a collection of images for each
 camera sensor, but now also a point cloud per LiDAR. We also specify the ego vehicle pose for each frame, telling us how
 the vehicle has moved through the world. This is optional but valuable, as it simplifies annotation of static objects
-which do not move in world space even though they do move in the [*reference* coordinate system](kognic-io/coordinate_systems#the-reference-coordinate-system-and-calibrations),
+which do not move in world space even though they do move in the [*reference* coordinate system](/docs/kognic-io/coordinate_systems#the-reference-coordinate-system-and-calibrations),
 by allowing very accurate interpolation across frames.
 
 {codeRef('examples/zod/upload_lcs_scene.py#L59-L90', '{16,19,20}')}
