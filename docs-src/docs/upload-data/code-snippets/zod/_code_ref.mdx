@@ -1,0 +1,14 @@
+import ReferenceCode from "@theme/ReferenceCodeBlock";
+
+export const commitLike = '30c725ad38a1e5a163c28f10163022d4d522acc8'
+
+export const ref = path => `https://github.com/annotell/kognic-io-examples-python/blob/${commitLike}/${path}`
+/*
+    Equivalent to ```python reference\n<url>\n```. Use metastring to specify highlighted line e.g. "{4}".
+    Usage:
+      {codeRef("path/to/file.py", "{4}")} // highlight on line 4.
+*/
+export const codeRef = (path, metastring) => {
+  const ms = metastring??''
+  return <ReferenceCode className="language-python" children={ref(path)} metastring={ms} />
+}

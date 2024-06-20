@@ -1,0 +1,38 @@
+import { codeRef } from "./_code_ref.mdx";
+
+Our example code initialises a Kognic IO Client at the top level, then creates the scene from ZOD
+data for (potentially) multiple scenes at once using a function.
+
+{codeRef('examples/zod/upload_cameras_sequence_scene.py#L72-L83', '{4}')}
+
+The first step in creating the scene is to load and iterate ZOD sequences, picking as many as we are interested in.
+
+{codeRef('examples/zod/upload_cameras_sequence_scene.py#L28-L35', '{6}')}
+
+Then we must convert the scene. Given we have the ZOD frames converted, it's very easy to create a single camera sequence.
+
+{codeRef('examples/zod/upload_cameras_sequence_scene.py#L44-L46', '{2}')}
+
+But to convert the frames is more complex. We need to add all the sensors that we are interested in: in this case only the `FRONT` camera.
+We must also convert timestamps to different precision as we go.
+
+- ZOD frame start timestamps are in fractional seconds
+- Kognic frame relative timestamps are in milliseconds
+- We use integer nanoseconds as an intermediate.
+
+{codeRef('examples/zod/upload_cameras_sequence_scene.py#L49-L69', '{18}')}
+
+Converting the camera frame to an image is a simple mapping in this case, which we have abstracted out. Note that we
+do not know the [shutter timing](/docs/kognic-io/scenes/lidars_and_cameras_seq#shutter-timings)
+of the ZOD frames, but we set it to 1 ns in this example. This is not a problem in this case where there is no 3D data.
+
+{codeRef('examples/zod/conversion.py#L93-L102')}
+
+Going back to the main create function, we move on to creating the scene:
+
+{codeRef('examples/zod/upload_cameras_sequence_scene.py#L33-L35', '{2}')}
+
+Where we simply hand the scene (`CamerasSequence`) to Kognic IO to create for us. If it is not a dry run, we get
+back the UUID of the created scene (if it's a dry run, expect `None`).
+
+{codeRef('examples/zod/upload_cameras_sequence_scene.py#L38-L41')}

@@ -20,6 +20,7 @@ module.exports = {
             "kognic-io/scenes/cameras_seq",
             "kognic-io/scenes/lidars_and_cameras_seq",
             "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
+            "upload-data/upload-zod-data"
           ],
         },
         {

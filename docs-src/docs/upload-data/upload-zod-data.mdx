@@ -1,0 +1,53 @@
+---
+id: upload-zod-data
+title: Upload ZOD data
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+import { ref } from "./code-snippets/zod/_code_ref.mdx";
+import ZodUploadCamerasSeq from "./code-snippets/zod/_upload_cameras_seq.mdx";
+import ZodUploadLCSSeq from "./code-snippets/zod/_upload_lcs_seq.mdx";
+import ZodUploadALCSSeq from "./code-snippets/zod/_upload_alcs_seq.mdx";
+
+
+This tutorial will guide you through uploading different [scene types](docs/kognic-io/overview.md#different-types-of-scenes) using the [Zenseact Open Dataset (ZOD)](https://zod.zenseact.com/).
+The purpose of this page is to show you some of the steps that might be needed to convert recordings into Kognic scenes.
+
+<details>
+  <summary><h2>Prerequisites & Dependencies</h2></summary>
+
+1. To follow along in this guide you need to download the data from [Zenseact Open Dataset](https://zod.zenseact.com/download/). The data should be structured like this:
+```
+zod
+├── sequences
+│   ├── 000000
+│   ├── 000002
+│   ├── ...
+└── trainval-sequences-mini.json
+```
+2. You will also need to install the ZOD Python package from PyPI, which provides some abstractions for reading the data:
+```
+pip install zod
+```
+3. You need to have a Kognic account and the Kognic Python client installed. If you have not done this yet, read the [quickstart guide](getting-started/quickstart.mdx).
+</details>
+
+This guide follows the process of uploading scenes using ZOD data, using the example code from
+<a href={ref('examples/zod')}>the Kognic IO ZOD examples repository</a> which contains the complete source files for all
+of the snippets in this page. The examples are runnable, if you have the data available and have Kognic authentication
+set up.
+
+<Tabs>
+  <TabItem value="cameras-sequence" label="Cameras Sequence">
+    <ZodUploadCamerasSeq />
+  </TabItem>
+  <TabItem value="lidars-and-cameras-sequence" label="Lidars and Cameras Sequence">
+    <ZodUploadLCSSeq />
+  </TabItem>
+  <TabItem value="aggregated-lidars-and-cameras-sequence" label="Aggregated Lidars and Cameras Sequence">
+    <ZodUploadALCSSeq />
+  </TabItem>
+</Tabs>
+
