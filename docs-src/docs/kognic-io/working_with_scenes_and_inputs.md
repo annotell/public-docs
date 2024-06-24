@@ -220,31 +220,6 @@ client.input.delete_input(input_uuid)
 ```
 
 
-## Invalidate Inputs (deprecated)
-
-:::caution Deprecated
-This has been deprecated in favor of [Invalidate Scenes](#invalidate-scenes) or [Deleting Inputs](#deleting-inputs) 
-and will be removed in the near future.
-:::
-
-Invalidation of an input means that it will be removed for all annotation types. See [Annotation Types](annotation_types.md)
-on how to remove a specific annotation types for an input.
-
-```python
-from kognic.io.model.input.invalidated_reason_input import InvalidatedReasonInput
-
-invalid_uuids = ["0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", "37d9dda4-3a29-4fcb-8a71-6bf16d5a9c36"]
-reason = InvalidatedReasonInput.BAD_CONTENT
-client.input.invalidate_inputs(invalid_uuids, reason)
-```
-
-If issues are detected upstream related to inputs created, it is possible to invalidate inputs.
-Invalidated inputs will not produce annotations and any completed annotations of the input will be invalidated.
-
-See [Invalidate Scenes](#invalidate-scenes) for more information about invalidation reasons.
-
-
-
 ## Creating Multiple Inputs With One Call
 :::note
 This feature is new in version 1.1.9
