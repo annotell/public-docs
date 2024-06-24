@@ -4,6 +4,10 @@ title: Setup
 description: Overview of Kognic API usage including authentication
 ---
 
+:::info Do I need to read this page?
+If you have already gone through the [quickstart](./getting-started/quickstart.mdx) page then **you usually don't have to read this page**. This is page covers more background information.
+:::
+
 Kognic provides HTTP APIs to our client-facing services, and an API client library ([`kognic-io`](https://pypi.org/project/kognic-io/)), to wrap basic API calls and simplify calling the APIs from Python code.
 
 ## Authentication
@@ -22,7 +26,7 @@ The credentials file should be saved in an appropriate directory, such as `~/.co
 
 ## Examples
 
-There are a few ways to set your credentials in auth.
+There are a **few different** ways to set your credentials in auth.
 
 - Set the environment variable `KOGNIC_CREDENTIALS` to point to your Kognic Credentials file, by issuing the command `export KOGNIC_CREDENTIALS=~/.config/kognic/credentials.json`
 - Set the environment variables `KOGNIC_CLIENT_ID` and `KOGNIC_CLIENT_SECRET`
