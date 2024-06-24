@@ -5,6 +5,10 @@ description: Kognic Platform Concepts
 slug: /key-concepts
 ---
 
+:::info Do I need to read this page?
+If you just want to quickly get started then **you don't have to read this page**. This is page covers the key concepts that we use.
+:::
+
 ![Kognic](/img/kognic-domain.png)
 
 ## Project

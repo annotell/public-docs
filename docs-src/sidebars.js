@@ -5,14 +5,13 @@ module.exports = {
         "getting-started/quickstart",
         "kognic-apis",
         "key_concepts",
-      ]
+      ],
     },
     {
       "Upload data": [
         "upload-data/upload-your-first-scene",
         "upload-data/view-uploaded-scene",
-        "upload-data/prerequisites-for-annotation",
-        "upload-data/ordering-annotation",
+
         {
           "More examples": [
             "kognic-io/scenes/cameras",
@@ -20,7 +19,7 @@ module.exports = {
             "kognic-io/scenes/cameras_seq",
             "kognic-io/scenes/lidars_and_cameras_seq",
             "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
-            "upload-data/upload-zod-data"
+            "upload-data/upload-zod-data",
           ],
         },
         {
@@ -41,7 +40,13 @@ module.exports = {
           ],
         },
         "kognic-io/pre_annotations",
-        "kognic-io/coordinate_systems"
+        "kognic-io/coordinate_systems",
+      ],
+    },
+    {
+      "Order annotations": [
+        "upload-data/prerequisites-for-annotation",
+        "upload-data/ordering-annotation",
       ],
     },
     {
@@ -49,13 +54,10 @@ module.exports = {
         "download-annotations/download-annotations",
         "openlabel/openlabel-format",
         "openlabel/python-client",
-      ]
+      ],
     },
     {
-      "Project management": [
-        "kognic-io/project",
-        "kognic-io/annotation_types",
-      ],
+      "Project management": ["kognic-io/project", "kognic-io/annotation_types"],
     },
     {
       "Dataset exploration": [
