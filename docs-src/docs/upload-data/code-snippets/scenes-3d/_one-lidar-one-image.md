@@ -8,7 +8,7 @@ client = KognicIOClient()
 
 # 1. Create calibration (see calibration section for more details)
 sensor_calibration = SensorCalibration(
-    external_id = my-first-calibration",
+    external_id = "my-first-calibration",
     calibration = {
         "CAM": PinholeCalibration(...),
         "lidar": LidarCalibration(...)
