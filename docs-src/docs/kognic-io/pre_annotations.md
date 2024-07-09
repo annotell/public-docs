@@ -60,7 +60,7 @@ and be ready for annotation with the pre-annotation present.
 ```python
 client.lidars_and_cameras_sequence.create_from_scene(
     scene_uuid=scene_response.scene_uuid, # from step 1
-    project=project,
+    project=project, # Important: this is the external id and not the title 
     dryrun=dryrun
 )
 ```
