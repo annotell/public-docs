@@ -81,8 +81,8 @@ and `batch-2`, you would do the following:
 ```python
 client.cameras.create_from_scene(
    scene_uuid="0edb8f59-a8ea-4c9b-aebb-a3caaa6f2ba3", 
-   project="project-a", 
-   batch="batch-2"
+   project="project-a", # Important: external id and not the title
+   batch="batch-2" # # Important: external id and not the title
 )
 ```
 
@@ -100,8 +100,8 @@ an input in `project-a` and `batch-2`, you would do the following:
 ```python
 client.cameras_sequence.create(
    ..., 
-   project="project-a", 
-   batch="batch-2"
+   project="project-a", # Important: external id and not the title
+   batch="batch-2" # # Important: external id and not the title
 )
 ```
 
