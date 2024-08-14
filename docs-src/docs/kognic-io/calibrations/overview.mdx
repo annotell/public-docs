@@ -51,7 +51,7 @@ lidar_calibration = LidarCalibration(position=lidar_position, rotation_quaternio
 # Create a sample calibration for a Pinhole camera. For other camera types visit:
 # https://github.com/annotell/kognic-io-examples-python/tree/master/examples/calibration
 camera_position = Position(x=0.0, y=0.0, z=0.0)
-camera_rotation = RotationQuaternion(w=1.0, x=0.0, y=0.0, z=0.0)
+camera_rotation = RotationQuaternion(w=0.5, x=-0.5, y=0.5, z=-0.5)
 camera_camera_matrix = CameraMatrix(fx=3450, fy=3250, cx=622, cy=400)
 camera_distortion_coefficients = DistortionCoefficients(k1=0.0, k2=0.0, p1=0.0, p2=0.0, k3=1.0)
 
