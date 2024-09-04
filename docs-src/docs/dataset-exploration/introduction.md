@@ -33,14 +33,15 @@ import requests
 
 from kognic.auth.requests.auth_session import RequestsAuthSession
 
-base_url = "https://dataset.app.kognic.com/v1/"
 client = RequestsAuthSession()
 
 try:
-    response = client.session.get(base_url + "datasets")
+    response = client.session.get("https://dataset.app.kognic.com/v2/datasets")
     response.raise_for_status()
     data = response.json()
     print(data)
 except requests.exceptions.RequestException as e:
     print(f"Request error: {e}")
 ```
+
+(The v1 version of this endpoint, previously mentioned in this document, is now deprecated)

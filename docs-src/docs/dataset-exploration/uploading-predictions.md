@@ -29,7 +29,7 @@ You can either access the tool and copy the UUID following `dataset/` in the URL
 get the uuid of the dataset:
 
 ```python
-client.session.get(base_url + "datasets")
+client.session.get("https://dataset.app.kognic.com/v2/datasets")
 ```
 
 ### 2. Get the UUID of an existing predictions group or create a new one
