@@ -5,6 +5,7 @@ module.exports = {
         "getting-started/quickstart",
         "kognic-apis",
         "key_concepts",
+        "getting-started/data-reqs",
       ],
     },
     {
