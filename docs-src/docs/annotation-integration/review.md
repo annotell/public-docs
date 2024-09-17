@@ -32,7 +32,7 @@ A successful review post will return a UUID that identifies the review, and that
 feedback data. This will also create a task according to the chosen workflow. Depending on project set up, there might 
 be a need for this to be coordinated with the project's managers.
 
-Here's an example using kognic-io.
+[Here](https://github.com/annotell/kognic-io-examples-python/blob/master/examples/add_review.py) is an example using kognic-io.
 
 ## Posting a partial review
 
