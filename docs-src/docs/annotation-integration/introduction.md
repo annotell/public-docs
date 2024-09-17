@@ -16,13 +16,14 @@ Before you begin, make sure you have:
 - Generated API credentials. See [API Credentials](../kognic-apis#generating-credentials).
 - Installed our Python 3 SDK for authentication - [kognic-auth](https://pypi.org/project/kognic-auth/)
 
-## No API Client Available
-
-At the moment we do not provide an API client for this integration. Instead, we'll provide examples of how you can
-interact with our API.
-
-This page will also assume that the user has access to at least one project where at least one input batch has been
+This page will also assume that:
+- the user has access to at least one project where at least one input batch has been
 uploaded. (See the client docs regarding these concepts [here](../kognic-io/project.mdx).)
+
+## API Client
+
+The [kognic-io Python client](https://pypi.org/project/kognic-io/) covers a majority of the endpoints. For the case of missing coverage, we'll provide examples of how you can
+interact with our API with just kognic-auth and the requests library.
 
 ## Endpoints
 
