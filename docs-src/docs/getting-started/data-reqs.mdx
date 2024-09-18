@@ -4,7 +4,7 @@ id: data-reqs
 description: Kognic Platform Data requirements
 ---
 
-The Kognic platform supports multiple types of data and information to enable an efficient annotation process, namely **images**, **point clouds**, **calibrations** and **ego vehicle poses/IMU data**. In this section we describe the supported formats for each type.
+The Kognic platform supports multiple types of data and information to enable an efficient annotation process, mainly **images**, **point clouds**, **calibrations** and **ego vehicle poses/IMU data**. In this section we describe the supported formats for each type.
 
 ## Images
 
@@ -19,7 +19,7 @@ A timestamp field must always be present in point clouds, both in single-frame a
 An intensity field may be provided in point clouds and will be preserved during conversion. If omitted, the intensity for all points will be zero.
 Color and other auxiliary data that is not used in the platform is currently discarded in the conversion to potree.
 
-[Click here for a more detailed description of the point cloud formats](../kognic-io/file_formats.md)
+[A more detailed description of the point cloud formats is found here](../kognic-io/file_formats.md)
 
 
 ## Calibrations
@@ -37,7 +37,7 @@ They also map 3D points to the camera’s image plane.
 
 - For LiDAR/RADAR, there is only one type of calibration available, [read more here](../kognic-io/calibrations/lidars.md)
 - For cameras, we support different types of [standard camera calibrations](../kognic-io/calibrations/cameras-standard.md), where you have to provide the intrinsic parameters of the camera.
-All camera calibration are implemented using the openCV coordinate system.
+All camera calibration are implemented using the **OpenCV coordinate system**.
 
 
 :::tip Unsupported camera model
