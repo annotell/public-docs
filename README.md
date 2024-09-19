@@ -39,7 +39,7 @@ is accurately reflected in `sidebars.js`.
 
 ```md
 ```python reference
-https://github.com/annotell/kognic-io-examples-python/blob/master/examples/cameras.py
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/cameras.py#L7-L10
 ```
 ```
 
