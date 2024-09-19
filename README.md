@@ -35,6 +35,14 @@ It's easy to add a new page to the documentation. Create a new markdown file in 
 hierarchy you want. You enable users to find your page on the left side menu by making sure the file and the hierarchy
 is accurately reflected in `sidebars.js`.
 
+## Referencing code snippets from other repos
+
+```md
+```python reference
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/cameras.py
+```
+```
+
 ## Deployment
 
 Build and deployment are done automatically by GitHub Actions on push to `master`.
