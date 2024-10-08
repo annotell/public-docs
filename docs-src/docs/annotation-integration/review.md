@@ -32,7 +32,10 @@ A successful review post will return a UUID that identifies the review, and that
 feedback data. This will also create a task according to the chosen workflow. Depending on project set up, there might 
 be a need for this to be coordinated with the project's managers.
 
-[Here](https://github.com/annotell/kognic-io-examples-python/blob/master/examples/add_review.py) is an example using kognic-io.
+Here's a example from kognic-io:
+```python reference
+https://github.com/annotell/kognic-io-examples-python/blob/master/examples/add_review.py#L15-L45
+```
 
 ## Posting a partial review
 
@@ -59,7 +62,7 @@ available to add, and will be available for annotators when improving the annota
 * **Error type ID** - a UUID selected from the list of [available error types](https://annotation-integration.app.kognic.com/api#/Reviews/getErrorTypes)
 * **Description** - a string describing what should be improved
 * **Sensor ID** - the identifier of the [sensor](../kognic-io/overview#sensor-specification) where the error appears
-* **Frame ID** - the identifier of the [frame](../kognic-io/overview#sequential-frames) the error appears
+* **Frame ID** - the identifier of the [frame](../kognic-io/overview#sequential-frames) the error appears. In our OpenLabel file this is `frame.frame_properties.external_id`
 * **Object ID** - the identifier of a particular object that is subject to this particular feedback
 * **Pin** - a pointer to a specific area where something is of interest, this can be used to indicate missing objects (a 
 pin contains mandatory x and y coordinates with an optional z coordinate, the coordinate unit in images are pixels and 
