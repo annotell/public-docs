@@ -2,9 +2,6 @@
 title: Pre-annotations
 ---
 
-:::caution
-This feature is in an early release stage and might be subject to changes
-:::
 
 Pre-annotations have many uses in ground-truth production. The pre-annotations feature allows information about the objects already known to be present in an input to be specified. Please reach out to our Advisory Services team to see how they can best be used for your use-case.
 
