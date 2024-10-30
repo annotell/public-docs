@@ -103,7 +103,7 @@ kognicutil wasm validate calibration.wasm
 ## Compilation
 
 :::caution
-Rust 1.82 removes support for multivalue target (returning multiple values from a function). This feature is need for the calibrations to work at the moment. Therefore, you need to pin your rust and/or cargo version to < 1.82.
+Rust 1.82.0 removes support for the multivalue feature target (returning multiple values from a function). Since this feature is currently needed for custom camera calibrations to work, the Rust and/or Cargo version needs to be pinned to < 1.82.0.
 :::
 
 :::note
@@ -116,8 +116,8 @@ We provide a set of utilities that will make it easier to compile the WebAssembl
 
 | **Language** | **Target**  | **Compilation tool** | **Required version** |
 |--------------|-------------|----------------------|----------------------|
-| Rust         | *.rs        | rustc                | < 1.82               |
-| Rust (Cargo) | Cargo.toml  | cargo                | < 1.82               |
+| Rust         | *.rs        | rustc                | < 1.82.0               |
+| Rust (Cargo) | Cargo.toml  | cargo                | < 1.82.0               |
 | C++          | *.cc, *.cpp | emscripten           | N/A                  |
 | C            | *.c         | emscripten           | N/A                  |
 
