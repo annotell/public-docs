@@ -102,6 +102,10 @@ kognicutil wasm validate calibration.wasm
 
 ## Compilation
 
+:::caution
+Rust 1.82 removes support for multivalue target (returning multiple values from a function). This feature is need for the calibrations to work at the moment. Therefore, you need to pin your rust and/or cargo version to < 1.82.
+:::
+
 :::note
 It is recommended to keep the wasm file as small as possible. Try to avoid dependencies that are not needed. For example,
 it may be preferred to implement some mathematical functions yourself instead of using the standard library.
@@ -110,12 +114,12 @@ it may be preferred to implement some mathematical functions yourself instead of
 As stated above the WebAssembly module must follow a strict interface and compilation requires the multi-value proposal.
 We provide a set of utilities that will make it easier to compile the WebAssembly module from a few languages, see table below. 
 
-| **Language** | **Target**  | **Compilation tool** |
-|--------------|-------------|----------------------|
-| Rust         | *.rs        | rustc                |
-| Rust (Cargo) | Cargo.toml  | cargo                |
-| C++          | *.cc, *.cpp | emscripten           |
-| C            | *.c         | emscripten           |
+| **Language** | **Target**  | **Compilation tool** | **Required version** |
+|--------------|-------------|----------------------|----------------------|
+| Rust         | *.rs        | rustc                | < 1.82               |
+| Rust (Cargo) | Cargo.toml  | cargo                | < 1.82               |
+| C++          | *.cc, *.cpp | emscripten           | N/A                  |
+| C            | *.c         | emscripten           | N/A                  |
 
 The utilities are available both as python functions and via the `kognicutil` cli. From Python, you can compile the module
 with 
