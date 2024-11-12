@@ -55,12 +55,15 @@ Under the hood, they all use the AuthSession class which is implements a request
 From kognic-io v2.4.0 you can specify a workspace to use when uploading data, for users with access to multiple workspaces this is mandatory.
 
 To find the workspace you want to upload data to, select it from the drop down:
+
 ![workspace selector](workspace_drop_down.png)
 
 click on workspace managment:
+
 ![alt text](workspace_management.png)
 
 and find the copy option in the top right hand corner:
+
 ![alt text](copy_workspace_id.png)
 
 
