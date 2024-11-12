@@ -48,6 +48,11 @@ export KOGNIC_CREDENTIALS=~/path/to/credentials.json
 
 To verify that they are correct you can simply list projects in Python:
 
+::::note
+Since kognic-io v2.4.0 you can provide a workspace id that will be used for writes.
+For users with multiple workspaces this will be mandatory.
+::::
+
 <Tabs>
   <TabItem value="kognic-io-verify" label="kognic-io" default>
     ```python

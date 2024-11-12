@@ -51,6 +51,27 @@ api_client = KognicIOClient(auth="~/.config/kognic/credentials.json")
 
 Under the hood, they all use the AuthSession class which is implements a requests session with automatic token refresh.
 
+## Specifying a workspace
+From kognic-io v2.4.0 you can specify a workspace to use when uploading data, for users with access to multiple workspaces this is mandatory.
+
+To find the workspace you want to upload data to, select it from the drop down:
+![workspace selector](workspace_drop_down.png)
+
+click on workspace managment:
+![alt text](workspace_management.png)
+
+and find the copy option in the top right hand corner:
+![alt text](copy_workspace_id.png)
+
+
+When you create your kognic-io client you can now specify this id and it will be used when *uploading data*:
+
+```python
+from kognic.io.client import KognicIOClient
+
+api_client = KognicIOClient(write_workspace_id=<Some workspace uuid>)
+```
+
 ## Proxy Configuration
 
 If your organizations' network policy requires HTTP(S) traffic to be proxied out via a specific host, then you should configure this via your OS or execution environment. `kognic-io` uses Python's `urllib` which [will pick up the proxy configuration from your OS and environment variables](https://docs.python.org/3/library/urllib.request.html#urllib.request.getproxies).
