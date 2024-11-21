@@ -180,7 +180,7 @@ will simply be used if the object (or geometry if the property is source-specifi
 is not present in the frame, the attribute will be ignored. Dense attributes will be sparsified automatically when the
 pre-annotation is uploaded to the Kognic platform.
 
-## Feature flag properties ??? Need nice name here
+## Feature Flag Properties
 
 ### Locked Geometries
 
