@@ -75,13 +75,7 @@ module.exports = {
       ],
     },
     {
-      Support: [
-        "kognic-io/error_handling",
-        "kognic-io/FAQ",
-        {
-          "Migration Guides": ["a2k_migration_guide"],
-        },
-      ],
+      Support: ["kognic-io/error_handling", "kognic-io/FAQ"],
     },
   ],
 };
