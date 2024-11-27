@@ -63,12 +63,12 @@ article div details[class^="details"] {
   }
 }
 
-/* Better sidebar { */
+/* Better sidebar  */
 .menu a.menu__link {
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 14px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 html[data-theme="dark"] .menu a.menu__link {
@@ -82,4 +82,25 @@ html[data-theme="dark"] .menu a.menu__link {
   font-weight: normal;
   text-transform: none;
 }
-/* } */
+
+/* Sidebar container */
+nav ul.theme-doc-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* All items except the last three in sidebar */
+.menu ul li.theme-doc-sidebar-item-category:not(:nth-last-child(-n + 3)) {
+  font-weight: bold;
+}
+
+/* Third item from bottom in sidebar */
+.menu ul li.theme-doc-sidebar-item-category:nth-last-of-type(3) {
+  margin-top: auto;
+}
+
+/* Last item in sidebar */
+.menu ul li.theme-doc-sidebar-item-category:nth-last-of-type(1) {
+  margin-bottom: 32px;
+}
