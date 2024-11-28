@@ -75,7 +75,7 @@ module.exports = {
       ],
     },
     {
-      "Project management": ["kognic-io/project", "kognic-io/annotation_types"],
+      "Project management": ["kognic-io/project"],
     },
     {
       "Dataset exploration": [
