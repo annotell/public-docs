@@ -43,7 +43,7 @@ client.session.get(base_url + f"/datasets/{datasetUuid}/predictions-groups")
 ```
 
 #### 2.b Creating a predictions group (optional)
-For datasets not containing segmentation tasks, a new prediction group is created using the following code snippet
+For datasets not containing segmentation tasks, a new prediction group can be creaited **either by clicking in the app** (`Manage Predictions` in the upper right corner and then `+ Create predictions group`), **or by using the following code snippet**
 
 ```python
 path = base_url + f"/datasets/{datasetUuid}/predictions-groups"
@@ -60,7 +60,7 @@ except requests.exceptions.RequestException as e:
 
 **Special case: Segmentation datasets**
 
-Predictions groups connected to segmentation datasets require one extra parameter called `classMapping`. The mapping is used when 
+Predictions groups connected to segmentation datasets mus be created using the code snippet, and requires also one extra parameter called `classMapping`. The mapping is used when 
 calculating disagreement between predictions and annotations and will impact the sorting as well as how disagreements appear in the gallery. 
 The `classMapping` parameter is a list of dictionaries, where each dictionary contains the keys `annotated` and `predicted`. The `annotated` 
 key is the class name in the annotations, and the `predicted` key is the class name in the predictions.
