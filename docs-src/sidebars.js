@@ -3,45 +3,56 @@ module.exports = {
     {
       "Getting started": [
         "getting-started/quickstart",
-        "kognic-apis",
-        "key_concepts",
-        "getting-started/data-reqs",
+        {
+          "Indepth theory": [
+            "kognic-apis",
+            "key_concepts",
+            "getting-started/data-reqs",
+          ],
+        },
       ],
     },
     {
       "Upload data": [
-        "upload-data/upload-your-first-scene",
-        "upload-data/view-uploaded-scene",
-
         {
-          "More examples": [
-            "kognic-io/scenes/cameras",
-            "kognic-io/scenes/lidars_and_cameras",
-            "kognic-io/scenes/cameras_seq",
-            "kognic-io/scenes/lidars_and_cameras_seq",
-            "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
-            "upload-data/upload-zod-data",
+          Guides: [
+            "upload-data/upload-your-first-scene",
+            "upload-data/view-uploaded-scene",
+            {
+              "More examples": [
+                "kognic-io/scenes/cameras",
+                "kognic-io/scenes/lidars_and_cameras",
+                "kognic-io/scenes/cameras_seq",
+                "kognic-io/scenes/lidars_and_cameras_seq",
+                "kognic-io/scenes/aggregated_lidars_and_cameras_seq",
+                "upload-data/upload-zod-data",
+              ],
+            },
           ],
         },
         {
-          Scenes: [
-            "kognic-io/overview",
-            "kognic-io/scenes/lidars_with_imu_data",
-            "kognic-io/feature_flags",
-            "kognic-io/working_with_scenes_and_inputs",
-            "kognic-io/file_formats",
+          "Indepth theory": [
+            {
+              Scenes: [
+                "kognic-io/overview",
+                "kognic-io/scenes/lidars_with_imu_data",
+                "kognic-io/feature_flags",
+                "kognic-io/working_with_scenes_and_inputs",
+                "kognic-io/file_formats",
+              ],
+            },
+            {
+              Calibrations: [
+                "kognic-io/calibrations/overview",
+                "kognic-io/calibrations/lidars",
+                "kognic-io/calibrations/cameras-standard",
+                "kognic-io/calibrations/cameras-custom",
+              ],
+            },
+            "kognic-io/pre_annotations",
+            "kognic-io/coordinate_systems",
           ],
         },
-        {
-          Calibrations: [
-            "kognic-io/calibrations/overview",
-            "kognic-io/calibrations/lidars",
-            "kognic-io/calibrations/cameras-standard",
-            "kognic-io/calibrations/cameras-custom",
-          ],
-        },
-        "kognic-io/pre_annotations",
-        "kognic-io/coordinate_systems",
       ],
     },
     {
@@ -52,9 +63,15 @@ module.exports = {
     },
     {
       "Download annotations": [
-        "download-annotations/download-annotations",
-        "openlabel/openlabel-format",
-        "openlabel/python-client",
+        {
+          Guides: ["download-annotations/download-annotations"],
+        },
+        {
+          "Indepth theory": [
+            "openlabel/openlabel-format",
+            "openlabel/python-client",
+          ],
+        },
       ],
     },
     {
