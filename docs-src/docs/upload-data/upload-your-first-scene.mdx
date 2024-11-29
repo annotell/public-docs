@@ -18,6 +18,7 @@ import LidarsAndCamerasSeq from "./code-snippets/scenes-3d/_lidars-and-cameras-s
 
 When uploading raw data to the Kognic Platform, you need to do so in the form of a **scene**.
 A scene is a collection of data from different sources, such as images, point clouds, and other sensor data.
+
 This guide will walk you through the process of uploading your first scene, either in 2D (camera only) or 3D (camera and LiDAR/RADAR).
 
 ## Prerequisites
@@ -89,25 +90,21 @@ See the [Motion Compensation](../kognic-io/scenes/lidars_with_imu_data.md) secti
     <h2 style={{margin: '0px'}}>Uploading using ZOD Data</h2>
   </summary>
 
-  We have exemplar code and a tutorial for uploading scenes using [Zenseact Open Dataset (ZOD)](https://zod.zenseact.com/) data, including 2D, 3D,
-  and aggregated 3D scenes. [Check out the guide document and exemplar code here!](./upload-data/upload-zod-data)
+We have exemplar code and a tutorial for uploading scenes using [Zenseact Open Dataset (ZOD)](https://zod.zenseact.com/) data, including 2D, 3D,
+and aggregated 3D scenes. [Check out the guide document and exemplar code here!](./upload-data/upload-zod-data)
 
-  If you have the ZOD data downloaded, and have Kognic API credentials, the examples will run out of the box to create
-  functional scenes!
+If you have the ZOD data downloaded, and have Kognic API credentials, the examples will run out of the box to create
+functional scenes!
+
 </details>
 
 ## What happens now?
 
 The response given when creating the scene, the `scene_uuid`, is used to refer to the scene in the future. You can now
-check the status of the scene via the Platform or the Python client.
+check the status of the scene via the Python client or the Kognic Platform.
 
 <Tabs>
-    <TabItem value="platform" label="Kognic Platform" default>
-        Go to the [Data Orchestration tab](https://app.kognic.com/data-orchestration) in the Kognic Platform and search for the scene by its UUID or use any other suitable search criteria.
-        The status is shown in a column in the scenes list.
 
-        Note that you may need to contact Kognic to get access to _Data Orchestration_ in case you do not see it.
-    </TabItem>
     <TabItem value="python" label="Python" default>
         Use the `get_scenes_by_uuids` method to get the scene object from its UUID:
 
@@ -121,7 +118,17 @@ check the status of the scene via the Platform or the Python client.
         print(f"Scene {scene.uuid} has status {scene.status}")
         ```
     </TabItem>
+
+    <TabItem value="platform" label="Kognic Platform" default>
+        **If you do not have access to _Data Orchestration_, contact Kognic.**
+
+        Go to the [Data Orchestration tab](https://app.kognic.com/data-orchestration) in the Kognic Platform and search for the scene by its UUID or use any other suitable search criteria.
+        The status is shown in a column in the scenes list.
+
+
+    </TabItem>
+
 </Tabs>
 
-You may see the scene initially in the *processing* state while Kognic performs a little background processing, or in the
-*ready* or *failed* state after processing completes.
+You may see the scene initially in the _processing_ state while Kognic performs a little background processing, or in the
+_ready_ or _failed_ state after processing completes.
