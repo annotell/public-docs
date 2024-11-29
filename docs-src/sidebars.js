@@ -59,16 +59,8 @@ module.exports = {
       Workflow: ["workflow/workflow"],
     },
     {
-      "Order annotations": [
-        "upload-data/prerequisites-for-annotation",
-        "upload-data/ordering-annotation",
-      ],
-    },
-    {
       "Download annotations": [
-        {
-          Guides: ["download-annotations/download-annotations"],
-        },
+        "download-annotations/download-annotations",
         {
           "Indepth theory": [
             "openlabel/openlabel-format",
@@ -76,9 +68,6 @@ module.exports = {
           ],
         },
       ],
-    },
-    {
-      "Project management": ["kognic-io/project"],
     },
     {
       "Dataset exploration": [
