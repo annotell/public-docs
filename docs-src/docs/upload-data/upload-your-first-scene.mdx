@@ -25,6 +25,8 @@ This guide will walk you through the process of uploading your first scene, eith
 
 You have successfully followed the [Quickstart](../getting-started/quickstart.mdx) guide and have the `kognic-io` library installed. For users with access to multiple workspaces you need to [specify a workspace to upload data too.](https://developers.kognic.com/docs/kognic-apis#specifying-a-workspace)
 
+## Code examples
+
 <details>
   <summary>
     <h2 style={{margin: '0px'}}>Uploading a 2D scene</h2>
@@ -97,38 +99,3 @@ If you have the ZOD data downloaded, and have Kognic API credentials, the exampl
 functional scenes!
 
 </details>
-
-## What happens now?
-
-The response given when creating the scene, the `scene_uuid`, is used to refer to the scene in the future. You can now
-check the status of the scene via the Python client or the Kognic Platform.
-
-<Tabs>
-
-    <TabItem value="python" label="Python" default>
-        Use the `get_scenes_by_uuids` method to get the scene object from its UUID:
-
-        ```python
-        scene = client.scene.get_scenes_by_uuids([scene_uuid])[0]
-        ```
-
-        The scene object will contain the status of the scene.
-
-        ```python
-        print(f"Scene {scene.uuid} has status {scene.status}")
-        ```
-    </TabItem>
-
-    <TabItem value="platform" label="Kognic Platform" default>
-        **If you do not have access to _Data Orchestration_, contact Kognic.**
-
-        Go to the [Data Orchestration tab](https://app.kognic.com/data-orchestration) in the Kognic Platform and search for the scene by its UUID or use any other suitable search criteria.
-        The status is shown in a column in the scenes list.
-
-
-    </TabItem>
-
-</Tabs>
-
-You may see the scene initially in the _processing_ state while Kognic performs a little background processing, or in the
-_ready_ or _failed_ state after processing completes.
