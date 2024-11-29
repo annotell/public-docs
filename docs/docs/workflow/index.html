@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-workflow/workflow" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">Create and setup your project | Kognic</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://developers.kognic.com/docs/workflow/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Create and setup your project | Kognic"><meta data-rh="true" name="description" content="This guide will walk you through the essential steps to create and set up your project. By following these instructions, you&#x27;ll ensure a smooth start and lay a solid foundation for your work. Let&#x27;s begin with the key elements you need to consider when initiating your project. If you want a further deep dive into each topic, you can read more in our platform documentation"><meta data-rh="true" property="og:description" content="This guide will walk you through the essential steps to create and set up your project. By following these instructions, you&#x27;ll ensure a smooth start and lay a solid foundation for your work. Let&#x27;s begin with the key elements you need to consider when initiating your project. If you want a further deep dive into each topic, you can read more in our platform documentation"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://developers.kognic.com/docs/workflow/"><link data-rh="true" rel="alternate" href="https://developers.kognic.com/docs/workflow/" hreflang="en"><link data-rh="true" rel="alternate" href="https://developers.kognic.com/docs/workflow/" hreflang="x-default"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/styles.0bab3ebc.css">
+<script src="/assets/js/runtime~main.70508455.js" defer="defer"></script>
+<script src="/assets/js/main.db55d393.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/kognic-logo-black.png" alt="Kognic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/kognic-logo-white.png" alt="Kognic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/getting-started/quickstart">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/annotell/public-docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/getting-started/quickstart">Getting started</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/upload-your-first-scene">Upload data</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/docs/workflow/">Workflow</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/workflow/">Create and setup your project</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/upload-data/prerequisites-for-annotation">Order annotations</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/download-annotations/">Download annotations</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/kognic-io/project">Project management</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/dataset-exploration/introduction">Dataset exploration</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/annotation-integration/introduction">Annotation integration</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/kognic-io/error_handling">Support</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Workflow</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Create and setup your project</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Create and setup your project</h1>
+<p>This guide will walk you through the essential steps to create and set up your project. By following these instructions, you&#x27;ll ensure a smooth start and lay a solid foundation for your work. Let&#x27;s begin with the key elements you need to consider when initiating your project. If you want a further deep dive into each topic, you can read more in our <a href="https://docs.kognic.com" target="_blank" rel="noopener noreferrer">platform documentation</a></p>
+<p>There are 5 steps to configure a project in the Kognic platform:</p>
+<ol>
+<li><strong>Create the project</strong></li>
+<li><strong>Create your annotation instruction</strong></li>
+<li><strong>Create your first request</strong></li>
+<li><strong>Upload your data</strong></li>
+<li><strong>Add your team to the request</strong></li>
+</ol>
+<p>This guide will cover all five steps one by one where you will in the end have a request for annotating a camera image ready to go.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="prerequisites">Prerequisites<a href="#prerequisites" class="hash-link" aria-label="Direct link to Prerequisites" title="Direct link to Prerequisites">​</a></h4>
+<p>To be able to follow this guide you need a Kognic account with Workspace role Project Manager &amp; Developer or Admin, lets get started!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="create-project">Create project<a href="#create-project" class="hash-link" aria-label="Direct link to Create project" title="Direct link to Create project">​</a></h2>
+<p>Projects are used to group and organize annotation work in the Kognic platform. Inside the project, the annotation work is further organized into annotation requests detailing what data to annotate and how. Below is a guide on how to create a new project.</p>
+<ol>
+<li>
+<p>Login to the <a href="https://app.kognic.com" target="_blank" rel="noopener noreferrer">app</a> and navigate to the Project management page</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/project_management-21b68f3ab4fa2a748c3e404b03184ad8.png" width="1802" height="1006" class="img_ev3q"></p>
+</li>
+<li>
+<p>In the top right corner, press “Create new project”</p>
+</li>
+<li>
+<p>Create your project by giving it a name and external id, then press Create project. The external id is used to access the project through Kognics APIs. If you leave it blank, it will be set to a random UUID.
+<img decoding="async" loading="lazy" src="/assets/images/create_project-b3a12413846a812fb7195b084e86ca61.png" width="1036" height="812" class="img_ev3q"></p>
+</li>
+<li>
+<p>Congratulations, you have now created your first project. The project will appear in the project list and you can press it to continue the setup</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="create-an-annotation-instruction">Create an annotation instruction<a href="#create-an-annotation-instruction" class="hash-link" aria-label="Direct link to Create an annotation instruction" title="Direct link to Create an annotation instruction">​</a></h2>
+<p>An Annotation Instruction is a specification of what you want to be annotated, but also an explanation or guidance of how you want it to be annotated.</p>
+<p>For example, you may specify that you would like to annotate cars and pedestrians in 3D with bounding boxes, which we call Classes. In addition, you may also want to clarify class-related annotation rules in a separate guideline document, for example, that the 3D box annotations around each car should not include the side mirrors.</p>
+<ol>
+<li>
+<p>To create a Annotation Instruction, first navigate to the Annotation Instruction tab inside the project. Click on your project in the project list and then click on Annotation Instruction in the top bar, then press Create New Instruction to start.
+<img decoding="async" loading="lazy" src="/assets/images/create_ai-50954d3881f5c0f0c98b9fad21af4a6f.png" width="1482" height="502" class="img_ev3q"></p>
+</li>
+<li>
+<p>In the popup window, give your instruction a name and create it. After you press Create Instruction you will be redirected back to the list of annotation instructions and your new instruction will be listed.
+<img decoding="async" loading="lazy" src="/assets/images/create_instruction-2e3ef11507bb01ab7900256075e29764.png" width="387" height="206" class="img_ev3q"></p>
+</li>
+<li>
+<p>Click on new instruction to open it and see all different revisions. Currently there are none. Create one by clicking Create Revision in the top right corner.
+<img decoding="async" loading="lazy" src="/assets/images/create_revision1-3b1ded697aeb792aa3b30c5703c142cd.png" width="1452" height="966" class="img_ev3q"></p>
+</li>
+<li>
+<p>In the new popup window, create a new revision by naming it. For Type of revision select New revision draft. Finish the process by clicking Create Revision, upon doing that you will be redirected into the revision.</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/create_revision2-a78d209659b54ee5b6c8b6877e9a5dfe.png" width="381" height="277" class="img_ev3q"></p>
+</li>
+</ol>
+<p>Now its time to start building out the annotation instruction. There are 5 different steps in the process. <strong>Creating the classes (</strong> What classes are needed and with which shape types they shall be annotated with ), creating <strong>Class properties</strong> and adding them to the relevant classes, adding optional <strong>Scene</strong> <strong>Properties</strong> to the inputs, configuring various settings and attaching your guideline.</p>
+<p>As an example here we will create the class Car that shall be annotated as a 3D cuboid with 2 different properties.</p>
+<ol start="5">
+<li>
+<p>Create a class by clicking <strong>Create new class</strong> in the bottom right corner</p>
+</li>
+<li>
+<p>Change the Geometry type to 3D Bounding box and name the class Car</p>
+</li>
+<li>
+<p>Add “Auto-adjust this Frame” and “Machine Assisted 3D tool” as Automation settings
+<img decoding="async" loading="lazy" src="/assets/images/classes-544b1ce273529748644ce285b1914704.png" width="1470" height="782" class="img_ev3q"></p>
+</li>
+<li>
+<p>To create a class property, go the the class properties tab and press <strong>Create new class property</strong></p>
+</li>
+<li>
+<p>Select the property type you need and name the property, in this example a True / False property is selected. Then configure the property, for this example. The property value is unique per sensor its visible in and it’s a required property without any pre-selected value.
+<img decoding="async" loading="lazy" src="/assets/images/set_properties-02690b8f869b07e8ee4aacd501233941.png" width="1461" height="822" class="img_ev3q"></p>
+</li>
+<li>
+<p>Now it’s time to connect the property to the class. Go back to the Classes tab and select the Car class</p>
+</li>
+<li>
+<p>Press Select properties to this class
+<img decoding="async" loading="lazy" src="/assets/images/select_props-544b1ce273529748644ce285b1914704.png" width="1470" height="782" class="img_ev3q"></p>
+</li>
+<li>
+<p>Select the property you created and press Save changes
+<img decoding="async" loading="lazy" src="/assets/images/save_props-3316459544706457f5837d5009b8a172.png" width="686" height="328" class="img_ev3q"></p>
+</li>
+<li>
+<p>Go to configuration, here you can configure your task according to your specific need, to learn about each setting. Press the question mark to read about it. In our case, go to 3D settings and enable “Default to cuboid estimation”
+<img decoding="async" loading="lazy" src="/assets/images/configuration-d4ab8d746cf6c5c0de639739b8b04009.png" width="1466" height="1144" class="img_ev3q"></p>
+</li>
+<li>
+<p>Go to the Guideline tab and upload your guideline as a PDF.</p>
+</li>
+<li>
+<p>Now a draft is finished, to test your revision and make sure it behaves as you want, press Preview in the Top-right corner to test it.</p>
+</li>
+<li>
+<p>Select “Multi-lidar” and press Preview, a new tab will open with a demo task with your annotation instruction</p>
+</li>
+<li>
+<p>To the right you will see your configured classes. Draw an object to see that each class has the properties you want. In our case we have the “Car” class with 1 True/False property named Occluded
+<img decoding="async" loading="lazy" src="/assets/images/draw_object-203a98f09a73100b01e7e971ba9c7dc7.png" width="1720" height="1294" class="img_ev3q"></p>
+</li>
+<li>
+<p>If you are happy with the behaviour, go back to the Annotation Instruction and press “Set as ready for production in the top right bar
+<img decoding="async" loading="lazy" src="/assets/images/ready_for_prod-7d14029b6193233040ca68bd272be96b.png" width="1448" height="192" class="img_ev3q"></p>
+</li>
+<li>
+<p>In the pop-up, you get the option to get a review from a Kognic expert. Disable that checkbox and click Confirm in this case.</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/ready_prod_popup-d263f3cd51e57f3e9789b2721bb96df3.png" width="425" height="303" class="img_ev3q"></p>
+</li>
+<li>
+<p>Well done! The annotation instruction is now ready to be used when creating a request which is the next step</p>
+</li>
+</ol>
+<p>More details about Annotation Instructions and some tips &amp; tricks are available <a href="https://docs.kognic.com/annotation-instruction" target="_blank" rel="noopener noreferrer">here</a></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="create-the-first-request">Create the first request<a href="#create-the-first-request" class="hash-link" aria-label="Direct link to Create the first request" title="Direct link to Create the first request">​</a></h2>
+<p>Annotation request is the core concept in the organization of annotation work at Kognic. The request&#x27;s configuration specifies what data to annotate (Input batch), how to annotate the data (Annotation Instruction), which process the data should be produced by (Workflow), and who should annotate and quality-assure the data (Team).</p>
+<ol>
+<li>
+<p>To get started, open the project you created before and select the Annotation Requests tab. Then locate the Create request button at the top right corner of the project pag
+<img decoding="async" loading="lazy" src="/assets/images/create_request-9ae0d659355f5286092c7fd6a16eef50.png" width="3110" height="830" class="img_ev3q"></p>
+</li>
+<li>
+<p>Go ahead and create the request. Here there is a variety of settings to go through and select. More details about the different sections can be found by clicking the question mark on the right hand side of each section.</p>
+</li>
+<li>
+<p><strong>Add Request and Input batch info</strong></p>
+<p>Name your request and external id. The external id is again used when working with the request via the API. Annotation types are used to categorize the annotations produced in different requests. Select the one that best matches the type of annotations you plan to produce in your request.</p>
+</li>
+<li>
+<p><strong>Request Producer</strong></p>
+<p>The organization with the request role Producer is responsible for producing annotated data in the request. Users from this organization are allowed more detailed monitoring and management options and can configure the request team in detail. All to ensure they can successfully monitor and manage the production process.</p>
+<p>In this Request, select your organization as the Request Producer</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/request_producer-a50e37967b1d840e30b289213de757d9.png" width="3096" height="1456" class="img_ev3q"></p>
+</li>
+<li>
+<p><strong>Input type</strong></p>
+<p>The input type decides what data type you can upload to your newly created input batch and later annotate in the request. For this request, select <strong>Cameras</strong></p>
+<p>The available input types are:</p>
+<table><thead><tr><th><strong>Input type</strong></th><th><strong>Description</strong></th></tr></thead><tbody><tr><td>Lidar and Cameras</td><td>A single frame, containing both camera data (from one or multiple cameras) and lidar data.</td></tr><tr><td>Lidar and Cameras Sequence</td><td>A sequence of frames, containing both camera data (from one or multiple cameras) and lidar data.</td></tr><tr><td>Cameras</td><td>A single frame of camera data. The data can be from one or multiple cameras.</td></tr><tr><td>Cameras Sequence</td><td>A sequence of camera frames. The data can be from one or multiple cameras.</td></tr><tr><td>Aggregated Lidar and Cameras Sequence</td><td>A sequence of frames, containing both camera data (from one or multiple cameras) and lidar data. By using this model the lidar data will be aggregated using your IMU data. This can be useful for example when annotating 3D lines</td></tr></tbody></table>
+</li>
+<li>
+<p><strong>Annotation Instruction</strong></p>
+<p>Select the Annotation Instruction and Revision that you created in the previous step as the Annotation Instruction</p>
+</li>
+<li>
+<p><strong>Request Workflow</strong></p>
+<p>The request workflow determines the steps used to produce annotations and in what order. They define what type of steps (tasks) to complete before we have produced a deliverable annotation. For this request, select <strong>Annotate + Full Review + Sampled Review.</strong></p>
+<p>A comprehensive documentation on Workflows are available on this page <a href="https://docs.kognic.com/annotation-workflows" target="_blank" rel="noopener noreferrer">Annotation Workflows - Kognic: Annotation + Dataset Manageme…</a>.</p>
+</li>
+<li>
+<p><strong>Review error type</strong></p>
+<p>The error types are available in the Feedback Tools during Review tasks, and during follow-up Correction tasks. If your organization has many error types configured, you might want to select a subset of error types that are relevant for this request. You can learn more about error types on the page <a href="https://docs.kognic.com/error-types" target="_blank" rel="noopener noreferrer">Error Types - Kognic: Annotation + Dataset Management for Se…</a></p>
+</li>
+<li>
+<p>Finish by clicking Create Request
+<img decoding="async" loading="lazy" src="/assets/images/finish_request-e9cd99dae35700d2f6efcc945fafa05b.png" width="3160" height="984" class="img_ev3q"></p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="upload-data">Upload data<a href="#upload-data" class="hash-link" aria-label="Direct link to Upload data" title="Direct link to Upload data">​</a></h2>
+<p>The request configuration is complete, well done! Now it’s time to upload data to the request.</p>
+<p>Uploading data is primarily done via the Kognic APIs. To access our APIs, Kognic provides a Python client. For simpler inputs, you can also upload data through the user interface. We&#x27;ll cover this process in the <a href="https://www.notion.so/Create-and-setup-your-project-guide-111c4e3f60728077acebf963b1e2afdb?pvs=21" target="_blank" rel="noopener noreferrer">Data Orchestration block</a> below.</p>
+<ol>
+<li>
+<p>Create your Kognic API credentials and install the client package
+Follow the <a href="https://developers.kognic.com/docs/getting-started/quickstart/" target="_blank" rel="noopener noreferrer">quickstart guide</a>. Make sure to verify that is works.</p>
+</li>
+<li>
+<p><strong>Upload and create an Input</strong></p>
+<p>When uploading data to Kognic, you have two options: you can either send the data directly to a specific request (like the one we created earlier), or just upload it as a standalone scene. Note that a scene will be created in both cases, but in the first case the scene will also be automatically sent to the request for annotation. Note that if you only create a standalone scene you can always add it to a request later on. A scene can be reused in many requests in case you want to annotate the same data in different ways.</p>
+<p>The request above was setup as a Cameras input type request. That means that you can upload a single camera image from one or more cameras in one frame. Follow the code example <em>Uploading a 2D scene</em> <a href="https://developers.kognic.com/docs/upload-your-first-scene/" target="_blank" rel="noopener noreferrer">here</a> to upload your first scene. All you need is any image you would like to annotate.</p>
+<p>In this case we both want to create the scene and send it to the request that we created. This can be done like the code snippet below, where you specify external IDs for both the project and request (also known as batch). If you don&#x27;t remember them, don&#x27;t worry—you can copy them from the app as shown below.</p>
+<p>You can copy the external ids from the app. The project id under the Project main page and press the three dots in the top right corner.</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/project_id-27bbc76eb6893e028fd3ff22d9acb2cd.png" width="3126" height="1160" class="img_ev3q">
+To copy the Batch external id, go into the request and copy the id in the same fashion</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/batch_id-40e6d768a8a868117f40e604a2fbb775.png" width="3114" height="1446" class="img_ev3q"></p>
+<p>If you want to know more about Scenes and Inputs and how to work with them you can read more <a href="https://developers.kognic.com/docs/kognic-io/working_with_scenes_and_inputs/#creating-inputs-from-scene" target="_blank" rel="noopener noreferrer">here</a></p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="data-orchestration">Data Orchestration<a href="#data-orchestration" class="hash-link" aria-label="Direct link to Data Orchestration" title="Direct link to Data Orchestration">​</a></h2>
+<p>The <a href="https://app.kognic.com/data-orchestration" target="_blank" rel="noopener noreferrer">Data Orchestration tool</a> is a great way to visualise your uploaded data. Here you can see all of the scenes that you have created. You can filter on certain input types, as well as visualise the actual data in the drawing tool by using the dot-menu on the right as shown below.</p>
+<p>Here you can also view in what request a specific scene is annotated in. And if you want to send the scene to a specific request for annotation you can use the Kognic API <a href="https://developers.kognic.com/docs/kognic-io/working_with_scenes_and_inputs#creating-inputs-from-scene" target="_blank" rel="noopener noreferrer">as explained here</a>.</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/data_orchestration-78ce9a0fe0b15f2a9e3f1f5a059775e4.png" width="2250" height="815" class="img_ev3q"></p>
+<p>In the upper right corner of the page you can also upload a scene via the UI. This is currently limited to Cameras and Cameras Sequence inputs, but can be of great help to get started.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="add-team--activate-request">Add team &amp; activate request<a href="#add-team--activate-request" class="hash-link" aria-label="Direct link to Add team &amp; activate request" title="Direct link to Add team &amp; activate request">​</a></h2>
+<p>The last step to setup is to add the team that should work on the request</p>
+<p>Two settings determine how a team member gets assigned tasks and what types of tasks they will be assigned - the responsibility and the task allocation type.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="task-allocation-type"><strong>Task allocation type</strong><a href="#task-allocation-type" class="hash-link" aria-label="Direct link to task-allocation-type" title="Direct link to task-allocation-type">​</a></h3>
+<p>You can have manual or automatic task allocation</p>
+<p><strong>Automatic task allocation e</strong>nsures that the team member will <strong>automatically</strong> get access to tasks of specific types when automatic task allocation has been activated for the request. The team member will be able to work on the tasks as long as there are tasks available of the type/types their responsibility allows them to work on.</p>
+<p>Automatically allocated tasks are assigned when the team member clicks &quot;Start a task&quot; on thier “My Tasks” page</p>
+<p>If a user have <strong>Manual task allocation</strong> a project manager must manually assign tasks to the user.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="responsibility">Responsibility<a href="#responsibility" class="hash-link" aria-label="Direct link to Responsibility" title="Direct link to Responsibility">​</a></h3>
+<p>The responsibility determines from which <strong>Workflow stage</strong> the team member will be assigned tasks during automatic task allocation**.** When manual task allocation is activated for a team member, you can assign them any type of task regardless of their responsibility.</p>
+<p><strong>What are workflow stages?</strong></p>
+<p>On the input&#x27;s way toward getting a delivery-ready annotation, it goes through a series of workflow stages. Each stage corresponds to one action in one of the workflow&#x27;s different phases, such as the action “Correct” in the phase “Review”.</p>
+<p><strong>Annotate🖋️</strong>
+The team member will be able to work on available annotation tasks, which are the base annotation task starting from an empty input</p>
+<p><strong>Correct🖍️</strong>
+The team member will be to work on available Review correction tasks during automatic task allocation. A Review correction task contains comments and correction requests from a previous Review tasks.</p>
+<p><strong>Review 👍👎</strong>
+The team member can work on available Review tasks during automatic task allocation. A Review task is made to quality assure a previous task.</p>
+<p>Now lets add your team.</p>
+<ol>
+<li>
+<p>Navigate to the request and the team tab</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/team_tab-eb9a176d8a951c5518154fef7070d6a9.png" width="3126" height="1172" class="img_ev3q"></p>
+</li>
+<li>
+<p>Press add your team members</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/add_team_members-3a7933d2e64acd222223947fa20c171a.png" width="512" height="396" class="img_ev3q"></p>
+</li>
+<li>
+<p>Add a team member
+Select the Task allocation type and responsibility you want, then search for their name or email to select them.</p>
+</li>
+<li>
+<p>Press Add Members to finish the setup</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/add_members-0b97edb2ba4d3ec44f0c9679c9ae4204.png" width="512" height="400" class="img_ev3q">
+Read more about a request team <a href="https://docs.kognic.com/team" target="_blank" rel="noopener noreferrer">Team - Kognic: Annotation + Dataset Management for Sensor-Fu…</a></p>
+</li>
+<li>
+<p>Great job, lets finish and get to work by pressing Activate automatic allocation on the top right. Team members with Automatic task allocation will now have production tasks to work on under their My Tasks view.</p>
+<p><img decoding="async" loading="lazy" src="/assets/images/my_tasks-7a178721265547269d7ca7e1390bcf6f.png" width="3126" height="466" class="img_ev3q"></p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/annotell/public-docs/edit/master/docs-src/docs/workflow/workflow.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/kognic-io/coordinate_systems"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Coordinate Systems</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/upload-data/prerequisites-for-annotation"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Prerequisites for Annotation</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#create-project" class="table-of-contents__link toc-highlight">Create project</a></li><li><a href="#create-an-annotation-instruction" class="table-of-contents__link toc-highlight">Create an annotation instruction</a></li><li><a href="#create-the-first-request" class="table-of-contents__link toc-highlight">Create the first request</a></li><li><a href="#upload-data" class="table-of-contents__link toc-highlight">Upload data</a></li><li><a href="#data-orchestration" class="table-of-contents__link toc-highlight">Data Orchestration</a></li><li><a href="#add-team--activate-request" class="table-of-contents__link toc-highlight">Add team &amp; activate request</a><ul><li><a href="#task-allocation-type" class="table-of-contents__link toc-highlight"><strong>Task allocation type</strong></a></li><li><a href="#responsibility" class="table-of-contents__link toc-highlight">Responsibility</a></li></ul></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
