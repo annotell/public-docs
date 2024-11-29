@@ -17,7 +17,6 @@ module.exports = {
         {
           Guides: [
             "upload-data/upload-your-first-scene",
-            "upload-data/view-uploaded-scene",
             {
               "More examples": [
                 "kognic-io/scenes/cameras",
@@ -28,6 +27,7 @@ module.exports = {
                 "upload-data/upload-zod-data",
               ],
             },
+            "upload-data/view-uploaded-scene",
           ],
         },
         {
