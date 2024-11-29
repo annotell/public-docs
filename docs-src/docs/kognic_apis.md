@@ -1,6 +1,6 @@
 ---
 id: kognic-apis
-title: Setup
+title: Advanced setup
 description: Overview of Kognic API usage including authentication
 ---
 
@@ -52,6 +52,7 @@ api_client = KognicIOClient(auth="~/.config/kognic/credentials.json")
 Under the hood, they all use the AuthSession class which is implements a requests session with automatic token refresh.
 
 ## Specifying a workspace
+
 From kognic-io v2.4.0 you can specify a workspace to use when uploading data, for users with access to multiple workspaces this is mandatory.
 
 To find the workspace you want to upload data to, select it from the drop down:
@@ -66,8 +67,7 @@ and find the copy option in the top right hand corner:
 
 ![alt text](copy_workspace_id.png)
 
-
-When you create your kognic-io client you can now specify this id and it will be used when *uploading data*:
+When you create your kognic-io client you can now specify this id and it will be used when _uploading data_:
 
 ```python
 from kognic.io.client import KognicIOClient
