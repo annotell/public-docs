@@ -56,6 +56,9 @@ module.exports = {
       ],
     },
     {
+      Workflow: ["workflow/workflow"],
+    },
+    {
       "Order annotations": [
         "upload-data/prerequisites-for-annotation",
         "upload-data/ordering-annotation",
