@@ -31,7 +31,7 @@ scene_response = client.lidars_and_cameras_sequence.create(
 ```
 
 Note that you now have to wait for the scene to be created before you can proceed to the next step. More information
-this can be found [Waiting for Scene Creation](working_with_scenes_and_inputs.md#waiting-for-scene-creation). 
+this can be found [Waiting for Scene Creation](working_with_scenes_and_inputs.md#waiting-for-scene-creation).
 
 
 ### 2. Uploading an OpenLabel annotation
@@ -57,7 +57,7 @@ and be ready for annotation with the pre-annotation present.
 ```python
 client.lidars_and_cameras_sequence.create_from_scene(
     scene_uuid=scene_response.scene_uuid, # from step 1
-    project=project, # Important: this is the external id and not the title 
+    project=project, # Important: this is the external id and not the title
     dryrun=dryrun
 )
 ```
@@ -179,6 +179,103 @@ Attributes are handled differently compared to geometries. If an attribute is no
 will simply be used if the object (or geometry if the property is source-specific) is present in the frame. If the object
 is not present in the frame, the attribute will be ignored. Dense attributes will be sparsified automatically when the
 pre-annotation is uploaded to the Kognic platform.
+
+## Kognic Reserved Object Properties
+There are certain properties that can be set on an object to toggle various behaviour in the Kognic platform.
+
+### Locked Geometries
+
+If an object and its geometries in the pre-annotation is already of sufficient quality, or should remain unchanged during use of the pre-annotation, you can mark it as locked. The lock is put on an object level, and will affect all the objects geometries.
+
+```json
+{
+  "openlabel": {
+    "objects": {
+      "object_uuid": {
+        "name": "object_uuid",
+        "object_data": {
+          "boolean": [
+            {
+              "name": "kognic_locked_geometries",
+              "val": true
+            }
+          ]
+        },
+        "object_data_pointers": {},
+        "type": "Vehicle"
+      }
+    }
+  }
+}
+```
+
+```python
+import kognic.openlabel.models as OLM
+
+uuid1 = str(uuid.uuid4())
+
+object = OLM.Object(
+    name=uuid1,
+    type="car",
+    object_data=OLM.ObjectData(
+        boolean=[
+            OLM.Boolean(name="kognic_locked_geometries", val=True),
+        ]
+    ),
+)
+
+openlabel = OLM.Openlabel(objects={uuid1: object}, metadata=OLM.Metadata(schema_version="1.0.0"))
+
+openlabel_annotation = OLM.OpenLabelAnnotation(openlabel=openlabel)
+```
+
+### Stationary Objects
+A stationary object is something that _can_ move, but doesn't. A good example of this is a parked car.
+This is different from a static object, which _can't_ move, such as a landmark.
+
+Objects can be marked as stationary to enable certain platform features.
+
+```json
+{
+  "openlabel": {
+    "objects": {
+      "object_uuid": {
+        "name": "object_uuid",
+        "object_data": {
+          "boolean": [
+            {
+              "name": "kognic_stationary_object",
+              "val": true
+            }
+          ]
+        },
+        "object_data_pointers": {},
+        "type": "Vehicle"
+      }
+    }
+  }
+}
+```
+
+```python
+import kognic.openlabel.models as OLM
+
+uuid1 = str(uuid.uuid4())
+
+object = OLM.Object(
+    name=uuid1,
+    type="car",
+    object_data=OLM.ObjectData(
+        boolean=[
+            OLM.Boolean(name="kognic_stationary_object", val=True),
+        ]
+    ),
+)
+
+openlabel = OLM.Openlabel(objects={uuid1: object}, metadata=OLM.Metadata(schema_version="1.0.0"))
+
+openlabel_annotation = OLM.OpenLabelAnnotation(openlabel=openlabel)
+```
 
 ## Examples
 
