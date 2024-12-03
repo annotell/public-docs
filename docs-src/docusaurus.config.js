@@ -62,6 +62,15 @@ module.exports = {
         },
       },
     ],
+    [
+      'redocusaurus',
+      {
+        specs: [{
+          route: '/api/',
+          spec: '/Users/oskarolin/Projects/public-docs/openapi.yaml',
+        }],
+      }
+    ],
   ],
   stylesheets: [
     {
