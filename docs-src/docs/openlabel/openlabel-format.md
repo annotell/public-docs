@@ -467,7 +467,7 @@ The `point_class` value `"line_reference_point"` is reserved for future use case
 Introduced in `kognic_format_version` 2.2
 :::
 
-Related documenation for the task view
+Related documentation for the task view
 https://docs.kognic.com/class-groups
 
 A collection of geometries as described in the link above will be represented as having a reserved relation as type `geometry_collection`.
