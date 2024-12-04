@@ -67,7 +67,7 @@ function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
   return (
-    <Layout title={`${siteConfig.title} SDK`} description="Kognic API Docs">
+    <Layout title={`${siteConfig.title} SDK`} description="The Annotation Platform for Sensor-Fusion">
       <header
         className={clsx("hero hero--primary", styles.heroBanner)}
         style={{ backgroundImage: `url(${useBaseUrl("img/background.png")})` }}
