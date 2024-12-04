@@ -24,6 +24,9 @@ module.exports = {
       githubLinkLabel: "View on GitHub",
       showRunmeLink: false,
     },
+    metadata: [
+      {name: 'description', content: 'The Annotation Platform for Sensor-Fusion'},
+    ],
     navbar: {
       logo: {
         alt: "Kognic",
