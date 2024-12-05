@@ -4,7 +4,7 @@ title: Review
 
 A review is a decision that determines whether an annotation is of sufficient quality or if it needs 
 improvement. In order to facilitate efficient improvements, the person or system that made the decision can provide 
-[feedback](#feedback) data that details potential errors or mistakes. Please refer to our [user documentation](https://docs.kognic.com/AHwD-introduction) 
+[feedback](#feedback) data that details potential errors or mistakes. Please refer to our [user documentation](https://docs.kognic.com/kkOa-introduction) 
 regarding feedback to gain insight on how these concepts are used in the platform, note that these describe the full
 set of possibilities and workflows for dealing with reviews and feedback - the possibilities enabled by this integration
 are currently somewhat limited, as detailed below. 
