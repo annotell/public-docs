@@ -4,7 +4,7 @@ import DefaultNavbar from '@theme-original/Navbar';
 const containerStyle = {
     position: 'sticky',
     top: 0,
-    backgroundColor: '#910f0f',
+    backgroundColor: '#AB2222',
     color: 'white',
     zIndex: 1000,
     padding: '1rem',
