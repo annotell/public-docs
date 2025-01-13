@@ -35,7 +35,7 @@ export default function Navbar(props) {
                         These docs are old and won't be updated. Go to <a style={{
                             color: '#4599ed',
                             textDecoration: 'underline',
-                        }} href='https://docs.kognic.com'>docs.kognic.com</a> for our latest documentation!
+                        }} href='https://docs.kognic.com/api-guide'>docs.kognic.com</a> for our latest documentation!
                     </b>
                     <button
                         style={closeButtonStyle}
